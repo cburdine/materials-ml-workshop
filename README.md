@@ -6,11 +6,21 @@ These tutorials use the Jupyter Book platform, and are intended to be exported a
 
 ## Building the site:
 
+### Dependencies:
+
 First you must install the Jupyter Book dependencies inyour Python environment:
 
 ```
-pip3 install --upgrade jupyter-book notebook
+pip install --upgrade jupyter-book notebook
 ```
+
+You will also need to install the dependencies used in the tutorials. These can be installed with:
+
+```
+pip install -r MaterialsML/requirements.txt
+```
+
+### Build HTML:
 
 If you have GNU make installed on your system, you can build the static site by invoking the Makefile by running the command
 ```
