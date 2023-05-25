@@ -1,4 +1,7 @@
 numpy
 scipy
 matplotlib
-sklearn
+pandas
+scikit-learn
+tqdm
+itables
