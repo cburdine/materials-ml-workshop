@@ -17,8 +17,8 @@ chapters:
   - file: ml_intro/math_review
 - file: supervised_learning/supervised_learning
   sections:
+  - file: supervised_learning/fitting_models
   - file: supervised_learning/basic_models
-  - file: supervised_learning/evaluating_models
 - file: regression/regression
   sections:
   - file: regression/regularization

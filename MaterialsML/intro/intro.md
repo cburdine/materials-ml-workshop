@@ -12,3 +12,4 @@ explore many of the ML techniques used in materials science, including supervise
 This workshop is intended for researchers and practitioners in the field of materials science who are interested in developing their skills in scientific computing and ML, and how these skills can be applied to their work. It is also suitable for students and academics who are interested in the intersection of these two fields.
 
 We hope that this workshop will inspire others to explore the use of ML and scientific computing in their own work and contribute to the continued growth of this exciting field.
+

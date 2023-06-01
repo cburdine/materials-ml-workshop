@@ -8,11 +8,11 @@ kernelspec:
   language: python
   name: python3
 ---
-# Basic Supervised Models
+# Application: Classifying Perovskites
 
 Now that we've covered some of the basic theory of supervised learning, let's start applying some basic supervised learning models to a real dataset.
 
-## Example Dataset: Perovskite Classification
+## Perovskite Classification Dataset
 
 Perovskites are materials with a crystal structure of the form  $ABX_3$, where $A$ and $B$ are two positively charged cations and $B$ is a negatively charged anion, usually oxygen ($O$). Ideal perovskites have a cubic structure, although some perovskites may attain more stable configurations with slightly perturbed structural phases, such as orthorombic or tetragonal. Here's an example of [SrTiO$_3$](https://en.wikipedia.org/wiki/Strontium_titanate) (strontium titanate), which is most stable with a cubic structure:
 
@@ -82,12 +82,12 @@ a_electronegativity = np.array(perovskite_df['EN(A)'])
 b_electronegativity = np.array(perovskite_df['EN(B)'])
 goldschmidt_tolerance = np.array(perovskite_df['tG'])
 
-# combine features into a 3xN numpy array:
+# combine features into columns of a Nx3 numpy array:
 features = np.array([
     a_electronegativity,
     b_electronegativity,
     goldschmidt_tolerance
-])
+]).T
 
 print('Shape of features:', features.shape)
 ```
@@ -125,14 +125,177 @@ plt.gca().set_yticks(bar_locations)
 plt.gca().set_yticklabels(distinct_structures)
 plt.show()
 ```
+As expected, a majority of the perovskites have the ideal cubic structure. 
 
-## Nearest-Neighbor Models
+## Classifying Cubic versus Non-Cubic Structures:
 
-### Classification
+For simplicity, let's first consider the problem of classifying cubic versus non-cubic structures. This is a simple binary classification task that we can solve using the _binary perceptron_ model we learned about previously. Let's start by removing the data entries with unknown structure (`-`) and assigning values of `1` to cubic structures and `-1` to non-cubic structures:
+
+```{code-cell}
+:tags: [hide-input]
+
+# determine the indices of unlabeled  data:
+clean_data_idxs = (structures != '-')
+
+# remove unlabeled data from features:
+clean_features = features[clean_data_idxs]
+clean_structures = structures[clean_data_idxs]
+
+# assign binary classifier labels +1/-1 for cubic/non-cubic:
+binary_classifier_labels = np.array([
+    1 if struct == 'cubic' else -1
+    for struct in structures
+])
+
+print('Features shape:', clean_features.shape)
+print('Binary classifier labels shape:', binary_classifier_labels.shape) 
+```
+
+Let's visualize what the cubic versus non-cubic data looks like with respect to electronegativity (A and B):
+
+```{code-cell}
+:tags: [hide-input]
+
+# separate out cubic and non-cubic data:
+cubic_data = features[binary_classifier_labels == 1]
+noncubic_data = features[binary_classifier_labels == -1]
+
+# plot EN(A), EN(B) for cubic and non-cubic data:
+plt.figure()
+plt.scatter(cubic_data[:,0], cubic_data[:,1], s=3.0, label='Cubic')
+plt.scatter(noncubic_data[:,0], noncubic_data[:,1],s=3.0, label='Non-Cubic')
+plt.xlabel('EN(A)')
+plt.ylabel('EN(B)')
+plt.legend()
+plt.show()
+```
+Since the [electronegativity](https://en.wikipedia.org/wiki/Electronegativity) generally increases with the group and decreases with the period of elements on the periodic table, it serves as a good numerical quantity to associate with each element. This is why we observe a grid-like distribution of the data. From glancing at the distribution of cubic versus non-cubic materials, it appears that there is no immediately identifiable trend.
+
+Let' also look at how the cubic and non-cubic structures are distributed with respect to the Goldschmidt tolerance factor $t_G$:
+
+```{code-cell}
+:tags: [hide-input]
+
+
+# define the histogram "bins" used to visualize the t_G distribution:
+hist_bins = np.linspace(np.min(goldschmidt_tolerance), 
+                        np.max(goldschmidt_tolerance), 51)
+
+# plot histograms of cubic and noncubic data with respect to t_G:
+plt.figure()
+plt.hist(cubic_data[:,2], bins=hist_bins, alpha=0.4, label='Cubic')
+plt.hist(noncubic_data[:,2], bins=hist_bins, alpha=0.4, label='Non-Cubic')
+plt.xlabel('Goldschmidt Tolerance $t_G$')
+plt.ylabel('Count')
+plt.legend()
+plt.show()
+
+```
+
+We see that a majority of the cubic structures are distributed within the range of $t_G = 0.7$ to $t_G = 0.9$. According to the literature, perovskites with $t_G$ in the range of $0.9$ to $1.0$ are generally predicted to be in the cubic phase, which appears to be inconsistent with our data. Taking note of this discrepancy, we will proceed with preparing our data. First, we will split the data into training, validation, and test sets. This can be done with the [`sklearn.model_selection.train_test_split`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) function. We will also normalize our data using [`sklearn.preprocessing.StandardScaler`](https://scikit-learn.org/stable/modules/preprocessing.html):
+
+```{code-cell}
+:tags: [hide-input]
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# split train and non-training data 80% and 20%:
+x_train, x_nontrain, y_train, y_nontrain = train_test_split(
+            features, binary_classifier_labels, train_size=0.8)
+
+# further split non-training data into validation and test data:
+x_val, x_test, y_val, y_test = train_test_split(
+            x_nontrain, y_nontrain, test_size=0.5)
+
+# Determine the normalizing transformation:
+x_scaler = StandardScaler()
+x_scaler.fit(x_train)
+
+# transform x -> z (normalize x data):
+z_train = x_scaler.transform(x_train)
+z_val = x_scaler.transform(x_val)
+z_test = x_scaler.transform(x_test)
+
+print('Shape of z_train:', z_train.shape)
+print('Shape of z_val:', z_val.shape)
+print('Shape of z_test:',z_test.shape)
+```
+
+## The Perceptron (Linear Classification) Model
+
+```{code-cell}
+:tags: [hide-input]
+
+from sklearn.linear_model import Perceptron
+
+# fit a linear perceptron model to training set:
+perceptron = Perceptron()
+perceptron.fit(z_train, y_train)
+
+# evaluate the model on the training and validation set:
+train_accuracy = perceptron.score(z_train, y_train)
+val_accuracy = perceptron.score(z_val, y_val)
+
+# print the accuracy of the model:
+print('training set accuracy:  ', train_accuracy)
+print('validation set accuracy:', val_accuracy)
+```
 
 
 
-### Regression
+## The Nearest Neighbor Model
+
+```{code-cell}
+:tags: [hide-input]
+
+from sklearn.neighbors import KNeighborsClassifier
+
+# fit a k-nearest neighbor classifier (k=3 in this case):
+knc = KNeighborsClassifier(n_neighbors=3)
+knc.fit(z_train, y_train)
+
+# evaluate the model on the training and validation set:
+train_accuracy = knc.score(z_train, y_train)
+val_accuracy = knc.score(z_val, y_val)
+
+# print the accuracy of the model:
+print('training set accuracy:  ', train_accuracy)
+print('validation set accuracy:', val_accuracy)
+```
+
+```{code-cell}
+:tags: [hide-input]
+
+en_range = (0.75, 2.6)
+eval_tG = np.mean(x_train[:,2])
+
+mesh_size = 200
+a_mesh, b_mesh = np.meshgrid(
+    np.linspace(en_range[0],en_range[1], mesh_size),
+    np.linspace(en_range[0],en_range[1], mesh_size))
+
+mesh_features = np.array([
+    a_mesh.flatten(),
+    b_mesh.flatten(),
+    eval_tG*np.ones_like(a_mesh.flatten())
+]).T
+
+z_mesh_features = x_scaler.transform(mesh_features)
+
+predictions = knc.predict(z_mesh_features)
+predictions_mesh = predictions.reshape(a_mesh.shape)
+
+plt.figure()
+surf = plt.contourf(a_mesh, b_mesh, predictions_mesh, cmap='binary', levels=100)
+cbar = plt.colorbar(surf)
+cbar.ax.set_yticks([-1,1])
+cbar.ax.set_yticklabels(['Cubic','Non-Cubic'])
+plt.xlabel('EN(A)')
+plt.ylabel('EN(B)')
+plt.title(r'Nearest Neighbor Classification [$t_G$ = ' + f'{eval_tG:.3f}]')
+plt.show()
+```
+
 
 
 ## Exercises

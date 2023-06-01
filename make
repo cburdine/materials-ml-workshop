@@ -246,35 +246,34 @@ Compare the weights $\mathbf{w}$ computed from each method and verify they are r
 :::
 
 :::{dropdown} Exercise 2: Regularized Polynomials
-Let's get some practice working with Ridge and Regression. To start, copy & paste the following code to generate a training and validation dataset:
+Let's get some practice working with Ridge and Lasso Regression. To start, copy & paste the following code to generate a training and validation dataset:
 
 ```
 import numpy as np
 
 def generate_X(n_data):
     return np.array([
-        np.random.uniform(0,10,n_data)*(10**(-n/4))
-        for n in range(40)
+        np.random.uniform(0,10,n_data)*(10**(-n))
+        for n in range(20)
     ]).T
 
-def generate_y(X, noise=0.5):
+def generate_y(X):
     return np.array([
-        np.sum([ 2e-6*(10**(n/4))*x_n for n,x_n in enumerate(x) ]) + \
-            np.random.normal(0,noise)
+        np.sum([ 2*n*10**n*x_n for n,x_n in enumerate(x) ]) + \
+            np.random.normal(0,0.01)
         for x in X
     ])
 
 # generate training set:
-X_train = generate_X(45)
-y_train = generate_y(X_train, noise=5.0)
-
+X_train = generate_X(80)
+y_train = generate_y(X_train)
 
 # generate validation set:
-X_validation = generate_X(20)
-y_validation = generate_y(X_validation, noise=0.0)
+X_validation = generate_X(80)
+y_validation = generate_y(X_validation)
 ```
 
-First, normalize the data and then fit a Ridge regression model to the training data using [`sklearn.linear_model.Ridge`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html). Plot the training set and validation set mean square error versus the regularization parameter $\lambda$ as $\lambda$ is varied from $0$ to $1$ (Note: $\lambda$ is the argument `alpha` in the `Ridge` object). You should see that the model overfits the training set for $\lambda = 0$ (no regularization), but as $\lambda$ increases the validation set error should decrease.
+First, normalize the data and then fit a Ridge regression model to the training data using [`sklearn.linear_model.Ridge`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html) Plot the training set and validation set mean square error versus the regularization parameter $\lambda$ for $\lambda = 0, 0.001, 0.01, 0.1$ (Note: $\lambda$ is the argument `alpha` in the `Ridge` object). 
 
 ---
 
@@ -338,25 +337,24 @@ from sklearn.linear_model import Ridge
 
 def generate_X(n_data):
     return np.array([
-        np.random.uniform(0,10,n_data)*(10**(-n/4))
+        np.random.uniform(0,10,n_data)*(10**(-n))
         for n in range(40)
     ]).T
 
-def generate_y(X, noise=0.5):
+def generate_y(X):
     return np.array([
-        np.sum([ 2e-6*(10**(n/4))*x_n for n,x_n in enumerate(x) ]) + \
-            np.random.normal(0,noise)
+        np.sum([ 2*n*10**n*x_n for n,x_n in enumerate(x) ]) + \
+            np.random.normal(0,0.25)
         for x in X
     ])
 
 # generate training set:
-X_train = generate_X(45)
-y_train = generate_y(X_train, noise=5.0)
-
+X_train = generate_X(50)
+y_train = generate_y(X_train)
 
 # generate validation set:
 X_validation = generate_X(20)
-y_validation = generate_y(X_validation, noise=0.0)
+y_validation = generate_y(X_validation)
 
 # normalize training and validation sets:
 scaler = StandardScaler()
@@ -364,7 +362,7 @@ scaler.fit(X_train)
 Z_train = scaler.transform(X_train)
 Z_validation = scaler.transform(X_validation)
 
-lambda_values = np.linspace(0,1.0, 100)
+lambda_values = np.linspace(0,0.01, 10)
 
 train_mse_values = []
 validation_mse_values = []
@@ -388,11 +386,8 @@ for lambda_reg in lambda_values:
 
 # plot ridge regression results:
 plt.figure()
-plt.plot(lambda_values, train_mse_values, label='Training Set')
-plt.plot(lambda_values, validation_mse_values, label='Validation Set')
-plt.ylabel('Mean Square Error (MSE)')
-plt.xlabel(r'Regularization ($\lambda$)')
-plt.legend()
+plt.plot(lambda_values, train_mse_values)
+plt.plot(lambda_values, validation_mse_values)
 plt.show()
 
 ```
