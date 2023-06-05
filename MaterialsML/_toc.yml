@@ -11,6 +11,13 @@ chapters:
 - file: python/getting_started
   sections:
   - file: python/python_basics
+  - file: python/python_logic
+  - file: python/loops
+- file: data_types/python_data_types
+- file: functions/functions_classes
+- file: scicomp/numpy_scipy
+- file: data_vis/data_vis
+- file: matsci/matsci_packages
 - file: ml_intro/ml_intro
   sections:
   - file: ml_intro/statistics_review
@@ -21,12 +28,13 @@ chapters:
   - file: supervised_learning/basic_models
 - file: regression/regression
   sections:
-  - file: regression/regularization
   - file: regression/kernel_machines
+  - file: regression/regression_models
 - file: unsupervised_learning/unsupervised_learning
   sections:
   - file: unsupervised_learning/feature_selection
   - file: unsupervised_learning/clustering
+  - file: unsupervised_learning/unsupervised_applications
 - file: neural_networks/neural_networks
   sections:
   - file: neural_networks/training

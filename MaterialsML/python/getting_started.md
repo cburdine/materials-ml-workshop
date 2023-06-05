@@ -1,4 +1,4 @@
-# Setting up your Python Notebook
+# Getting Started with Python
 
 In this session, we will start by learning some of the basic features of the Python Programming language. Then, we will get our feet wet writing some basic programs.
 
