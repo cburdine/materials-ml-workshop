@@ -14,6 +14,8 @@ chapters:
   - file: python/python_logic
   - file: python/loops
 - file: data_types/python_data_types
+  sections:
+  - file: data_types/sets_and_dicts
 - file: functions/functions_classes
 - file: scicomp/numpy_scipy
 - file: data_vis/data_vis
