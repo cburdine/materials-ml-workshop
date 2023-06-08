@@ -17,6 +17,8 @@ chapters:
   sections:
   - file: data_types/sets_and_dicts
 - file: functions/functions_classes
+  sections:
+  - file: functions/classes
 - file: scicomp/numpy_scipy
 - file: data_vis/data_vis
 - file: matsci/matsci_packages
