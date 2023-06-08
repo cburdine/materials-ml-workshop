@@ -1,8 +1,11 @@
 ---
 jupytext:
+  formats: md:myst
   text_representation:
     extension: .md
     format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.14.6
 kernelspec:
   display_name: Python 3
   language: python
@@ -17,7 +20,7 @@ Functions are an essential concept in Python and programming in general. They al
 
 In mathematics, functions are transformations that map inputs to outputs. The same is true for Python, except for the fact that Python functions can also change the values of variables, modify mutable data types (like lists), etc. So far, we have encountered several of Python's built-in functions, for example:
 
-```{code-cell}
+```{code-cell} ipython3
 # create a list:
 my_list = [10, 20, 30, 40]
 
@@ -34,7 +37,7 @@ print(last_value, my_list)
 
 To create our own function in Python, we use the `def` keyword followed by the function name, a set of parentheses `()` and a colon `:`. The function body is indented below the declaration of the function, similar to `if` statements and `for` loops:
 
-```{code-cell}
+```{code-cell} ipython3
 # create a function to print out a greeting:
 def greet():
     print('Hello, world!')
@@ -42,9 +45,10 @@ def greet():
 
 In the example, we have defined a function `greet` that does not take any parameters (similar to the `list.pop`) function above. To execute a function and perform its associated actions, you call the function by using its name followed by parentheses `()`. If the functon has parameters, you can pass values within the parentheses. Since our `greet` function has no parameters, we can call the function (i.e. execute is corresponding block of code) by using its name followed by parentheses `()`:
 
-```{code-cell}
+```{code-cell} ipython3
 greet()
 ```
+
 Upon calling the `greet` function, we see that the `print('Hello, world!')` line is executed, resulting in the output `Hello, world!`.
 
 ## Function Parameters: 
@@ -53,7 +57,7 @@ Like mathematical functions, Python functions can accept _parameters_, which are
 
 For example, let's re-write our `greet` function to accept a parameter called `name`, and then call the function with the value `'Albert'` as `name`:
 
-```{code-cell}
+```{code-cell} ipython3
 # updated function that prints a greeting for a specific name:
 def greet(name):
     print('Hello, ' + name + '!')
@@ -63,7 +67,8 @@ greet('Albert')
 ```
 
 Functions can also have multiple parameters, which we can denote using a comma separated list of parameters. When calling a function witih multiple parameters, be sure that the order of the parameters match the order of the corresponding values:
-```{code-cell}
+
+```{code-cell} ipython3
 # This function prints out a greeting of a name (with a title):
 def greet(name, title):
     print('Hello, ' + title + ' ' + name + '!')
@@ -76,7 +81,7 @@ greet('Feynman', 'Dr.')
 
 Functions can return (i.e. output) values using the `return` statement. This is useful when we want to assign the result of some computation to a variable or use it in an expression. For example:
 
-```{code-cell}
+```{code-cell} ipython3
 # create a function to add two numbers:
 def add_numbers(a,b):
     return a + b
@@ -93,7 +98,7 @@ To illustrate this, Let's write a Python function that solves for the roots of a
 
 $$f(x) = ax^2 + bx + c$$
 
-```{code-cell}
+```{code-cell} ipython3
 # create a function that solves the quadratic equation:
 def solve_quadratic(a,b,c):
     
@@ -119,8 +124,9 @@ An important part of good programming practice is writing comments that document
 
 Up until now, we have been documenting code using single line comments (i.e. `#`). In Python, it is considered better practice to use a multiline string called a _docstring_ instead of a single line comment to document a function. A docstring is a comment enclosed by triple quotes (`"""` ... `"""`). If an indented docstring is put beneath a function's  `def` statement, the docstring will be printed when the `help` function is used to print out the details of a function. Below, we give some examples of docstrings:
 
-```{code-cell}
+```{code-cell} ipython3
 :tags: [hide-output]
+
 # Short docstring for a function:
 def greet(name):
     """ prints a greeting for the given name """
@@ -156,6 +162,7 @@ help(greet)
 # print documentation for `solve_quadratic`:
 help(solve_quadratic)
 ```
+
 If you ever encounter a function that you haven't used before, you can type `help(<function>)` into your Python terminal to learn more about it.
 
 :::{seealso}
@@ -168,7 +175,7 @@ Sometimes, we might want the ability to specify default or recommended values fo
 
 Default arguments are defined in the function's parameter list by assigning a default value to a parameter with the `=` operator. When defining a function, parameters with default values must be placed after parameters without default values. For example:
 
-```{code-cell}
+```{code-cell} ipython3
 def greet(name, message="Hello"):
     """ Prints a greeting with a name and a message """
     print(message + ', ' + name + '!')
@@ -182,7 +189,7 @@ greet('Albert', 'Salutations')
 
 If a function has multiple default values, we might encounter some difficulties in function calls where we want to use the default value for some parameters but not others. To illustrate this, let's  add the following default arguments to out `solve_quadratic` function:
 
-```{code-cell}
+```{code-cell} ipython3
 def solve_quadratic(a=1,b=0,c=0):
     """ solves a quadratic equation """
     x_plus = (-b + (b**2 - 4*a*c)**(1/2)) / (2*a)
@@ -193,7 +200,7 @@ def solve_quadratic(a=1,b=0,c=0):
 
 Suppose we want to solve for the roots of $2x^2 + bx - 8$, where $b$ is given the default value. If we call `solve_quadratic(2,-8)`, it will assign the value of $-8$ to $b$, not $c$, which is not what we want. To resolve this issue, we can assign each parameter by name in the function call using the `=` operator. For example:
 
-```{code-cell}
+```{code-cell} ipython3
 # assigns a=2 and b=-8 (not what we wanted):
 print(solve_quadratic(2,-8))
 
@@ -245,7 +252,7 @@ For example, the result of calling `print_rectangle(height=2)` should be:
 
 #### Exercise 1: List Statistics:
 
-```{code-cell}
+```{code-cell} ipython3
 :tags: [hide-cell]
 
 def list_stats(my_list):
@@ -267,7 +274,7 @@ print(list_stats(large_list))
 
 #### Exercise 2: Star Rectangle
 
-```{code-cell}
+```{code-cell} ipython3
 :tags: [hide-cell]
 
 def print_rectangle(width=16, height=4):
