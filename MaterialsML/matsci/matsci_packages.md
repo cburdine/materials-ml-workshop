@@ -18,5 +18,6 @@ from ase.visualize import view
 
 atoms = bulk('C','diamond', 3.57)
 
+# This is an added comment
 view(atoms, viewer='x3d')
 ```
