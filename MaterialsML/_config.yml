@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Materials + Machine Learning
-author: Colin Burdine and E. P. Blair
+author: Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
 logo: logo.svg
 
 # Force re-execution of notebooks on each build.
