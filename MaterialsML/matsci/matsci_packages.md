@@ -77,9 +77,6 @@ Let's do this again for a formic acid molecule. Additionally, we will also  prin
 
 ```{code-cell}
 
-from ase.build import molecule
-from ase.visualize import view
-
 # construct a formic acid molecule
 atoms = molecule('HCOOH')
 
@@ -92,6 +89,11 @@ for X in atoms:
     print('{0}\n  x: {1} Ang.\n  y: {2} Ang.\n  z: {3} Ang.'.format(X.symbol,
                                                                     x, y, z)
                                                                     )
+```
+
+We can still make an interactive, 3D visualization:
+
+```{code-cell}
 
 """
    The view() function should occur last for an interactive result.
@@ -119,8 +121,7 @@ We will start with a simple (bulk) silicon crystal using the `bulk()` function i
 ```{code-cell}
 
 from ase.build import bulk
-from ase.io import write # helps us save an image
-from ase.visualize import view # 3D interactive image
+from ase.io import write   # helps us save an image
 
 atoms = bulk('Si')
 
@@ -129,15 +130,27 @@ atoms = bulk('Si')
 """
 write('silicon_basis.png', atoms, show_unit_cell=2)
 
+```
+
+The static image of the silicon crystal (the two-atom basis for the FCC crystal) is given below.
+
+![](silicon_basis.png)
+
+We can also make an interactive 3D image:
+
+```{code-cell}
+
 view(atoms, viewer='x3d')
 
 ```
 
-A interactive 3D image of the silicon crystal (the two-atom basis for the FCC crystal) is shown above, and the static image is given below.
-
-![](silicon_basis.png)
-
 ### Building a 2D System - a MXene
+
+The `ase.build` module provides functions for building 2D structures. For example:
+* `graphene_nanoribbon()` may be used to make graphene nanoribbons and graphene sheets.
+* `mx2()` may be used to build MXene and [transition metal dichalcogenide](https://www.sciencedirect.com/topics/materials-science/transition-metal-dichalcogenides#:~:text=TMD%20monolayers%20are%20structurally%20of,octahedral%20or%20trigonal%20prismatic%20coordination.) (TMD) monolayers.
+
+Here, we will make a MXene.
 
 ```{code-cell}
 
@@ -152,11 +165,21 @@ Ti2C = mx2('CTi2', vacuum = 15) # unit cell
    We can also build a sheet. We form a supercell by repeating the unit cell
    3x in the x and y directions, and only one time in the z direction.
 """
-sheet = Ti2C*(3,3,1) #
 
 # Static image of the unit cell
 rotation = '0z,-60x'
 write('Ti2C_unit_cell.png', Ti2C, show_unit_cell=2, rotation=rotation)
+
+```
+
+As static image of the unit cell is given below. Since a structure like this would likely be used in a DFT calculation, and DFT calculations often have periodic boundary conditions, the unit cell features a large air gap to keep separate the main sheet from its images in the z direction.
+
+![](Ti2C_unit_cell.png)
+
+Now, we form a supercell by repeating the unit cell in space. To repeat the primtive cell, described by the `Ti2C` object, we simply multiply `Ti2C` by a 3-element tuple. The three integers `(nx, ny, nz)` repeat the unit cell in the x, y, and z directions, respectively.
+```{code-cell}
+
+sheet = Ti2C*(3,3,1) #
 
 # Static image of the sheet
 write('Ti2C_sheet.png', sheet, show_unit_cell=2, rotation=rotation)
@@ -165,11 +188,6 @@ write('Ti2C_sheet.png', sheet, show_unit_cell=2, rotation=rotation)
 # view(Ti2C, viewer='x3d', repeat=(4,4,1))
 
 ```
-
-
-As static image of the unit cell is given below. Since a structure like this would likely be used in a DFT calculation, and DFT calculations often have periodic boundary conditions, the unit cell features a large air gap to keep separate the main sheet from its images in the z direction.
-
-![](Ti2C_unit_cell.png)
 
 Additionally, the static image of the sheet is given below:
 
@@ -192,15 +210,21 @@ atoms = nanotube(6, 0, length=4)
 """
 orientation='12y,-15z'
 write('nanotube.png', atoms, show_unit_cell=2, rotation=orientation)
+```
+
+The static image of the nanotube is given below.
+
+![](nanotube.png)
+
+An interactive 3D image of the carbon nanotube is shown below.
+
+```{code-cell}
 
 # Interactive 3D visualization
 view(atoms, viewer='x3d')
 
 ```
 
-A interactive 3D image of the carbon nanotube is shown above, and the static image is given below.
-
-![](nanotube.png)
 
 ### Building Complex Crystals
 
@@ -224,7 +248,9 @@ To read a structure from a file, use the `read()` function from the `ase.io` mod
 Our use of `pymatgen` will be very limited. Nonetheless, we will install `pymatgen` for use as a converter:  we can obtain crystal structure data from the Materials Project and convert it to an `ase` `Atoms` object.
 :::
 
-If you need to, please install `pymatgen` using a command such as `pip3 install pymatgen`.
+### Installation
+
+If you need to, please install `pymatgen`, please do so using a command such as `pip3 install pymatgen`.
 
 
 ## MPRester - The Materials Project API
@@ -233,22 +259,125 @@ If you need to, please install `pymatgen` using a command such as `pip3 install 
 
 [The Materials Project API](https://materialsproject.org/api) allows a user to query information from [the Materials Project](https://materialsproject.org).
 
+:::{admonition} What is an API?
+:class: note, dropdown
+
+"API" stands for *application programming interface*. An API is a set of commands defined to allow programmatic access to a server that archives or generates data for users.
+
+APIs are especially useful for automating queries. They make getting large amounts of information much more efficient than point-and-click manual access to a web server via an Internet browser.
+:::
+
 ### Installation
 
 The Materials Project API is coded in the Python package `MPRester`. To use ASE, you must first install the `ase` Python module. You may use a command such as `pip3 install ase` to do this.
 
-### An API Key is Required for Usage
+::::{important}
+:::{note}
+An API key is required to use `MPRester`.
+* You must be logged in on [materialsproject.org](https://materialsproject.org) to obtain your API key.
+* You can obtain your personal API key from your Materials Project [Dashboard](https://next-gen.materialsproject.org/dashboard), or you can get it from the [documentation page](https://materialsproject.org/api#documentation).
+* Your API key is a long alphanumeric string (about 30 characters) that you must use every time you wish to query the Materials Project programmatically via the API.
+:::
+::::
+
+### Using `MPRester`
+
+To use your API key, it is helpful to store its value in a string, like this:
+```{code-cell}
+# Save your Materials Project API as a string
+MP_API_KEY = '---your api key here ----'
+```
+
+```{code-cell}
+:tags: ["remove-cell"]
+
+import os
+
+MP_API_KEY = os.environ['MP_API_KEY']
+```
+
+Once the API key is stored as a string in a variable (here, we used the variable `MP_API_KEY`), that variable is used as a parameter with `MPRester` to obtain information from the Materials Project. The syntax is to define a code block using code like `with MPRester(MP_API_KEY) as mpr:`. Following this line, indented lines define a code block in which we can access the API methods using the syntax `mpr.some_method()`. Let's start with some examples of `MPRester` usage.
+
+#### Get Information about a Specific Material
+
+In the Materials Project, each material has a unique identifier, known as its Materials Project ID (MPID). When you want information about a single material, it is reasonable to perform a [manual search](https://materialsproject.org/materials) for the material so you can find its MPID. Then, you can use the MPID along with `MPRester` to automate queries about the material.
+
+##### Get the Crystal Structure for a Materials
+
+As an example, YBa2Cu3O7 has `mp-20674` as its MPID. We can obtain its crystal structure directly using this MPID. To do this, we do the following:
+
+```{code-cell}
+:tags: ["hide-output"]
+
+from mp_api.client import MPRester
+import os
+import pymatgen as pmg
+
+from ase.io import write
+
+MPID = 'mp-20674' # Materials Project ID number
+
+"""
+  The 'with ...' statement defines an MPRester code block. Subsequent
+  indented statements belong to the code block, and the object mpr
+  may be used within the code block.
+"""
+with MPRester(MP_API_KEY) as mpr:
+    # Get only the structure for YBa2Cu3O7
+    structure = mpr.get_structure_by_material_id(MPID)
+
+```
+
+The `MPRester` method, `get_structure_by_material_id()`, accessable as `mpr.get_structure_by_material()`, queries the Materials Project and returns the crystal structure, storing it in an object `structure`. Having accessed the Materials Project, we no longer require the `mpr` object. We can now exit the `MPRester` code block by resetting the indentation.
+
+Next, we provide code to inspect the structure we downloaded. What is its data type? How can we use it?
 
 ```{code-cell}
 
-from ase.build import bulk
-from ase.visualize import view
+"""
+  Reset the indentation (exith the 'with' block), and examine the
+  structure we obtained.
+"""
+print('\nWhat is the data type of the structure we obtained?')
+print(type(structure))
 
-atoms = bulk('C','diamond', 3.57)
+print('\nWhat is the structure we obtained?')
+print(structure)
 
-# This is an added comment
-view(atoms, viewer='x3d')
 ```
 
+The output of the above code cell indicates that the data in `structure` is in a format compatible with `pymatgen`. `pymatgen` has a tool to convert the `pymatgen` structure to an `ase` object, which we can visualize.
 
-### Get the Crystal Structure for an Individual Materials
+```{code-cell}
+
+from pymatgen.io.ase import AseAtomsAdaptor as aaa
+
+"""
+   We use pymatgen to convert the structure to an
+   ASE object. Since our work with the MaterialsProject
+   API is complete, this can be done outside the WITH
+   block.
+"""
+crystal = aaa.get_atoms(structure) # convert pymatgen to ase
+
+# Make a static visualization
+orientation='90x,75y,-9x'
+write('YBa2Cu3O7_structure.png', crystal, show_unit_cell=2,
+      rotation=orientation)
+
+```
+
+![](YBa2Cu3O7_structure.png)
+
+The following code creates an interactive visualization for the downloaded crystal structure.
+
+```{code-cell}
+
+# Interactive 3D visualization
+view(crystal, viewer='x3d')
+
+```
+
+Having obtained the crystal structure, we can now use it in a variety of ways:
+* Use it within an atomistic simulation
+* Use `ase.io.write()` to save the structure in a structure file (`*.cif`, `*.xyz`, etc.)
