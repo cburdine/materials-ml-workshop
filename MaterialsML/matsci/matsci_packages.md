@@ -269,7 +269,7 @@ APIs are especially useful for automating queries. They make getting large amoun
 
 ### Installation
 
-The Materials Project API is coded in the Python package `MPRester`. To use ASE, you must first install the `ase` Python module. You may use a command such as `pip3 install ase` to do this.
+The Materials Project API is coded in the Python package `MPRester`. To use ASE, you must first install the `ase` Python module. You may use a command such as `pip3 install mp-api` to do this.
 
 ::::{important}
 :::{note}
@@ -298,11 +298,9 @@ MP_API_KEY = os.environ['MP_API_KEY']
 
 Once the API key is stored as a string in a variable (here, we used the variable `MP_API_KEY`), that variable is used as a parameter with `MPRester` to obtain information from the Materials Project. The syntax is to define a code block using code like `with MPRester(MP_API_KEY) as mpr:`. Following this line, indented lines define a code block in which we can access the API methods using the syntax `mpr.some_method()`. Let's start with some examples of `MPRester` usage.
 
-#### Get Information about a Specific Material
+#### Example: Get the Crystal Structure of a Specific Material
 
 In the Materials Project, each material has a unique identifier, known as its Materials Project ID (MPID). When you want information about a single material, it is reasonable to perform a [manual search](https://materialsproject.org/materials) for the material so you can find its MPID. Then, you can use the MPID along with `MPRester` to automate queries about the material.
-
-##### Get the Crystal Structure for a Materials
 
 As an example, YBa2Cu3O7 has `mp-20674` as its MPID. We can obtain its crystal structure directly using this MPID. To do this, we do the following:
 
@@ -381,3 +379,75 @@ view(crystal, viewer='x3d')
 Having obtained the crystal structure, we can now use it in a variety of ways:
 * Use it within an atomistic simulation
 * Use `ase.io.write()` to save the structure in a structure file (`*.cif`, `*.xyz`, etc.)
+
+
+#### Example: Searching using `MPRester`
+
+Materials Project data can be queried in two ways:
+* through a specific (list of) MPID(s), and/or
+* through property filters (e.g. band gap less than 0.5 eV)
+
+When querying a list of MPIDs, we use the following syntax:
+```{code-cell}
+:tags: ["hide-output"]
+
+with MPRester(MP_API_KEY) as mpr:
+    docs = mpr.summary.search(material_ids=["mp-149", "mp-13", "mp-22526"])
+
+```
+
+Here, each material entry in the Materials Project has summary data, and we are simply searching the summary data using `mpr.summary.search()`. Since we queried for a list of MPIDs, we store in `docs` a list of "documents" (formally, a list of `MPDataDoc` objects).
+
+We can now reference an individual document and extract its properties. We'll use a `for` loop to list the MPID and chemical formula for each search hit:
+
+```{code-cell}
+
+print('Our query returned {0} docs.'.format( len(docs) ))
+
+for idx, mat_doc in enumerate(docs):
+    print('Item {0}: MPID = {1} (formula: {2})'.format(idx,
+                                                       mat_doc.material_id,
+                                                       mat_doc.formula_pretty))
+
+```
+
+What properties (`'material_id'`, `'formula_pretty'`, etc.) are available for search in the summary data? We can obtain a list of document properties using the following syntax:
+```{code-cell}
+
+print(mpr.summary.available_fields)
+```
+
+Next, we query using property filters. We apply the following filters:
+* Materials containing Si and O
+* Materials with a band gap no greater than 1.0 eV but no less than 0.5 eV
+* Instead of all available summary fields, we'll only ask for a few: `"material_id"`, `"formula_pretty"`, `"band_gap"`.
+```{code-cell}
+:tags: ["hide-output"]
+
+with MPRester(MP_API_KEY) as mpr:
+    docs = mpr.summary.search(elements=["Si", "O"],
+                                band_gap=(0.5, 1.0),
+                                fields=["material_id", "formula_pretty",
+                                        "band_gap"])
+
+example_doc = docs[0]
+# initial_structures = example_doc.initial_structures
+
+```
+
+To see what our search turned up, we can use some simple code, like this. We first find out how many hits our query returned using `len(docs)`, and then we print only the first `N` hits, where we set `N = 10`.
+
+```{code-cell}
+
+N = 10
+print('Our query returned {0} docs.'.format( len(docs) ))
+print(f'Printing only the first {N} results:')
+
+for idx in range(0,N):
+    mat_doc = docs[idx]
+    print('Item {0}: MPID = {1} ({2}), band gap = {3:6.4f} eV'.format(idx,
+                                             mat_doc.material_id,
+                                             mat_doc.formula_pretty,
+                                             mat_doc.band_gap))
+
+```
