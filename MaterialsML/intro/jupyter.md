@@ -47,10 +47,10 @@ Your Mac already shipped with a Python installation, but it is helpful to get th
 * several other data science packages.
 
 ```{note}
-As a Mac user, I've had the *most success* with the *command-line* installation, rather than the graphical installation. I've found this to better support the subsequent installation of packages using `conda install <package-name>`. Therefore, these instructions guide you through the command-line installation. --EPB
+As a Mac user, I've had the *most success* with the *command-line* installation, rather than the graphical installation. I've found this to better support the subsequent installation of packages using `conda install <package-name>`. Therefore, these instructions guide you through the command-line installation. This means that you will download the installer from the website, and then complete the installation in the terminal rather than using your mouse/trackpad. --EPB
 ```
 
-1. Download the command line installer that is appropriate for your Mac's processor.
+1. Download the Command Line installer that is appropriate for your Mac's processor.
    1. To get the Command Line installer, visit the Anaconda [download page](https://www.anaconda.com/download#downloads).
    2. Scroll down as needed (you might not need to) toward the bottom (or search the page for `command line`) so that you find this:
    ![](MacOS_cmd_line_installers.png)
