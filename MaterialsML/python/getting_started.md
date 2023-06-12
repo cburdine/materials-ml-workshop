@@ -54,7 +54,7 @@ The output should look something like this:
 
 :::{important}
 
-On some systems, such as Linux and Mac OS, you may need to instead use the command  `python3 -m pip install <package>` or `pip3 install <package>`. where `<package>` is the name of the package you want to install.
+On some systems, such as Linux and Mac OS, you may need to instead use the command  `python -m pip install <package>` or `pip3 install <package>`. where `<package>` is the name of the package you want to install. If you are using Anaconda, you will need to run `conda install <package>`.
 :::
 
 Note that if you are using Google Colab, several of the most commonly used packages (such as `numpy`) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter notebooks also, but it should only be used as a last resort. See the dropdown block below for more details:
@@ -113,6 +113,7 @@ python3 -m venv my_env
 where `my_env` is the name of your environment. To activate your environment, run the following command from your project work directory:
 
 ```
+::::{tab-set}
 source my_env/bin/activate
 ```
 
@@ -126,10 +127,34 @@ deactivate
 ## Using your Python Notebook
 
 To get started running code in your Python Notebook, you will need to start up your Jupyter Notebook environment. Directions are given below for various Operating Systems, or Google Colab, if you are unable to install Jupyter on your device.
-
 ::::{tab-set}
 :::{tab-item} Windows
-Windows Instructions Here.
+
+The process for starting up you Jupyter notebook wil be different, depending on whether Jupyter Notebook was installed with pip or Anaconda:
+
+**If Jupyter was installed with pip:**
+
+Using your File Explorer, create a new folder to store your Jupyter notebooks. Then do the following steps:
+* Inside the empty folder, right click (on some systems: Shift + right click), and click on "Open in Windows Terminal".
+* This will open a terminal window inside your folder. Inside the folder, run the command `jupyter notebook` to start the server from inside the folder.
+
+**If Jupyter was installed with Anaconda:**
+
+When launching Jupyter Notebook from Anaconda, notebooks will be saved to the default folder of Anaconda Powershell Prompt. To save the notebooks to a different folder, follow these steps:
+* Launch Anaconda Powershell Prompt
+* Type  ```mkdir my_jupyter_notebooks ```  to create a folder called `my_jupyter_notebooks` (or a name of your choice) to hold your notebook files and Python code.
+* Type ```cd my_jupyter_notebooks``` to enter the folder you just created.
+* Type  ```jupyter notebook```  and it will start the server from inside the folder
+
+**Stopping the Server**
+
+Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar. 
+
+```{note}
+The address `localhost` tells your browser that the server is running on your computer, while `8888` is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. `8889`). The port number should be printed in the terminal when the server is started.
+```
+
+To stop the server, hit the keys `Ctrl + C` in the command prompt window where the server is running and type `y` to confirm. Be sure you have saved all of your work before stopping the notebook server!
 :::
 
 :::{tab-item} Mac OS
@@ -137,8 +162,6 @@ Mac OS Instructions Here.
 :::
 
 :::{tab-item} Linux
-
-Chances are if you are running Linux, you are probably already familiar with command line 😎.
 
 If you have Python3 and Jupyter Notebook installed on your system, create a work directory for your jupyter notebooks and navigate inside of it. In the terminal, you can do this with the command:
 
@@ -161,7 +184,6 @@ To stop the server, hit the keys `Ctrl + C` in the terminal where the server is 
 :::
 
 :::{tab-item} Google Colab
-
 
 In order to use Google Colab, you will need to have a google account. First, navigate to the [Google Colab Landing Page](https://colab.research.google.com/).
 
