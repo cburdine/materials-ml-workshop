@@ -25,6 +25,9 @@ chapters:
   - file: scicomp/scipy
 - file: data_vis/data_vis
 - file: matsci/matsci_packages
+  sections:
+  - file: matsci/ase
+  - file: matsci/pymatgen_MPRester
 - file: ml_intro/ml_intro
   sections:
   - file: ml_intro/statistics_review
