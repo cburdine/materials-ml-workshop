@@ -108,7 +108,7 @@ print('Estimated b:', p_opt[1], '(should be close to 3.0)')
 ```
 
 :::{important}
-When using `scipy.optimize.curve_fit`, the curve function to be fitted will be called repeatedly with the entire `x_data` array as the first argument, not with each element `x_data` individually. Because of this, the function should return an array with the same shape as `y_data`. If your function uses standard math operations only this will not be a problem.
+When using `scipy.optimize.curve_fit`, the curve function to be fitted will be called repeatedly with the entire `x_data` array as the first argument, not with each element in `x_data` individually. Because of this, the function should return an array with the same shape as `y_data`. 
 :::
 
 ## Special Functions
@@ -239,7 +239,8 @@ def pt_rho_estimate(T_array, rho_0, A):
 p_opt, p_cov = curve_fit((pt_rho_estimate), 
                          T_data,
                          rho_data,
-                         p0=(1, 300))
+                         p0=(1, 300),
+                         bounds=([0,0],[np.min(rho_data),1000]))
 
 print('Estimated rho_0:', p_opt[0])
 print('Estimated A:', p_opt[1])
