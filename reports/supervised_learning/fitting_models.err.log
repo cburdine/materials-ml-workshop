@@ -1,0 +1,87 @@
+Traceback (most recent call last):
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def poly_f(x,w):
+    """ computes a polynomial model: yhat = w0 + w1*x + w2*x^2 + ... """
+    yhat = sum( w[i] * x**i  for i in range(len(w)) )
+    return yhat
+
+def poly_f_grad(x, w):
+    """ computes gradient of a polynomial model """
+    grad_f =  np.array([ x**i for i in range(len(w)) ])
+    return grad_f
+
+def poly_gradient_descent(data_x, data_y, w, 
+                     learning_rate=0.002, 
+                     tolerance=1e-7, 
+                     max_steps=10**4):
+    """ Fits a n-degree polynomial model using gradient descent. """
+
+    # compute initial loss:
+    initial_loss = np.mean(loss(linear_f(data_x, w), data_y))
+    loss_history = [ initial_loss ]
+
+    for _ in range(max_steps):
+
+        # compute gradient of model loss:
+        grad_loss = np.mean(
+            loss_yhat_deriv(poly_f(data_x,w),data_y) * poly_f_grad(data_x,w),
+            axis=1)
+        
+        # update weights:
+        w += -learning_rate*grad_loss / np.linalg.norm(-grad_loss)
+        
+        # record loss after update:
+        step_loss = np.mean(loss(poly_f(data_x, w), data_y))
+        loss_history.append(step_loss)
+        
+        # stop if the decrease in loss is small:
+        if (loss_history[-2] - loss_history[-1]) < tolerance:
+            break
+
+    return w, loss_history
+
+# initialize the dataset:
+data_x = np.linspace(-2,2,100)
+data_y = np.cos(x_data*np.pi)
+
+# initialize weights of a polynomial model:
+poly_degree = 6
+w = np.zeros(poly_degree+1)
+
+# fit polynomial with gradient descent:
+w, history = poly_gradient_descent(data_x, data_y, w, learning_rate=0.001, max_steps=10**5)
+
+# plot data and polynomial fit:
+plt.figure()
+plt.scatter(data_x, data_y)
+plt.plot(data_x, poly_f(data_x, w))
+plt.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[6], line 43[0m
+[1;32m     41[0m [38;5;66;03m# initialize the dataset:[39;00m
+[1;32m     42[0m data_x [38;5;241m=[39m np[38;5;241m.[39mlinspace([38;5;241m-[39m[38;5;241m2[39m,[38;5;241m2[39m,[38;5;241m100[39m)
+[0;32m---> 43[0m data_y [38;5;241m=[39m np[38;5;241m.[39mcos([43mx_data[49m[38;5;241m*[39mnp[38;5;241m.[39mpi)
+[1;32m     45[0m [38;5;66;03m# initialize weights of a polynomial model:[39;00m
+[1;32m     46[0m poly_degree [38;5;241m=[39m [38;5;241m6[39m
+
+[0;31mNameError[0m: name 'x_data' is not defined
+

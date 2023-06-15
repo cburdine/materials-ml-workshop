@@ -1,0 +1,1013 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Kernel Machines &#8212; Materials + Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'regression/kernel_machines';</script>
+    <link rel="shortcut icon" href="../_static/logo_small.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application: Bandgap Prediction" href="regression_models.html" />
+    <link rel="prev" title="Advanced Regression Models" href="regression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Materials + ML Workshop
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/python_basics.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/python_logic.html">Logic and Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/loops.html">Loops</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_types/sets_and_dicts.html">Sets and Dictionaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/classes.html">Classes and Object-Oriented Programming</a></li>
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scicomp/numpy.html">The Numpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scicomp/scipy.html">The Scipy Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="regression.html">Advanced Regression Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fregression/kernel_machines.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/regression/kernel_machines.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Kernel Machines</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-absolute-error-regression">Maximum Absolute Error Regression:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vectors">Support Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-functions">Kernel Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-regression">Support Vector Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-support-vector-regression">Exercise 1: Support Vector Regression</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-support-vector-classification">Exercise 2: Support Vector Classification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="kernel-machines">
+<h1>Kernel Machines<a class="headerlink" href="#kernel-machines" title="Permalink to this heading">#</a></h1>
+<p>In this section, we will introduce a powerful and popular class of regression and classification models known as <em>kernel machines</em>. Kernel machines are an extension of the high-dimensional embedding models of the form:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = f(\mathbf{x}) = w_0 + \sum_{i=1}^{D_{emb}} w_i\phi_i(\mathbf{x})\]</div>
+<p>As we will see, kernel machines can even be used to compute functions where <span class="math notranslate nohighlight">\(D_{emb} = \infty\)</span> (i.e. the data is embedded in an infinite-dimensional space). This is achieved through computing only the inner products between data points, given by a <em>kernel function</em> <span class="math notranslate nohighlight">\(K(\mathbf{x}, \mathbf{x}')\)</span>.</p>
+<section id="maximum-absolute-error-regression">
+<h2>Maximum Absolute Error Regression:<a class="headerlink" href="#maximum-absolute-error-regression" title="Permalink to this heading">#</a></h2>
+<p>In order to understand kernel functions, it is helpful to first examine the problem of maximum absolute error regression. The goal of this regression model is to find the simplest high-dimensional embedding model (i.e. the one with the minimal sum of weights squared) subject to the constraint that the maximum absolute error of all predictions in the training set lie within an error tolerance value <span class="math notranslate nohighlight">\(\varepsilon\)</span>. Formally, we write this optimization problem as:</p>
+<div class="math notranslate nohighlight">
+\[\text{minimize: }\ \sum_i^{D_{emb}} w_i^2\ \text{ subject to: }\  \max_n |\hat{y}_n - y_n| &lt; \varepsilon \]</div>
+<p>This is an instance of a <em>Lagrange multiplier problem</em>, which we can re-write in standard form.</p>
+<div class="note dropdown admonition">
+<p class="admonition-title">Note: Lagrange Multiplier Problems</p>
+<p>A Lagrange multiplier problem is an optimization problem concerning the optimization of an objective function <span class="math notranslate nohighlight">\(f\)</span> subject to a set of constraint functions <span class="math notranslate nohighlight">\(g\)</span>. Such a problem is in <em>standard form</em>, if it can be written as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{minimize: }\ f(\mathbf{w})\ \text{ subject to: }\ \begin{cases} g_1(\mathbf{w}) \le 0 \\ g_2(\mathbf{w}) \le 0 \\ \dots  \\ g_k(\mathbf{w}) \le 0 \end{cases}\end{split}\]</div>
+<p>The <em>Lagrangian</em> of this problem is the function:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\mathbf{w}) = f(\mathbf{w}) + \sum_{i=1}^k \lambda_i g_i(\mathbf{w})\]</div>
+<p>where the <span class="math notranslate nohighlight">\(\lambda_i\)</span> are variables called <em>Lagrange multipliers</em>. It can be shown that all local minima and maxima of <span class="math notranslate nohighlight">\(f(\mathbf{w})\)</span> must satisfy the equation:</p>
+<div class="math notranslate nohighlight">
+\[\nabla_w \mathcal{L}(\mathbf{w}) = 0\]</div>
+<p>This equation, along with the constraints <span class="math notranslate nohighlight">\(g(\mathbf{w})\)</span> can be used to determine the multipliers <span class="math notranslate nohighlight">\(\lambda_i\)</span> and the associated points <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> where <span class="math notranslate nohighlight">\(f\)</span> attains local maxima and minima. Under certain regularity conditions (see <a class="reference external" href="https://en.wikipedia.org/wiki/Slater%27s_condition">Slater’s condition</a>) it can be shown that the local minima of the problem correspond to solutions of the <a class="reference external" href="https://en.wikipedia.org/wiki/Duality_(optimization)#Dual_problem"><em>dual optimization problem</em></a>:</p>
+<div class="math notranslate nohighlight">
+\[\text{maximize: }\ \mathcal{L}(\mathbf{w})\ \text{ subject to: }\ \nabla_w \mathcal{L}(\mathbf{w}) = 0,\ \text{ and }\  \lambda_1, \lambda_2, ..., \lambda_k \ge 0\]</div>
+</div>
+<p>Writing the maximum absolute error regression problem in the standard form of a Lagrange multiplier problem, we obtain:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\text{minimize: } &amp;  \frac{1}{2}(\mathbf{w}^T\mathbf{w})\\
+ \text{ subject to: } &amp; \begin{cases} 
+\left(w_0 + \sum_{i=1}^{D_{emb}} w_i\phi_i(\mathbf{x}_n) - y_n\right) - \varepsilon \le 0\\
+-\left(w_0 + \sum_{i=1}^{D_{emb}} w_i\phi_i(\mathbf{x}_n) - y_n\right) - \varepsilon \le 0 \\
+\end{cases}
+\ \text{ for $n = 1, 2, ..., N$}
+\end{aligned}\end{split}\]</div>
+<p>Note that we have added a coefficient of <span class="math notranslate nohighlight">\(1/2\)</span> to the objective function, which does not affect the solution to the optimization problem. In total, this problem has <span class="math notranslate nohighlight">\(k=2N\)</span> contraint functions, which means that we must introduce a total of <span class="math notranslate nohighlight">\(2N\)</span> Lagrange multipliers. Letting <span class="math notranslate nohighlight">\(\alpha_1, \alpha_2, ..., \alpha_n\)</span> and <span class="math notranslate nohighlight">\(\alpha_1^*, \alpha_2^*, ..., \alpha_n^*\)</span> be the Lagrange multipliers of the top and bottom set of constraints respectively, the Lagrangian function with respect to the weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\mathbf{w}) = \frac{1}{2}(\mathbf{w}^T\mathbf{w}) + \sum_{n=1}^N \left[ (\alpha_n - \alpha_n^*)\left(w_0 + \sum_{i=1}^{D_{emb}} w_i \phi_i(\mathbf{x}_n) - y_n\right) - (\alpha_n + \alpha_n^*)\varepsilon \right]\]</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A couple of notational warnings for physicists:</p>
+<ol class="arabic simple">
+<li><p>The notation <span class="math notranslate nohighlight">\(\alpha_n^*\)</span> does not denote the complex conjugate here; the Lagrange multipliers <span class="math notranslate nohighlight">\(\alpha_n\)</span> and <span class="math notranslate nohighlight">\(\alpha_n^*\)</span> are independent real scalar values.</p></li>
+<li><p>The “Lagrangian” function used here is unrelated to the Lagrangian operator <span class="math notranslate nohighlight">\(\mathcal{L} = \mathcal{T} - \mathcal{V}\)</span>, though both of these formalisms are attributed to <a class="reference external" href="https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange">Lagrange</a>. (Same guy, different crime).</p></li>
+</ol>
+</div>
+<p>Setting the gradient of the Lagrangian equal to <span class="math notranslate nohighlight">\(\mathbf{0}\)</span>, we obtain an expression for the weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\nabla_w \mathcal{L}(\mathbf{w}) = \mathbf{0}\qquad \Rightarrow \qquad  w_i = \sum_{n=1}^N (\alpha_n - \alpha_n^*)\phi_i(\mathbf{x}_n)\]</div>
+<p>To ensure a solution exists to our optimization problem, we impose the following additional constraints on the Lagrange multipliers:</p>
+<div class="math notranslate nohighlight">
+\[ \sum_{n = 1}^N (\alpha_n - \alpha_n^*) = w_0,\qquad   0 \le \alpha_n, \alpha_n^* \le C\]</div>
+<p>The first constraint follows from <span class="math notranslate nohighlight">\(\nabla_w\mathcal{L}(\mathbf{w}) = \mathbf{0}\)</span>, while the second constraint bounds the Lagrange multipliers by a regularization parameter <span class="math notranslate nohighlight">\(C\)</span>. After imposing these constraints and eliminating <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> from the Lagrangian, we obtain the following <a class="reference external" href="https://en.wikipedia.org/wiki/Duality_(optimization)#Dual_problem"><em>dual formulation</em></a> of the problem (which we have re-written as a minimization problem):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\text{minimize: } &amp;  \frac{1}{2}\mathbf{a}^T\mathbf{G}\mathbf{a} - \mathbf{a}^T\mathbf{y} + \varepsilon\left(\sum_{n=1}^N (\alpha_n + \alpha_n^*)\right)\\
+ \text{ subject to: } &amp; \begin{cases} 
+\sum_{n=1}^N (\alpha_n - \alpha_n^*) = w_0 \\
+0 \le \alpha_n, \alpha_n^* \le C 
+\ \text{ for $n = 1, 2, ..., N$}
+\end{cases}
+\end{aligned}\end{split}\]</div>
+<p>Above <span class="math notranslate nohighlight">\(\mathbf{G} = \mathbf{\Phi}(\mathbf{X})^T\mathbf{\Phi}(\mathbf{X})\)</span> and <span class="math notranslate nohighlight">\(\mathbf{a} = \begin{bmatrix} (\alpha_0 - \alpha_0^*) &amp; (\alpha_1 - \alpha_1^*) &amp; \dots &amp; (\alpha_N - \alpha_N^*) \end{bmatrix}^T\)</span>. The matrix <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Gram_matrix">Gram matrix</a>. It is a symmetric <span class="math notranslate nohighlight">\(N \times N\)</span> matrix containing the inner product of every data point <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with every other data point <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> in the embedding space. The function that computes this inner product is called a <em>kernel function</em> <span class="math notranslate nohighlight">\(K: \mathcal{X} \times \mathcal{X} \rightarrow \mathbb{R}_{\ge 0}\)</span>. Specifically, the entries of <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> are given by:</p>
+<div class="math notranslate nohighlight">
+\[ \mathbf{G}_{mn} = 1 + \sum_{i=1}^{D_{emb}} \phi_i(\mathbf{x}_m)\phi_i(\mathbf{x}_n) = 1 + K(\mathbf{x}_m, \mathbf{x}_n)\]</div>
+<p>where the kernel function <span class="math notranslate nohighlight">\(K(\mathbf{x},\mathbf{x}')\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[K(\mathbf{x}, \mathbf{x}') = \sum_{i=1}^{D_{emb}} \phi_i(\mathbf{x})\phi_i(\mathbf{x}')\]</div>
+<p>While the kernel function <span class="math notranslate nohighlight">\(K(\mathbf{x},\mathbf{x}')\)</span> can be concretely interpreted as the inner product of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}'\)</span> in the embedding space, we can abstractly think of <span class="math notranslate nohighlight">\(K\)</span> as a measure of “similarity” between two points <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}'\)</span>. The higher the value of <span class="math notranslate nohighlight">\(K(\mathbf{x},\mathbf{x}')\)</span>, the more similar <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is to <span class="math notranslate nohighlight">\(\mathbf{x}'\)</span>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In most software packages, the <span class="math notranslate nohighlight">\(y_1,y_2, ..., y_N\)</span> values are normalized prior to solving the dual problem to ensure that <span class="math notranslate nohighlight">\(w_0 = 0\)</span> (this ensures that the regularization parameter <span class="math notranslate nohighlight">\(C\)</span> does not bound the bias weight <span class="math notranslate nohighlight">\(w_0\)</span>). Because <span class="math notranslate nohighlight">\(w_0 = 0\)</span>, the leading column of <span class="math notranslate nohighlight">\(1\)</span>s in the embedding matrix <span class="math notranslate nohighlight">\(\mathbf{\Phi}(\mathbf{X})\)</span> is unnecessary, and is thusremoved. This results in a Gram matrix <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> with entries:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{G}_{mn} = \sum_{i=1}^{D_{emb}} \phi_i(\mathbf{x}_m)\phi_i(\mathbf{x}_n) = K(\mathbf{x}_m, \mathbf{x}_n)\]</div>
+</div>
+<p>Solving the dual formulation of the maximum absolute error regression problem can be accomplished through one of a number of algorithms, such as the <a class="reference external" href="https://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/"><em>sequential minimal optimization</em> (SMO)</a> algorithm.</p>
+</section>
+<section id="support-vectors">
+<h2>Support Vectors<a class="headerlink" href="#support-vectors" title="Permalink to this heading">#</a></h2>
+<p>From studying the maximum absolute error regression problem, we found that the optimal weights <span class="math notranslate nohighlight">\(w_i\)</span> satisfy the relationship <span class="math notranslate nohighlight">\(w_i = \sum_n (\alpha_n - \alpha_n^*)\phi_i(\mathbf{x}_n)\)</span>. Using the definition of the kernel function <span class="math notranslate nohighlight">\(K(\mathbf{x},\mathbf{x}')\)</span>, we find that that we can re-write an embedding model in terms of a sum of the kernel function applied to each data point <span class="math notranslate nohighlight">\(\mathbf{x}_n\)</span> in the training dataset:</p>
+<div class="math notranslate nohighlight">
+\[ f(\mathbf{x}) = w_0 + \sum_{i=1}^{D_{emb}} w_i\phi_i(\mathbf{x})\quad \Rightarrow \quad f(\mathbf{x}) = w_0 + \sum_{n=1}^N (\alpha_n - \alpha_n^*)K(\mathbf{x}_n,\mathbf{x})\]</div>
+<p>This is an important result, as it allows us to quantitatively measure the “importance” of each datapoint <span class="math notranslate nohighlight">\(\mathbf{x}_n\)</span> in training the model by examining the values of <span class="math notranslate nohighlight">\((\alpha_n - \alpha_n^*)\)</span>. Furthermore, it also allows us quantify how each of the training datapoints <span class="math notranslate nohighlight">\(\mathbf{x}_n\)</span> contribute to predictions made on an unseen datapoint <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This contribution is the product of <span class="math notranslate nohighlight">\((\alpha_n - \alpha_n^*)\)</span> (the “importance” of <span class="math notranslate nohighlight">\(\mathbf{x}_n\)</span>) and <span class="math notranslate nohighlight">\(K(\mathbf{x}_n,\mathbf{x})\)</span> (the “similarity” of <span class="math notranslate nohighlight">\(\mathbf{x}_n\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>).</p>
+<p>Recall that the <span class="math notranslate nohighlight">\(\alpha_n\)</span> and <span class="math notranslate nohighlight">\(\alpha_n^*\)</span> are Lagrange multipliers corrsesponding to the constraint <span class="math notranslate nohighlight">\(|f(\mathbf{x}_n) - y_n| \le \varepsilon\)</span>. In Lagrange multiplier problems, if the optimal solution has <span class="math notranslate nohighlight">\(\lambda_i = 0\)</span> for any multiplier <span class="math notranslate nohighlight">\(\lambda_i\)</span>, it means that the solution does not lie on the boundary of the corresponding constraint <span class="math notranslate nohighlight">\(g_i(\mathbf{w}) = 0\)</span>. So, if <span class="math notranslate nohighlight">\(\alpha_n = \alpha_n^* = 0\)</span>, it means that the constraint <span class="math notranslate nohighlight">\(|\hat{y} - y| &lt; \epsilon\)</span> was not necessary in fitting the model. In other words, the points with <span class="math notranslate nohighlight">\(|(\alpha - \alpha^*)| &gt; 0\)</span> are the only points that were “important” in finding the best fit of the model. These points are called <em>support vectors</em>. In the simple case of a linear model, the points with <span class="math notranslate nohighlight">\((\alpha - \alpha^*) \neq 0\)</span> are the points that lie above and below the <span class="math notranslate nohighlight">\(f(x) \pm \varepsilon\)</span> region, as shown in the illustration below:</p>
+<p><img alt="Support Vector Regression" src="../_images/support_vectors.svg" /></p>
+</section>
+<section id="kernel-functions">
+<h2>Kernel Functions<a class="headerlink" href="#kernel-functions" title="Permalink to this heading">#</a></h2>
+<p>One practical trade-off that we experience when transitioning from an embedding model to an equivalent kernel-based model (often called a <em>kernel machine</em>) is that in order to compute a prediction <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span>, we are shifting from a computation that involves a summation of <span class="math notranslate nohighlight">\(D_{emb}\)</span> terms to a computation that can involve up to <span class="math notranslate nohighlight">\(N\)</span> terms, where <span class="math notranslate nohighlight">\(N\)</span> is the size of the dataset. Fortunately, the summation only needs to carried out over the support vectors where <span class="math notranslate nohighlight">\((\alpha_n - \alpha_n^*)\)</span> is nonzero:</p>
+<div class="math notranslate nohighlight">
+\[ f(\mathbf{x}) = \sum_{\{ n:~(\alpha_{n} - \alpha_{n}^*) = 0 \}} (\alpha_n - \alpha_n^*)K(\mathbf{x}_n - \mathbf{x}) \]</div>
+<p>Depending on the type of the kernel function <span class="math notranslate nohighlight">\(K\)</span>, the tolerance factor <span class="math notranslate nohighlight">\(\varepsilon\)</span>, and the size of the dataset, the number of support vectors may be large or small. When working with kernel machines, it is common to try out multiple kernels, and select the best fit that strikes a balance between model accuracy and the number of support vectors. Below are some kernels that are commonly used:</p>
+<ul class="simple">
+<li><p>Linear Kernel:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[K(\mathbf{x}, \mathbf{x}') = \mathbf{x}^T\mathbf{x}'\]</div>
+<ul class="simple">
+<li><p>Polynomial Kernel (degree <span class="math notranslate nohighlight">\(d\)</span>):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[K(\mathbf{x}, \mathbf{x}') = (\gamma (\mathbf{x}^T\mathbf{x}') + r)^d\]</div>
+<ul class="simple">
+<li><p>Radial Basis Function (RBF) Kernel:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[K(\mathbf{x}, \mathbf{x}') = \exp(-\gamma\lVert \mathbf{x} - \mathbf{x}'\rVert)\]</div>
+<ul class="simple">
+<li><p>Parameterized <span class="math notranslate nohighlight">\(L^2\)</span> function Kernel:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[K(\mathbf{x}, \mathbf{x}') = \int_{-\infty}^\infty f_{\mathbf{x}}(s)f_{\mathbf{x}'}(s)\ ds\]</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Advanced Tip: Quantum Mechanics Problems and the <span class="math notranslate nohighlight">\(L^2\)</span> Kernel</p>
+<p>The parameterized <span class="math notranslate nohighlight">\(L^2\)</span> function kernel is similar to the wave function inner product you may have encountered in a quantum mechanics course, i.e:</p>
+<div class="math notranslate nohighlight">
+\[K(\mathbf{x},\mathbf{x}') \sim \langle \psi_\mathbf{x} | \psi_{\mathbf{x}'} \rangle = \int \psi_\mathbf{x}^*(s) \psi_{\mathbf{x}'}(s)\ ds\]</div>
+<p>This kernel can be used in a variety of solid state physics problems involving the electronic structure of materials. For example, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> could be a vector representing a linear combination of atomic orbitals. We note, however, that additional care must be taken when working with kernel functions that are complex-valued.</p>
+<p>Kernel machines are also currently being explored in the field of <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_machine_learning"><em>Quantum Machine Learning</em></a>, which seeks to integrate quantum computation with existing classical machine learning. Quantum Kernel machines naturally make use of the <span class="math notranslate nohighlight">\(L^2\)</span> kernel, and appear to be promising model for predicting quantum mechanical properties of materials. Unfortunatly, quantum computers have yet to reach the scale necessary to apply machine learning algorithms to large datasets.</p>
+</div>
+<p>Recall that the kernel function <span class="math notranslate nohighlight">\(K(\mathbf{x},\mathbf{x}')\)</span> computes the inner product of two data points embedded in <span class="math notranslate nohighlight">\(D_{emb}\)</span>-dimensional space. Remarkably, it can be shown that for some kernel functions, such as RBF kernel and the <span class="math notranslate nohighlight">\(L^2\)</span> kernel, the embedding space has dimension <span class="math notranslate nohighlight">\(D_{emb} = \infty\)</span>! This means that when we fit a kernel machine using these kernels, we are actually performing linear regression in an infinite dimensional space, which is impossibe to do with a traditional linear regression model. This neat little result is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_method#Mathematics:_the_kernel_trick">“<em>kernel trick</em>”</a>.</p>
+</section>
+<section id="support-vector-regression">
+<h2>Support Vector Regression<a class="headerlink" href="#support-vector-regression" title="Permalink to this heading">#</a></h2>
+<p>Although the theory of support vector regression and other types of kernel machines is quite complex, using them in practice is quite easy. The <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> library contains a several different kernel machine models that we can integrate into our Python code. Many different kernels are also suppported. For example, to fit a support vector regression model with a linear kernel, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVR</span></code></a> as shown in the following code:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+
+<span class="c1"># generate dataset:</span>
+<span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">data_y</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">data_x</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">data_x</span><span class="p">)</span>
+
+<span class="c1"># fit a linear support vector regression (SVR) model:</span>
+<span class="n">svr_epsilon</span><span class="o">=</span><span class="mf">0.25</span>
+<span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">svr_epsilon</span><span class="p">)</span>
+<span class="n">svr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">data_y</span><span class="p">)</span>
+
+<span class="c1"># evaluate SVR predictions:</span>
+<span class="n">eval_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">eval_yhat</span> <span class="o">=</span> <span class="n">svr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">eval_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># plot SVR predictions:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mf">3.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_x</span><span class="p">,</span> <span class="n">eval_yhat</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$f(x)$ (linear kernel)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_x</span><span class="p">,</span> <span class="n">eval_yhat</span><span class="o">+</span><span class="n">svr_epsilon</span><span class="p">,</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span> 
+         <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$f(x) \pm \varepsilon$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_x</span><span class="p">,</span> <span class="n">eval_yhat</span><span class="o">-</span><span class="n">svr_epsilon</span><span class="p">,</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span> <span class="n">data_y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Dataset&#39;</span><span class="p">)</span>
+<span class="n">sv_plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_x</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">svr</span><span class="o">.</span><span class="n">support_</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+            <span class="n">data_y</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">svr</span><span class="o">.</span><span class="n">support_</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="n">svr</span><span class="o">.</span><span class="n">dual_coef_</span><span class="p">,</span> 
+            <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Support Vectors&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sv_plot</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$(\alpha_n - \alpha_n^*)/C$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linear Suport Vector Regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/c561e36e5949c3b23d8b3c13bfe23726aa58ce850e3e40b3574e231af65ea50f.png" src="../_images/c561e36e5949c3b23d8b3c13bfe23726aa58ce850e3e40b3574e231af65ea50f.png" />
+</div>
+</div>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise 1: Support Vector Regression:<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Let’s play with some Support Vector Regression (SVR) models. These models are fit by solving the
+same maximum absolute error regression problem we discussed above. One benefit of using SVR models
+is that it is very easy to try different kinds of embeddings (including infinite-dimensional ones)
+simply by swapping out kernels.</p>
+<p class="sd-card-text">Consider the following (randomly generated) 2D dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Generate training dataset:</span>
+<span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> 
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">2e-2</span><span class="p">,</span><span class="mf">2e-2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">data_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Plot the dataset, and fit three different SVR models to the data with <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVR</span></code></a>. Use the following kernels:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">linear kernel (<code class="docutils literal notranslate"><span class="pre">SVR(kernel='linear')</span></code>)</p></li>
+<li><p class="sd-card-text">second degree polynomial kernel (<code class="docutils literal notranslate"><span class="pre">SVR(degree=2,kernel='poly')</span></code>)</p></li>
+<li><p class="sd-card-text">radial basis function kernel (<code class="docutils literal notranslate"><span class="pre">SVR(kernel='rbf')</span></code>)</p></li>
+</ol>
+<p class="sd-card-text">Finally, for each kernel function, plot the prediction surface. You can do this with the following Python function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_model_predictions</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">x_scaler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plots the prediction surface of a model with 2D features.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data_x: the 2D data (numpy array with shape (N,2))</span>
+<span class="sd">            model: an sklearn model (fit to normalized `data_x`)</span>
+<span class="sd">            x_scaler: an sklearn.preprocessing.StandardScaler</span>
+<span class="sd">                      for normalizing the `data_x` data array</span>
+<span class="sd">                      (optional)</span>
+<span class="sd">            title: title of plot (optional)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mesh_x1</span><span class="p">,</span> <span class="n">mesh_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">100</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">mesh_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">mesh_x1</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">mesh_x2</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">mesh_z</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mesh_x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x_scaler</span> <span class="k">else</span> <span class="n">mesh_x</span>
+
+    <span class="n">pred_y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">mesh_z</span><span class="p">)</span>
+    <span class="n">mesh_yhat</span> <span class="o">=</span> <span class="n">pred_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh_x1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">mesh_x1</span><span class="p">,</span> <span class="n">mesh_x2</span><span class="p">,</span> <span class="n">mesh_yhat</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cnt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\hat</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span> <span class="k">if</span> <span class="n">title</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Kernel machines can also be used for the task of classification. In this exercise, we will get some practice working with support vector classification models.</p>
+<p class="sd-card-text">Repeat Exercise 1, but using Support Vector Classifier models (see <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVC</span></code></a>). Use the SVCs to fit the following training data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Generate training dataset:</span>
+<span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> 
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">2e-2</span><span class="p">,</span><span class="mf">2e-2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">data_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Above, <code class="docutils literal notranslate"><span class="pre">data_y</span></code> contains +1 values for the positive class and -1 values for the negative class. Use the same three kernels as in Exercise 1:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">linear kernel (<code class="docutils literal notranslate"><span class="pre">SVC(kernel='linear')</span></code>)</p></li>
+<li><p class="sd-card-text">second degree polynomial kernel (<code class="docutils literal notranslate"><span class="pre">SVC(degree=2,kernel='poly')</span></code>)</p></li>
+<li><p class="sd-card-text">radial basis function kernel (<code class="docutils literal notranslate"><span class="pre">SVC(kernel='rbf')</span></code>)</p></li>
+</ol>
+<p class="sd-card-text">To plot the prediction surfaces of the classifier, you can use the same <code class="docutils literal notranslate"><span class="pre">plot_model_predictions</span></code> function as in Exercise 1.</p>
+</div>
+</details><section id="solutions">
+<h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1-support-vector-regression">
+<h4>Exercise 1: Support Vector Regression<a class="headerlink" href="#exercise-1-support-vector-regression" title="Permalink to this heading">#</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># Generate training dataset:</span>
+<span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> 
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">2e-2</span><span class="p">,</span><span class="mf">2e-2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span> 
+<span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">data_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># plot training dataset:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">sp</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">data_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Dataset&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_model_predictions</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">x_scaler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plots the prediction surface of a model with 2D features.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data_x: the 2D data (numpy array with shape (N,2))</span>
+<span class="sd">            model: an sklearn model (fit to normalized `data_x`) </span>
+<span class="sd">            x_scaler: an sklearn.preprocessing.StandardScaler</span>
+<span class="sd">                      for normalizing the `data_x` data array</span>
+<span class="sd">                      (optional)</span>
+<span class="sd">            title: title of plot (optional)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mesh_x1</span><span class="p">,</span> <span class="n">mesh_x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span> <span class="mi">100</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">mesh_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">mesh_x1</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">mesh_x2</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="p">])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">mesh_z</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mesh_x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x_scaler</span> <span class="k">else</span> <span class="n">mesh_x</span>
+    
+    <span class="n">pred_y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">mesh_z</span><span class="p">)</span>
+    <span class="n">mesh_yhat</span> <span class="o">=</span> <span class="n">pred_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mesh_x1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">mesh_x1</span><span class="p">,</span> <span class="n">mesh_x2</span><span class="p">,</span> <span class="n">mesh_yhat</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cnt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\hat</span><span class="si">{y}</span><span class="s1">$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span> <span class="k">if</span> <span class="n">title</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># fit a StandardScaler to data:</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
+
+<span class="c1"># normalize x_data:</span>
+<span class="n">data_z</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
+
+<span class="c1"># These are the regression models we are trying:</span>
+<span class="n">svr_models</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">),</span>
+    <span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">SVR</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># fit each model and plot the prediction surface:</span>
+<span class="k">for</span> <span class="n">svr_model</span> <span class="ow">in</span> <span class="n">svr_models</span><span class="p">:</span>
+    
+    <span class="c1"># fit model to normalized data:</span>
+    <span class="n">svr_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_z</span><span class="p">,</span> <span class="n">data_y</span><span class="p">)</span>
+    
+    <span class="c1"># plot predictions made by kernel SVR model</span>
+    <span class="n">plot_model_predictions</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span> 
+                           <span class="n">model</span><span class="o">=</span><span class="n">svr_model</span><span class="p">,</span> 
+                           <span class="n">x_scaler</span><span class="o">=</span><span class="n">scaler</span><span class="p">,</span>
+                           <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;SVR (</span><span class="si">{</span><span class="n">svr_model</span><span class="o">.</span><span class="n">kernel</span><span class="si">}</span><span class="s1"> kernel)&#39;</span><span class="p">)</span>
+    
+     
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/00e1c058b6c0cd12a91f8057c5296c9dd816427bce1b8eb83b255331bbeacf4c.png" src="../_images/00e1c058b6c0cd12a91f8057c5296c9dd816427bce1b8eb83b255331bbeacf4c.png" />
+<img alt="../_images/c0ac7a82eaec777f0b546177b808ec5a224a37e489264ef9beb81d71e46e3bf9.png" src="../_images/c0ac7a82eaec777f0b546177b808ec5a224a37e489264ef9beb81d71e46e3bf9.png" />
+<img alt="../_images/2fe3b285557a544aefd20c57a6e2d4ab6eca093b34028ba4f37dfbb4ee26267f.png" src="../_images/2fe3b285557a544aefd20c57a6e2d4ab6eca093b34028ba4f37dfbb4ee26267f.png" />
+<img alt="../_images/efac49ee3d6538a102cbb530163f1791801ea5ca711d3dd142c1db2f0f2a352d.png" src="../_images/efac49ee3d6538a102cbb530163f1791801ea5ca711d3dd142c1db2f0f2a352d.png" />
+</div>
+</details>
+</div>
+</section>
+<section id="exercise-2-support-vector-classification">
+<h4>Exercise 2: Support Vector Classification<a class="headerlink" href="#exercise-2-support-vector-classification" title="Permalink to this heading">#</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># !! Note: This uses the plot_model_predictions function from Exercise 1.</span>
+
+
+<span class="c1"># Generate training dataset:</span>
+<span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> 
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">3e-2</span><span class="p">,</span><span class="mf">3e-2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">data_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">50</span><span class="o">*</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># plot training dataset:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_x</span><span class="p">[</span><span class="n">data_y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_x</span><span class="p">[</span><span class="n">data_y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Positive Class&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_x</span><span class="p">[</span><span class="n">data_y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_x</span><span class="p">[</span><span class="n">data_y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Negative Class&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># fit a StandardScaler to data:</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
+
+<span class="c1"># normalize x_data:</span>
+<span class="n">data_z</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
+
+<span class="c1"># These are the classifier models we are trying:</span>
+<span class="n">svc_models</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">),</span>
+    <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># fit each model and plot the prediction surface:</span>
+<span class="k">for</span> <span class="n">svc_model</span> <span class="ow">in</span> <span class="n">svc_models</span><span class="p">:</span>
+    
+    <span class="c1"># fit model to normalized data:</span>
+    <span class="n">svc_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_z</span><span class="p">,</span> <span class="n">data_y</span><span class="p">)</span>
+    
+    <span class="c1"># plot predictions made by kernel SVR model</span>
+    <span class="n">plot_model_predictions</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span>
+                           <span class="n">model</span><span class="o">=</span><span class="n">svc_model</span><span class="p">,</span>
+                           <span class="n">x_scaler</span><span class="o">=</span><span class="n">scaler</span><span class="p">,</span>
+                           <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;SVC (</span><span class="si">{</span><span class="n">svc_model</span><span class="o">.</span><span class="n">kernel</span><span class="si">}</span><span class="s1"> kernel)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/831937dc907135863139e57b9cf2985137d2142c62b5a2096db7ecbcea2a673b.png" src="../_images/831937dc907135863139e57b9cf2985137d2142c62b5a2096db7ecbcea2a673b.png" />
+<img alt="../_images/5837d4aff5e28b47e73eb7249cdf35893e44a32a50111ca0bb648d41dbe9452f.png" src="../_images/5837d4aff5e28b47e73eb7249cdf35893e44a32a50111ca0bb648d41dbe9452f.png" />
+<img alt="../_images/7ce3af4708ef84726c6b0fa75e7865e4fad7bd90d5a526c24eb1f1b72e99ddef.png" src="../_images/7ce3af4708ef84726c6b0fa75e7865e4fad7bd90d5a526c24eb1f1b72e99ddef.png" />
+<img alt="../_images/49f075009838ddb4af23bf20a5955dd1c553508b0a98cdc0c27b16baa80b91f6.png" src="../_images/49f075009838ddb4af23bf20a5955dd1c553508b0a98cdc0c27b16baa80b91f6.png" />
+</div>
+</details>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./regression"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced Regression Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="regression_models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Application: Bandgap Prediction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-absolute-error-regression">Maximum Absolute Error Regression:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vectors">Support Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-functions">Kernel Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-regression">Support Vector Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-support-vector-regression">Exercise 1: Support Vector Regression</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-support-vector-classification">Exercise 2: Support Vector Classification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

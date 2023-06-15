@@ -1,0 +1,59 @@
+Traceback (most recent call last):
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+
+# define data distribution:
+def y_distribution(x):
+	return -0.1*x + 0.9 + \
+            np.random.uniform(-0.3,0.3,size=len(x))
+
+# the data we obtain will naturally fit the valid model with
+# some noise due to experimental errors:
+data_n = 12
+data_x = np.linspace(0,10,data_n)
+data_y = y_distribution(data_x)
+
+# fite data to a line (degree 1 polynomial):
+xy_linefit = np.poly1d(np.polyfit(data_x,data_y,deg=1))
+
+# fit data to N-1 degree polynomial to data:
+xy_polyfit = np.poly1d(np.polyfit(data_x,data_y,deg=len(data_x)-1))
+
+# plot data and valid/invalid models for comparison:
+plt.figure()
+eval_x = np.linspace(0,10,1000)
+plt.scatter(data_x,data_y, color='g', label=r'Data $(x,y)$')
+plt.plot(eval_x, xy_linefit(eval_x), label=r'Linear Fit $f(x)$')
+plt.plot(eval_x, cy_polyfit(eval_x), label=r'Polynomial Fit $f(x)$')
+plt.legend()
+plt.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 26[0m
+[1;32m     24[0m plt[38;5;241m.[39mscatter(data_x,data_y, color[38;5;241m=[39m[38;5;124m'[39m[38;5;124mg[39m[38;5;124m'[39m, label[38;5;241m=[39m[38;5;124mr[39m[38;5;124m'[39m[38;5;124mData $(x,y)$[39m[38;5;124m'[39m)
+[1;32m     25[0m plt[38;5;241m.[39mplot(eval_x, xy_linefit(eval_x), label[38;5;241m=[39m[38;5;124mr[39m[38;5;124m'[39m[38;5;124mLinear Fit $f(x)$[39m[38;5;124m'[39m)
+[0;32m---> 26[0m plt[38;5;241m.[39mplot(eval_x, [43mcy_polyfit[49m(eval_x), label[38;5;241m=[39m[38;5;124mr[39m[38;5;124m'[39m[38;5;124mPolynomial Fit $f(x)$[39m[38;5;124m'[39m)
+[1;32m     27[0m plt[38;5;241m.[39mlegend()
+[1;32m     28[0m plt[38;5;241m.[39mshow()
+
+[0;31mNameError[0m: name 'cy_polyfit' is not defined
+

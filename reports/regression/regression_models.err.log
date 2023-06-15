@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from sklearn.linear_model import Ridge
+
+bandgap_subsets_x, bandgap_subsets_y = \
+    train_val_test_split(bandgap_x, bandgap_y)
+
+train_x, val_x, test_x = bandgap_subsets_x
+train_y, val_y, test_y = bandgap_subsets_y
+
+scaler, train_z, val_z, test_z = \
+    normalize(train_x, val_x, test_x)
+
+ridge_model = Ridge(alpha=0.01)
+ridge_model.fit(train_z, train_y)
+
+train_yhat = ridge_model.predict(train_z)
+val_yhat = ridge_model.predict(val_z)
+
+train_mse = np.mean((train_yhat - train_y)**2)
+val_mse = np.mean((val_yhat - val_y)**2)
+
+print('training stddev:', np.std(train_y))
+print('training MSE:', train_mse)
+print('validation MSE:', val_mse)
+print('validation MSE/stddev:', val_mse/np.std(train_y))
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[9], line 4[0m
+[1;32m      1[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mlinear_model[39;00m [38;5;28;01mimport[39;00m Ridge
+[1;32m      3[0m bandgap_subsets_x, bandgap_subsets_y [38;5;241m=[39m \
+[0;32m----> 4[0m     train_val_test_split([43mbandgap_x[49m, bandgap_y)
+[1;32m      6[0m train_x, val_x, test_x [38;5;241m=[39m bandgap_subsets_x
+[1;32m      7[0m train_y, val_y, test_y [38;5;241m=[39m bandgap_subsets_y
+
+[0;31mNameError[0m: name 'bandgap_x' is not defined
+

@@ -1,0 +1,65 @@
+Traceback (most recent call last):
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.svm import SVR
+
+# generate dataset:
+data_x = np.linspace(-2,2,30)
+data_y = data_x + 0.5*np.sin(4*data_x)
+
+# fit a linear support vector regression (SVR) model:
+svr_epsilon=0.25
+svr = SVR(kernel='linear', epsilon=svr_epsilon)
+svr.fit(data_x.reshape(-1,1), data_y)
+
+# evaluate SVR predictions:
+eval_x = np.linspace(-2,2, 100)
+eval_yhat = svr.predict(eval_x.reshape(-1,1))
+
+# plot SVR predictions:
+plt.figure()
+plt.plot(eval_x, eval_yhat, 'k', label=r'$f(x)$ (linear kernel)')
+plt.plot(eval_x, eval_yhat+svr_epsilon, 'k:', 
+         alpha=0.5, label=r'$f(x) \pm \varepsilon$')
+plt.plot(eval_x, eval_yhatr-svr_epsilon, 'k:', alpha=0.5)
+plt.scatter(data_x, data_y, c='k', alpha=0.1)
+sv_plot = plt.scatter(data_x.take(svr.support_).flatten(),
+            data_y.take(svr.support_),
+            c=svr.dual_coef_, marker='+', cmap='bwr')
+plt.colorbar(sv_plot)
+plt.show()
+
+print(vars(svr))
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 23[0m
+[1;32m     20[0m plt[38;5;241m.[39mplot(eval_x, eval_yhat, [38;5;124m'[39m[38;5;124mk[39m[38;5;124m'[39m, label[38;5;241m=[39m[38;5;124mr[39m[38;5;124m'[39m[38;5;124m$f(x)$ (linear kernel)[39m[38;5;124m'[39m)
+[1;32m     21[0m plt[38;5;241m.[39mplot(eval_x, eval_yhat[38;5;241m+[39msvr_epsilon, [38;5;124m'[39m[38;5;124mk:[39m[38;5;124m'[39m, 
+[1;32m     22[0m          alpha[38;5;241m=[39m[38;5;241m0.5[39m, label[38;5;241m=[39m[38;5;124mr[39m[38;5;124m'[39m[38;5;124m$f(x) [39m[38;5;124m\[39m[38;5;124mpm [39m[38;5;124m\[39m[38;5;124mvarepsilon$[39m[38;5;124m'[39m)
+[0;32m---> 23[0m plt[38;5;241m.[39mplot(eval_x, [43meval_yhatr[49m[38;5;241m-[39msvr_epsilon, [38;5;124m'[39m[38;5;124mk:[39m[38;5;124m'[39m, alpha[38;5;241m=[39m[38;5;241m0.5[39m)
+[1;32m     24[0m plt[38;5;241m.[39mscatter(data_x, data_y, c[38;5;241m=[39m[38;5;124m'[39m[38;5;124mk[39m[38;5;124m'[39m, alpha[38;5;241m=[39m[38;5;241m0.1[39m)
+[1;32m     25[0m sv_plot [38;5;241m=[39m plt[38;5;241m.[39mscatter(data_x[38;5;241m.[39mtake(svr[38;5;241m.[39msupport_)[38;5;241m.[39mflatten(),
+[1;32m     26[0m             data_y[38;5;241m.[39mtake(svr[38;5;241m.[39msupport_),
+[1;32m     27[0m             c[38;5;241m=[39msvr[38;5;241m.[39mdual_coef_, marker[38;5;241m=[39m[38;5;124m'[39m[38;5;124m+[39m[38;5;124m'[39m, cmap[38;5;241m=[39m[38;5;124m'[39m[38;5;124mbwr[39m[38;5;124m'[39m)
+
+[0;31mNameError[0m: name 'eval_yhatr' is not defined
+

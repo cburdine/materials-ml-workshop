@@ -1,0 +1,1006 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Advanced Regression Models &#8212; Materials + Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'regression/regression';</script>
+    <link rel="shortcut icon" href="../_static/logo_small.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kernel Machines" href="kernel_machines.html" />
+    <link rel="prev" title="Application: Classifying Perovskites" href="../supervised_learning/basic_models.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Materials + ML Workshop
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/python_basics.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/python_logic.html">Logic and Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/loops.html">Loops</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_types/sets_and_dicts.html">Sets and Dictionaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/classes.html">Classes and Object-Oriented Programming</a></li>
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scicomp/numpy.html">The Numpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scicomp/scipy.html">The Scipy Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Advanced Regression Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fregression/regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/regression/regression.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Advanced Regression Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-linear-regression">Multivariate Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensional-embeddings">High-Dimensional Embeddings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-polynomial-fits-of-single-variable-functions">Example: Polynomial Fits of Single-Variable Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-and-overfitting">Underfitting and Overfitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-overfitting">Identifying Overfitting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">Regularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-computing-the-moore-penrose-inverse">Exercise 1: Computing the Moore-Penrose Inverse</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-regularized-linear-regression">Exercise 2: Regularized Linear Regression</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="advanced-regression-models">
+<h1>Advanced Regression Models<a class="headerlink" href="#advanced-regression-models" title="Permalink to this heading">#</a></h1>
+<p>In the last section, we learned about how regression models can be fit to data using the gradient descent learning algorithm. Interestingly, for certain regression models, the optimal “best fit” solution can be found in closed form. The simplest of these closed-form models is <em>multivariate linear regression</em>.</p>
+<section id="multivariate-linear-regression">
+<h2>Multivariate Linear Regression<a class="headerlink" href="#multivariate-linear-regression" title="Permalink to this heading">#</a></h2>
+<p>At the name suggests, multivariate linear regression models are generalizations of linear regression models where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> has many dimensions. A linear regression model for a <span class="math notranslate nohighlight">\(D\)</span>-dimensional feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> takes the form:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = f(\mathbf{x}) = w_0 + \sum_{i=1}^D w_ix_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(w_0\)</span> and the <span class="math notranslate nohighlight">\(w_i\)</span> are the weights that must be learned. If we define <span class="math notranslate nohighlight">\(\underline{\mathbf{x}} = \begin{bmatrix} 1 &amp; x_1 &amp; x_2 &amp; ... &amp; x_D \end{bmatrix}^T\)</span> (the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> prepended with <span class="math notranslate nohighlight">\(1\)</span>), we can write <span class="math notranslate nohighlight">\(f(x)\)</span> as an inner product of <span class="math notranslate nohighlight">\(\underline{\mathbf{x}}\)</span> with the weight vector <span class="math notranslate nohighlight">\(\mathbf{w} = \begin{bmatrix} w_0 &amp; w_1 &amp; w_2 &amp; ... &amp; w_D \end{bmatrix}^T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = f(\mathbf{x}) = \underline{\mathbf{x}}^T\mathbf{w}\]</div>
+<p>For linear regression models, it is helpful to represent a dataset <span class="math notranslate nohighlight">\(\{ (\mathbf{x}_n,y_n) \}_{n=1}^N\)</span> as a matrix-vector pair <span class="math notranslate nohighlight">\((\mathbf{X},\mathbf{y})\)</span>, given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{X} = \begin{bmatrix} 
+\underline{\mathbf{x}_1}^T \\
+\underline{\mathbf{x}_2}^T \\
+\vdots \\
+\underline{\mathbf{x}_N}^T
+\end{bmatrix},\qquad\qquad \mathbf{y} = \begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_N
+\end{bmatrix}\end{split}\]</div>
+<p>In terms of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, the task of fitting the linear regression model reduces to solving the weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> satisfying the matrix equation <span class="math notranslate nohighlight">\(\mathbf{X}\mathbf{w} \approx \mathbf{y}\)</span>. Since most datasets have some degree of noise, it is usually impossible to find a weight vector <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> for which <span class="math notranslate nohighlight">\(\mathbf{X}\mathbf{w} = \mathbf{y}\)</span> exactly. Instead, we must settle for weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> that minimizes a some loss function. The most popular choice of loss function for linear regression is the mean square error (MSE). In terms of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, the MSE can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{E}(f) = \frac{1}{N}(\mathbf{X}\mathbf{w} -\mathbf{y})^T(\mathbf{X}\mathbf{w} - \mathbf{y})\]</div>
+<p>It can be shown that the weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> minimizing <span class="math notranslate nohighlight">\(\mathcal{E}(f)\)</span> can be computed in closed form as <span class="math notranslate nohighlight">\(\mathbf{w} = \mathbf{X}^+\mathbf{y}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{X}^+\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">Moore-Penrose inverse</a> (sometimes called the <em>pseudo-inverse</em>) of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. For a sufficiently <a class="reference external" href="https://en.wikipedia.org/wiki/Condition_number">well-conditioned data matrix</a> <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, the weights can be computed as:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{w} = \mathbf{X}^{+}\mathbf{y} = \left( (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\right)\mathbf{y}\]</div>
+<p>For most applications, fitting linear regression models with the Moore-Penrose inverse is preferred to other methods, such as gradient descent.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To compute the Moore-Penrose inverse in Python, you can use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.pinv.html"><code class="docutils literal notranslate"><span class="pre">np.linalg.pinv</span></code></a> function.</p>
+</div>
+</section>
+<section id="high-dimensional-embeddings">
+<h2>High-Dimensional Embeddings<a class="headerlink" href="#high-dimensional-embeddings" title="Permalink to this heading">#</a></h2>
+<p>While linear regression models are quite powerful and admit and optimal closed-form fit, they often fail to yield good predictions on data with non-linear trends. Fortunately, we can extend the closed form solution of linear regression to work with some non-linear models as well. The general idea behind this extension is to <em>embed</em> the feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> into a high-dimensional space where linear regression can be applied. Often, this embedding is a non-linear function of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, which allows for the model to perform regression based on non-linear functions of the features <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. These embedding models have the general form:</p>
+<div class="math notranslate nohighlight">
+\[ f(\mathbf{x}) = w_0 + \sum_{j=1}^{D_{emb}} w_j \phi_j(\mathbf{x})\]</div>
+<p>where the <span class="math notranslate nohighlight">\(\phi_j: \mathbb{R}^{D} \rightarrow \mathbb{R}\)</span> are the embedding functions and <span class="math notranslate nohighlight">\(D_{emb}\)</span> is the dimension of the embedding. In most cases, <span class="math notranslate nohighlight">\(D_{emb} &gt; D\)</span>. As with standard multivariate linear regression, the MSE loss is commonly used. The MSE loss of the embedding model is:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{E}(f) = \frac{1}{N}(\mathbf{\Phi}(\mathbf{X})\mathbf{w} - \mathbf{y})^T(\mathbf{\Phi}(\mathbf{X})\mathbf{w} - \mathbf{y})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{\Phi}(\mathbf{X})\)</span> is the embedding of the data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{\Phi}(\mathbf{X}) = \begin{bmatrix}
+1 &amp; \phi_1(\mathbf{x}_1) &amp; \phi_2(\mathbf{x}_1) &amp; \dots  &amp; \phi_{D_{emb}}(\mathbf{x}_1) \\
+1 &amp; \phi_1(\mathbf{x}_2) &amp; \phi_2(\mathbf{x}_2) &amp; \dots  &amp; \phi_{D_{emb}}(\mathbf{x}_2) \\
+\vdots &amp; \vdots               &amp; \vdots               &amp; \ddots &amp; \vdots \\
+1 &amp; \phi_1(\mathbf{x}_N) &amp; \phi_2(\mathbf{x}_N) &amp; \dots  &amp; \phi_{D_{emb}}(\mathbf{x}_N)
+\end{bmatrix}\end{split}\]</div>
+<p>The MSE-minimizing weight vector <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> can be solved for using the Moore-Penrose inverse: <span class="math notranslate nohighlight">\(\mathbf{w} = \mathbf{\Phi}(\mathbf{X})^{+}\mathbf{y}\)</span>.</p>
+<section id="example-polynomial-fits-of-single-variable-functions">
+<h3>Example: Polynomial Fits of Single-Variable Functions<a class="headerlink" href="#example-polynomial-fits-of-single-variable-functions" title="Permalink to this heading">#</a></h3>
+<p>We have already studied the problem of fitting a polynomial of degree <span class="math notranslate nohighlight">\(D\)</span> to a single-variable <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with gradient descent. It turns out that we can actually obtain a closed-form best fit using the method of high-dimensional embeddings, where the <span class="math notranslate nohighlight">\(\phi_j\)</span> functions are simply powers of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>: <span class="math notranslate nohighlight">\(\phi_j(\mathbf{x}) = x^j\)</span> (Since <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a vector of length 1, we can treat <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as a scalar <span class="math notranslate nohighlight">\(x\)</span>). The embedding matrix <span class="math notranslate nohighlight">\(\mathbf{\Phi}(\mathbf{X})\)</span> for a polynomial model is known as a <a class="reference external" href="https://en.wikipedia.org/wiki/Vandermonde_matrix">Vandermonde matrix</a>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{\Phi}(\mathbf{X}) = \begin{bmatrix}
+1 &amp; x_1 &amp;  x_1^2 &amp; \dots &amp; x_1^{D_{emb}} \\
+1 &amp; x_2 &amp;  x_2^2 &amp; \dots &amp; x_2^{D_{emb}} \\
+1 &amp; x_3 &amp;  x_3^2 &amp; \dots &amp; x_3^{D_{emb}} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_N &amp; x_N^2 &amp; \dots &amp; x_N^{D_{emb}}
+\end{bmatrix}\end{split}\]</div>
+<p>One can easily compute the optimal weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> of a degree <span class="math notranslate nohighlight">\(D_{emb}\)</span> polynomial fit by computing the Moore-Penrose inverse of this matrix. In fact, this is the method used in the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html"><code class="docutils literal notranslate"><span class="pre">np.polyfit</span></code></a> function, which we have used before.</p>
+</section>
+</section>
+<section id="underfitting-and-overfitting">
+<h2>Underfitting and Overfitting<a class="headerlink" href="#underfitting-and-overfitting" title="Permalink to this heading">#</a></h2>
+<p>One of the benefits of using high-dimensional embeddings of data is that it allows for many different possible non-linear functions to be incorporated into the model <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span>, allowing for a high model flexibility. This flexibility, however, can come at a significant cost: the more weights a model has, the more likely it is to <em>overfit</em> the data. What do we mean by <em>overfitting</em>? <a class="reference external" href="https://en.wikipedia.org/wiki/Overfitting">Overfitting</a> occurs when the predictions made by a fitted model correspond too closely to the training data and therefore fail to correspond to unseen data not contained in the training dataset. Put simply, overfitted models tend to “memorize” the training data instead of “learn” from it.</p>
+<p>If a model is too inflexible, it may be subject to the opposite problem: <em>underfitting</em>. Underfitting occurs when the model is unable to capture the underlying trends of the data. Typically, underfitting occurs as a result of poor model choice. A good model is one that strikes a balance between these extremes, being just flexible enough to learn the underlying trends of the training data, but not so flexible that it simply “memorizes” the training data.</p>
+<p>To help illustrate underfitting and overfitting, let’s return to the familiar example of fitting 1D data with polynomials:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># define data distribution:</span>
+<span class="k">def</span> <span class="nf">y_distribution</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+	<span class="k">return</span> <span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">1.0</span> <span class="o">+</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># generate training data:</span>
+<span class="n">data_n</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">data_n</span><span class="p">)</span>
+<span class="n">data_y</span> <span class="o">=</span> <span class="n">y_distribution</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
+
+<span class="c1"># fit data to a line (degree 1 polynomial):</span>
+<span class="n">xy_linefit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span><span class="n">data_y</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># fit data to a quadratic (degree 2 polynomial):</span>
+<span class="n">xy_quadfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span><span class="n">data_y</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># fit data to N-1 degree polynomial to data:</span>
+<span class="n">xy_polyfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span><span class="n">data_y</span><span class="p">,</span><span class="n">deg</span><span class="o">=</span><span class="n">data_n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># plot data and models for comparison:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">eval_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span><span class="n">data_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Training Data $(x,y)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_x</span><span class="p">,</span> <span class="n">xy_linefit</span><span class="p">(</span><span class="n">eval_x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Linear Fit ($D_</span><span class="si">{emb}</span><span class="s1"> = 1$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_x</span><span class="p">,</span> <span class="n">xy_quadfit</span><span class="p">(</span><span class="n">eval_x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Quadratic Fit ($D_</span><span class="si">{emb}</span><span class="s1"> = 2$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_x</span><span class="p">,</span> <span class="n">xy_polyfit</span><span class="p">(</span><span class="n">eval_x</span><span class="p">),</span> 
+         <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Polynomial Fit ($D_</span><span class="si">{emb}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data_n</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/735723ea99da7a96447f4333b4826c61478501602da36d6131c8268f8f8cbf98.png" src="../_images/735723ea99da7a96447f4333b4826c61478501602da36d6131c8268f8f8cbf98.png" />
+</div>
+</div>
+<p>In the plot above, the polynomial with <span class="math notranslate nohighlight">\(D_{emb} = 11\)</span> fits the data perfectly; however, we can see that it interpolates between data points very poorly, especially at the edges of the data distribution, where <span class="math notranslate nohighlight">\(x \approx 0\)</span> and <span class="math notranslate nohighlight">\(x \approx 10\)</span>. It is very likely that this model is overfitting the data. On the other hand, we see that the linear model (<span class="math notranslate nohighlight">\(D_{emb} = 1\)</span>) is not flexible enough to capture the non-linearities of the data. As a result, it is very likely that this model is underfitting the data. The quadratic fit (<span class="math notranslate nohighlight">\(D_{emb} = 2\)</span>) seems to neither overfit nor underfit the data, which suggests it is the best model for this training dataset.</p>
+<section id="identifying-overfitting">
+<h3>Identifying Overfitting<a class="headerlink" href="#identifying-overfitting" title="Permalink to this heading">#</a></h3>
+<p>The easiest way of identifying is a model is overfitting the data is by comparing the error of the model on the training and validation error. Since the model is only fit to the training set data, the validation set error gives us an idea of how accurate the model is on unseen data. If the validation error is significantly higher than the training error and the training error is close to its minimum, the model is likely overfitting the data. On the other hand, if both the training and validation error are high, the model is likely underfitting the data.</p>
+<p>To illustrate this, we plot the training and validation error of our 1D polynomial models and indicate the regions of overfitting and underfitting:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># validation dataset (for the sake of illustration):</span>
+<span class="n">val_data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">val_data_y</span> <span class="o">=</span> <span class="n">y_distribution</span><span class="p">(</span><span class="n">val_data_x</span><span class="p">)</span>
+
+<span class="c1"># embedding dimensions to try:</span>
+<span class="n">embedding_dims</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># initialize lists to store results:</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">train_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">validation_errors</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">embedding_dims</span><span class="p">:</span>
+
+    <span class="c1"># fit the model to the training set:</span>
+    <span class="n">xy_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">data_x</span><span class="p">,</span> <span class="n">data_y</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">d</span><span class="p">))</span>
+    
+    <span class="c1"># compute mean square error for training and validation set:</span>
+    <span class="n">train_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">xy_fit</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span> <span class="o">-</span> <span class="n">data_y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">validation_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">xy_fit</span><span class="p">(</span><span class="n">val_data_x</span><span class="p">)</span> <span class="o">-</span> <span class="n">val_data_y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># record results:</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xy_fit</span><span class="p">)</span>
+    <span class="n">train_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_error</span><span class="p">)</span>
+    <span class="n">validation_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">validation_error</span><span class="p">)</span>
+
+<span class="c1"># identify regions of under/overfitting:</span>
+<span class="n">underfit_region</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">overfit_region</span> <span class="o">=</span> <span class="p">(</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">7.5</span><span class="p">)</span>
+
+<span class="c1"># plot train/validation error versus embedding dimension curve:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">6.5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">embedding_dims</span><span class="p">,</span> <span class="n">train_errors</span><span class="p">,</span> <span class="s1">&#39;o:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Set Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">embedding_dims</span><span class="p">,</span> <span class="n">validation_errors</span><span class="p">,</span> <span class="s1">&#39;o:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Set Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">6.0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="nb">min</span><span class="p">(</span><span class="n">underfit_region</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">overfit_region</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Polynomial Degree ($D_</span><span class="si">{emb}</span><span class="s1">$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$\mathcal</span><span class="si">{E}</span><span class="s1">(f)$ (Mean Square Eror)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="o">*</span><span class="n">underfit_region</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Underfitting&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="o">*</span><span class="n">overfit_region</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Overfitting&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/ac66c600bf06e99be5a10896feb81b947ac7265fabcbf1179442bbe3f055e3ec.png" src="../_images/ac66c600bf06e99be5a10896feb81b947ac7265fabcbf1179442bbe3f055e3ec.png" />
+</div>
+</div>
+<p>We can see that some underfitting occurs with the linear model (<span class="math notranslate nohighlight">\(D_{emb} = 1\)</span>). We also observe that for polynomials with degree <span class="math notranslate nohighlight">\(D_{emb} &gt; 5\)</span>, the training error goes to <span class="math notranslate nohighlight">\(0\)</span> and the validation error begins to increase. This is the characteristic symptom of overfitting.</p>
+</section>
+</section>
+<section id="regularization">
+<h2>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">#</a></h2>
+<p>There are a few ways to deal with overfitting. One way is by going out and collecting more data. As the size and diversity of the training dataset increases, the harder it will be for our model to “memorize” the dataset, therby reducing overfitting. Another way to deal with overfitting is to try a less complex model. In general, the fewer weights a model has, the less prone it is to overfitting data. There is also a third method for reducing overfitting in some models which requires changing neither the model nor the dataset. This is called <em>regularization</em>.</p>
+<p>The most common forms of regularization incorporate a “model complexity penalty” term directly into the model loss function <span class="math notranslate nohighlight">\(\mathcal{E}(f)\)</span>. For linear regression problems (both with and without an embedding <span class="math notranslate nohighlight">\(\mathbf{\Phi}\)</span>), a popular choice of the regularization term is the sums of squares of the model weights times a constant <span class="math notranslate nohighlight">\(\lambda\)</span>, called the <em>regularization parameter</em>:</p>
+<div class="math notranslate nohighlight">
+\[\text{ Penalty Term } = \lambda \sum_{j} w_j^2 = \lambda(\mathbf{w}^T\mathbf{w})\]</div>
+<p>As the value of the regularization parameter <span class="math notranslate nohighlight">\(\lambda\)</span> increases, the model is penalized more for having weights with large magnitudes, which reduces the model’s ability to overfit data. When this sum of squares penalty term is added to the mean square error loss function of a linear regression model, the resulting regression problem is called <a class="reference external" href="https://en.wikipedia.org/wiki/Overfitting"><em>Ridge regression</em></a>:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{E}(f) = \frac{1}{N}(\mathbf{\Phi}(\mathbf{X})\mathbf{w} - \mathbf{y})^T(\mathbf{\Phi}(\mathbf{X})\mathbf{w} - \mathbf{y}) + \underbrace{\lambda(\mathbf{w}^T\mathbf{w})}_{\text{regularization term}}\]</div>
+<p>For any value of <span class="math notranslate nohighlight">\(\lambda\)</span> the optimal weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> for a ridge regression problem can be computed in closed form:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{w} = \left((\mathbf{\Phi}(\mathbf{X})^T\mathbf{\Phi}(\mathbf{X}) + \lambda\mathbf{I})^{-1} \mathbf{\Phi}(\mathbf{X})^T \right) \mathbf{y}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Take note of how the term</p>
+<div class="math notranslate nohighlight">
+\[(\mathbf{\Phi}(\mathbf{X})^T\mathbf{\Phi}(\mathbf{X}) + \lambda \mathbf{I})^{-1}\mathbf{\Phi}(\mathbf{X})^T\]</div>
+<p>is a “regularized” form of the Moore-Penrose inverse of <span class="math notranslate nohighlight">\(\mathbf{\Phi}(\mathbf{X})\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{\Phi}(\mathbf{X})^+ = (\mathbf{\Phi}(\mathbf{X})^T\mathbf{\Phi}(\mathbf{X}))^{-1}\mathbf{\Phi}(\mathbf{X})^T.\]</div>
+<p>As expected, the two agree when <span class="math notranslate nohighlight">\(\lambda = 0\)</span> (i.e. no regularization is applied).</p>
+</div>
+<p>Another popular form of regularization is <a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)"><em>Lasso regression</em></a>, which imposes a penalty term proportional to the sum of absolute values of the weights:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{E}(f) = \frac{1}{N}(\mathbf{\Phi}(\mathbf{X})\mathbf{w} - \mathbf{y})^T(\mathbf{\Phi}(\mathbf{X})\mathbf{w} - \mathbf{y}) + \underbrace{\lambda \sum_{j=1}^{D_{emb}} |w_j|}_{\text{regularization term}}\]</div>
+<p>Unlike Ridge regression, Lasso regression does not readily admit a closed-form solution for the optimal weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>.</p>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise 1: Computing the Moore-Penrose Inverse<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Consider the following data matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> and label vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">T</span> <span class="c1"># shape: (8,)</span>
+<span class="n">X_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">])</span> <span class="c1"># shape: (8,5)</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Compute the weight matrix <span class="math notranslate nohighlight">\(\mathbf{w} = \mathbf{X}^+\mathbf{y}\)</span> for a standard multivariate linear regression model using two different methods:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Compute <span class="math notranslate nohighlight">\(\mathbf{X}^{+}\)</span> using the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.pinv.html"><code class="docutils literal notranslate"><span class="pre">np.linalg.pinv</span></code></a> function</p></li>
+<li><p class="sd-card-text">Compute <span class="math notranslate nohighlight">\(\mathbf{X}^{+}\)</span> using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html"><code class="docutils literal notranslate"><span class="pre">np.linalg.inv</span></code></a> and the formula:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\mathbf{X}^+ = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^T\]</div>
+<p class="sd-card-text">Compare the weights <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> computed from each method and verify they are roughly the same. Compute the mean square error (MSE) of the linear regression model <span class="math notranslate nohighlight">\(f(x) = \mathbf{w}^{T}\underline{X}\)</span>. Do not worry about normalizing the data in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise 2: Regularized Polynomials<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Let’s get some practice working with Ridge and Regression. To start, copy &amp; paste the following code to generate a training and validation dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">generate_X</span><span class="p">(</span><span class="n">n_data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">n_data</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="o">/</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="k">def</span> <span class="nf">generate_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span> <span class="mf">2e-6</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="n">x_n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">x_n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">])</span> <span class="o">+</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">noise</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span>
+    <span class="p">])</span>
+
+<span class="c1"># generate training set:</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">generate_X</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">generate_y</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+
+
+<span class="c1"># generate validation set:</span>
+<span class="n">X_validation</span> <span class="o">=</span> <span class="n">generate_X</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">y_validation</span> <span class="o">=</span> <span class="n">generate_y</span><span class="p">(</span><span class="n">X_validation</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sd-card-text">First, normalize the data and then fit a Ridge regression model to the training data using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html"><code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Ridge</span></code></a>. Plot the training set and validation set mean square error versus the regularization parameter <span class="math notranslate nohighlight">\(\lambda\)</span> as <span class="math notranslate nohighlight">\(\lambda\)</span> is varied from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(1\)</span> (Note: <span class="math notranslate nohighlight">\(\lambda\)</span> is the argument <code class="docutils literal notranslate"><span class="pre">alpha</span></code> in the <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> object). You should see that the model overfits the training set for <span class="math notranslate nohighlight">\(\lambda = 0\)</span> (no regularization), but as <span class="math notranslate nohighlight">\(\lambda\)</span> increases the validation set error should decrease.</p>
+<hr class="docutils" />
+<p class="sd-card-text"><em>Hint:</em> To fit a Ridge regression model to a normalized data matrix <code class="docutils literal notranslate"><span class="pre">Z_train</span></code> and labels <code class="docutils literal notranslate"><span class="pre">y_train</span></code>, and make predictions on a validation dataset <code class="docutils literal notranslate"><span class="pre">Z_valdation</span></code>, you can use the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+
+<span class="k">lambda</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># regularization parameter</span>
+
+<span class="c1"># fit model to training data:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="k">lambda</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Z_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># make predictions on validation set data:</span>
+<span class="n">yhat_validation</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Z_validation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><section id="solutions">
+<h3>Solutions:<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1-computing-the-moore-penrose-inverse">
+<h4>Exercise 1: Computing the Moore-Penrose Inverse<a class="headerlink" href="#exercise-1-computing-the-moore-penrose-inverse" title="Permalink to this heading">#</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># given data matrix (X) and target vector (y):</span>
+<span class="n">y_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span><span class="o">.</span><span class="n">T</span> <span class="c1"># shape: (8,)</span>
+<span class="n">X_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span> 
+    <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">])</span> <span class="c1"># shape: (8,5)</span>
+
+<span class="c1"># compute weights using np.linalg.pinv:</span>
+<span class="n">w_numpy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">X_matrix</span><span class="p">)</span> <span class="o">@</span> <span class="n">y_vector</span>
+
+<span class="c1"># print np.pinv weight vector:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;w (computed using np.pinv):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w_numpy</span><span class="p">)</span>
+
+<span class="c1"># compute weight vector using the formula:</span>
+<span class="n">X_pinv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_matrix</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_matrix</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_matrix</span><span class="o">.</span><span class="n">T</span>
+<span class="n">w_formula</span> <span class="o">=</span> <span class="n">X_pinv</span> <span class="o">@</span> <span class="n">y_vector</span>
+
+<span class="c1"># print formula weight vector:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;w (computed with formula):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w_formula</span><span class="p">)</span>
+
+<span class="c1"># compute the MSE of the linear regression model:</span>
+<span class="n">yhat_vector</span> <span class="o">=</span> <span class="n">X_matrix</span> <span class="o">@</span> <span class="n">w_numpy</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span> <span class="p">(</span><span class="n">yhat_vector</span> <span class="o">-</span> <span class="n">y_vector</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Mean Square Error: &#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>w (computed using np.pinv):
+[ -19.13512146  -12.39983252  184.11013704 -396.71057275  228.66445803]
+w (computed with formula):
+[ -19.13512504  -12.39983948  184.11022702 -396.71075017  228.66455279]
+
+Mean Square Error:  6.017971108799712e-05
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="exercise-2-regularized-linear-regression">
+<h4>Exercise 2: Regularized Linear Regression<a class="headerlink" href="#exercise-2-regularized-linear-regression" title="Permalink to this heading">#</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span> 
+
+<span class="k">def</span> <span class="nf">generate_X</span><span class="p">(</span><span class="n">n_data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">n_data</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="o">/</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="k">def</span> <span class="nf">generate_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span> <span class="mf">2e-6</span><span class="o">*</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">4</span><span class="p">))</span><span class="o">*</span><span class="n">x_n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">x_n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">])</span> <span class="o">+</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">noise</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span>
+    <span class="p">])</span>
+
+<span class="c1"># generate training set:</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">generate_X</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">generate_y</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">5.0</span><span class="p">)</span>
+
+
+<span class="c1"># generate validation set:</span>
+<span class="n">X_validation</span> <span class="o">=</span> <span class="n">generate_X</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">y_validation</span> <span class="o">=</span> <span class="n">generate_y</span><span class="p">(</span><span class="n">X_validation</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="c1"># normalize training and validation sets:</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">Z_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">Z_validation</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_validation</span><span class="p">)</span>
+
+<span class="n">lambda_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">train_mse_values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">validation_mse_values</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">lambda_reg</span> <span class="ow">in</span> <span class="n">lambda_values</span><span class="p">:</span>
+    <span class="n">ridge_model</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">lambda_reg</span><span class="p">)</span>
+    <span class="n">ridge_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    
+
+    <span class="c1"># make prediction and evaluate training set error:</span>
+    <span class="n">yhat_train</span> <span class="o">=</span> <span class="n">ridge_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Z_train</span><span class="p">)</span>
+    <span class="n">mse_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">yhat_train</span> <span class="o">-</span> <span class="n">y_train</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># make predictions and evaluate validation set error:</span>
+    <span class="n">yhat_validation</span> <span class="o">=</span> <span class="n">ridge_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Z_validation</span><span class="p">)</span>
+    <span class="n">mse_validation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">yhat_validation</span> <span class="o">-</span> <span class="n">y_validation</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># record results:</span>
+    <span class="n">train_mse_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse_train</span><span class="p">)</span>
+    <span class="n">validation_mse_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mse_validation</span><span class="p">)</span>
+
+<span class="c1"># plot ridge regression results:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambda_values</span><span class="p">,</span> <span class="n">train_mse_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Set&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambda_values</span><span class="p">,</span> <span class="n">validation_mse_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Set&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mean Square Error (MSE)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Regularization ($\lambda$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9b5e4477f254250b56a7e74bde767ff93bcc2d231263b3090aa4f226fd0371e2.png" src="../_images/9b5e4477f254250b56a7e74bde767ff93bcc2d231263b3090aa4f226fd0371e2.png" />
+</div>
+</details>
+</div>
+</section>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./regression"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../supervised_learning/basic_models.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Application: Classifying Perovskites</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="kernel_machines.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Kernel Machines</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-linear-regression">Multivariate Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensional-embeddings">High-Dimensional Embeddings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-polynomial-fits-of-single-variable-functions">Example: Polynomial Fits of Single-Variable Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-and-overfitting">Underfitting and Overfitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-overfitting">Identifying Overfitting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization">Regularization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-computing-the-moore-penrose-inverse">Exercise 1: Computing the Moore-Penrose Inverse</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-regularized-linear-regression">Exercise 2: Regularized Linear Regression</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

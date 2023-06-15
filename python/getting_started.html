@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Getting Started with Python &#8212; Materials + Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python/getting_started';</script>
+    <link rel="shortcut icon" href="../_static/logo_small.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python Basics" href="python_basics.html" />
+    <link rel="prev" title="Using Google Colab" href="../intro/colab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Materials + ML Workshop
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Getting Started with Python</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="python_basics.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_logic.html">Logic and Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loops.html">Loops</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_types/sets_and_dicts.html">Sets and Dictionaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/classes.html">Classes and Object-Oriented Programming</a></li>
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scicomp/numpy.html">The Numpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scicomp/scipy.html">The Scipy Package</a></li>
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_vis/data_handling.html">Data Handling and Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpython/getting_started.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/python/getting_started.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Getting Started with Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-python">What is Python?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-learn-python">Why learn Python?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packages">Python Packages</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-packages">Installing Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-your-python-notebook">Using your Python Notebook</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started-with-python">
+<h1>Getting Started with Python<a class="headerlink" href="#getting-started-with-python" title="Permalink to this heading">#</a></h1>
+<p>In this session, we will start by learning some of the basic features of the Python Programming language. Then, we will get our feet wet writing some basic programs.</p>
+<section id="what-is-python">
+<h2>What is Python?<a class="headerlink" href="#what-is-python" title="Permalink to this heading">#</a></h2>
+<p><img alt="" src="../_images/python-logo-generic.svg" /></p>
+<p>Python is a general-purpose programming language originally developed by <a class="reference external" href="https://en.wikipedia.org/wiki/Guido_van_Rossum">Guido van Rossum</a> in 1989. Since its conception, Python has grown in popularity and is used today in many different computing systems and software technologies. Popular application domains include:</p>
+<ul class="simple">
+<li><p>Networking and web communications</p></li>
+<li><p>Web development</p></li>
+<li><p>Data science and large-scale data processing</p></li>
+<li><p>VR, CGI, and game development</p></li>
+<li><p>Scientific Computing</p></li>
+</ul>
+<section id="why-learn-python">
+<h3>Why learn Python?<a class="headerlink" href="#why-learn-python" title="Permalink to this heading">#</a></h3>
+<p>Python is a versatile language that is easy to learn and use, making it an ideal choice for both beginners and experts. It is also a popular language in industry, with many companies relying on Python for a variety of tasks. Python also has a large and supportive community, with many resources available online to help individuals learn and improve their skills. Python’s popularity and flexibility make it a valuable skill to have in today’s job market, with many job postings and research positions requiring or preferring candidates with Python experience. Finally, Python’s extensive library of packages for scientific computing and data analysis, such as NumPy, SciPy, and Matplotlib, make it a powerful tool for tackling complex problems in fields such as physics, chemistry, and engineering.</p>
+<p><img alt="Popularity of scientific programming languages. (source: Stack Overflow Trends)" src="../_images/scientific-language-popularity.svg" /></p>
+<p>Unlike other scientific languages like <a class="reference external" href="https://www.mathworks.com/products/matlab.html">MATLAB</a> or the <a class="reference external" href="https://www.wolfram.com/language/">Wolfram Language</a> (Used in <a class="reference external" href="https://www.wolfram.com/mathematica/?source=nav">Mathematica</a>), Python and its core packages are are <em>Free and Open-Source</em> software. This means that you do not need to purchase specialized software or a license to run Python programs. This also means that as a Python programmer, you are free to view, modify, and extend the source code of these packages to suit your research goals.</p>
+</section>
+</section>
+<section id="python-packages">
+<h2>Python Packages<a class="headerlink" href="#python-packages" title="Permalink to this heading">#</a></h2>
+<p>Although the core Python language supports several different data types, many of the features that we will be using in this workshop will come from <em>python packages</em>. Python packages are a convenient way for members of the Python community to share Python code that was written to solve a specific problem or that may provide additional code functionality in a specific setting. The avaliability of many different Python packages and the ease of installing them is what makes Python a powerful research tool. Some Python packages that are widely used in scientific computing are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>: An interface to fast mathematical and numerical functions in python, such as arrays, matrices, and common mathematial functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scipy</span></code>: Contains functions commonly used in the analysis of scientific data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>: A MATLAB-like interface to plotting and visualizing data in a variety of formats. This package is widely used to create publication-quality figures and plots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>: Used for reading, writing, and manipulating datasets. This package is increasingly being used as an alternative to Microsoft Excel for working with data in Python.</p></li>
+</ul>
+<p>So, how can we use these powerful packages? The Python language comes with an easy-to-use package manager, called <a class="reference external" href="https://pip.pypa.io/en/stable/">“pip” (Package Installer for Python)</a>. Using pip, we can easily install, manage, update, and uninstall packages in our python environment.</p>
+<section id="installing-packages">
+<h3>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this heading">#</a></h3>
+<p>First, let’s try to install the latest version of the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program “Command Prompt” (Windows) or “Terminal” (MacOS, Linux). After running the program, you should see a prompt where you can type in commands.</p>
+<p>Type the following command into the terminal and hit Enter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+<p>After the installation finishes, you should see no error messages (usually appearing as red text) in the terminal.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>On some systems, such as Linux and Mac OS, you may need to instead use the command  <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code>. where <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> is the name of the package you want to install. If you are using Anaconda and installing the package with pip does not work, you can try installing it with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code>.</p>
+</div>
+<p>Note that if you are using Google Colab, several of the most commonly used packages (such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter notebooks also, but it should only be used as a last resort. See the dropdown block below for more details:</p>
+<div class="important dropdown admonition">
+<p class="admonition-title">Installing packages inside Google Colab</p>
+<p>If you are using Google Colab, many packages will already be installed for you.</p>
+<p>To see if a package is already installed in Google Colab (or in a Jupyter Notebook), try to import it in a Python code cell and see if it imports successfully. You can do this by executing the line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="o">&lt;</span><span class="n">package</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> is the package you want to use. If this fails with a <code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code>, it means the package is not installed. You can install the package by running a cell with the line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install &lt;package&gt;
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">!</span></code> at the beginning of the line tells the notebook to run the line as a shell commmand. Be careful when using shell commands within the notebook, since the syntax of these commands may vary from system to system. Only execute shell commands from trusted sources.</p>
+<p>Here’s an example of installing the <a class="reference external" href="https://materialsproject.org/api">Materials Project client</a> package (<code class="docutils literal notranslate"><span class="pre">mp-api</span></code>), which has the Python alias <code class="docutils literal notranslate"><span class="pre">mp_api</span></code>:</p>
+<p><img alt="" src="../_images/colab_install_example.png" /></p>
+</div>
+<p>Now that you we installed numpy, let’s try to install some other important packages we need for this workshop. To do this, we will install the rest of the packages from a <em>requirements file</em>. A Python requirements file (typically called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>) is a file that lists all of the packages a project depends on. The packages a project depends on are usually called <em>dependencies</em>. For this workshop, we will use the following requirements file:</p>
+<script src="https://gist.github.com/cburdine/cae13221fb0e1d134d88a25f01498c67.js"></script>
+<p>Note that this is just a text file listing each Python dependency, one per line. Many Python projects will contain <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file in order to list all of the project dependencies. If you were to download this file into your working directory, you could install all depencies using the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>This would automatically install all necessary packages listed in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>. To avoid having to download this file and make sure it ends up in the correct directory, we are going to instead get this requirements file from a URL. To do this, copy the following command and run it in your terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gist</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cburdine</span><span class="o">/</span><span class="n">cae13221fb0e1d134d88a25f01498c67</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="mi">2</span><span class="n">f58c2f19ec5ca0f72e6615d6f27304d86dd0709</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The installation may take a bit of time. Once it finishes, if you do not see a red error message in your console it means that you are now ready to use these packages in your own Python code.</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Advanced Tip: Python Virtual Environments</p>
+<p>If you are confortable working the the terminal on your system, you may find it helpful to set up a <a class="reference external" href="https://realpython.com/python-virtual-environments-a-primer">virtual environment</a> for your Python projects. A virtual environment helps with organizing the dependendencies on your system, and ensures that</p>
+<p>If you have the <a class="reference external" href="https://docs.python.org/3/library/venv.html"><code class="docutils literal notranslate"><span class="pre">venv</span></code> tool</a> installed on your system, you can create a virtual environment for your project by running the following command in your project work directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">my_env</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">my_env</span></code> is the name of your environment. To activate your environment, run the following command from your project work directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">::::{</span><span class="n">tab</span><span class="o">-</span><span class="nb">set</span><span class="p">}</span>
+<span class="n">source</span> <span class="n">my_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>This will activate your environment. Any dependencies installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code> will be installed directly in this environment when it is activated. These installed packages will not be affected by packages installed or updated systemwide or in other virtual environments. To deactivate the virtual environment, simply run the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="using-your-python-notebook">
+<h2>Using your Python Notebook<a class="headerlink" href="#using-your-python-notebook" title="Permalink to this heading">#</a></h2>
+<p>To get started running code in your Python Notebook, you will need to start up your Jupyter Notebook environment. Directions are given below for various Operating Systems, or Google Colab, if you are unable to install Jupyter on your device.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Windows</label><div class="sd-tab-content docutils">
+<p>The process for starting up you Jupyter notebook wil be different, depending on whether Jupyter Notebook was installed with pip or Anaconda:</p>
+<p><strong>If Jupyter was installed with pip:</strong></p>
+<p>Using your File Explorer, create a new folder to store your Jupyter notebooks. Then do the following steps:</p>
+<ul class="simple">
+<li><p>Inside the empty folder, right click (on some systems: Shift + right click), and click on “Open in Windows Terminal”.</p></li>
+<li><p>This will open a terminal window inside your folder. Inside the folder, run the command <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> to start the server from inside the folder.</p></li>
+</ul>
+<p><strong>If Jupyter was installed with Anaconda:</strong></p>
+<p>When launching Jupyter Notebook from Anaconda, notebooks will be saved to the default folder of Anaconda Powershell Prompt. To save the notebooks to a different folder, follow these steps:</p>
+<ul class="simple">
+<li><p>Launch Anaconda Powershell Prompt</p></li>
+<li><p>Type  <code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">my_jupyter_notebooks</span> </code>  to create a folder called <code class="docutils literal notranslate"><span class="pre">my_jupyter_notebooks</span></code> (or a name of your choice) to hold your notebook files and Python code.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">my_jupyter_notebooks</span></code> to enter the folder you just created.</p></li>
+<li><p>Type  <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>  and it will start the server from inside the folder</p></li>
+</ul>
+<p><strong>Stopping the Server</strong></p>
+<p>Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type <code class="docutils literal notranslate"><span class="pre">localhost:8888</span></code> in the address bar.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The address <code class="docutils literal notranslate"><span class="pre">localhost</span></code> tells your browser that the server is running on your computer, while <code class="docutils literal notranslate"><span class="pre">8888</span></code> is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. <code class="docutils literal notranslate"><span class="pre">8889</span></code>). The port number should be printed in the terminal when the server is started.</p>
+</div>
+<p>To stop the server, hit the keys <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code> in the command prompt window where the server is running and type <code class="docutils literal notranslate"><span class="pre">y</span></code> to confirm. Be sure you have saved all of your work before stopping the notebook server!</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Mac OS</label><div class="sd-tab-content docutils">
+<p>Mac OS Instructions Here.</p>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Linux</label><div class="sd-tab-content docutils">
+<p>If you have Python3 and Jupyter Notebook installed on your system, create a work directory for your jupyter notebooks and navigate inside of it. In the terminal, you can do this with the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">my_jupyter_notebooks</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">my_jupyter_notebooks</span>
+</pre></div>
+</div>
+<p>Once inside your jupyter notebook work directory, you can start the notebook in the terminal using the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>This should start a notebook server, and open your default web browser to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type <code class="docutils literal notranslate"><span class="pre">localhost:8888</span></code> in the address bar.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The address <code class="docutils literal notranslate"><span class="pre">localhost</span></code> tells your browser that the server is running on your computer, while <code class="docutils literal notranslate"><span class="pre">8888</span></code> is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. <code class="docutils literal notranslate"><span class="pre">8889</span></code>). The port number should be printed in the terminal when the server is started.</p>
+</div>
+<p>To stop the server, hit the keys <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code> in the terminal where the server is running and type <code class="docutils literal notranslate"><span class="pre">y</span></code> to confirm. Be sure you have saved all of your work before stopping the notebook server!</p>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Google Colab</label><div class="sd-tab-content docutils">
+<p>In order to use Google Colab, you will need to have a google account. First, navigate to the <a class="reference external" href="https://colab.research.google.com/">Google Colab Landing Page</a>.</p>
+<p>To create a new Colab Notebok, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">New</span> <span class="pre">Notebook</span></code>:</p>
+<p><img alt="" src="../_images/colab_new_notebook.png" /></p>
+<p>This shoud create a new Notebook with an empty cell where you can start writing your Python code. If you are not logged in to your Google Account, you may be prompted to log in at this time.</p>
+<p>By default, your notebook is called “Untitled.ipynb”, or something similar. If you click on the name of the notebook at the top lefthand corner, you can rename it to something more meaningful. Your notebook should look something like this:</p>
+<p><img alt="" src="../_images/colab_notebook.png" /></p>
+<p>A Google Colab Notebook functions almost identically to a Jupyter Notebook; however, there are a few minor differences in appearance, keyboard shortcuts, etc. These are the most important differences to keep in mind:</p>
+<ul class="simple">
+<li><p>Instead of saving to your computer’s local storage, Google Colab will save your notebooks to your Google Drive. If you want to download a notebook to open in Jupyter, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">.ipynb</span></code>. If you want to upload a Jupyter notebook to Colab, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Upload</span> <span class="pre">Notebook</span></code>.</p></li>
+<li><p>The code in a Google Colab notebook is executed remotely on Google’s servers, not your computer. This means that you must have an internet connection to be able to run your code.</p></li>
+<li><p>You can also run a Google Colab Notebook on Google’s GPU (Graphics Processing Unit) and TPU (Tensor Processing Unit) hardware. You can run your code for free on <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tesla-t4/">NVIDIA Tesla T4</a> hardware or Google’s Proprietary <a class="reference external" href="https://cloud.google.com/tpu/docs/intro-to-tpu">TPU Hardware</a>. Higher-end hardware is also available for a fee. In this workshop, we will probably not need to use any hardware acceleration.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro/colab.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Using Google Colab</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="python_basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python Basics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-python">What is Python?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-learn-python">Why learn Python?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-packages">Python Packages</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-packages">Installing Packages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-your-python-notebook">Using your Python Notebook</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1244 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Application: Classifying Perovskites &#8212; Materials + Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'supervised_learning/basic_models';</script>
+    <link rel="shortcut icon" href="../_static/logo_small.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced Regression Models" href="../regression/regression.html" />
+    <link rel="prev" title="Fitting Supervised Models" href="fitting_models.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Materials + ML Workshop
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/python_basics.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/python_logic.html">Logic and Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/loops.html">Loops</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_types/sets_and_dicts.html">Sets and Dictionaries</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/classes.html">Classes and Object-Oriented Programming</a></li>
+
+
+
+
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scicomp/numpy.html">The Numpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scicomp/scipy.html">The Scipy Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="supervised_learning.html">Supervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Classifying Perovskites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsupervised_learning/basic_models.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/supervised_learning/basic_models.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Application: Classifying Perovskites</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perovskite-classification-dataset">Perovskite Classification Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-features">Data Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-cubic-versus-non-cubic-structures">Classifying Cubic versus Non-Cubic Structures:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-perceptron-linear-classification-model">The Perceptron (Linear Classification) Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nearest-neighbor-model">The Nearest Neighbor Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="application-classifying-perovskites">
+<h1>Application: Classifying Perovskites<a class="headerlink" href="#application-classifying-perovskites" title="Permalink to this heading">#</a></h1>
+<p>Now that we’ve covered some of the basic theory of supervised learning, let’s start applying some basic supervised learning models to a real dataset.</p>
+<section id="perovskite-classification-dataset">
+<h2>Perovskite Classification Dataset<a class="headerlink" href="#perovskite-classification-dataset" title="Permalink to this heading">#</a></h2>
+<p>Perovskites are materials with a crystal structure of the form  <span class="math notranslate nohighlight">\(ABX_3\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two positively charged cations and <span class="math notranslate nohighlight">\(B\)</span> is a negatively charged anion, usually oxygen (<span class="math notranslate nohighlight">\(O\)</span>). Ideal perovskites have a cubic structure, although some perovskites may attain more stable configurations with slightly perturbed structural phases, such as orthorombic or tetragonal. Here’s an example of <a class="reference external" href="https://en.wikipedia.org/wiki/Strontium_titanate">SrTiO<span class="math notranslate nohighlight">\(_3\)</span></a> (strontium titanate), which is most stable with a cubic structure:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/SrTiO3_cubic.png"><img alt="fishy" class="bg-primary mb-1 align-center" src="../_images/SrTiO3_cubic.png" style="width: 250px;" /></a>
+<p>We will be using the <a class="reference external" href="https://www-sciencedirect-com.ezproxy.baylor.edu/science/article/pii/S0927025620306820?via%3Dihub">AB03 Perovskites</a> dataset.
+This data was originally used in the paper <a class="reference external" href="https://doi-org.ezproxy.baylor.edu/10.1016/j.commatsci.2020.110191"><em>Crystal structure classification in ABO3 perovskites via machine learning</em></a> by <em>Behara et al</em>.
+Download the dataset and put the <code class="docutils literal notranslate"><span class="pre">perovskites.csv</span></code> file in the same directory as your Python notebook.</p>
+<p>Once downloaded, you can load the dataset into a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframe using the following Python code:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># load dataset into a pandas DataFrame:</span>
+<span class="n">PEROVSKITE_CSV</span> <span class="o">=</span> <span class="s1">&#39;perovskites.csv&#39;</span>
+<span class="n">perovskite_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PEROVSKITE_CSV</span><span class="p">)</span>
+
+<span class="c1"># show dataframe in notebook:</span>
+<span class="n">display</span><span class="p">(</span><span class="n">perovskite_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Compound</th>
+      <th>A</th>
+      <th>B</th>
+      <th>In literature</th>
+      <th>v(A)</th>
+      <th>v(B)</th>
+      <th>r(AXII)(Å)</th>
+      <th>r(AVI)(Å)</th>
+      <th>r(BVI)(Å)</th>
+      <th>EN(A)</th>
+      <th>EN(B)</th>
+      <th>l(A-O)(Å)</th>
+      <th>l(B-O)(Å)</th>
+      <th>ΔENR</th>
+      <th>tG</th>
+      <th>τ</th>
+      <th>μ</th>
+      <th>Lowest distortion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ac2O3</td>
+      <td>Ac</td>
+      <td>Ac</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.12</td>
+      <td>1.12</td>
+      <td>1.12</td>
+      <td>1.10</td>
+      <td>1.10</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>-3.248000</td>
+      <td>0.707107</td>
+      <td>-</td>
+      <td>0.800000</td>
+      <td>cubic</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AcAgO3</td>
+      <td>Ac</td>
+      <td>Ag</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.12</td>
+      <td>1.12</td>
+      <td>0.95</td>
+      <td>1.10</td>
+      <td>1.93</td>
+      <td>0.00000</td>
+      <td>2.488353</td>
+      <td>-2.565071</td>
+      <td>0.758259</td>
+      <td>-</td>
+      <td>0.678571</td>
+      <td>orthorhombic</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AcAlO3</td>
+      <td>Ac</td>
+      <td>Al</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.12</td>
+      <td>1.12</td>
+      <td>0.54</td>
+      <td>1.10</td>
+      <td>1.61</td>
+      <td>0.00000</td>
+      <td>1.892894</td>
+      <td>-1.846714</td>
+      <td>0.918510</td>
+      <td>-</td>
+      <td>0.385714</td>
+      <td>cubic</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>AcAsO3</td>
+      <td>Ac</td>
+      <td>As</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.12</td>
+      <td>1.12</td>
+      <td>0.52</td>
+      <td>1.10</td>
+      <td>2.18</td>
+      <td>0.00000</td>
+      <td>1.932227</td>
+      <td>-1.577429</td>
+      <td>0.928078</td>
+      <td>-</td>
+      <td>0.371429</td>
+      <td>orthorhombic</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>AcAuO3</td>
+      <td>Ac</td>
+      <td>Au</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.12</td>
+      <td>1.12</td>
+      <td>0.93</td>
+      <td>1.10</td>
+      <td>2.54</td>
+      <td>0.00000</td>
+      <td>2.313698</td>
+      <td>-2.279786</td>
+      <td>0.764768</td>
+      <td>-</td>
+      <td>0.664286</td>
+      <td>orthorhombic</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>5324</th>
+      <td>ZrWO3</td>
+      <td>Zr</td>
+      <td>W</td>
+      <td>False</td>
+      <td>1</td>
+      <td>5</td>
+      <td>0.89</td>
+      <td>0.72</td>
+      <td>0.62</td>
+      <td>1.33</td>
+      <td>2.36</td>
+      <td>2.38342</td>
+      <td>1.745600</td>
+      <td>-1.572214</td>
+      <td>0.801621</td>
+      <td>5.228952455</td>
+      <td>0.442857</td>
+      <td>cubic</td>
+    </tr>
+    <tr>
+      <th>5325</th>
+      <td>ZrYO3</td>
+      <td>Zr</td>
+      <td>Y</td>
+      <td>False</td>
+      <td>-</td>
+      <td>-</td>
+      <td>0.89</td>
+      <td>0.72</td>
+      <td>0.90</td>
+      <td>1.33</td>
+      <td>1.22</td>
+      <td>2.38342</td>
+      <td>2.235124</td>
+      <td>-2.489571</td>
+      <td>0.704032</td>
+      <td>-</td>
+      <td>0.642857</td>
+      <td>cubic</td>
+    </tr>
+    <tr>
+      <th>5326</th>
+      <td>ZrYbO3</td>
+      <td>Zr</td>
+      <td>Yb</td>
+      <td>False</td>
+      <td>-</td>
+      <td>-</td>
+      <td>0.89</td>
+      <td>0.72</td>
+      <td>0.95</td>
+      <td>1.33</td>
+      <td>1.10</td>
+      <td>2.38342</td>
+      <td>2.223981</td>
+      <td>-2.626821</td>
+      <td>0.689053</td>
+      <td>-</td>
+      <td>0.678571</td>
+      <td>orthorhombic</td>
+    </tr>
+    <tr>
+      <th>5327</th>
+      <td>ZrZnO3</td>
+      <td>Zr</td>
+      <td>Zn</td>
+      <td>False</td>
+      <td>-</td>
+      <td>-</td>
+      <td>0.89</td>
+      <td>0.72</td>
+      <td>0.74</td>
+      <td>1.33</td>
+      <td>1.65</td>
+      <td>2.38342</td>
+      <td>2.096141</td>
+      <td>-2.035750</td>
+      <td>0.756670</td>
+      <td>-</td>
+      <td>0.528571</td>
+      <td>cubic</td>
+    </tr>
+    <tr>
+      <th>5328</th>
+      <td>Zr2O3</td>
+      <td>Zr</td>
+      <td>Zr</td>
+      <td>False</td>
+      <td>-</td>
+      <td>-</td>
+      <td>0.89</td>
+      <td>0.72</td>
+      <td>0.72</td>
+      <td>1.33</td>
+      <td>1.33</td>
+      <td>2.38342</td>
+      <td>2.043778</td>
+      <td>-2.097821</td>
+      <td>0.763809</td>
+      <td>-</td>
+      <td>0.514286</td>
+      <td>cubic</td>
+    </tr>
+  </tbody>
+</table>
+<p>5329 rows × 18 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="data-features">
+<h2>Data Features<a class="headerlink" href="#data-features" title="Permalink to this heading">#</a></h2>
+<p>For now, we will focus primarily on the prediction of the perovskite structure (the <em>Lowest Distortion</em> column). In the dataset, there are many different features given for each perovskite material. They include:</p>
+<ul class="simple">
+<li><p>Chemical Formula (with A and B elements)</p></li>
+<li><p>Valence of A (0-6 or unlisted): <span class="math notranslate nohighlight">\(V(A)\)</span></p></li>
+<li><p>Valence of B (0-6 or unlisted): <span class="math notranslate nohighlight">\(V(B)\)</span></p></li>
+<li><p>Radius of A at 12 coordination: <span class="math notranslate nohighlight">\(r(A_{XII})\)</span></p></li>
+<li><p>Radius of A at 6 coordination: <span class="math notranslate nohighlight">\(r(A_{VI})\)</span></p></li>
+<li><p>Radius of B at 6 coordination: <span class="math notranslate nohighlight">\(r(B_{VI})\)</span></p></li>
+<li><p>Electronegativity of A: <span class="math notranslate nohighlight">\(EN(A)\)</span></p></li>
+<li><p>Electronegativity of B: <span class="math notranslate nohighlight">\(EN(B)\)</span></p></li>
+<li><p>Bond length of A-O pair <span class="math notranslate nohighlight">\(l(A\)</span>-<span class="math notranslate nohighlight">\(O)\)</span></p></li>
+<li><p>Bond Length of B-O pair <span class="math notranslate nohighlight">\(l(B\)</span>-<span class="math notranslate nohighlight">\(O)\)</span></p></li>
+<li><p>Eletronegativity difference with radius: <span class="math notranslate nohighlight">\(\Delta ENR\)</span></p></li>
+<li><p>Goldschmidt tolerance factor: <span class="math notranslate nohighlight">\(t_G\)</span></p></li>
+<li><p>New tolerance factor: <span class="math notranslate nohighlight">\(\tau\)</span></p></li>
+<li><p>Octahedral factor: <span class="math notranslate nohighlight">\(\mu\)</span></p></li>
+</ul>
+<p>In total, there are 17 distinct factors in the dataframe; however many of these featurescan be computed directly from other features. For example, the <a class="reference external" href="https://en.wikipedia.org/wiki/Goldschmidt_tolerance_factor">Goldschmidt tolarance factor</a> is a quantity commonly used to evaluate the stability of perovskite structures. It is computed using the equation:</p>
+<div class="math notranslate nohighlight">
+\[t_G = \frac{(r(A) + r(B))}{\sqrt{2}(r(B) - r(\text{O}))}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r(A)\)</span> and <span class="math notranslate nohighlight">\(r(B)\)</span> are the ionic radii of the <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> elements and <span class="math notranslate nohighlight">\(r(\text{O})\)</span> is the ionic radius of oxygen.</p>
+<p>To make things a bit simpler, let’s consider only the following three factors:</p>
+<ul class="simple">
+<li><p>Electronegativity of A: <span class="math notranslate nohighlight">\(EN(A)\)</span></p></li>
+<li><p>Electronegativity of B: <span class="math notranslate nohighlight">\(EN(B)\)</span></p></li>
+<li><p>Goldschmidt tolerance factor: <span class="math notranslate nohighlight">\(t_G\)</span></p></li>
+</ul>
+<p>We can select these features and convert them into <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays using the following code:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># features:</span>
+<span class="n">a_electronegativity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perovskite_df</span><span class="p">[</span><span class="s1">&#39;EN(A)&#39;</span><span class="p">])</span>
+<span class="n">b_electronegativity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perovskite_df</span><span class="p">[</span><span class="s1">&#39;EN(B)&#39;</span><span class="p">])</span>
+<span class="n">goldschmidt_tolerance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perovskite_df</span><span class="p">[</span><span class="s1">&#39;tG&#39;</span><span class="p">])</span>
+
+<span class="c1"># combine features into columns of a Nx3 numpy array:</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">a_electronegativity</span><span class="p">,</span>
+    <span class="n">b_electronegativity</span><span class="p">,</span>
+    <span class="n">goldschmidt_tolerance</span>
+<span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of features:&#39;</span><span class="p">,</span> <span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of features: (5329, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s also take a look at all of the distinct structures that appear in the <em>Lowest distortion</em> column:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dataset labels:</span>
+<span class="n">structures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">perovskite_df</span><span class="p">[</span><span class="s1">&#39;Lowest distortion&#39;</span><span class="p">])</span>
+
+<span class="c1"># reduce to distrinct values:</span>
+<span class="n">distinct_structures</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">structures</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">distinct_structures</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;tetragonal&#39;, &#39;-&#39;, &#39;orthorhombic&#39;, &#39;cubic&#39;, &#39;rhombohedral&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>It appears that there are four different distinct phases listed in the dataset: <code class="docutils literal notranslate"><span class="pre">rhombohedral</span></code>, <code class="docutils literal notranslate"><span class="pre">cubic</span></code>, <code class="docutils literal notranslate"><span class="pre">tetragonal</span></code>, and <code class="docutils literal notranslate"><span class="pre">orthorhombic</span></code>. There are also some rows in the dataframe that do not have a phase listed (denoted by <code class="docutils literal notranslate"><span class="pre">-</span></code>). Let’s see how many of each phase are listed in the dataset:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># determine how many examples of each structure are in the dataset:</span>
+<span class="n">bar_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> 
+    <span class="nb">len</span><span class="p">(</span><span class="n">structures</span><span class="p">[</span><span class="n">structures</span> <span class="o">==</span> <span class="n">structure_type</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">structure_type</span> <span class="ow">in</span> <span class="n">distinct_structures</span>
+<span class="p">])</span>
+
+<span class="c1"># plot bar plot of counts for each type of structure:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">bar_locations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distinct_structures</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">bar_locations</span><span class="p">,</span> <span class="n">bar_counts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">bar_locations</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">distinct_structures</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/3920ae5845d5d00135990ba352713b1e2aa8920883a730a53df13784b8e6dee4.png" src="../_images/3920ae5845d5d00135990ba352713b1e2aa8920883a730a53df13784b8e6dee4.png" />
+</div>
+</div>
+<p>As expected, a majority of the perovskites have the ideal cubic structure.</p>
+</section>
+<section id="classifying-cubic-versus-non-cubic-structures">
+<h2>Classifying Cubic versus Non-Cubic Structures:<a class="headerlink" href="#classifying-cubic-versus-non-cubic-structures" title="Permalink to this heading">#</a></h2>
+<p>For simplicity, let’s first consider the problem of classifying cubic versus non-cubic structures. This is a simple binary classification task that we can solve using the <em>binary perceptron</em> model we learned about previously. Let’s start by removing the data entries with unknown structure (<code class="docutils literal notranslate"><span class="pre">-</span></code>) and assigning values of <code class="docutils literal notranslate"><span class="pre">1</span></code> to cubic structures and <code class="docutils literal notranslate"><span class="pre">-1</span></code> to non-cubic structures:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># determine the indices of unlabeled  data:</span>
+<span class="n">clean_data_idxs</span> <span class="o">=</span> <span class="p">(</span><span class="n">structures</span> <span class="o">!=</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="c1"># remove unlabeled data from features:</span>
+<span class="n">clean_features</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">clean_data_idxs</span><span class="p">]</span>
+<span class="n">clean_structures</span> <span class="o">=</span> <span class="n">structures</span><span class="p">[</span><span class="n">clean_data_idxs</span><span class="p">]</span>
+
+<span class="c1"># assign binary classifier labels +1/-1 for cubic/non-cubic:</span>
+<span class="n">binary_classifier_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="mi">1</span> <span class="k">if</span> <span class="n">struct</span> <span class="o">==</span> <span class="s1">&#39;cubic&#39;</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">structures</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Features shape:&#39;</span><span class="p">,</span> <span class="n">clean_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Binary classifier labels shape:&#39;</span><span class="p">,</span> <span class="n">binary_classifier_labels</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Features shape: (5276, 3)
+Binary classifier labels shape: (5329,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s visualize what the cubic versus non-cubic data looks like with respect to electronegativity (A and B):</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># separate out cubic and non-cubic data:</span>
+<span class="n">cubic_data</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">binary_classifier_labels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">noncubic_data</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">binary_classifier_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># plot EN(A), EN(B) for cubic and non-cubic data:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cubic_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">cubic_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cubic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">noncubic_data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">noncubic_data</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-Cubic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;EN(A)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;EN(B)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/7e60a22eb4f0063502d44aff3e7ce7d9d49d945e4070aee1a2028639c6ccf1ac.png" src="../_images/7e60a22eb4f0063502d44aff3e7ce7d9d49d945e4070aee1a2028639c6ccf1ac.png" />
+</div>
+</div>
+<p>Since the <a class="reference external" href="https://en.wikipedia.org/wiki/Electronegativity">electronegativity</a> generally increases with the group and decreases with the period of elements on the periodic table, it serves as a good numerical quantity to associate with each element. This is why we observe a grid-like distribution of the data. From glancing at the distribution of cubic versus non-cubic materials, it appears that there is no immediately identifiable trend.</p>
+<p>Let’ also look at how the cubic and non-cubic structures are distributed with respect to the Goldschmidt tolerance factor <span class="math notranslate nohighlight">\(t_G\)</span>:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the histogram &quot;bins&quot; used to visualize the t_G distribution:</span>
+<span class="n">hist_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">goldschmidt_tolerance</span><span class="p">),</span> 
+                        <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">goldschmidt_tolerance</span><span class="p">),</span> <span class="mi">51</span><span class="p">)</span>
+
+<span class="c1"># plot histograms of cubic and noncubic data with respect to t_G:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">cubic_data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">hist_bins</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cubic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">noncubic_data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">hist_bins</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-Cubic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Goldschmidt Tolerance $t_G$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/fb3e151d99e8b1882d2489ffcb3cd0958446f710a19290e222311b0a2c387615.png" src="../_images/fb3e151d99e8b1882d2489ffcb3cd0958446f710a19290e222311b0a2c387615.png" />
+</div>
+</div>
+<p>We see that a majority of the cubic structures are distributed within the range of <span class="math notranslate nohighlight">\(t_G = 0.7\)</span> to <span class="math notranslate nohighlight">\(t_G = 0.9\)</span>. According to the literature, perovskites with <span class="math notranslate nohighlight">\(t_G\)</span> in the range of <span class="math notranslate nohighlight">\(0.9\)</span> to <span class="math notranslate nohighlight">\(1.0\)</span> are generally predicted to be in the cubic phase, which appears to be inconsistent with our data. Taking note of this discrepancy, we will proceed with preparing our data. First, we will split the data into training, validation, and test sets. This can be done with the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split</span></code></a> function. We will also normalize our data using <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code></a>:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># split train and non-training data 80% and 20%:</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_nontrain</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_nontrain</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">features</span><span class="p">,</span> <span class="n">binary_classifier_labels</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1"># further split non-training data into validation and test data:</span>
+<span class="n">x_val</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+            <span class="n">x_nontrain</span><span class="p">,</span> <span class="n">y_nontrain</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Determine the normalizing transformation:</span>
+<span class="n">x_scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">x_scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+
+<span class="c1"># transform x -&gt; z (normalize x data):</span>
+<span class="n">z_train</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+<span class="n">z_val</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_val</span><span class="p">)</span>
+<span class="n">z_test</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of z_train:&#39;</span><span class="p">,</span> <span class="n">z_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of z_val:&#39;</span><span class="p">,</span> <span class="n">z_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of z_test:&#39;</span><span class="p">,</span><span class="n">z_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of z_train: (4263, 3)
+Shape of z_val: (533, 3)
+Shape of z_test: (533, 3)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-perceptron-linear-classification-model">
+<h2>The Perceptron (Linear Classification) Model<a class="headerlink" href="#the-perceptron-linear-classification-model" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Perceptron</span>
+
+<span class="c1"># fit a linear perceptron model to training set:</span>
+<span class="n">perceptron</span> <span class="o">=</span> <span class="n">Perceptron</span><span class="p">()</span>
+<span class="n">perceptron</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># evaluate the model on the training and validation set:</span>
+<span class="n">train_accuracy</span> <span class="o">=</span> <span class="n">perceptron</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">val_accuracy</span> <span class="o">=</span> <span class="n">perceptron</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+
+<span class="c1"># print the accuracy of the model:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;training set accuracy:  &#39;</span><span class="p">,</span> <span class="n">train_accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation set accuracy:&#39;</span><span class="p">,</span> <span class="n">val_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.6558761435608726
+validation set accuracy: 0.6416510318949343
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-nearest-neighbor-model">
+<h2>The Nearest Neighbor Model<a class="headerlink" href="#the-nearest-neighbor-model" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="c1"># fit a k-nearest neighbor classifier (k=3 in this case):</span>
+<span class="n">knc</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">knc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># evaluate the model on the training and validation set:</span>
+<span class="n">train_accuracy</span> <span class="o">=</span> <span class="n">knc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">val_accuracy</span> <span class="o">=</span> <span class="n">knc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+
+<span class="c1"># print the accuracy of the model:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;training set accuracy:  &#39;</span><span class="p">,</span> <span class="n">train_accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation set accuracy:&#39;</span><span class="p">,</span> <span class="n">val_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8625381186957541
+validation set accuracy: 0.7485928705440901
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">en_range</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>
+<span class="n">eval_tG</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_train</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">mesh_size</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">a_mesh</span><span class="p">,</span> <span class="n">b_mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">en_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">en_range</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mesh_size</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">en_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">en_range</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">mesh_size</span><span class="p">))</span>
+
+<span class="n">mesh_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">a_mesh</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+    <span class="n">b_mesh</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+    <span class="n">eval_tG</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">a_mesh</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">z_mesh_features</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">mesh_features</span><span class="p">)</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">knc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">z_mesh_features</span><span class="p">)</span>
+<span class="n">predictions_mesh</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">a_mesh</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">a_mesh</span><span class="p">,</span> <span class="n">b_mesh</span><span class="p">,</span> <span class="n">predictions_mesh</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">surf</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="s1">&#39;Cubic&#39;</span><span class="p">,</span><span class="s1">&#39;Non-Cubic&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;EN(A)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;EN(B)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Nearest Neighbor Classification [$t_G$ = &#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">eval_tG</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/bf999af3b884fc43fe7dbc4bed266368d628078806ad46be92704e27cc224434.png" src="../_images/bf999af3b884fc43fe7dbc4bed266368d628078806ad46be92704e27cc224434.png" />
+</div>
+</div>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<section id="solutions">
+<h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./supervised_learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="fitting_models.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fitting Supervised Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../regression/regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Advanced Regression Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perovskite-classification-dataset">Perovskite Classification Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-features">Data Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-cubic-versus-non-cubic-structures">Classifying Cubic versus Non-Cubic Structures:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-perceptron-linear-classification-model">The Perceptron (Linear Classification) Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nearest-neighbor-model">The Nearest Neighbor Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
