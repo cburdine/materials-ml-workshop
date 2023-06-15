@@ -1,3 +1,14 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
 # Pymatgen and the Materials Project API
 
 ## Pymatgen - Python Materials Genomics
@@ -133,6 +144,7 @@ write('YBa2Cu3O7_structure.png', crystal, show_unit_cell=2,
 The following code creates an interactive visualization for the downloaded crystal structure.
 
 ```{code-cell}
+from ase.visualize import view
 
 # Interactive 3D visualization
 view(crystal, viewer='x3d')
@@ -142,6 +154,27 @@ view(crystal, viewer='x3d')
 Having obtained the crystal structure, we can now use it in a variety of ways:
 * Use it within an atomistic simulation
 * Use `ase.io.write()` to save the structure in a structure file (`*.cif`, `*.xyz`, etc.)
+
+#### Example: Getting the Band Structure for a Material
+
+We can use the `MPRester` class to obtain band structures for a material:
+```{code-cell}
+:tags: ["hide-output"]
+
+mpid = "mp-149" # this is the MPID for silicon crystal (diamond lattice)
+
+with MPRester(MP_API_KEY) as mpr:
+    bs = mpr.get_bandstructure_by_material_id("mp-149")
+```
+
+This returns a `pymatgen` band structure object, and `pymatgen` has a tool for plotting this structure.
+```{code-cell}
+from pymatgen.electronic_structure.plotter import BSPlotter
+
+# plot & show one of the four band structures we obtained
+BSPlotter(bs).get_plot().show()
+
+```
 
 
 #### Example: Searching using `MPRester`
@@ -189,9 +222,9 @@ Next, we query using property filters. We apply the following filters:
 
 with MPRester(MP_API_KEY) as mpr:
     docs = mpr.summary.search(elements=["Si", "O"],
-                                band_gap=(0.5, 1.0),
-                                fields=["material_id", "formula_pretty",
-                                        "band_gap"])
+                              band_gap=(0.5, 0.75),
+                              fields=["material_id", "formula_pretty",
+                                      "band_gap"])
 
 example_doc = docs[0]
 # initial_structures = example_doc.initial_structures
@@ -213,24 +246,4 @@ for idx in range(0,N):
                                              mat_doc.formula_pretty,
                                              mat_doc.band_gap))
 
-```
-
-
-
-```{code-cell}
-from pymatgen.electronic_structure.plotter import BSPlotter
-
-"""
-with MPRester(MP_API_KEY) as mpr:
-    bs = mpr.get_bandstructure_by_material_id(docs[24].material_id,
-             path_type=BSPathType.hinuma)
-
-BSPlotter(bs).get_plot().show()
-"""
-
-```
-
-Now we print the MPID we obtained:
-```{code-cell}
-# print('MPID: {SiO2}')
 ```
