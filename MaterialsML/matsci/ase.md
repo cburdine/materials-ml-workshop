@@ -1,3 +1,15 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+
 # ASE - The Atomic Simulation Environment
 
 ![](ase256.png)
@@ -207,7 +219,6 @@ view(atoms, viewer='x3d')
 
 ```
 
-
 ## Building Complex Crystals
 
 The structures the `ase.build` module allows you to construct are fairly basic. For more advanced structures, we may follow the same strategies as for the complex molecules:
@@ -216,3 +227,58 @@ The structures the `ase.build` module allows you to construct are fairly basic. 
 * Obtain a structure from a materials database
 
 To read a structure from a file, use the `read()` function from the `ase.io` module. This module allows ASE to read from and write to files containing information about materials ([documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)).
+
+
+## Exercises
+
+:::{dropdown} Exercise 1: Form a nitrogen-vacancy center in a diamond crystal.
+
+The nitrogen vacancy (NV) center in diamond is a point defect that can support a room-temperature qubit system. Write Python code to form a NV center in a diamond supercell, by doing the following:
+
+> 1. Define a diamond primitive unit cell using `ase.build.bulk()`.
+> 2. Use the primitive unit cell to form a supercell that is at least a three-by-three-by-three supercell.
+> 3. Make a nitrogen substitution by swapping one C atom for a N atom.
+> 4. Remove a C atom adjacent to the N substitution.
+> 5. Provide a static and an interactive visualization of your crystal.
+
+Below is one example your result could resemble. Here, I have performed a substitution on the atom at the origin, and I have removed an adjacent atom.
+
+![](nv_center.png)
+
+---
+
+_Hints_:
+1. You can substitute the $k$-th atom of an `ase.Atoms` object simply by reassigning its atomic symbol. For example, given an `Atoms` object `si_crystal` representing a pristine Si crystal, we can transform the $k$-th atom to a C atom using code like this:
+```
+si_crystal[k].symbol = 'C'
+```
+2. See the ([documentation](https://wiki.fysik.dtu.dk/ase/ase/atoms.html)) for the `ase.Atoms` class to learn how to delete atoms from an `Atoms` object.
+
+A successfully-formed NV center would still require strucural optimization.
+
+:::
+
+
+### Solutions
+
+```{code-cell}
+:tags: [hide-cell]
+
+from ase.build import bulk
+
+diamond = bulk('C', 'diamond')
+
+crystal = diamond*(3,3,3)
+
+crystal[0].symbol = 'N' # it's in-silico alchemy!
+del crystal[1]
+
+"""
+   Static visualization.
+"""
+orientation='12y,-15z'
+write('nv_center.png', crystal, show_unit_cell=2, rotation=orientation)
+
+# Interactive 3D visualization
+view(crystal, viewer='x3d')
+```
