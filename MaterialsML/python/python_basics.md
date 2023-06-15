@@ -11,7 +11,7 @@ kernelspec:
 
 # Python Basics
 
-Now that we have our notebook up and running, let's start writing some Python Code. 
+Now that we have our notebook up and running, let's start writing some Python code. 
 
 ## The Print Function
 
@@ -21,7 +21,7 @@ The first thing we will learn about is how to use the `print` function. The `pri
 print('Hello World!')
 ```
 
-If you don't see an empty cell to type your code into, click on the **+** button at the top lefthand corener to create a new empty cell. Your notebook should now look something like this:
+If you don't see an empty cell to type your code into, click on the **+** button at the top lefthand corner to create a new empty cell. Your notebook should now look something like this:
 
 ![](hello_world.png)
 
@@ -32,7 +32,6 @@ To execute this cell, click on the cell to make sure it is selected (indicated b
 Altogether, the combined input and output of the first cell should look like this:
 
 ```{code-cell} ipython3
-:tags: [hide-output]
 print('Hello World')
 ```
 
@@ -44,10 +43,9 @@ To execute a selected notebook cell, you can also use the keyboard shortcut `Shi
 
 ## Arithmetic
 
-We can also use the print function to output the result of a mathematical expression containing operations such as addition, subtraction, multiplication, and division. Try typing the following code into the next cell of your notebook and running it. You should get the same output as indicated:
+We can also use the `print` function to output the result of a mathematical expression containing operations such as addition, subtraction, multiplication, and division. Try typing the following code into the next cell of your notebook and running it. You should get the same output as indicated:
 
 ```{code-cell}
-:tags: [hide-output]
 print(1 + 1)
 print(2 - 5)
 print(3 * 8)
@@ -57,8 +55,7 @@ print(43 / 7)
 Python also has an exponentiation operation `**`. To see how this works, run the following cell in your notebook:
 
 ```{code-cell}
-:tags: [hide-output]
-print(3 ** 4)
+print(3 ** 2)
 print(49 ** 0.5)
 print(10 ** -3)
 ```
@@ -67,8 +64,8 @@ You can also combine multiple math operations together and enclose expressions i
 
 * Parentheses-enclosed expressions
 * Exponents
-* Division (left to right), then Multiplication
-* Subtraction (left to right), then Addition
+* Division (left to right), then multiplication
+* Subtraction (left to right), then addition
 
 To avoid ambiguity, it is usually a good idea to use parentheses to make your arithmetic easier to read. For example, to evaluate the expression
 
@@ -77,17 +74,14 @@ $$ 3 \cdot \left( \frac{20}{5}\right)^{3} - (0.125) \cdot \sqrt[4]{64} $$
 we would write:
 
 ```{code-cell}
-:tags: [hide-output]
-print( (3 * (20 / 5)**3) - (0.125 * 64**(1 / 4)) )
+print( (3 * (20 / 5)**3) - (0.125 * 64**(1/4)) )
 ```
 
 ## Commenting your Code
 
-When writing code, it is usually a good idea to add comments. Comments are lines of text that have no effect on the execution of Python code, nonethelss are a crucial element of writing higher-quality, interpretable code. In Python, anything that follows the `#` symbol on a line of code is considered to be a comment. Good comments usually explain what is happening on the same line or on the following lines of code. For example, try running the following lines in your notebook:
+When writing code, it is usually a good idea to add comments. Comments are lines of explanatory text that have no effect on the execution of Python code, but are still a crucial element of writing high-quality Python code that others can understand. In Python, anything that follows the `#` symbol on a line of code is considered to be a comment. Good comments usually explain what is happening on the same line or on the following lines of code. For example, try running the following lines in your notebook:
 
 ```{code-cell}
-:tags: [hide-output]
-
 print('Approximations of Pi:') # Print title text
 
 # print the actual value of pi (to 10 decimal places):
@@ -98,7 +92,7 @@ print(3.1415926535)
 print(4 * (1 - 1/3 + 1/5 - 1/7 + 1/9 - 1/11 + 1/13))
 
 ```
-Even if you don't understand what the Taylor expansion of $\arctan(x)$ is, the comments still clearly describe the intent behind each of the `print` statements. If these comments weren't present in the code, we would probably have difficulty understanding what is going on. Thus, we can see that adding good comments to your code is almost as important as the code itself. Even if you think you will be the only one reading or modifying your code in the future, adding comments is still very important, as it can make your code immune to the scourge known as [_Eagleson's Law_](https://medium.com/@adam.wasserman/eaglesons-law-of-programming-54521950d0f8):
+Even if you don't understand what the Taylor expansion of $\arctan(x)$ is, the comments still clearly describe the intent behind each of the `print` statements. If these comments weren't present in the code, we would probably have difficulty understanding what is going on. This shows that adding good comments to your code is almost as important as the code itself. Even if you think you will be the only one reading or modifying your code in the future, adding comments is still very important, as it can make your code immune to the scourge known as [_Eagleson's Law_:
 
 ```{epigraph}
 "Any code of your own that you haven’t looked at for six or more months, might as well have been written by someone else."
@@ -106,7 +100,7 @@ Even if you don't understand what the Taylor expansion of $\arctan(x)$ is, the c
 -- Eagleson's Law
 ```
 
-In other words, comments provide a kind of interpretative scaffolding that can help you orient yourself when writing your code. If written clearly, they serve as guideposts that can help you and your peers understand your thought process when writing code.
+In other words, comments provide a kind of interpretative scaffolding that can help you orient yourself when writing your code. If written clearly, they serve as guideposts that can help you and your peers understand your thought process when reading your code.
 
 :::{note}
 
@@ -119,10 +113,9 @@ These are a special type of comment called a _Docstring_. We will return to thes
 
 ## Types in Python
 
-By now, you may be wondering about the different types of data that can go inside a `print(...)` statement, and how they are displayed in the output. In the first `print` statementexample, we enclosed some text in single quotes (i.e. `'...'`) and used that as the argument to the print statement in the line `print('Hello World!')`. This is an example of a _string_ type in Python. A string is just a sequence of text characters, which is referred to in Python with the keyword `str`. You may have also noted that some of the print statements above output integers (i.e. numbers without decimal points) or real numbers (numbers with decimal points). To see this more clearly, try running the following code:
+By now, you may be wondering about the different types of data that can go inside a `print(...)` statement, and how they are displayed in the output. In the first `print` statement example, we enclosed some text in single quotes (i.e. `'...'`) and used that as the argument to the print statement `print('Hello World!')`. This text is an example of the _string_ type in Python. A string is mathematical term for a sequence of symbols or text characters. In Python, we refer to strings with the abbreviated keyword `str`. You may have also noted that some of the print statements above output integers (i.e. numbers without decimal points) or real numbers (numbers with decimal points). To see this more clearly, try running the following code:
 
 ```{code-cell}
-:tags: [hide-output]
 # These evaluate to "7"
 print(7)
 print(4 + 3)
@@ -135,12 +128,11 @@ print(49**(0.5))
 
 So why do the first two lines evaluate to `7` and the last three lines evaluate to `7.0`? Although these printed values are effectively the same, the underlying _types_ of the printed values differ. Specifically, the first two printed values are of the `int` (short for _integer_) type, while the last three values have the `float` type (short for [floating-point](https://en.wikipedia.org/wiki/Decimal_floating_point) numbers). 
 
-The reason that Python differentiates between these two types of numbers has to do with the fact that a computer can represent any integer with a finite number of symbols. (We humans use the [base-10 arabic numeral system](https://en.wikipedia.org/wiki/Arabic_numerals), whereas our computers use `1`s and `0`s in a [binary system](https://en.wikipedia.org/wiki/Binary_number).) However, some numbers (such as the mathematical constant $\pi$) have an infinite decimal representation, and cannot be represented exactly in the computer. In order to represent these numbers, the precision of the value must be rounded off to a certain number of decimal points. For Python `float` types, numbers are represented using a kind of scientific notation (e.g. $1.23456 \cdot 10^{-20}, 3.14159256 \cdot 10^{0}$) but with binary. On most platforms, Python `floats` contain [roughly  17 significant digits of precision](https://docs.python.org/3/tutorial/floatingpoint.html), which is more than enough for most scientific applications.
+The reason that Python differentiates between these two types of numbers has to do with the fact that a computer can represent any integer with a finite number of symbols. (We humans use the [base-10 arabic numeral system](https://en.wikipedia.org/wiki/Arabic_numerals), whereas our computers use 1s and 0s in a [binary system](https://en.wikipedia.org/wiki/Binary_number).) However, some numbers (such as the mathematical constant $\pi$) have an infinite decimal representation, and cannot be stored exactly in a computer. Instead, the precision of the value must be rounded off to a certain number of decimal points. For Python `float` types, numbers are represented using a kind of scientific notation (e.g. $1.23456 \cdot 10^{-20}, 3.14159256 \cdot 10^{0}$) but with binary. On most platforms, Python `floats` contain [roughly  17 significant digits of precision](https://docs.python.org/3/tutorial/floatingpoint.html), which is more than enough for most scientific applications.
 
 In Python, we can view the type of any object using the `type` function. Let's see what happens when we invoke the `type` function on several different values:
 
 ```{code-cell}
-:tags: [hide-output]
 
 # print the type of string (str) objects:
 print(type('Hello World'))
@@ -159,12 +151,11 @@ print(type(42 / 6))     # 7.0 (!)
 print(type(16**(-2)))   # 4.0 (!)
 ```
 
-For the last few lines of the code cell (with `(!)` in the comments) note that even though the resulting values are effectively integers, the types are still `float`. The reason is that Python automatically converts the result of any division (`/`) and exponentiation (`**`) operations to `floats`, even if the results are in fact integers. We also see that any value given with a trailing `.0` is also interpreteted by Python `float`.
+For the last few lines of the code cell (with `(!)` in the comments) note that even though the resulting values are effectively integers, the types are still `float`. The reason is that Python automatically converts the result of all division (`/`) and most exponentiation (`**`) operations to `float`s, even if the results are in fact integers. We also see that any value given with a trailing `.0` is interpreteted by Python as a `float` type.
 
-In addition to the `float` type, which stores real numbers, Python also has the `complex` type for storing complex numbers of the form $z = a + bi$, where $a$ and $b$ are real numbers and $i = \sqrt{-1}$ is the imaginary constants. To denote complex numbers in python, we use the same $a + bi$ syntax, but we use the suffix `j` to denote the imaginary part of the number.
+In addition to the `float` type, which stores real numbers, Python also has the `complex` type for storing complex numbers of the form $z = a + bi$, where $a$ and $b$ are real numbers and $i = \sqrt{-1}$ is the imaginary constant. To denote complex numbers in Python, we use the same $a + bi$ syntax, but we use the suffix `j` instead of $i$ to denote the imaginary part of the number:
 
 ```{code-cell}
-:tags: [hide-output]
 # examples of complex numbers:
 print(1.0j)
 print(3 - 4j)
@@ -182,7 +173,6 @@ print(type((-1)**0.5))
 When doing calculations in Python, it is often necessary to break up the calculation into multiple steps. We can store the results of these intermediate steps using a _variable_. A variable is simply a named object capable of storing a value. For example, let's create a variable called `x` and use it in the evaluating the polynomial function $y(x) = 10x^2 + 3x + 4$. To assign a value to a variable, we use the assignment operator `=`. Try typing out the following example in a cell in your notebook:
 
 ```{code-cell}
-:tags: [hide-output]
 x = 3 # assign a value of 10 to "x"
 
 # compute the value of y(x), assign "y" to the result:
@@ -198,9 +188,9 @@ It might be tempting to think of the assignment operator `=` as a mathematical e
 In Python, `x = y` assigns the value of the variable `y` to `x`, overriding the previous value of `x`, wheras `y = x` does the reverse, overriding the previous value of `y` with the value of `x`.
 :::
 
-In python, variables can be have names with more than one character. In fact, it is generally encouraged that you pick names for your variables that best reflect the kind of value that they hold. Since we are long past the good ol' days of [FORTRAN-66 programming](https://en.wikipedia.org/wiki/Fortran#FORTRAN_66) when variables names were restricted to only 6 characters (yikes!), it now considered best practice to avoid shorter variable names (like `x` and `y`) unless the kind of value stored in the variables is clear from the context of your code. Here are some general guidelines for good variable names:
+When creating variables, it is encouraged that you pick names for your variables that best reflect the kind of value that they hold. Your variable names should also abide by the conventions of the programming language your code is written in. Here are some general guidelines for selecting good variable names:
 
-* Use all lowercase variable names. Since variable names cannot contain spaces, use an underscore character (`_`) to separate words in the name.
+* If possible, use all lowercase variable names. Since variable names cannot contain spaces, use an underscore character (`_`) to separate words in the name.
 * Variable names may contain numbers too, but they cannot start with a number.
 
 For example, the variable names
@@ -215,11 +205,11 @@ all abide by good Pythonic conventions. There are some exceptions to this conven
 
 ```
 PLANCK_CONSTANT = 6.626 * 10**(-34) # Planck constant (h) in J/Hz
-MEANING_OF_LIFE = 42                # The meaning of Life, the Universe, and Everything.
+MEANING_OF_LIFE = 42                # The meaning of Life, the universe, and everything.
 ```
 
 :::{seealso}
-If you want to learn more about good python naming conventions see the Python [PEP-8 documentation](https://peps.python.org/pep-0008/).
+If you want to learn more about good Python naming conventions see the Python [PEP-8 documentation](https://peps.python.org/pep-0008/).
 :::
 
 ## Exercises
@@ -233,7 +223,7 @@ $$\varphi = \frac{1 + \sqrt{5}}{2}$$
 :::
 
 :::{dropdown} Exercise 2: Quadratic Formula
-Suppose we have a quadratic polynomial of the form
+Consider a quadratic polynomial of the form
 
 
 $$y(x) = ax^2 + bx + c$$

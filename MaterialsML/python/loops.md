@@ -33,7 +33,7 @@ Here's a brief summary of how a while loop works:
 # initialize a step counter:
 step = 0
 
-# execute while loop:
+# execute the `while` loop:
 while step < 5:
 
     # print step:
@@ -65,7 +65,7 @@ Here's a breakdown of how a for loop works:
 
 * The loop continues this process until all the items in the sequence have been processed, after which it terminates and the program execution moves to the next statement after the loop.
 
-To iterate over a sequence of consecutive integers, we can use the `range` function. For a python integer `n`, the sequence `range(n)` consists of all integers 0,1,2,...,n-1, not including the value of `n` itself. The sequence `range(m,n)` behaves similarly, but starts at the value of `m` instead of 0.
+To iterate over a sequence of consecutive integers, we can use the `range` function. For a Python integer `n`, the sequence `range(n)` consists of all integers 0,1,2,...,n-1, not including the value of `n` itself. The sequence `range(m,n)` behaves similarly, but starts at the value of `m` instead of 0.
 
 We can use the `range` sequence in a for loop as follows:
 
@@ -81,7 +81,7 @@ for j in range(7,10):
 
 ## Iterating over Lists:
 
-We can also use `for` loops for iterating over lists of values. In Python, a list is denoted by a list of comma-separated values within square brackets (`[`...`]`). We will discuss lists in greater detail in the next section. For now, keep in mind that we can interate over a finite list of values as follows:
+We can also use `for` loops for iterating over lists of values. In Python, a list is denoted by a sequence of comma-separated values within square brackets (`[`...`]`). We will discuss lists in greater detail in the next section. For now, just keep in mind that we can interate over a finite sequence of values as follows:
 
 ```{code-cell}
 for element in ['H', 'He', 'Li', 'Be']:
@@ -149,7 +149,7 @@ essay = 'This is an essay.'
 # split text into a list of words:
 word_list = essay.split()
 ```
-Using a `for` loop iterate over all of the words in `word_list` and count the total number of words and word characters in the essay.
+Using a `for` loop, iterate over all of the words in `word_list` and count the total number of words and word characters in the essay.
 
 ---
 

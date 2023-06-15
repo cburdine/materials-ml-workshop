@@ -26,29 +26,29 @@ chapters:
 - file: data_vis/data_handling
   sections:
   - file: data_vis/data_vis
-- file: matsci/matsci_packages
-  sections:
-  - file: matsci/ase
-  - file: matsci/pymatgen_MPRester
-- file: ml_intro/ml_intro
-  sections:
-  - file: ml_intro/statistics_review
-  - file: ml_intro/math_review
-- file: supervised_learning/supervised_learning
-  sections:
-  - file: supervised_learning/fitting_models
-  - file: supervised_learning/basic_models
-- file: regression/regression
-  sections:
-  - file: regression/kernel_machines
-  - file: regression/regression_models
-- file: unsupervised_learning/unsupervised_learning
-  sections:
-  - file: unsupervised_learning/feature_selection
-  - file: unsupervised_learning/clustering
-  - file: unsupervised_learning/unsupervised_applications
-- file: neural_networks/neural_networks
-  sections:
-  - file: neural_networks/training
-  - file: neural_networks/architectures
-- file: applications/applications
+#- file: matsci/matsci_packages
+#  sections:
+#  - file: matsci/ase
+#  - file: matsci/pymatgen_MPRester
+#- file: ml_intro/ml_intro
+#  sections:
+#  - file: ml_intro/statistics_review
+#  - file: ml_intro/math_review
+#- file: supervised_learning/supervised_learning
+#  sections:
+#  - file: supervised_learning/fitting_models
+#  - file: supervised_learning/basic_models
+#- file: regression/regression
+#  sections:
+#  - file: regression/kernel_machines
+#  - file: regression/regression_models
+#- file: unsupervised_learning/unsupervised_learning
+#  sections:
+#  - file: unsupervised_learning/feature_selection
+#  - file: unsupervised_learning/clustering
+#  - file: unsupervised_learning/unsupervised_applications
+#- file: neural_networks/neural_networks
+#  sections:
+#  - file: neural_networks/training
+#  - file: neural_networks/architectures
+#- file: applications/applications

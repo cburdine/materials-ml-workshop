@@ -189,7 +189,7 @@ print(name_1 < name_2)
 print(name_1 >= name_3)
 ```
 
-Tuples and lists also have some interesting behaviors with the '+' and '*' operators. The '+' operator concetenates two lists (i.e. appends two lists/tuples to create a new list/tupe. The '*' operator, when used with an integer $n$ and a tuple/list will construct a new list/tuple that consists of $n$ copies of the tuple/list. Finally, the `len` operation is an important function that returns the length of a list or tuple. Examples of these functions are shown below:
+Tuples and lists also have some interesting behaviors with the `+` and `*` operators. The `+` operator concetenates two lists (i.e. appends two lists/tuples to create a new list/tupe. The '*' operator, when used with an integer $n$ and a tuple/list will construct a new list/tuple that consists of $n$ copies of the tuple/list. Finally, `len` is an important function that returns the length of a list or tuple. Examples of these functions are shown below:
 
 ```{code-cell}
 list_a = [1, 2, 3, 4]
@@ -210,7 +210,7 @@ print(len(tuple_a))
 ```
 ## Python List Comprehension
 
-Python list comprehension is a concise and powerful way to create new lists based on existing lists or other iterable objects. It allows you to combine the process of creating a new list and applying transformations or filtering in a single line of code. List comprehension is perhaps one of the mist highly regarded features in Python, since it allows for the processing of sequential data in a way that is both concise and efficient. The general syntax for list comprehension in Python is as follows:
+Python list comprehension is a concise and powerful way to create new lists based on existing lists or other iterable objects. It allows you to combine the process of creating a new list and applying transformations or filtering in a single line of code. List comprehension is perhaps one of the most highly regarded features in Python, since it allows for the processing of sequential data in a way that is both concise and efficient. The general syntax for list comprehension in Python is as follows:
 
 ```
 new_list = [ expression for item in sequence if condition ]
@@ -221,7 +221,7 @@ new_list = [ expression for item in sequence if condition ]
 * The optional `condition` specifies a filtering condition, allowing you to include only the items that satisfy the condition.
 
 
-List comprehension is often used to create a new list by applying an expression to each element of an iterable. For example:
+List comprehension is often used to create a new list by applying an expression to each element of an iterable object (such as another list). For example:
 
 ```{code-cell}
 # create a list of numbers:
@@ -238,7 +238,7 @@ List comprehension allows you to apply various transformations or operations to 
 
 ```{code-cell}
 # create a list of names:
-names = ['Newton', 'Einstein', 'Feynmann', 'Witten']
+names = ['Newton', 'Einstein', 'Feynman', 'Witten']
 
 # transform names to a list of name lengths:
 name_lengths = [ len(name) for name in names ]
@@ -273,7 +273,7 @@ Here is an animaton of this process for the numbers up to $120$ (credit: Wikiped
 
 ![Sieve of Eratosthenes](prime_sieve.gif)
 
-Write some Python code that uses the Sieve of Eratosthenes to find all prime numbers up to 120 starting with the primes $2,3,5,7$. Print out the final list of primes.
+Write some Python code that uses the Sieve of Eratosthenes to find all prime numbers up to 120 starting with the primes $2$,$3$,$5$, and $7$. Print out the final list of primes.
 
 ---
 
@@ -281,11 +281,11 @@ _Hint_: To represent the list of numbers up to 120, use a Python list, which you
 ```
 number_list = list(range(121))
 ```
-To "cross off" a number from the list, you can set the corresponding number in the list to $-1$ as follows:
+To "cross off" a number from the list, you can set the corresponding number in the list to $0$ as follows:
 ```
-number_list[n] = -1
+number_list[n] = 0
 ```
-This will set the number at the $n$th index (which should be $n$) to be $-1$. Once all non-prime numbers have been "crossed off", you can filter out these values using list comprehension. 
+This will set the number at the $n$th index (which should be $n$) to be $0$. Once all non-prime numbers have been "crossed off", you can filter out the remaining values using list comprehension. 
 ::: 
 
 ### Solutions
@@ -301,12 +301,12 @@ number_list = list(range(121))
 # cross off multiples of each prime:
 for p in small_primes:
     n = 2*p
-    while n < 100:
+    while n <= 120:
         number_list[n] = 0
         n += p
 
-# filter down all numbers that are not crossed out (and not 0 or 1):
-primes = [ n for n in number_list if n >= 2 ]
+# filter down to all numbers that are not crossed out (not 0 or 1):
+primes = [ n for n in number_list if n > 1 ]
 
 # print result:
 print(primes)

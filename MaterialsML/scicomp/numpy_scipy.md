@@ -18,7 +18,7 @@ Now that we have covered some of the built-in functionality of Python, it's time
 
 ## Python Packages
 
-In order to use these Python packages, we must first make sure that the package is installed in our Python environment. The quickest way to check if a package is properly installed is to try to import it into our Python code with an `import` statement. Let's try to import the `numpy` as `scipy` base packages a follows:
+In order to use these Python packages, we must first make sure that the package is installed in our Python environment. The quickest way to check if a package is properly installed is to try to import it into our Python code with an `import` statement. Let's try to import the `numpy` and `scipy` base packages a follows:
 
 ```{code-cell}
 # import packages:

@@ -11,7 +11,7 @@ kernelspec:
 
 # Logic and Flow Control
 
-An important part of programming is the use of logic to control the execution of a Python program. Sometimes, we may only want to do certain computational steps when certain circumstances are met. For example, in performing a division operation (i.e. `z = x / y` for two variables `x` and `y`) we may want to have a special procedure in place to handle when `y` is equal to 0. This is where logic and conditional statements come in.
+An important part of programming is the use of logic to control the execution of a Python program. Sometimes, we may only want to do certain computational steps when certain conditions are met. For example, in performing a division operation (i.e. `z = x / y` for two variables `x` and `y`) we may want to have a special procedure in place to handle when `y` is equal to 0. This is where logic and conditional statements come in.
 
 ## The Boolean Type
 
@@ -35,8 +35,8 @@ Much like how we can perform arithmetic on `int` and `float` types, we can perfo
 # behavior of the `and` operator:
 print('"and" operator:')
 print(False and False)
-print(True and False)
 print(False and True)
+print(True and False)
 print(True and True)
 
 # behavior of the `or` operator:
@@ -162,7 +162,7 @@ print('Quotient:', quotient)
 We can see from the output that the line `quotient = numerator / denominator` is not executed, since the condition `denominator != 0` evaluates to `False`. Also note that the body of the `if` statement is indented by either a single tab or four spaces. 
 
 :::{important}
-Although Python is generally not very strict about whitespace between operations, it is important to make sure that the beginning of each indented line in an `if` statement (or similar structure) has the proper amount of whitespace. This whitespace can be either four spaces or a single tab, but whether tabs or spaces are used must be consistent throughout the entire block of Python code. If you are writing Python code in an editor or Integrated Development Environment (IDE), it is usually good practice to configure your editor to convert tabs to spaces when saving.
+Although Python is generally not very strict about whitespace between operations, it is important to make sure that the beginning of each indented line in an `if` statement has the proper amount of whitespace. This whitespace can be either four spaces or a single tab, but whether tabs or spaces are used must be consistent throughout the entire block of Python code. If you are writing Python code in an editor or Integrated Development Environment (IDE), it is usually good practice to configure your editor to convert tabs to spaces when saving.
 :::
 
 Sometimes, we might also want to handle the case when the expression inside an `if` statement evaluates to `False`. This is achieved through `if`/`else` statements:
@@ -219,7 +219,7 @@ Write a program that uses conditional statements to classify chemical compounds 
 2. If a compond contains carbon but no hydrogen in its chemical formula, it is carbon-based.
 3. If a compond contains neither carbon nor hydrogen in its chemical formula, it is inorganic.
 
-Write a program that takes a compound's chemical formula string (i.e. `'CH3COOH'`, `'NH3'`, or `'SiC'`) stored in the variable `formula` and prints out the classification of the compound. Try to make your logic and conditional statements as concise as possible.
+The program should take a compound's formula string (i.e. `'CH3COOH'`, `'NH3'`, or `'SiC'`) that is stored in a variable `formula` and print out the classification of the compound. Try to make your logic and conditional statements as concise as possible.
 
 ---
 _Hint_: To test if a string contains a character or another string as a substring, you can use the `in` operator. For example:
@@ -228,9 +228,9 @@ _Hint_: To test if a string contains a character or another string as a substrin
 string_1 = 'Hello World.'
 string_2 = 'I love Chemistry!'
 
-print('H' in string_1)
-print('C' in string_1)
-print('C' in string_2)
+print('H' in string_1) # True
+print('C' in string_1) # False
+print('C' in string_2) # True
 ```
 :::
 

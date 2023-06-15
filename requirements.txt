@@ -6,3 +6,4 @@ scikit-learn
 tqdm
 itables
 ase
+mp-api
