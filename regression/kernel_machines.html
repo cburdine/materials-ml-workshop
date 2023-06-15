@@ -67,6 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application: Bandgap Prediction" href="regression_models.html" />
+    <link rel="prev" title="Advanced Regression Models" href="regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -193,6 +195,38 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="regression.html">Advanced Regression Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
 </ul>
 
     </div>
@@ -771,10 +805,10 @@ Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/00e1c058b6c0cd12a91f8057c5296c9dd816427bce1b8eb83b255331bbeacf4c.png" src="../_images/00e1c058b6c0cd12a91f8057c5296c9dd816427bce1b8eb83b255331bbeacf4c.png" />
-<img alt="../_images/c0ac7a82eaec777f0b546177b808ec5a224a37e489264ef9beb81d71e46e3bf9.png" src="../_images/c0ac7a82eaec777f0b546177b808ec5a224a37e489264ef9beb81d71e46e3bf9.png" />
-<img alt="../_images/2fe3b285557a544aefd20c57a6e2d4ab6eca093b34028ba4f37dfbb4ee26267f.png" src="../_images/2fe3b285557a544aefd20c57a6e2d4ab6eca093b34028ba4f37dfbb4ee26267f.png" />
-<img alt="../_images/efac49ee3d6538a102cbb530163f1791801ea5ca711d3dd142c1db2f0f2a352d.png" src="../_images/efac49ee3d6538a102cbb530163f1791801ea5ca711d3dd142c1db2f0f2a352d.png" />
+<img alt="../_images/c8cb460cbd09951da80ed17a07903a0f011a30c7f2167639bff0f3d8f17be290.png" src="../_images/c8cb460cbd09951da80ed17a07903a0f011a30c7f2167639bff0f3d8f17be290.png" />
+<img alt="../_images/02bb3314eded73fa10d50b65c655787d5ec1050bce6daa1905e886151b2cea6c.png" src="../_images/02bb3314eded73fa10d50b65c655787d5ec1050bce6daa1905e886151b2cea6c.png" />
+<img alt="../_images/992dbf5f1711eefdf1b9d3077ef74f69a3c23887622bf65bf79ce72946f389ca.png" src="../_images/992dbf5f1711eefdf1b9d3077ef74f69a3c23887622bf65bf79ce72946f389ca.png" />
+<img alt="../_images/4e8476187807f3ae1cb32645121f982e71fd8f896fe88abde450607783aa8359.png" src="../_images/4e8476187807f3ae1cb32645121f982e71fd8f896fe88abde450607783aa8359.png" />
 </div>
 </details>
 </div>
@@ -842,10 +876,10 @@ Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/831937dc907135863139e57b9cf2985137d2142c62b5a2096db7ecbcea2a673b.png" src="../_images/831937dc907135863139e57b9cf2985137d2142c62b5a2096db7ecbcea2a673b.png" />
-<img alt="../_images/5837d4aff5e28b47e73eb7249cdf35893e44a32a50111ca0bb648d41dbe9452f.png" src="../_images/5837d4aff5e28b47e73eb7249cdf35893e44a32a50111ca0bb648d41dbe9452f.png" />
-<img alt="../_images/7ce3af4708ef84726c6b0fa75e7865e4fad7bd90d5a526c24eb1f1b72e99ddef.png" src="../_images/7ce3af4708ef84726c6b0fa75e7865e4fad7bd90d5a526c24eb1f1b72e99ddef.png" />
-<img alt="../_images/49f075009838ddb4af23bf20a5955dd1c553508b0a98cdc0c27b16baa80b91f6.png" src="../_images/49f075009838ddb4af23bf20a5955dd1c553508b0a98cdc0c27b16baa80b91f6.png" />
+<img alt="../_images/529c92381c57797ceaa1cd25a1ce52bb222e6acd32fe067547a17c3059671401.png" src="../_images/529c92381c57797ceaa1cd25a1ce52bb222e6acd32fe067547a17c3059671401.png" />
+<img alt="../_images/b38a887238299aeebf335d82cba57aaa95ee365b8bcabb880c54b26578b2767b.png" src="../_images/b38a887238299aeebf335d82cba57aaa95ee365b8bcabb880c54b26578b2767b.png" />
+<img alt="../_images/e53ab77ed979202f510eb9ed794920287cb5909b04d58ba62ae699b8d4549e5e.png" src="../_images/e53ab77ed979202f510eb9ed794920287cb5909b04d58ba62ae699b8d4549e5e.png" />
+<img alt="../_images/becaa84af218927271162edfe7164662b9cbd8bb4ec7abc6bb1215b00a983c10.png" src="../_images/becaa84af218927271162edfe7164662b9cbd8bb4ec7abc6bb1215b00a983c10.png" />
 </div>
 </details>
 </div>
@@ -885,6 +919,24 @@ Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docu
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced Regression Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="regression_models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Application: Bandgap Prediction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>

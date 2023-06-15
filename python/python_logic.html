@@ -195,6 +195,38 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
 </ul>
 
     </div>
@@ -412,7 +444,7 @@ document.write(`
 <p>An important part of programming is the use of logic to control the execution of a Python program. Sometimes, we may only want to do certain computational steps when certain conditions are met. For example, in performing a division operation (i.e. <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">y</span></code> for two variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>) we may want to have a special procedure in place to handle when <code class="docutils literal notranslate"><span class="pre">y</span></code> is equal to 0. This is where logic and conditional statements come in.</p>
 <section id="the-boolean-type">
 <h2>The Boolean Type<a class="headerlink" href="#the-boolean-type" title="Permalink to this heading">#</a></h2>
-<p>In order to understand how Python handles logic, we must first learn about the Boolean type, which is called <code class="docutils literal notranslate"><span class="pre">bool</span></code> in Python. A Boolean type (named after the mathematician <a class="reference external" href="https://en.wikipedia.org/wiki/George_Boole">George Bool</a>) is a value that can store either a <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> value. Let’s create some <code class="docutils literal notranslate"><span class="pre">bool</span></code> varibles using the following Python code:</p>
+<p>In order to understand how Python handles logic, we must first learn about the Boolean type, which is called <code class="docutils literal notranslate"><span class="pre">bool</span></code> in Python. A Boolean type (named after the mathematician <a class="reference external" href="https://en.wikipedia.org/wiki/George_Boole">George Bool</a>) is a type that can store either a <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> value. Let’s create some <code class="docutils literal notranslate"><span class="pre">bool</span></code> varibles using the following Python code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># True and False are constant Boolean values:</span>
@@ -505,9 +537,9 @@ False
 <li><p>Less than (<span class="math notranslate nohighlight">\(a &lt; b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code></p></li>
 <li><p>Less than or equal to (<span class="math notranslate nohighlight">\(a \le b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code></p></li>
 <li><p>Greater than (<span class="math notranslate nohighlight">\(a &gt; b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code></p></li>
-<li><p>Greater than or equal to: (<span class="math notranslate nohighlight">\(a \ge b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;=</span> <span class="pre">b</span></code></p></li>
-<li><p>Equal to: (<span class="math notranslate nohighlight">\(a = b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code></p></li>
-<li><p>Not equal to: (<span class="math notranslate nohighlight">\(a \neq b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">b</span></code></p></li>
+<li><p>Greater than or equal to (<span class="math notranslate nohighlight">\(a \ge b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&gt;=</span> <span class="pre">b</span></code></p></li>
+<li><p>Equal to (<span class="math notranslate nohighlight">\(a = b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code></p></li>
+<li><p>Not equal to (<span class="math notranslate nohighlight">\(a \neq b\)</span>): <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">!=</span> <span class="pre">b</span></code></p></li>
 </ul>
 <p>Since a comparison naturally evaluates to be either true or false, the result of applying a comparison operation in Python is a <code class="docutils literal notranslate"><span class="pre">bool</span></code> type:</p>
 <div class="cell docutils container">

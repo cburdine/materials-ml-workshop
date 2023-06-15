@@ -111,7 +111,6 @@ python3 -m venv my_env
 where `my_env` is the name of your environment. To activate your environment, run the following command from your project work directory:
 
 ```
-::::{tab-set}
 source my_env/bin/activate
 ```
 

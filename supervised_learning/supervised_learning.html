@@ -67,6 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Fitting Supervised Models" href="fitting_models.html" />
+    <link rel="prev" title="Mathematics Review" href="../ml_intro/math_review.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -193,6 +195,38 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Supervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
 </ul>
 
     </div>
@@ -474,7 +508,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/d6f66734247dc7f6da2c59e7864f6d3691b19a283af8e33e52a281f964424308.png" src="../_images/d6f66734247dc7f6da2c59e7864f6d3691b19a283af8e33e52a281f964424308.png" />
+<img alt="../_images/9b3328602efe2e96eee926c0dc2e8699cca3d646e685b9750b1575cf65cb632d.png" src="../_images/9b3328602efe2e96eee926c0dc2e8699cca3d646e685b9750b1575cf65cb632d.png" />
 </div>
 </div>
 <div class="admonition important">
@@ -513,7 +547,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/eb3bdab532dd6e7abaca5e44d8de6f3fc6f5145051a43280c07eabd5b49eb031.png" src="../_images/eb3bdab532dd6e7abaca5e44d8de6f3fc6f5145051a43280c07eabd5b49eb031.png" />
+<img alt="../_images/ad574403e51e6fad087061323012375b6c60670f873faa3364a45088ab60ae6e.png" src="../_images/ad574403e51e6fad087061323012375b6c60670f873faa3364a45088ab60ae6e.png" />
 </div>
 </div>
 <p>From this exercise, we see that some models are not valid, even though they may perfectly fit the data. So if we have a model that does seem to fit the data set well, how can we be sure that the model is also valid? Unfortunately, we can never know the degree to which a model is valid unless our dataset contains every possible input in <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and its associated label. However, there are some general tactics we can employ to maximize the validity of our model. These are the three most important guidelines to keep in mind when working with supervised models:</p>
@@ -682,8 +716,8 @@ Exercise 2: Polynomial Models<div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dfa7df9af51da373115c41ba55641c48bcd1f5936370d154dc12b9b59ae88fea.png" src="../_images/dfa7df9af51da373115c41ba55641c48bcd1f5936370d154dc12b9b59ae88fea.png" />
-<img alt="../_images/efded67939001dd6491ba67b7e2acc3af5dc59c3350eb076d6fd0390653605b9.png" src="../_images/efded67939001dd6491ba67b7e2acc3af5dc59c3350eb076d6fd0390653605b9.png" />
+<img alt="../_images/eca281281e40bee2ed639d8ce76b806ff519df6afd2ebd706cb6f7aedffe3756.png" src="../_images/eca281281e40bee2ed639d8ce76b806ff519df6afd2ebd706cb6f7aedffe3756.png" />
+<img alt="../_images/f1eab83bf3bcc100fe502258af96b3ee664a21f779f50ca56b569bb6ebcd4514.png" src="../_images/f1eab83bf3bcc100fe502258af96b3ee664a21f779f50ca56b569bb6ebcd4514.png" />
 </div>
 </details>
 </div>
@@ -741,8 +775,8 @@ Exercise 2: Polynomial Models<div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6362aafde365db1bd5f0552d90337716796fc29675fbf6e08921eddc092a7e48.png" src="../_images/6362aafde365db1bd5f0552d90337716796fc29675fbf6e08921eddc092a7e48.png" />
-<img alt="../_images/75530ea0f5456a5ee90366de314be7df3db48e6a5513bd6393d570fd833fe3a1.png" src="../_images/75530ea0f5456a5ee90366de314be7df3db48e6a5513bd6393d570fd833fe3a1.png" />
+<img alt="../_images/7673697c8e2dda5ae1afd440f4218acd78c8ed40db412784e24c45eeef65a4dd.png" src="../_images/7673697c8e2dda5ae1afd440f4218acd78c8ed40db412784e24c45eeef65a4dd.png" />
+<img alt="../_images/6dcf3942b90b60321ad11f5abda25cea9c15aeb8e464eaf9d6f4db765b0583d4.png" src="../_images/6dcf3942b90b60321ad11f5abda25cea9c15aeb8e464eaf9d6f4db765b0583d4.png" />
 </div>
 </details>
 </div>
@@ -784,6 +818,24 @@ Exercise 2: Polynomial Models<div class="sd-summary-down docutils">
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../ml_intro/math_review.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mathematics Review</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="fitting_models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fitting Supervised Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>

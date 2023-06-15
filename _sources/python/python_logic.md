@@ -15,7 +15,7 @@ An important part of programming is the use of logic to control the execution of
 
 ## The Boolean Type
 
-In order to understand how Python handles logic, we must first learn about the Boolean type, which is called `bool` in Python. A Boolean type (named after the mathematician [George Bool](https://en.wikipedia.org/wiki/George_Boole)) is a value that can store either a `True` or `False` value. Let's create some `bool` varibles using the following Python code:
+In order to understand how Python handles logic, we must first learn about the Boolean type, which is called `bool` in Python. A Boolean type (named after the mathematician [George Bool](https://en.wikipedia.org/wiki/George_Boole)) is a type that can store either a `True` or `False` value. Let's create some `bool` varibles using the following Python code:
 
 ```{code-cell}
 # True and False are constant Boolean values:
@@ -71,9 +71,9 @@ Sometimes, we need to compare one or more numeric values in Python. This can be 
 * Less than ($a < b$): `a < b`
 * Less than or equal to ($a \le b$): `a <= b`
 * Greater than ($a > b$): `a > b`
-* Greater than or equal to: ($a \ge b$): `a >= b`
-* Equal to: ($a = b$): `a == b`
-* Not equal to: ($a \neq b$): `a != b`
+* Greater than or equal to ($a \ge b$): `a >= b`
+* Equal to ($a = b$): `a == b`
+* Not equal to ($a \neq b$): `a != b`
 
 Since a comparison naturally evaluates to be either true or false, the result of applying a comparison operation in Python is a `bool` type:
 

@@ -67,6 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kernel Machines" href="kernel_machines.html" />
+    <link rel="prev" title="Application: Classifying Perovskites" href="../supervised_learning/basic_models.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -193,6 +195,38 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Advanced Regression Models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
 </ul>
 
     </div>
@@ -530,7 +564,7 @@ y_1 \\ y_2 \\ \vdots \\ y_N
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/735723ea99da7a96447f4333b4826c61478501602da36d6131c8268f8f8cbf98.png" src="../_images/735723ea99da7a96447f4333b4826c61478501602da36d6131c8268f8f8cbf98.png" />
+<img alt="../_images/1d3bd23d6734557424862bf0c4dfc8dff4b46194e2a08d19cf6bd02ae97ee0e2.png" src="../_images/1d3bd23d6734557424862bf0c4dfc8dff4b46194e2a08d19cf6bd02ae97ee0e2.png" />
 </div>
 </div>
 <p>In the plot above, the polynomial with <span class="math notranslate nohighlight">\(D_{emb} = 11\)</span> fits the data perfectly; however, we can see that it interpolates between data points very poorly, especially at the edges of the data distribution, where <span class="math notranslate nohighlight">\(x \approx 0\)</span> and <span class="math notranslate nohighlight">\(x \approx 10\)</span>. It is very likely that this model is overfitting the data. On the other hand, we see that the linear model (<span class="math notranslate nohighlight">\(D_{emb} = 1\)</span>) is not flexible enough to capture the non-linearities of the data. As a result, it is very likely that this model is underfitting the data. The quadratic fit (<span class="math notranslate nohighlight">\(D_{emb} = 2\)</span>) seems to neither overfit nor underfit the data, which suggests it is the best model for this training dataset.</p>
@@ -592,7 +626,7 @@ y_1 \\ y_2 \\ \vdots \\ y_N
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/ac66c600bf06e99be5a10896feb81b947ac7265fabcbf1179442bbe3f055e3ec.png" src="../_images/ac66c600bf06e99be5a10896feb81b947ac7265fabcbf1179442bbe3f055e3ec.png" />
+<img alt="../_images/0dbbf9218de1043fcfd06024b3b6e197738202f83e801e899cb30593383026f9.png" src="../_images/0dbbf9218de1043fcfd06024b3b6e197738202f83e801e899cb30593383026f9.png" />
 </div>
 </div>
 <p>We can see that some underfitting occurs with the linear model (<span class="math notranslate nohighlight">\(D_{emb} = 1\)</span>). We also observe that for polynomials with degree <span class="math notranslate nohighlight">\(D_{emb} &gt; 5\)</span>, the training error goes to <span class="math notranslate nohighlight">\(0\)</span> and the validation error begins to increase. This is the characteristic symptom of overfitting.</p>
@@ -830,7 +864,7 @@ Mean Square Error:  6.017971108799712e-05
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9b5e4477f254250b56a7e74bde767ff93bcc2d231263b3090aa4f226fd0371e2.png" src="../_images/9b5e4477f254250b56a7e74bde767ff93bcc2d231263b3090aa4f226fd0371e2.png" />
+<img alt="../_images/f151e2e088320170b396182a9c4c02539d5bdf228a11daa3b6b8d70b8aa242d8.png" src="../_images/f151e2e088320170b396182a9c4c02539d5bdf228a11daa3b6b8d70b8aa242d8.png" />
 </div>
 </details>
 </div>
@@ -872,6 +906,24 @@ Mean Square Error:  6.017971108799712e-05
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../supervised_learning/basic_models.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Application: Classifying Perovskites</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="kernel_machines.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Kernel Machines</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>

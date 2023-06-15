@@ -67,14 +67,17 @@ Chances are, if you are running Linux, you are already familiar with the command
 
 **Installing Python**
 
-Depending on your distribution and package manager, installation of Python3 may vary. For Ubuntu-like distributions, the latset version of Python can be installed with:
+Depending on your distribution and package manager, installation of Python3 may vary. For Ubuntu-like distributions, the latest version of Python can be installed with:
 
 ```
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt install python3.11
+sudo apt install python
 ```
 
-Additional steps may be needed to install pip, the Python package manager.
+Additional steps may be needed to install pip, the Python package manager. For Ubuntu-like systems, this can be done with:
+
+```
+sudo apt install python3-pip
+```
 
 **Installing Jupyter Notebook**
 
@@ -87,7 +90,7 @@ pip3 install jupyter
 or on some systems:
 
 ```
-python -m pip install jupyter
+python3 -m pip install jupyter
 ```
 
 You can also install packages through [Anaconda on Linux](https://docs.anaconda.com/free/anaconda/install/linux/), though this is usually not needed on Linux systems.
