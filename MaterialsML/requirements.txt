@@ -1,3 +1,11 @@
 jupyter-book
-matplotlib
+ghp-import
 numpy
+scipy
+matplotlib
+pandas
+scikit-learn
+tqdm
+itables
+ase
+mp-api

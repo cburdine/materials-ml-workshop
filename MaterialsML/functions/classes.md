@@ -175,7 +175,7 @@ Design and write a Python class called `InorganicMaterial` that represents a cry
 
 Your class should also have the following methods:
 
-* A constructor with all instance variables as parameters (each parameter should have default variables)
+* A constructor with all instance variables as parameters (each parameter should have the default values from above)
 
 * `add_atoms(self,element,n=1)`: 
 Adds $n$ atoms of element `element` to the unit cell composition (represented by `atoms`).

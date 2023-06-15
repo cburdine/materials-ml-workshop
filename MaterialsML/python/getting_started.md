@@ -38,29 +38,27 @@ So, how can we use these powerful packages? The Python language comes with an ea
 
 ### Installing Packages
 
-First, let's try to install the latest version of the `numpy` package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program "Command Prompt" (Windows) or "Terminal" (MacOS, Linux). After running the program, you should see a prompt that looks something like:
+First, let's try to install the latest version of the `numpy` package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program "Command Prompt" (Windows) or "Terminal" (MacOS, Linux). After running the program, you should see a prompt where you can type in commands.
 
-(Image Here)
-
-Type the following command into the terminal:
+Type the following command into the terminal and hit Enter:
 
 ```
 pip install numpy
 ```
 
-The output should look something like this:
-
-(Image Here)
+After the installation finishes, you should see no error messages (usually appearing as red text) in the terminal.
 
 :::{important}
 
-On some systems, such as Linux and Mac OS, you may need to instead use the command  `python -m pip install <package>` or `pip3 install <package>`. where `<package>` is the name of the package you want to install. If you are using Anaconda, you will need to run `conda install <package>`.
+On some systems, such as Linux and Mac OS, you may need to instead use the command  `python -m pip install <package>` or `pip3 install <package>`. where `<package>` is the name of the package you want to install. If you are using Anaconda and installing the package with pip does not work, you can try installing it with `conda install <package>`.
 :::
 
 Note that if you are using Google Colab, several of the most commonly used packages (such as `numpy`) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter notebooks also, but it should only be used as a last resort. See the dropdown block below for more details:
 
 :::{admonition} Installing packages inside Google Colab
 :class: important, dropdown
+
+If you are using Google Colab, many packages will already be installed for you.
 
 To see if a package is already installed in Google Colab (or in a Jupyter Notebook), try to import it in a Python code cell and see if it imports successfully. You can do this by executing the line:
 ```
@@ -73,7 +71,7 @@ where `<package>` is the package you want to use. If this fails with a `ModuleNo
 !pip install <package>
 ```
 
-The `!` at the beginning of the line tells the notebook to run the line as a shell commmand. Be careful when using shell commands within the notebook, since the syntax of these commands may vary from system to system.
+The `!` at the beginning of the line tells the notebook to run the line as a shell commmand. Be careful when using shell commands within the notebook, since the syntax of these commands may vary from system to system. Only execute shell commands from trusted sources.
 
 Here's an example of installing the [Materials Project client](https://materialsproject.org/api) package (`mp-api`), which has the Python alias `mp_api`:
 

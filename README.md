@@ -36,3 +36,13 @@ jupyter-book build MaterialsML/
 (If we have a more complex build process in the future, this may be subject to change).
 
 Once you build the site, you can view it locally by opening `MaterialsML/_build/html/index.html` with your web browser.
+
+### Deploy to Github Pages
+
+To deploy the main branch to the Github pages site, run the `make` command with the `release` target:
+
+```
+make release
+```
+
+*Warning*: This will push to the `gh-pages` branch and update the live site with the snapshot of the sitde built in the `MaterialsML/_build` directory. Be sure that the latest changes have been committed before deploying.

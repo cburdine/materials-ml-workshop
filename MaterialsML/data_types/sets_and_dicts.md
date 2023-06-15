@@ -11,7 +11,7 @@ kernelspec:
 
 # Sets and Dictionaries
 
-Now that we have talked about the lists and tuples and Python, let's talk about two more of the built-in Python data types: sets and dictionaries. Unlike lists and tuples, which deal with sequentially ordered data, sets and dictionaries deal with unordered data. These data types are especially useful for finding unique elements or assigning values to a collection of unique keys. In this section, we will take a look at each of these types and learn how they are used in Python programming.
+Now that we have talked about lists and tuples and Python, let's talk about two more of the built-in Python data types: sets and dictionaries. Unlike lists and tuples, which deal with sequentially ordered data, sets and dictionaries deal with unordered data. These data types are especially useful for finding unique elements or assigning values to a collection of unique keys. In this section, we will take a look at each of these types and learn how they are used in Python programming.
 
 ## Python Sets
 
@@ -49,7 +49,7 @@ print(chemists.difference(physicists))
 print(chemists - physicists)
 ```
 
-Similar to lists, sets are mutable data types, meaning you can add or remove elements using functions like `add`, and `remove`. However, take note that sets cannot contain mutable data types such as lists. Here are some examples of the `add` and `remove` operations:
+Similar to lists, sets are mutable data types, meaning you can add or remove elements from them. This is done using the functions `add` and `remove`. However, take note that sets cannot contain mutable data types such as lists. Here are some examples of the `add` and `remove` operations:
 
 ```{code-cell}
 # build a set of names:
@@ -81,7 +81,7 @@ print(subset)
 
 ## Python Dictionaries
 
-Python dictionaries (`dict`s) are a powerful build-in data type that allows you to store and retrieve data in key-value pairs. Dictionaries are unordered and mutable, making them suitable for a wide range of tasks. In Python, we create dictionaries by enclosing comma separated `key : value` pairs in curly braces (`{`...`}`). Although both the `set` and `dict` data types use curly braces, the key distinguishing factor between them is the use of the colon `:` between key-value pairs of a `dict`. For example:
+Python dictionaries (`dict`s) are a powerful built-in data type that allows you to store and retrieve data in key-value pairs. Dictionaries are unordered and mutable, making them suitable for a wide range of tasks. In Python, we create dictionaries by enclosing comma separated `key : value` pairs in curly braces (`{`...`}`). Although both the `set` and `dict` data types use curly braces, the key distinguishing factor between them is the use of the colon `:` between key-value pairs in a `dict`. For example:
 
 ```{code-cell}
 # create a dictionary representing a person:
@@ -128,6 +128,8 @@ print(person['city'])
 
 ## Dictionary Operations
 
+There are are several useful functions and operations that can be applied to dictionaries. For example:
+
 ```{code-cell}
 # create an example dictionary:
 example_dict = {
@@ -167,6 +169,9 @@ available_times = [
 ```
 
 Write a Python program that prints out the hours that are present in everyone's availability so that you can agree on a meeting time.
+
+---
+_Hint_: Which set operation (`union`, `intersection`, or `difference`) should be applied to each availability?
 :::
 
 
@@ -230,6 +235,8 @@ for n in numbers:
 
 # determine most frequent numbers:
 max_frequency = max(frequencies.values())
+
+# extract the most frequent numbers with list comprehension:
 most_frequent_numbers = [
     n for n, count in frequencies.items() 
     if count == max_frequency

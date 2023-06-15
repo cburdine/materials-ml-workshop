@@ -1,7 +1,5 @@
 # Installing Python and Jupyter Notebook
 
-## Installing Python
-
 In order to write and execute Python code, you will need to install both Python and Jupyter Notebook. Depending on which operating system you are running on your system, the installation procedure may vary.
 
 ::::{tab-set}
@@ -41,25 +39,26 @@ You can use either pip or Anaconda to install Jupyter Notebook on Windows. It is
 
 :::{tab-item} Mac OS
 
-Your Mac already shipped with a Python installation, but it is helpful to get the latest Anaconda Mac OS package. This will get you the following:
-* a recent Python 3
-* jupyter notebook, and
-* several other data science packages.
+It is very likely that your Mac already has a version of Python installed, but it is helpful to get the latest Anaconda Mac OS package. This will get you the following:
+* The most recent version of Python3
+* An installation of Jupyter Notebook
+* Several other data science Python packages
 
 ```{note}
+_Testimony of a Mac user:_
 As a Mac user, I've had the *most success* with the *command-line* installation, rather than the graphical installation. I've found this to better support the subsequent installation of packages using `conda install <package-name>`. Therefore, these instructions guide you through the command-line installation. This means that you will download the installer from the website, and then complete the installation in the terminal rather than using your mouse/trackpad. --EPB
 ```
 
 1. Download the Command Line installer that is appropriate for your Mac's processor.
-   1. To get the Command Line installer, visit the Anaconda [download page](https://www.anaconda.com/download#downloads).
-   2. Scroll down as needed (you might not need to) toward the bottom (or search the page for `command line`) so that you find this:
+   * To get the Command Line installer, visit the Anaconda [download page](https://www.anaconda.com/download#downloads).
+   * Scroll down as needed (you might not need to) toward the bottom (or search the page for `command line`) so that you find this:
    ![](MacOS_cmd_line_installers.png)
-   2. Choose the appropriate installer for your Mac processor from the "Mac OS" column.
+   * Choose the appropriate installer for your Mac processor from the "Mac OS" column.
 2. Use your Mac terminal to follow the [Command-line installation instructions](https://docs.anaconda.com/free/anaconda/install/mac-os/#command-line-install).
    ```{note}
    The linked instructions are from 2020, so you'll have to use the updated name of the Anaconda installer (i.e., not `~/Downloads/Anaconda3-2020.05-MacOSX-x86_64.sh`)
    ```
-   1. To access your Mac terminal, use the Mac OS search feature ("Spotlight") and enter `terminal`.
+   * To access your Mac terminal, use the Mac OS search feature ("Spotlight") and enter `terminal`.
 
 :::
 
@@ -90,5 +89,7 @@ or on some systems:
 ```
 python -m pip install jupyter
 ```
+
+You can also install packages through [Anaconda on Linux](https://docs.anaconda.com/free/anaconda/install/linux/), though this is usually not needed on Linux systems.
 :::
 ::::
