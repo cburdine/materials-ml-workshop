@@ -45,4 +45,4 @@ To deploy the main branch to the Github pages site, run the `make` command with 
 make release
 ```
 
-*Warning*: This will push to the `gh-pages` branch and update the live site with the snapshot of the sitde built in the `MaterialsML/_build` directory. Be sure that the latest changes have been committed before deploying.
+*Warning*: This will push to the `gh-pages` branch and update the live site with the snapshot of the site built in the `MaterialsML/_build` directory. Be sure that the latest changes have been committed before deploying.

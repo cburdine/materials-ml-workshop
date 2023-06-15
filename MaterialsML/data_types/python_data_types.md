@@ -180,7 +180,7 @@ To learn more about other functions associated with the `list` and `tuple` data 
 Note that updating elements, appending elements, and popping elements from a tuple is forbidden, since tuples are _immutable_. However, one key feature of tuples is that they are comparable. Tuple comparison works by first comparing the elements at index 0. If equality holds, the elements at index 1 are compared, and so on:
 
 ```{code-cell}
-name_1 = ('Isaac', 'Asmiov')
+name_1 = ('Isaac', 'Asimov')
 name_2 = ('Isaac', 'Newton')
 name_3 = ('Johannes', 'Kepler')
 
