@@ -171,7 +171,7 @@ This returns a `pymatgen` band structure object, and `pymatgen` has a tool for p
 ```{code-cell}
 from pymatgen.electronic_structure.plotter import BSPlotter
 
-# plot & show one of the four band structures we obtained
+# plot & show the band structure we obtained
 BSPlotter(bs).get_plot().show()
 
 ```
@@ -247,3 +247,108 @@ for idx in range(0,N):
                                              mat_doc.band_gap))
 
 ```
+
+
+## Exercises
+
+:::{dropdown} Exercise 1: Obtain the electronic density of states (DOS) for YBa2Cu3O7. Plot it using `pymatgen`.
+
+---
+
+_Hints_:
+1. To find the code to obtain the DOS, a Google search such as "MPRester DOS example" may help, or perhaps you can try asking a chatbot.
+2. Once you have obtained a DOS and saved it as, say, `some_DOS`, you can plot it using code such as this:
+```
+from pymatgen.electronic_structure.plotter import DosPlotter
+import matplotlib.pyplot as plt
+
+with MPRester(MP_API_KEY) as mpr:
+    some_DOS = <your code to get the DOS>
+
+# obtain a DosPlotter object
+Plotter =  DosPlotter()
+
+# add the DOS to the plotter
+Plotter.add_dos('DOS', some_DOS)
+
+"""
+   Choose appropriate numbers for:
+
+       E_lo and E_hi, the upper and lower limits
+           of the domain for your DOS plot.
+
+       MaxDensity, the upper limit for the range of
+           your DOS plot.
+
+   This may require some trial and error!
+"""
+Plotter.get_plot(xlim=(E_lo, E_hi), ylim=(0, MaxDensity))
+plt.show()
+```
+
+:::
+
+
+### Solutions
+
+#### Exercise 1: YBCO DOS
+
+```{code-cell}
+:tags: [hide-cell]
+
+from mp_api.client import MPRester # client for Materials Project
+from pymatgen.electronic_structure.plotter import DosPlotter
+import matplotlib.pyplot as plt
+
+YBCO = 'mp-20674' # Materials Project ID number
+
+with MPRester(MP_API_KEY) as mpr:
+    YBCO_DOS = mpr.get_dos_by_material_id(YBCO)
+
+print(YBCO_DOS)
+
+# plot & show DOS we obtained
+Plotter =  DosPlotter()
+
+Plotter.add_dos('DOS', YBCO_DOS)
+
+Plotter.get_plot(xlim=(-10, 10), ylim=(0, 30))
+plt.show()
+```
+
+<!---
+#### Exercise 2: Find TMDs
+
+```{code-cell}
+:tags: [hide-cell]
+
+# Define the chemical elements for transition metals and chalcogens
+transition_metals = ["Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Y", "Zr", "Nb", "Mo",
+                     "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au",
+                     "Hg", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv",
+                     "Ts", "Og"]
+
+chalcogens = ["S", "Se", "Te"]
+
+
+with MPRester(MP_API_KEY) as mpr:
+      M = 'W' # transition_metals[0]
+      X = 'Se' # chalcogens[0]
+
+      docs = mpr.summary.search(chemsys=f"{M}-{X}",
+                                nelements = 2,
+                                crystal_system = 'Hexagonal', # symbol = 'P6_3/mmc',
+                                fields=["material_id", "band_gap", "symmetry",
+                                        "formula_pretty"]
+                                )
+
+ndocs = len(docs)
+
+print(f"Found {ndocs} materials.")
+
+for doc in docs:
+    print("{0} ({1}), symmetry: {2}".format( doc.material_id,
+                                             doc.formula_pretty,
+                                             doc.symmetry))
+```
+-->

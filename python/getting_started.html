@@ -559,7 +559,41 @@ Windows</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-1">
 Mac OS</label><div class="sd-tab-content docutils">
-<p>Mac OS Instructions Here.</p>
+<p>If you have Python3 and Jupyter Notebook installed on your system, create a work directory for your jupyter notebooks and make it the current directory (navigate into the new directory). In the terminal, you can do this with the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">my_jupyter_notebooks</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">my_jupyter_notebooks</span>
+</pre></div>
+</div>
+<p>Once inside your jupyter notebook work directory, you can start the notebook in the terminal using the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>This should start a notebook server, and open your default web browser (typically, Safari) to the Jupyter Noteboook landing page.</p>
+<p>If this doesn’t happen, not to worry: you can find the URL you need. Return to the terminal and examine the text at the bottom of the window. Look for text like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[I 20:50:20.174 NotebookApp] Jupyter Notebook 6.5.2 is running at:
+[I 20:50:20.174 NotebookApp] http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+[I 20:50:20.174 NotebookApp]  or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+[I 20:50:20.174 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 20:50:20.200 NotebookApp]
+
+    To access the notebook, open this file in a browser:
+        file:///Users/your_account_name/Library/Jupyter/runtime/nbserver-42755-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+     or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+</pre></div>
+</div>
+<p>You’ll find here useful information, such as instructions on how to stop the Jupyter server, as well as three URLs, any of which you could paste into your browser’s address bar:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file:///Users/your_account_name/Library/Jupyter/runtime/nbserver-42755-open.html</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01</span></code>, or, most simply,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localhost:8888</span></code> (or the appropriate, similar number given in your terminal)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The address <code class="docutils literal notranslate"><span class="pre">localhost</span></code> tells your browser that the server is running on your computer, while <code class="docutils literal notranslate"><span class="pre">8888</span></code> is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. <code class="docutils literal notranslate"><span class="pre">8889</span></code>).</p>
+</div>
+<p>To stop the server, hit the keys <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code> in the terminal where the server is running and type <code class="docutils literal notranslate"><span class="pre">y</span></code> to confirm. Be sure you have saved all of your work before stopping the notebook server!</p>
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-2">
