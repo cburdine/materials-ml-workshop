@@ -4,7 +4,7 @@ Welcome to the Materials + ML Online Book!
 
 The Materials + ML Workshop (_ML_ is short for _Machine Learning_) is a beginner-friendly workshop focused on developing basic skills in scientific Python programming, data analysis, and machine learning with a focus on how these skills can be applied to real-world research problems in materials science.
 
-This online book contains the content that will be covered each day of the workshop. It is encouraged that you read the material for each day of the workshop prior to attending, so that you can ask questions related to the content covered each day.
+This online book contains the material that will be covered each day of the workshop. It is encouraged that you read the content for each day of the workshop prior to attending, so that you can ask questions related to what is covered each day.
 
 :::{admonition} Any Ideas?
 :class: tip
