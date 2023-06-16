@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'matsci/ase';</script>
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -427,6 +429,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-2d-system-a-mxene">Building a 2D System - a MXene</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-1d-system-a-carbon-nanotube">Building a 1D System - a Carbon Nanotube</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-complex-crystals">Building Complex Crystals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -470,9 +476,329 @@ document.write(`
 <li><p>use the <code class="docutils literal notranslate"><span class="pre">ase.build.molecule()</span></code> function to construct a water molecule, and</p></li>
 <li><p>make a representation of the molecule using the <code class="docutils literal notranslate"><span class="pre">ase.visualize.view()</span></code></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">molecule</span>
+<span class="kn">from</span> <span class="nn">ase.visualize</span> <span class="kn">import</span> <span class="n">view</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Build an ase.Atoms object to represent a water molecule.</span>
+<span class="sd">   We use the molecule() function to do this, and we specify</span>
+<span class="sd">   the chemical formula for water.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">water</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;H2O&#39;</span><span class="p">)</span>
+
+<span class="c1"># The view() function provides an interactive, 3D visualization</span>
+<span class="n">view</span><span class="p">(</span><span class="n">water</span><span class="p">,</span> <span class="n">viewer</span><span class="o">=</span><span class="s1">&#39;x3d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+
+ <head>
+
+  <title>ASE atomic visualization</title>
+
+  <link rel="stylesheet" type="text/css"
+
+   href="https://www.x3dom.org/x3dom/release/x3dom.css">
+
+  </link>
+
+  <script type="text/javascript"
+
+   src="https://www.x3dom.org/x3dom/release/x3dom.js">
+
+  </script>
+
+ </head>
+
+ <body>
+
+  <X3D>
+
+   <Scene>
+
+    <Transform translation="0.00 0.00 0.12">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="1.000 0.051 0.051" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.66">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 0.76 -0.48">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="1.000 1.000 1.000" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.31">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 -0.76 -0.48">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="1.000 1.000 1.000" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.31">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+   </Scene>
+
+  </X3D>
+
+ </body>
+
+</html>
+
+</div></div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">molecule()</span></code> function is provided as a simple way to build an <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> object. Here, a molecule is specified using a Python string containing a chemical formula, and only a very limited set of molecules are supported. The list of available molecules is found in the <code class="docutils literal notranslate"><span class="pre">ase.collections.g2.names</span></code> list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.collections</span> <span class="kn">import</span> <span class="n">g2</span>
+
+<span class="c1"># print the ase.collections.g2.names list</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g2</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;PH3&#39;, &#39;P2&#39;, &#39;CH3CHO&#39;, &#39;H2COH&#39;, &#39;CS&#39;, &#39;OCHCHO&#39;, &#39;C3H9C&#39;, &#39;CH3COF&#39;, &#39;CH3CH2OCH3&#39;, &#39;HCOOH&#39;, &#39;HCCl3&#39;, &#39;HOCl&#39;, &#39;H2&#39;, &#39;SH2&#39;, &#39;C2H2&#39;, &#39;C4H4NH&#39;, &#39;CH3SCH3&#39;, &#39;SiH2_s3B1d&#39;, &#39;CH3SH&#39;, &#39;CH3CO&#39;, &#39;CO&#39;, &#39;ClF3&#39;, &#39;SiH4&#39;, &#39;C2H6CHOH&#39;, &#39;CH2NHCH2&#39;, &#39;isobutene&#39;, &#39;HCO&#39;, &#39;bicyclobutane&#39;, &#39;LiF&#39;, &#39;Si&#39;, &#39;C2H6&#39;, &#39;CN&#39;, &#39;ClNO&#39;, &#39;S&#39;, &#39;SiF4&#39;, &#39;H3CNH2&#39;, &#39;methylenecyclopropane&#39;, &#39;CH3CH2OH&#39;, &#39;F&#39;, &#39;NaCl&#39;, &#39;CH3Cl&#39;, &#39;CH3SiH3&#39;, &#39;AlF3&#39;, &#39;C2H3&#39;, &#39;ClF&#39;, &#39;PF3&#39;, &#39;PH2&#39;, &#39;CH3CN&#39;, &#39;cyclobutene&#39;, &#39;CH3ONO&#39;, &#39;SiH3&#39;, &#39;C3H6_D3h&#39;, &#39;CO2&#39;, &#39;NO&#39;, &#39;trans-butane&#39;, &#39;H2CCHCl&#39;, &#39;LiH&#39;, &#39;NH2&#39;, &#39;CH&#39;, &#39;CH2OCH2&#39;, &#39;C6H6&#39;, &#39;CH3CONH2&#39;, &#39;cyclobutane&#39;, &#39;H2CCHCN&#39;, &#39;butadiene&#39;, &#39;C&#39;, &#39;H2CO&#39;, &#39;CH3COOH&#39;, &#39;HCF3&#39;, &#39;CH3S&#39;, &#39;CS2&#39;, &#39;SiH2_s1A1d&#39;, &#39;C4H4S&#39;, &#39;N2H4&#39;, &#39;OH&#39;, &#39;CH3OCH3&#39;, &#39;C5H5N&#39;, &#39;H2O&#39;, &#39;HCl&#39;, &#39;CH2_s1A1d&#39;, &#39;CH3CH2SH&#39;, &#39;CH3NO2&#39;, &#39;Cl&#39;, &#39;Be&#39;, &#39;BCl3&#39;, &#39;C4H4O&#39;, &#39;Al&#39;, &#39;CH3O&#39;, &#39;CH3OH&#39;, &#39;C3H7Cl&#39;, &#39;isobutane&#39;, &#39;Na&#39;, &#39;CCl4&#39;, &#39;CH3CH2O&#39;, &#39;H2CCHF&#39;, &#39;C3H7&#39;, &#39;CH3&#39;, &#39;O3&#39;, &#39;P&#39;, &#39;C2H4&#39;, &#39;NCCN&#39;, &#39;S2&#39;, &#39;AlCl3&#39;, &#39;SiCl4&#39;, &#39;SiO&#39;, &#39;C3H4_D2d&#39;, &#39;H&#39;, &#39;COF2&#39;, &#39;2-butyne&#39;, &#39;C2H5&#39;, &#39;BF3&#39;, &#39;N2O&#39;, &#39;F2O&#39;, &#39;SO2&#39;, &#39;H2CCl2&#39;, &#39;CF3CN&#39;, &#39;HCN&#39;, &#39;C2H6NH&#39;, &#39;OCS&#39;, &#39;B&#39;, &#39;ClO&#39;, &#39;C3H8&#39;, &#39;HF&#39;, &#39;O2&#39;, &#39;SO&#39;, &#39;NH&#39;, &#39;C2F4&#39;, &#39;NF3&#39;, &#39;CH2_s3B1d&#39;, &#39;CH3CH2Cl&#39;, &#39;CH3COCl&#39;, &#39;NH3&#39;, &#39;C3H9N&#39;, &#39;CF4&#39;, &#39;C3H6_Cs&#39;, &#39;Si2H6&#39;, &#39;HCOOCH3&#39;, &#39;O&#39;, &#39;CCH&#39;, &#39;N&#39;, &#39;Si2&#39;, &#39;C2H6SO&#39;, &#39;C5H8&#39;, &#39;H2CF2&#39;, &#39;Li2&#39;, &#39;CH2SCH2&#39;, &#39;C2Cl4&#39;, &#39;C3H4_C3v&#39;, &#39;CH3COCH3&#39;, &#39;F2&#39;, &#39;CH4&#39;, &#39;SH&#39;, &#39;H2CCO&#39;, &#39;CH3CH2NH2&#39;, &#39;Li&#39;, &#39;N2&#39;, &#39;Cl2&#39;, &#39;H2O2&#39;, &#39;Na2&#39;, &#39;BeH&#39;, &#39;C3H4_C2v&#39;, &#39;NO2&#39;]
+</pre></div>
+</div>
+</div>
+</div>
 <p>Let’s do this again for a formic acid molecule. Additionally, we will also  print the x, y, and z coordinates of each atom.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># construct a formic acid molecule</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">molecule</span><span class="p">(</span><span class="s1">&#39;HCOOH&#39;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Let&#39;s also print the symbol and coordinates of each atom.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Show atomic coordinates:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">position</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="se">\n</span><span class="s1">  x: </span><span class="si">{1}</span><span class="s1"> Ang.</span><span class="se">\n</span><span class="s1">  y: </span><span class="si">{2}</span><span class="s1"> Ang.</span><span class="se">\n</span><span class="s1">  z: </span><span class="si">{3}</span><span class="s1"> Ang.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span>
+                                                                    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+                                                                    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Show atomic coordinates:
+
+O
+  x: -1.040945 Ang.
+  y: -0.436432 Ang.
+  z: 0.0 Ang.
+C
+  x: 0.0 Ang.
+  y: 0.423949 Ang.
+  z: 0.0 Ang.
+O
+  x: 1.169372 Ang.
+  y: 0.103741 Ang.
+  z: 0.0 Ang.
+H
+  x: -0.64957 Ang.
+  y: -1.335134 Ang.
+  z: 0.0 Ang.
+H
+  x: -0.377847 Ang.
+  y: 1.452967 Ang.
+  z: 0.0 Ang.
+</pre></div>
+</div>
+</div>
+</div>
 <p>We can still make an interactive, 3D visualization:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   The view() function should occur last for an interactive result.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># 3D visualization</span>
+<span class="n">view</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">viewer</span><span class="o">=</span><span class="s1">&#39;x3d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+
+ <head>
+
+  <title>ASE atomic visualization</title>
+
+  <link rel="stylesheet" type="text/css"
+
+   href="https://www.x3dom.org/x3dom/release/x3dom.css">
+
+  </link>
+
+  <script type="text/javascript"
+
+   src="https://www.x3dom.org/x3dom/release/x3dom.js">
+
+  </script>
+
+ </head>
+
+ <body>
+
+  <X3D>
+
+   <Scene>
+
+    <Transform translation="-1.04 -0.44 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="1.000 0.051 0.051" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.66">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 0.42 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 0.10 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="1.000 0.051 0.051" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.66">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.65 -1.34 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="1.000 1.000 1.000" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.31">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.38 1.45 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="1.000 1.000 1.000" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.31">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+   </Scene>
+
+  </X3D>
+
+ </body>
+
+</html>
+
+</div></div>
+</div>
 <p>Having constructed an <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> object to represent water molecule, we could create a <code class="docutils literal notranslate"><span class="pre">calculator</span></code> object to run a simulation.</p>
 </section>
 <section id="building-complex-molecules">
@@ -488,9 +814,107 @@ document.write(`
 <section id="building-simple-crystals-bulk-silicon">
 <h2>Building Simple Crystals - Bulk Silicon<a class="headerlink" href="#building-simple-crystals-bulk-silicon" title="Permalink to this heading">#</a></h2>
 <p>We will start with a simple (bulk) silicon crystal using the <code class="docutils literal notranslate"><span class="pre">bulk()</span></code> function in the <code class="docutils literal notranslate"><span class="pre">ase.build</span></code> module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">bulk</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span>   <span class="c1"># helps us save an image</span>
+
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">bulk</span><span class="p">(</span><span class="s1">&#39;Si&#39;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   This is a easy way to make a simple (static) visualization.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">write</span><span class="p">(</span><span class="s1">&#39;silicon_basis.png&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">show_unit_cell</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>The static image of the silicon crystal (the two-atom basis for the FCC crystal) is given below.</p>
 <p><img alt="" src="../_images/silicon_basis.png" /></p>
 <p>We can also make an interactive 3D image:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">viewer</span><span class="o">=</span><span class="s1">&#39;x3d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+
+ <head>
+
+  <title>ASE atomic visualization</title>
+
+  <link rel="stylesheet" type="text/css"
+
+   href="https://www.x3dom.org/x3dom/release/x3dom.css">
+
+  </link>
+
+  <script type="text/javascript"
+
+   src="https://www.x3dom.org/x3dom/release/x3dom.js">
+
+  </script>
+
+ </head>
+
+ <body>
+
+  <X3D>
+
+   <Scene>
+
+    <Transform translation="0.00 0.00 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.941 0.784 0.627" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="1.11">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.36 1.36 1.36">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.941 0.784 0.627" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="1.11">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+   </Scene>
+
+  </X3D>
+
+ </body>
+
+</html>
+
+</div></div>
+</div>
 </section>
 <section id="building-a-2d-system-a-mxene">
 <h2>Building a 2D System - a MXene<a class="headerlink" href="#building-a-2d-system-a-mxene" title="Permalink to this heading">#</a></h2>
@@ -500,18 +924,2033 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">mx2()</span></code> may be used to build MXene and <a class="reference external" href="https://www.sciencedirect.com/topics/materials-science/transition-metal-dichalcogenides#:~:text=TMD%20monolayers%20are%20structurally%20of,octahedral%20or%20trigonal%20prismatic%20coordination.">transition metal dichalcogenide</a> (TMD) monolayers.</p></li>
 </ul>
 <p>Here, we will make a MXene.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">mx2</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span>
+<span class="kn">from</span> <span class="nn">ase.visualize</span> <span class="kn">import</span> <span class="n">view</span> <span class="c1"># 3D interactive image</span>
+
+<span class="c1"># This forms a primitive unit cell</span>
+<span class="n">Ti2C</span> <span class="o">=</span> <span class="n">mx2</span><span class="p">(</span><span class="s1">&#39;CTi2&#39;</span><span class="p">,</span> <span class="n">vacuum</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span> <span class="c1"># unit cell</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   We can also build a sheet. We form a supercell by repeating the unit cell</span>
+<span class="sd">   3x in the x and y directions, and only one time in the z direction.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Static image of the unit cell</span>
+<span class="n">rotation</span> <span class="o">=</span> <span class="s1">&#39;0z,-60x&#39;</span>
+<span class="n">write</span><span class="p">(</span><span class="s1">&#39;Ti2C_unit_cell.png&#39;</span><span class="p">,</span> <span class="n">Ti2C</span><span class="p">,</span> <span class="n">show_unit_cell</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>As static image of the unit cell is given below. Since a structure like this would likely be used in a DFT calculation, and DFT calculations often have periodic boundary conditions, the unit cell features a large air gap to keep separate the main sheet from its images in the z direction.</p>
 <p><img alt="" src="../_images/Ti2C_unit_cell.png" /></p>
 <p>Now, we form a supercell by repeating the unit cell in space. To repeat the primtive cell, described by the <code class="docutils literal notranslate"><span class="pre">Ti2C</span></code> object, we simply multiply <code class="docutils literal notranslate"><span class="pre">Ti2C</span></code> by a 3-element tuple. The three integers <code class="docutils literal notranslate"><span class="pre">(nx,</span> <span class="pre">ny,</span> <span class="pre">nz)</span></code> repeat the unit cell in the x, y, and z directions, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheet</span> <span class="o">=</span> <span class="n">Ti2C</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#</span>
+
+<span class="c1"># Static image of the sheet</span>
+<span class="n">write</span><span class="p">(</span><span class="s1">&#39;Ti2C_sheet.png&#39;</span><span class="p">,</span> <span class="n">sheet</span><span class="p">,</span> <span class="n">show_unit_cell</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">)</span>
+
+<span class="c1"># I&#39;ve suppressed the interactive 3D view</span>
+<span class="c1"># view(Ti2C, viewer=&#39;x3d&#39;, repeat=(4,4,1))</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Additionally, the static image of the sheet is given below:</p>
 <p><img alt="" src="../_images/Ti2C_sheet.png" /></p>
 </section>
 <section id="building-a-1d-system-a-carbon-nanotube">
 <h2>Building a 1D System - a Carbon Nanotube<a class="headerlink" href="#building-a-1d-system-a-carbon-nanotube" title="Permalink to this heading">#</a></h2>
 <p>A next example will be a carbon nanotube. ASE has functionality to build such structures in the <code class="docutils literal notranslate"><span class="pre">nanotube()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">nanotube</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span> <span class="c1"># helps us save an image</span>
+<span class="kn">from</span> <span class="nn">ase.visualize</span> <span class="kn">import</span> <span class="n">view</span> <span class="c1"># 3D interactive image</span>
+
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">nanotube</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   This is a easy way to make a simple (static) visualization.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;12y,-15z&#39;</span>
+<span class="n">write</span><span class="p">(</span><span class="s1">&#39;nanotube.png&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">show_unit_cell</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">orientation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>The static image of the nanotube is given below.</p>
 <p><img alt="" src="../_images/nanotube.png" /></p>
 <p>An interactive 3D image of the carbon nanotube is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interactive 3D visualization</span>
+<span class="n">view</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">viewer</span><span class="o">=</span><span class="s1">&#39;x3d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+
+ <head>
+
+  <title>ASE atomic visualization</title>
+
+  <link rel="stylesheet" type="text/css"
+
+   href="https://www.x3dom.org/x3dom/release/x3dom.css">
+
+  </link>
+
+  <script type="text/javascript"
+
+   src="https://www.x3dom.org/x3dom/release/x3dom.js">
+
+  </script>
+
+ </head>
+
+ <body>
+
+  <X3D>
+
+   <Scene>
+
+    <Transform translation="2.35 0.00 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 1.17 3.55">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 1.17 2.13">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 2.03 1.42">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 2.03 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 2.35 3.55">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 2.35 2.13">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 2.03 1.42">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 2.03 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 1.17 3.55">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 1.17 2.13">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.35 0.00 1.42">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.35 0.00 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 -1.17 3.55">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 -1.17 2.13">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 -2.03 1.42">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 -2.03 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.00 -2.35 3.55">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.00 -2.35 2.13">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 -2.03 1.42">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 -2.03 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 -1.17 3.55">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 -1.17 2.13">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.35 -0.00 1.42">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.35 0.00 4.26">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 1.17 7.81">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 1.17 6.39">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 2.03 5.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 2.03 4.26">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 2.35 7.81">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 2.35 6.39">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 2.03 5.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 2.03 4.26">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 1.17 7.81">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 1.17 6.39">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.35 0.00 5.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.35 0.00 4.26">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 -1.17 7.81">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 -1.17 6.39">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 -2.03 5.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 -2.03 4.26">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.00 -2.35 7.81">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.00 -2.35 6.39">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 -2.03 5.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 -2.03 4.26">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 -1.17 7.81">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 -1.17 6.39">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.35 -0.00 5.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.35 0.00 8.52">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 1.17 12.07">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 1.17 10.65">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 2.03 9.94">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 2.03 8.52">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 2.35 12.07">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 2.35 10.65">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 2.03 9.94">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 2.03 8.52">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 1.17 12.07">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 1.17 10.65">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.35 0.00 9.94">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.35 0.00 8.52">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 -1.17 12.07">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 -1.17 10.65">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 -2.03 9.94">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 -2.03 8.52">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.00 -2.35 12.07">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.00 -2.35 10.65">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 -2.03 9.94">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 -2.03 8.52">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 -1.17 12.07">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 -1.17 10.65">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.35 -0.00 9.94">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.35 0.00 12.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 1.17 16.33">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 1.17 14.91">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 2.03 14.20">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 2.03 12.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 2.35 16.33">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 2.35 14.91">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 2.03 14.20">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 2.03 12.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 1.17 16.33">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 1.17 14.91">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.35 0.00 14.20">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.35 0.00 12.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 -1.17 16.33">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-2.03 -1.17 14.91">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 -2.03 14.20">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-1.17 -2.03 12.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.00 -2.35 16.33">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="-0.00 -2.35 14.91">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 -2.03 14.20">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.17 -2.03 12.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 -1.17 16.33">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.03 -1.17 14.91">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.35 -0.00 14.20">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+   </Scene>
+
+  </X3D>
+
+ </body>
+
+</html>
+
+</div></div>
+</div>
 </section>
 <section id="building-complex-crystals">
 <h2>Building Complex Crystals<a class="headerlink" href="#building-complex-crystals" title="Permalink to this heading">#</a></h2>
@@ -522,6 +2961,1169 @@ document.write(`
 <li><p>Obtain a structure from a materials database</p></li>
 </ul>
 <p>To read a structure from a file, use the <code class="docutils literal notranslate"><span class="pre">read()</span></code> function from the <code class="docutils literal notranslate"><span class="pre">ase.io</span></code> module. This module allows ASE to read from and write to files containing information about materials (<a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/io/io.html">documentation</a>).</p>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise 1: Form a nitrogen-vacancy center in a diamond crystal.<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">The nitrogen vacancy (NV) center in diamond is a point defect that can support a room-temperature qubit system. Write Python code to form a NV center in a diamond supercell, by doing the following:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p class="sd-card-text">Define a diamond primitive unit cell using <code class="docutils literal notranslate"><span class="pre">ase.build.bulk()</span></code>.</p></li>
+<li><p class="sd-card-text">Use the primitive unit cell to form a supercell that is at least a three-by-three-by-three supercell.</p></li>
+<li><p class="sd-card-text">Make a nitrogen substitution by swapping one C atom for a N atom.</p></li>
+<li><p class="sd-card-text">Remove a C atom adjacent to the N substitution.</p></li>
+<li><p class="sd-card-text">Provide a static and an interactive visualization of your crystal.</p></li>
+</ol>
+</div></blockquote>
+<p class="sd-card-text">Below is one example your result could resemble. Here, I have performed a substitution on the atom at the origin, and I have removed an adjacent atom.</p>
+<p class="sd-card-text"><img alt="" src="../_images/nv_center.png" /></p>
+<hr class="docutils" />
+<p class="sd-card-text"><em>Hints</em>:</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">You can substitute the <span class="math notranslate nohighlight">\(k\)</span>-th atom of an <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> object simply by reassigning its atomic symbol. For example, given an <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> object <code class="docutils literal notranslate"><span class="pre">si_crystal</span></code> representing a pristine Si crystal, we can transform the <span class="math notranslate nohighlight">\(k\)</span>-th atom to a C atom using code like this:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">si_crystal</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;C&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p class="sd-card-text">See the (<a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html">documentation</a>) for the <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> class to learn how to delete atoms from an <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> object.</p></li>
+</ol>
+<p class="sd-card-text">A successfully-formed NV center would still require strucural optimization.</p>
+</div>
+</details><section id="solutions">
+<h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.build</span> <span class="kn">import</span> <span class="n">bulk</span>
+
+<span class="n">diamond</span> <span class="o">=</span> <span class="n">bulk</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;diamond&#39;</span><span class="p">)</span>
+
+<span class="n">crystal</span> <span class="o">=</span> <span class="n">diamond</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">crystal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span> <span class="c1"># it&#39;s in-silico alchemy!</span>
+<span class="k">del</span> <span class="n">crystal</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Static visualization.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;12y,-15z&#39;</span>
+<span class="n">write</span><span class="p">(</span><span class="s1">&#39;nv_center.png&#39;</span><span class="p">,</span> <span class="n">crystal</span><span class="p">,</span> <span class="n">show_unit_cell</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">orientation</span><span class="p">)</span>
+
+<span class="c1"># Interactive 3D visualization</span>
+<span class="n">view</span><span class="p">(</span><span class="n">crystal</span><span class="p">,</span> <span class="n">viewer</span><span class="o">=</span><span class="s1">&#39;x3d&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><html>
+
+ <head>
+
+  <title>ASE atomic visualization</title>
+
+  <link rel="stylesheet" type="text/css"
+
+   href="https://www.x3dom.org/x3dom/release/x3dom.css">
+
+  </link>
+
+  <script type="text/javascript"
+
+   src="https://www.x3dom.org/x3dom/release/x3dom.js">
+
+  </script>
+
+ </head>
+
+ <body>
+
+  <X3D>
+
+   <Scene>
+
+    <Transform translation="0.00 0.00 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.188 0.314 0.973" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.71">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.78 1.78 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.68 2.68 0.89">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 3.57 0.00">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 4.46 0.89">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.78 0.00 1.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.68 0.89 2.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 1.78 1.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 2.68 2.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="5.35 3.57 1.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="6.25 4.46 2.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 0.00 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 0.89 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="5.35 1.78 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="6.25 2.68 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="7.14 3.57 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="8.03 4.46 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 1.78 1.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.89 2.68 2.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.78 3.57 1.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.68 4.46 2.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 5.35 1.78">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 6.25 2.68">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.78 1.78 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.68 2.68 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 3.57 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 4.46 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="5.35 5.35 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="6.25 6.25 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 1.78 5.35">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 2.68 6.25">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="5.35 3.57 5.35">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="6.25 4.46 6.25">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="7.14 5.35 5.35">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="8.03 6.25 6.25">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.00 3.57 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="0.89 4.46 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.78 5.35 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.68 6.25 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 7.14 3.57">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 8.03 4.46">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="1.78 3.57 5.35">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="2.68 4.46 6.25">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 5.35 5.35">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 6.25 6.25">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="5.35 7.14 5.35">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="6.25 8.03 6.25">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="3.57 3.57 7.14">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="4.46 4.46 8.03">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="5.35 5.35 7.14">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="6.25 6.25 8.03">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="7.14 7.14 7.14">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+    <Transform translation="8.03 8.03 8.03">
+
+     <Shape>
+
+      <Appearance>
+
+       <Material diffuseColor="0.565 0.565 0.565" specularColor="0.5 0.5 0.5">
+
+       </Material>
+
+      </Appearance>
+
+      <Sphere radius="0.76">
+
+      </Sphere>
+
+     </Shape>
+
+    </Transform>
+
+   </Scene>
+
+  </X3D>
+
+ </body>
+
+</html>
+
+</div></div>
+</details>
+</div>
+</section>
 </section>
 </section>
 
@@ -601,6 +4203,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-2d-system-a-mxene">Building a 2D System - a MXene</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-1d-system-a-carbon-nanotube">Building a 1D System - a Carbon Nanotube</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-complex-crystals">Building Complex Crystals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
