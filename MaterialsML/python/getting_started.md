@@ -100,7 +100,7 @@ The installation may take a bit of time. Once it finishes, if you do not see a r
 
 :::{admonition} Advanced Tip: Python Virtual Environments
 :class: tip, dropdown
-If you are confortable working the the terminal on your system, you may find it helpful to set up a [virtual environment](https://realpython.com/python-virtual-environments-a-primer) for your Python projects. A virtual environment helps with organizing the dependendencies on your system, and ensures that 
+If you are confortable working the the terminal on your system, you may find it helpful to set up a [virtual environment](https://realpython.com/python-virtual-environments-a-primer) for your Python projects. A virtual environment helps with organizing the dependendencies on your system, and ensures that
 
 If you have the [`venv` tool](https://docs.python.org/3/library/venv.html) installed on your system, you can create a virtual environment for your project by running the following command in your project work directory:
 
@@ -145,7 +145,7 @@ When launching Jupyter Notebook from Anaconda, notebooks will be saved to the de
 
 **Stopping the Server**
 
-Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar. 
+Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
 
 ```{note}
 The address `localhost` tells your browser that the server is running on your computer, while `8888` is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. `8889`). The port number should be printed in the terminal when the server is started.
@@ -155,7 +155,46 @@ To stop the server, hit the keys `Ctrl + C` in the command prompt window where t
 :::
 
 :::{tab-item} Mac OS
-Mac OS Instructions Here.
+
+If you have Python3 and Jupyter Notebook installed on your system, create a work directory for your jupyter notebooks and make it the current directory (navigate into the new directory). In the terminal, you can do this with the command:
+
+```
+mkdir my_jupyter_notebooks && cd my_jupyter_notebooks
+```
+
+Once inside your jupyter notebook work directory, you can start the notebook in the terminal using the command:
+```
+jupyter-notebook .
+```
+
+This should start a notebook server, and open your default web browser (typically, Safari) to the Jupyter Noteboook landing page.
+
+If this doesn't happen, not to worry: you can find the URL you need. Return to the terminal and examine the text at the bottom of the window. Look for text like this:
+```
+[I 20:50:20.174 NotebookApp] Jupyter Notebook 6.5.2 is running at:
+[I 20:50:20.174 NotebookApp] http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+[I 20:50:20.174 NotebookApp]  or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+[I 20:50:20.174 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 20:50:20.200 NotebookApp]
+
+    To access the notebook, open this file in a browser:
+        file:///Users/your_account_name/Library/Jupyter/runtime/nbserver-42755-open.html
+    Or copy and paste one of these URLs:
+        http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+     or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+```
+You'll find here useful information, such as instructions on how to stop the Jupyter server, as well as three URLs, any of which you could paste into your browser's address bar:
+* `file:///Users/your_account_name/Library/Jupyter/runtime/nbserver-42755-open.html`
+* `http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01`
+* `http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01`, or, most simply,
+* `localhost:8888` (or the appropriate, similar number given in your terminal)
+
+```{note}
+The address `localhost` tells your browser that the server is running on your computer, while `8888` is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. `8889`).
+```
+
+To stop the server, hit the keys `Ctrl + C` in the terminal where the server is running and type `y` to confirm. Be sure you have saved all of your work before stopping the notebook server!
+
 :::
 
 :::{tab-item} Linux
@@ -171,7 +210,7 @@ Once inside your jupyter notebook work directory, you can start the notebook in 
 jupyter-notebook .
 ```
 
-This should start a notebook server, and open your default web browser to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar. 
+This should start a notebook server, and open your default web browser to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
 
 ```{note}
 The address `localhost` tells your browser that the server is running on your computer, while `8888` is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. `8889`). The port number should be printed in the terminal when the server is started.
@@ -204,5 +243,3 @@ A Google Colab Notebook functions almost identically to a Jupyter Notebook; howe
 
 :::
 ::::
-
-
