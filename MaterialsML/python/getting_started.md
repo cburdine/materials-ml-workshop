@@ -93,14 +93,14 @@ pip install -r requirements.txt
 This would automatically install all necessary packages listed in `requirements.txt`. To avoid having to download this file and make sure it ends up in the correct directory, we are going to instead get this requirements file from a URL. To do this, copy the following command and run it in your terminal:
 
 ```
-pip install -r https://gist.github.com/cburdine/cae13221fb0e1d134d88a25f01498c67/raw/2f58c2f19ec5ca0f72e6615d6f27304d86dd0709/requirements.txt
+pip install -r https://gist.github.com/cburdine/cae13221fb0e1d134d88a25f01498c67/raw/5c0e14277388b5e7318940679e8905c5e847962f/requirements.txt
 ```
 
 The installation may take a bit of time. Once it finishes, if you do not see a red error message in your console it means that you are now ready to use these packages in your own Python code.
 
 :::{admonition} Advanced Tip: Python Virtual Environments
 :class: tip, dropdown
-If you are confortable working the the terminal on your system, you may find it helpful to set up a [virtual environment](https://realpython.com/python-virtual-environments-a-primer) for your Python projects. A virtual environment helps with organizing the dependendencies on your system, and ensures that 
+If you are confortable working the the terminal on your system, you may find it helpful to set up a [virtual environment](https://realpython.com/python-virtual-environments-a-primer) for your Python projects. A virtual environment helps with organizing the dependendencies on your system, and ensures that updates to Python packages elsewhere on your system will not override the version used by your project.
 
 If you have the [`venv` tool](https://docs.python.org/3/library/venv.html) installed on your system, you can create a virtual environment for your project by running the following command in your project work directory:
 

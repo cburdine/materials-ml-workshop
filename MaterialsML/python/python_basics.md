@@ -100,7 +100,7 @@ Even if you don't understand what the Taylor expansion of $\arctan(x)$ is, the c
 -- Eagleson's Law
 ```
 
-In other words, comments provide a kind of interpretative scaffolding that can help you orient yourself when writing your code. If written clearly, they serve as guideposts that can help you and your peers understand your thought process when reading your code.
+In other words, comments provide a kind of scaffolding that can help you orient yourself when writing your code. If written clearly, they will help you and your peers understand your thought process when reading your code.
 
 :::{note}
 
@@ -170,10 +170,10 @@ print(type((-1)**0.5))
 
 ## Variables
 
-When doing calculations in Python, it is often necessary to break up the calculation into multiple steps. We can store the results of these intermediate steps using a _variable_. A variable is simply a named object capable of storing a value. For example, let's create a variable called `x` and use it in the evaluating the polynomial function $y(x) = 10x^2 + 3x + 4$. To assign a value to a variable, we use the assignment operator `=`. Try typing out the following example in a cell in your notebook:
+When doing calculations in Python, it is often necessary to break up the calculation into multiple steps. We can store the results of these intermediate steps using a _variable_. A variable is simply a named object capable of storing a value. For example, let's create a variable called `x` and use it for evaluating the polynomial function $y(x) = 10x^2 + 3x + 4$. To assign a value to a Python variable, we use the assignment operator `=`. Try typing out the following example in a cell in your notebook:
 
 ```{code-cell}
-x = 3 # assign a value of 10 to "x"
+x = 3 # assign a value of 3 to "x"
 
 # compute the value of y(x), assign "y" to the result:
 y = 10*(x**2) + 3*x + 4
@@ -181,7 +181,7 @@ y = 10*(x**2) + 3*x + 4
 # print the result stored in the "y" variable:
 print(y)
 ```
-In python, variables can be used to store the value of an object of any type (whether `str`, `int`, `float`, or any other type we will learn about in the future). As the example above shows, we can perform some computation on one variable (i.e. `x`) and store that result in another varible (i.e.`y`).
+In Python, variables can be used to store the value of an object of any type (whether `str`, `int`, `float`, or any other type we will learn about in the future). As the example above shows, we can perform some computation on one variable (i.e. `x`) and store that result in another varible (i.e.`y`).
 
 :::{important}
 It might be tempting to think of the assignment operator `=` as a mathematical equality operator $=$. This is not a correct way to think of the `=` operator, since matematical equality is symmetric (i.e. $x = y$ and $y = x$ are identical statements), whereas the assignment operator is not symmetric. 

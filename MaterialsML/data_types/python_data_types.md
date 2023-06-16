@@ -53,7 +53,7 @@ print(another_empty_list)
 
 ## Tuples
 
-The `tuple` data type is similar in functionality to the `list` type. Tuples can also be used for storing sequential data, and can be constructed by enclosing a sequence of comma separated values by parentheses (`(`...`)`). Unlike lists, tuples are _immutable_ data types, which means that they cannot be modified after they are created. We will explain more about what this means later.
+The `tuple` data type is similar in function to the `list` type. Tuples can also be used for storing sequential data, and can be constructed by enclosing a sequence of comma separated values by parentheses (`(`...`)`). Unlike lists, tuples are _immutable_ data types, which means that they cannot be modified after they are created. We will explain more about what this means later.
 
 Here are some examples of tuples:
 ```{code-cell}

@@ -55,9 +55,7 @@ for item in sequence:
     # code to be executed for each item in the sequence
 ```
 
-The execution of `for` loops is similar to `while` loops:
-
-Here's a breakdown of how a for loop works:
+The execution of `for` loops is similar to `while` loops. Here's a breakdown of how a for loop works:
 
 * The loop starts by initializing a variable (`item` in the above example) that will take on the value of each item in the sequence one by one.
 
