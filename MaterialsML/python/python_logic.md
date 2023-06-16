@@ -117,7 +117,7 @@ print((0 < x) and (x <= 1))
 print(0 < x <= 1)
 ```
 
-We can also apply conditional operators to variables of the `str` (string) type, which store text. For any two strings `str_a` and `str_b`, the `<` operator evaluates to True if `str_a` preceeds `str_b` alphabetically:
+We can also apply comparison operators to variables of the `str` (string) type, which store text. For any two strings `str_a` and `str_b`, the `<` operator evaluates to True if `str_a` preceeds `str_b` alphabetically:
 
 ```{code-cell}
 # create some strings:
@@ -178,7 +178,7 @@ else:
     print(name_2, 'precedes', name_1)
 ```
 
-We can also chain multiple mutually exclusive conditions into `if`/`elif`/`else` statements (the `elif` is a contraction of "else if"). In thes statments, conditions are checked from top to bottom, and the block of the first condition that is met is executed. If an `else` block is specified, that block is executed only if none of the preceding conditions are met. For example: 
+We can also chain multiple mutually exclusive conditions into `if`/`elif`/`else` statements (the `elif` is a contraction of "else if"). In these statments, conditions are checked from top to bottom, and the block of the first condition that is met is executed. If an `else` block is specified, that block is executed only if none of the preceding conditions are met. For example: 
 
 ```{code-cell}
 # initialize a numeric value:
@@ -193,7 +193,7 @@ else:
     print('Value is positive.')
 ```
 
-We can also nest conditional statements by applying double indententation to the body of the interior conditional statement:
+We can nest conditional statements by applying double indententation to the body of the interior conditional statement:
 
 ```{code-cell}
 # initialize x
