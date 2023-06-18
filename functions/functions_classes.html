@@ -446,7 +446,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-functions-and-classes">
 <h1>Python Functions and Classes<a class="headerlink" href="#python-functions-and-classes" title="Permalink to this heading">#</a></h1>
-<p>Functions are an essential concept in Python and programming in general. They allow you to encapsulate reusable pieces of code into named blocks, which can be called and executed whenever needed. Functions promote code modularity, readability, and reusability, making them a fundamental building block for structuring and organizing programs. Likewise, Classes in Python provide a way of encapsulating both data and the operations performable on it. In this section we will focus on writing Python functions, and see how they can help us write more concise code.</p>
+<p><em>Functions</em> are an essential concept in Python and programming in general. They allow you to encapsulate reusable pieces of code into named blocks, which can be called and executed whenever needed. Functions promote code modularity, readability, and reusability, making them a fundamental building block for structuring and organizing programs. Likewise, <em>Classes</em> in Python provide a way of encapsulating both data and the operations performable on it. In this section we will focus on writing Python functions, and see how they can help us write more concise code.</p>
 <section id="function-basics">
 <h2>Function Basics<a class="headerlink" href="#function-basics" title="Permalink to this heading">#</a></h2>
 <p>In mathematics, functions are transformations that map inputs to outputs. The same is true for Python, except for the fact that Python functions can also change the values of variables, modify mutable data types (like lists), etc. So far, we have encountered several of Python’s built-in functions, for example:</p>
@@ -520,7 +520,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Functions can also have multiple parameters, which we can denote using a comma separated list of parameters. When calling a function witih multiple parameters, be sure that the order of the parameters match the order of the corresponding values:</p>
+<p>Functions can also have multiple parameters, which we can denote using a comma separated list. When calling a function with multiple parameters, be sure that the order of the parameters match the order of the corresponding values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This function prints out a greeting of a name (with a title):</span>
@@ -561,7 +561,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Python also support returning more than one value from a function. To return multiple values, use a comma separated list of values after the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. This will pack the returned value into a tuple of the appropriate size and return the tuple. Note that you can upack the returned results by assigning the result to a comma separated list of variables.</p>
+<p>It is also possible to return more than one value from a function. To do this, use a comma separated list of values after the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. This will pack the returned value into a tuple of the appropriate size and return the tuple. Note that you can upack the returned results by assigning the result to a comma separated list of variables.</p>
 <p>To illustrate this, Let’s write a Python function that solves for the roots of a quadratic equation of the form</p>
 <div class="math notranslate nohighlight">
 \[f(x) = ax^2 + bx + c\]</div>
