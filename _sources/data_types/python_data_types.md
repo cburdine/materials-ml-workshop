@@ -53,7 +53,7 @@ print(another_empty_list)
 
 ## Tuples
 
-The `tuple` data type is similar in function to the `list` type. Tuples can also be used for storing sequential data, and can be constructed by enclosing a sequence of comma separated values by parentheses (`(`...`)`). Unlike lists, tuples are _immutable_ data types, which means that they cannot be modified after they are created. We will explain more about what this means later.
+The `tuple` data type is similar in function to the `list` type. Tuples can also be used for storing sequential data, and can be constructed by enclosing a sequence of comma separated values by parentheses (`(`...`)`). Tuples can also be created by a comma separated list without enclosing parentheses, though this syntax is not used very often. Unlike lists, tuples are _immutable_ data types, which means that they cannot be modified after they are created. We will explain more about what this means later.
 
 Here are some examples of tuples:
 ```{code-cell}
@@ -78,7 +78,7 @@ Single-value tuples must have a comma after the first value. This avoids any Pyt
 
 ## Indexing and Slicing:
 
-We can access specific elements in a tuple or list using _indexing_. Indexing allows you to access individual elements within a list. Recall that in Python, the index starts at 0 for the first element and increments by 1 for each subsequent element. To access the $n$ element, we use the name of the list or tuple followed by square brackets `[]` with the index inside to access a specific element. For example, `my_list[0]` accesses the first element in `my_list`. Note that the index accessed must be less than the length of the list, otherwise it will result in an error.
+We can access elements at a specific index in a tuple or list using _indexing_. Recall that in Python, the index starts at 0 for the first element and increments by 1 for each subsequent element. To access the $n$th element, we use the name of the list or tuple followed by square brackets `[]` with the index inside to access a specific element. For example, `my_list[0]` accesses the first element in `my_list`. Note that the index accessed must be less than the length of the list, otherwise it will result in an error.
 
 In addition to positive indexing, Python supports negative indices, which allows you to access elements starting at the end of the list. For example, `my_list[-1]` accesses the last element, `my_list[-2]` accesses the second-to-last, and so on. Here are some examples of list indexing:
 
@@ -89,11 +89,11 @@ tuple_1 = (10, 11, 12, 13, 14)
 
 # access tuples and lists:
 print('Accessing Lists & Tuples by index:')
-print(list_1[0], list_1[1], list_2[2], list_2[-1])
+print(list_1[0], list_1[1], list_1[2], list_1[-1])
 print(tuple_1[0], tuple_1[1], tuple_1[2], tuple_1[-1])
 ```
 
-_Slicing_ is an operation that allows you to extract a portion of a list or tuple by specifying an (optional) start index and and (optional) end index. To extract elements $a, a+1, ..., b-2, b-2$, we use the syntax `my_list[a:b]`. Note that the end index is not included in the slice (similar to how Python's `range(a,b)` does not include `b`). Here are some examples of list and tuple slicing:
+_Slicing_ is an operation that allows you to extract a portion of a list or tuple by specifying an (optional) start index and and (optional) end index. To extract elements $a, a+1, ..., b-2, b-1$, we use the syntax `my_list[a:b]`. Note that the end index is not included in the slice (similar to how Python's `range(a,b)` does not include `b`). Here are some examples of list and tuple slicing:
 
 ```{code-cell}
 # initialize list and tuple examples:
@@ -141,7 +141,7 @@ Unfortunately, Python does not have built-in matrix operations like addition, ma
 
 ## List and Tuple operations
 
-So far, the `list` and `tuple` types may seem to have essentially the functionality. When we introduced these data types, we mentioned that the key difference was that lists are _mutable_ data types, whereas tuples are _immutable_. This means that the values of lists can be modified, but the values of tuples cannot be modified (at least, not without creating an entirely new tuple with the modified value).
+So far, the `list` and `tuple` types may seem to have essentially the same functionality. When we introduced these data types, we mentioned that the key difference was that lists are _mutable_ data types, whereas tuples are _immutable_. This means that the values of lists can be modified, but the values of tuples cannot be modified.
 
 We can modify a specific element in a list using list indexing combined with the asignment operator `=`:
 
@@ -162,12 +162,15 @@ print(my_list)
 In addition to modifying individual values, you can also append and remove values at the end of the list using the `list.append` and `list.pop` functions respectively. These functions are commonly used when sequentially building or destroying lists inside a `for` loop:
 
 ```{code-cell}
+# create an empty list:
 my_list = []
 
+# gradually add elements to the end of the list:
 for i in range(6):
     my_list.append(i)
     print(my_list)
 
+# remove some elements from the end of the list:
 for i in range(3):
     my_list.pop()
     print(my_list)
@@ -189,7 +192,7 @@ print(name_1 < name_2)
 print(name_1 >= name_3)
 ```
 
-Tuples and lists also have some interesting behaviors with the `+` and `*` operators. The `+` operator concetenates two lists (i.e. appends two lists/tuples to create a new list/tupe. The '*' operator, when used with an integer $n$ and a tuple/list will construct a new list/tuple that consists of $n$ copies of the tuple/list. Finally, `len` is an important function that returns the length of a list or tuple. Examples of these functions are shown below:
+Tuples and lists also have some interesting behaviors with the `+` and `*` operators. The `+` operator concatenates two lists (i.e. appends two lists/tuples to create a new list/tuple. The `*` operator, when used with an integer $n$ and a tuple/list will construct a new list/tuple that consists of $n$ consecutive copies of the tuple/list. Finally, `len` is an important function that returns the length of a list or tuple. Examples of these functions are shown below:
 
 ```{code-cell}
 list_a = [1, 2, 3, 4]
@@ -208,6 +211,7 @@ print(tuple_a + tuple_b)
 print(tuple_b * 3)
 print(len(tuple_a))
 ```
+
 ## Python List Comprehension
 
 Python list comprehension is a concise and powerful way to create new lists based on existing lists or other iterable objects. It allows you to combine the process of creating a new list and applying transformations or filtering in a single line of code. List comprehension is perhaps one of the most highly regarded features in Python, since it allows for the processing of sequential data in a way that is both concise and efficient. The general syntax for list comprehension in Python is as follows:
@@ -217,7 +221,7 @@ new_list = [ expression for item in sequence if condition ]
 ```
 
 * The `expression` represents the transformation or operation to be applied to each `item` in the `sequence`.
-* The `item` represents an element in the `sequence`, such as a list, tuple, or range.
+* The `item` represents an element in the `sequence`, where the `sequence` is a list, tuple, range, etc.
 * The optional `condition` specifies a filtering condition, allowing you to include only the items that satisfy the condition.
 
 
@@ -260,7 +264,7 @@ In this example, only the positive numbers from the `numbers` list are included 
 
 ## Exercises
 
-:::{dropdown} Exercise 2: Sieve of Eratosthenes
+:::{dropdown} Exercise 1: Sieve of Eratosthenes
 
 The [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is one of the oldest known algorithms for finding prime numbers. Starting with a set of small prime numbers less than $N$, the algorithm can find all prime numbers up to $N^2$ using the following procedure:
 
@@ -289,6 +293,8 @@ This will set the number at the $n$th index (which should be $n$) to be $0$. Onc
 ::: 
 
 ### Solutions
+
+#### Exercise 1: Sieve of Eratosthenes
 
 ```{code-cell}
 :tags: [hide-cell]

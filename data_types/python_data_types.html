@@ -426,7 +426,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-and-tuple-operations">List and Tuple operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-list-comprehension">Python List Comprehension</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-sieve-of-eratosthenes">Exercise 1: Sieve of Eratosthenes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -500,7 +503,7 @@ document.write(`
 </section>
 <section id="tuples">
 <h2>Tuples<a class="headerlink" href="#tuples" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">tuple</span></code> data type is similar in function to the <code class="docutils literal notranslate"><span class="pre">list</span></code> type. Tuples can also be used for storing sequential data, and can be constructed by enclosing a sequence of comma separated values by parentheses (<code class="docutils literal notranslate"><span class="pre">(</span></code>…<code class="docutils literal notranslate"><span class="pre">)</span></code>). Unlike lists, tuples are <em>immutable</em> data types, which means that they cannot be modified after they are created. We will explain more about what this means later.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">tuple</span></code> data type is similar in function to the <code class="docutils literal notranslate"><span class="pre">list</span></code> type. Tuples can also be used for storing sequential data, and can be constructed by enclosing a sequence of comma separated values by parentheses (<code class="docutils literal notranslate"><span class="pre">(</span></code>…<code class="docutils literal notranslate"><span class="pre">)</span></code>). Tuples can also be created by a comma separated list without enclosing parentheses, though this syntax is not used very often. Unlike lists, tuples are <em>immutable</em> data types, which means that they cannot be modified after they are created. We will explain more about what this means later.</p>
 <p>Here are some examples of tuples:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -538,7 +541,7 @@ document.write(`
 </section>
 <section id="indexing-and-slicing">
 <h2>Indexing and Slicing:<a class="headerlink" href="#indexing-and-slicing" title="Permalink to this heading">#</a></h2>
-<p>We can access specific elements in a tuple or list using <em>indexing</em>. Indexing allows you to access individual elements within a list. Recall that in Python, the index starts at 0 for the first element and increments by 1 for each subsequent element. To access the <span class="math notranslate nohighlight">\(n\)</span> element, we use the name of the list or tuple followed by square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> with the index inside to access a specific element. For example, <code class="docutils literal notranslate"><span class="pre">my_list[0]</span></code> accesses the first element in <code class="docutils literal notranslate"><span class="pre">my_list</span></code>. Note that the index accessed must be less than the length of the list, otherwise it will result in an error.</p>
+<p>We can access elements at a specific index in a tuple or list using <em>indexing</em>. Recall that in Python, the index starts at 0 for the first element and increments by 1 for each subsequent element. To access the <span class="math notranslate nohighlight">\(n\)</span>th element, we use the name of the list or tuple followed by square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> with the index inside to access a specific element. For example, <code class="docutils literal notranslate"><span class="pre">my_list[0]</span></code> accesses the first element in <code class="docutils literal notranslate"><span class="pre">my_list</span></code>. Note that the index accessed must be less than the length of the list, otherwise it will result in an error.</p>
 <p>In addition to positive indexing, Python supports negative indices, which allows you to access elements starting at the end of the list. For example, <code class="docutils literal notranslate"><span class="pre">my_list[-1]</span></code> accesses the last element, <code class="docutils literal notranslate"><span class="pre">my_list[-2]</span></code> accesses the second-to-last, and so on. Here are some examples of list indexing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -548,20 +551,20 @@ document.write(`
 
 <span class="c1"># access tuples and lists:</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accessing Lists &amp; Tuples by index:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">list_1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">list_2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">list_2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">list_1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">list_1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">list_1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tuple_1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tuple_1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tuple_1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">tuple_1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accessing Lists &amp; Tuples by index:
-0 1 2 5
+0 1 2 4
 10 11 12 14
 </pre></div>
 </div>
 </div>
 </div>
-<p><em>Slicing</em> is an operation that allows you to extract a portion of a list or tuple by specifying an (optional) start index and and (optional) end index. To extract elements <span class="math notranslate nohighlight">\(a, a+1, ..., b-2, b-2\)</span>, we use the syntax <code class="docutils literal notranslate"><span class="pre">my_list[a:b]</span></code>. Note that the end index is not included in the slice (similar to how Python’s <code class="docutils literal notranslate"><span class="pre">range(a,b)</span></code> does not include <code class="docutils literal notranslate"><span class="pre">b</span></code>). Here are some examples of list and tuple slicing:</p>
+<p><em>Slicing</em> is an operation that allows you to extract a portion of a list or tuple by specifying an (optional) start index and and (optional) end index. To extract elements <span class="math notranslate nohighlight">\(a, a+1, ..., b-2, b-1\)</span>, we use the syntax <code class="docutils literal notranslate"><span class="pre">my_list[a:b]</span></code>. Note that the end index is not included in the slice (similar to how Python’s <code class="docutils literal notranslate"><span class="pre">range(a,b)</span></code> does not include <code class="docutils literal notranslate"><span class="pre">b</span></code>). Here are some examples of list and tuple slicing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize list and tuple examples:</span>
@@ -633,7 +636,7 @@ Accessing Tuples by slicing:
 </section>
 <section id="list-and-tuple-operations">
 <h2>List and Tuple operations<a class="headerlink" href="#list-and-tuple-operations" title="Permalink to this heading">#</a></h2>
-<p>So far, the <code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">tuple</span></code> types may seem to have essentially the functionality. When we introduced these data types, we mentioned that the key difference was that lists are <em>mutable</em> data types, whereas tuples are <em>immutable</em>. This means that the values of lists can be modified, but the values of tuples cannot be modified (at least, not without creating an entirely new tuple with the modified value).</p>
+<p>So far, the <code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">tuple</span></code> types may seem to have essentially the same functionality. When we introduced these data types, we mentioned that the key difference was that lists are <em>mutable</em> data types, whereas tuples are <em>immutable</em>. This means that the values of lists can be modified, but the values of tuples cannot be modified.</p>
 <p>We can modify a specific element in a list using list indexing combined with the asignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -661,12 +664,15 @@ Accessing Tuples by slicing:
 <p>In addition to modifying individual values, you can also append and remove values at the end of the list using the <code class="docutils literal notranslate"><span class="pre">list.append</span></code> and <code class="docutils literal notranslate"><span class="pre">list.pop</span></code> functions respectively. These functions are commonly used when sequentially building or destroying lists inside a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create an empty list:</span>
+<span class="n">my_list</span> <span class="o">=</span> <span class="p">[]</span>
 
+<span class="c1"># gradually add elements to the end of the list:</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
     <span class="n">my_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
 
+<span class="c1"># remove some elements from the end of the list:</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">my_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
@@ -712,7 +718,7 @@ False
 </div>
 </div>
 </div>
-<p>Tuples and lists also have some interesting behaviors with the <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">*</span></code> operators. The <code class="docutils literal notranslate"><span class="pre">+</span></code> operator concetenates two lists (i.e. appends two lists/tuples to create a new list/tupe. The ‘*’ operator, when used with an integer <span class="math notranslate nohighlight">\(n\)</span> and a tuple/list will construct a new list/tuple that consists of <span class="math notranslate nohighlight">\(n\)</span> copies of the tuple/list. Finally, <code class="docutils literal notranslate"><span class="pre">len</span></code> is an important function that returns the length of a list or tuple. Examples of these functions are shown below:</p>
+<p>Tuples and lists also have some interesting behaviors with the <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">*</span></code> operators. The <code class="docutils literal notranslate"><span class="pre">+</span></code> operator concatenates two lists (i.e. appends two lists/tuples to create a new list/tuple. The <code class="docutils literal notranslate"><span class="pre">*</span></code> operator, when used with an integer <span class="math notranslate nohighlight">\(n\)</span> and a tuple/list will construct a new list/tuple that consists of <span class="math notranslate nohighlight">\(n\)</span> consecutive copies of the tuple/list. Finally, <code class="docutils literal notranslate"><span class="pre">len</span></code> is an important function that returns the length of a list or tuple. Examples of these functions are shown below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
@@ -755,7 +761,7 @@ Tuple Operations:
 </div>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">expression</span></code> represents the transformation or operation to be applied to each <code class="docutils literal notranslate"><span class="pre">item</span></code> in the <code class="docutils literal notranslate"><span class="pre">sequence</span></code>.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">item</span></code> represents an element in the <code class="docutils literal notranslate"><span class="pre">sequence</span></code>, such as a list, tuple, or range.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">item</span></code> represents an element in the <code class="docutils literal notranslate"><span class="pre">sequence</span></code>, where the <code class="docutils literal notranslate"><span class="pre">sequence</span></code> is a list, tuple, range, etc.</p></li>
 <li><p>The optional <code class="docutils literal notranslate"><span class="pre">condition</span></code> specifies a filtering condition, allowing you to include only the items that satisfy the condition.</p></li>
 </ul>
 <p>List comprehension is often used to create a new list by applying an expression to each element of an iterable object (such as another list). For example:</p>
@@ -819,7 +825,7 @@ Tuple Operations:
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-Exercise 2: Sieve of Eratosthenes<div class="sd-summary-down docutils">
+Exercise 1: Sieve of Eratosthenes<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -849,6 +855,8 @@ Exercise 2: Sieve of Eratosthenes<div class="sd-summary-down docutils">
 </div>
 </details><section id="solutions">
 <h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1-sieve-of-eratosthenes">
+<h4>Exercise 1: Sieve of Eratosthenes<a class="headerlink" href="#exercise-1-sieve-of-eratosthenes" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -884,6 +892,7 @@ Exercise 2: Sieve of Eratosthenes<div class="sd-summary-down docutils">
 </div>
 </details>
 </div>
+</section>
 </section>
 </section>
 <div class="toctree-wrapper compound">
@@ -963,7 +972,10 @@ Exercise 2: Sieve of Eratosthenes<div class="sd-summary-down docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-and-tuple-operations">List and Tuple operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-list-comprehension">Python List Comprehension</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-sieve-of-eratosthenes">Exercise 1: Sieve of Eratosthenes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

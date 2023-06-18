@@ -442,7 +442,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sets-and-dictionaries">
 <h1>Sets and Dictionaries<a class="headerlink" href="#sets-and-dictionaries" title="Permalink to this heading">#</a></h1>
-<p>Now that we have talked about lists and tuples and Python, let’s talk about two more of the built-in Python data types: sets and dictionaries. Unlike lists and tuples, which deal with sequentially ordered data, sets and dictionaries deal with unordered data. These data types are especially useful for finding unique elements or assigning values to a collection of unique keys. In this section, we will take a look at each of these types and learn how they are used in Python programming.</p>
+<p>Now that we have talked about lists and tuples and Python, let’s talk about two more of the built-in Python data types: <em>sets</em> and <em>dictionaries</em>. Unlike lists and tuples, which deal with sequentially ordered data, sets and dictionaries deal with unordered data. These data types are especially useful for finding unique elements or assigning values to a collection of unique keys. In this section, we will take a look at each of these types and learn how they are used in Python programming.</p>
 <section id="python-sets">
 <h2>Python Sets<a class="headerlink" href="#python-sets" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">set</span></code> data type stores an unordered collection of unique elements (just like the <a class="reference external" href="https://en.wikipedia.org/wiki/Set_(mathematics)">mathematical definition of a set</a>). Unlike lists or tuples, sets do not maintain any specific order for their elements. The primary characteristics of sets are their uniqueness and their ability to perform various mathematical set operations efficiently. In Python we create sets by enclosing a sequence of comma-separated values by curly braces (<code class="docutils literal notranslate"><span class="pre">{</span></code>…<code class="docutils literal notranslate"><span class="pre">}</span></code>) or by using the <code class="docutils literal notranslate"><span class="pre">set()</span></code> function. For example:</p>
@@ -457,12 +457,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C&#39;, &#39;F&#39;, &#39;B&#39;, &#39;A&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;F&#39;}
 </pre></div>
 </div>
 </div>
 </div>
-<p>Just like mathematical sets, the Python <code class="docutils literal notranslate"><span class="pre">set</span></code> type supports various mathematical set operations, such as union, intersection, difference, etc. These operations allow you to combine, compare, or manipulate sets efficiently. In Python we can perform the <code class="docutils literal notranslate"><span class="pre">union</span></code>, <code class="docutils literal notranslate"><span class="pre">intersection</span></code>, and <code class="docutils literal notranslate"><span class="pre">difference</span></code> operations using either the function with the same name or the operator shorthand (union: ‘|’, intersection: ‘&amp;’, difference: ‘-‘). Below, we give examples of how these operations can be applied:</p>
+<p>Just like mathematical sets, the Python <code class="docutils literal notranslate"><span class="pre">set</span></code> type supports canonical set operations, such as union, intersection, difference, etc. These operations allow you to combine, compare, or manipulate sets efficiently. In Python we can perform the <code class="docutils literal notranslate"><span class="pre">union</span></code>, <code class="docutils literal notranslate"><span class="pre">intersection</span></code>, and <code class="docutils literal notranslate"><span class="pre">difference</span></code> operations using either the function with the same name or the operator shorthand (union: <code class="docutils literal notranslate"><span class="pre">|</span></code>, intersection: <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, difference: <code class="docutils literal notranslate"><span class="pre">-</span></code>). Below, we give examples of how these operations can be applied:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create sets of physicists and chemists:</span>
@@ -487,8 +487,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Pauli&#39;, &#39;Berzelius&#39;, &#39;Bohr&#39;, &#39;Curie&#39;, &#39;Pauling&#39;, &#39;Planck&#39;, &#39;Fermi&#39;}
-{&#39;Pauli&#39;, &#39;Berzelius&#39;, &#39;Bohr&#39;, &#39;Curie&#39;, &#39;Pauling&#39;, &#39;Planck&#39;, &#39;Fermi&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Pauling&#39;, &#39;Fermi&#39;, &#39;Berzelius&#39;, &#39;Pauli&#39;, &#39;Bohr&#39;, &#39;Planck&#39;, &#39;Curie&#39;}
+{&#39;Pauling&#39;, &#39;Fermi&#39;, &#39;Berzelius&#39;, &#39;Pauli&#39;, &#39;Bohr&#39;, &#39;Planck&#39;, &#39;Curie&#39;}
 {&#39;Curie&#39;, &#39;Bohr&#39;}
 {&#39;Curie&#39;, &#39;Bohr&#39;}
 {&#39;Pauling&#39;, &#39;Berzelius&#39;}
@@ -518,9 +518,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Pauli&#39;, &#39;Curie&#39;, &#39;Bohr&#39;, &#39;Einstein&#39;, &#39;Planck&#39;, &#39;Fermi&#39;}
-{&#39;Pauli&#39;, &#39;Curie&#39;, &#39;Bohr&#39;, &#39;Einstein&#39;, &#39;Planck&#39;, &#39;Fermi&#39;}
-{&#39;Pauli&#39;, &#39;Curie&#39;, &#39;Bohr&#39;, &#39;Einstein&#39;, &#39;Fermi&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Fermi&#39;, &#39;Pauli&#39;, &#39;Bohr&#39;, &#39;Einstein&#39;, &#39;Planck&#39;, &#39;Curie&#39;}
+{&#39;Fermi&#39;, &#39;Pauli&#39;, &#39;Bohr&#39;, &#39;Einstein&#39;, &#39;Planck&#39;, &#39;Curie&#39;}
+{&#39;Fermi&#39;, &#39;Pauli&#39;, &#39;Bohr&#39;, &#39;Einstein&#39;, &#39;Curie&#39;}
 </pre></div>
 </div>
 </div>
@@ -538,7 +538,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Pauli&#39;, &#39;Curie&#39;, &#39;Fermi&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Fermi&#39;, &#39;Pauli&#39;, &#39;Curie&#39;}
 </pre></div>
 </div>
 </div>
@@ -568,7 +568,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>In the example above, a dictionary named <code class="docutils literal notranslate"><span class="pre">person</span></code> with five key-value pairs is created, representing the name, age, occupation, and birthday associated with the person.</p>
+<p>In the example above, a dictionary named <code class="docutils literal notranslate"><span class="pre">person</span></code> with four key-value pairs is created, representing the name, age, occupation, and birthday associated with the person.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In Python, <code class="docutils literal notranslate"><span class="pre">{}</span></code> denotes an empty dictionary, not an empty set. To construct an empty set, use <code class="docutils literal notranslate"><span class="pre">set()</span></code>:</p>
@@ -759,11 +759,13 @@ Exercise 2: Most Frequent Number<div class="sd-summary-down docutils">
 
 <span class="c1"># print most frequent numbers:</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Most frequent numbers:&#39;</span><span class="p">,</span> <span class="n">most_frequent_numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Frequency:&#39;</span><span class="p">,</span> <span class="n">max_frequency</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Most frequent numbers: [1, 12]
+Frequency: 3
 </pre></div>
 </div>
 </div>
