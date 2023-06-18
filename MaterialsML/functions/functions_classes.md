@@ -14,7 +14,7 @@ kernelspec:
 
 # Python Functions and Classes
 
-Functions are an essential concept in Python and programming in general. They allow you to encapsulate reusable pieces of code into named blocks, which can be called and executed whenever needed. Functions promote code modularity, readability, and reusability, making them a fundamental building block for structuring and organizing programs. Likewise, Classes in Python provide a way of encapsulating both data and the operations performable on it. In this section we will focus on writing Python functions, and see how they can help us write more concise code.
+_Functions_ are an essential concept in Python and programming in general. They allow you to encapsulate reusable pieces of code into named blocks, which can be called and executed whenever needed. Functions promote code modularity, readability, and reusability, making them a fundamental building block for structuring and organizing programs. Likewise, _Classes_ in Python provide a way of encapsulating both data and the operations performable on it. In this section we will focus on writing Python functions, and see how they can help us write more concise code.
 
 ## Function Basics
 
@@ -66,7 +66,7 @@ def greet(name):
 greet('Albert')
 ```
 
-Functions can also have multiple parameters, which we can denote using a comma separated list of parameters. When calling a function witih multiple parameters, be sure that the order of the parameters match the order of the corresponding values:
+Functions can also have multiple parameters, which we can denote using a comma separated list. When calling a function with multiple parameters, be sure that the order of the parameters match the order of the corresponding values:
 
 ```{code-cell} ipython3
 # This function prints out a greeting of a name (with a title):
@@ -92,7 +92,7 @@ result = add_numbers(3,5)
 print(result)
 ```
 
-Python also support returning more than one value from a function. To return multiple values, use a comma separated list of values after the `return` statement. This will pack the returned value into a tuple of the appropriate size and return the tuple. Note that you can upack the returned results by assigning the result to a comma separated list of variables.
+It is also possible to return more than one value from a function. To do this, use a comma separated list of values after the `return` statement. This will pack the returned value into a tuple of the appropriate size and return the tuple. Note that you can upack the returned results by assigning the result to a comma separated list of variables.
 
 To illustrate this, Let's write a Python function that solves for the roots of a quadratic equation of the form 
 

@@ -102,7 +102,7 @@ print(y >= 3.0)
 Sometimes it is necessary to combine together comparison operators with Boolean operators:
 
 ```{code-cell}
-# create som numerical variables:
+# create some numerical variables:
 x = 0.25
 y = 1.23
 z = 0.0
@@ -117,7 +117,7 @@ print((0 < x) and (x <= 1))
 print(0 < x <= 1)
 ```
 
-We can also apply comparison operators to variables of the `str` (string) type, which store text. For any two strings `str_a` and `str_b`, the `<` operator evaluates to True if `str_a` preceeds `str_b` alphabetically:
+We can also apply comparison operators to variables of the `str` (string) type, which store text. For any two strings `str_a` and `str_b`, the `<` operator evaluates to True if `str_a` precedes `str_b` alphabetically:
 
 ```{code-cell}
 # create some strings:
@@ -142,7 +142,7 @@ str_a.lower() < str_b.lower()
 
 ## Conditional statements
 
-Sometimes, it is necessary to control whether or not a block of code executes based on a boolean condition. For example, to avoid division by $0$, we might want to check if the demoninator in a division operation is zero prior to performing the division. We can accomplish this in Python using an `if` statement. An `if` statement executes only if the subsequent Boolean value (or expression that evaluates to a boolean value) is `True`. To see how `if` statements work, try executing the following Python code: 
+Sometimes, it is necessary to control whether or not a block of code executes based on a boolean condition. For example, to avoid division by $0$, we might want to check if the denominator in a division operation is zero prior to performing the division. We can accomplish this in Python using an `if` statement. An `if` statement executes only if the subsequent Boolean value (or expression that evaluates to a boolean value) is `True`. To see how `if` statements work, try executing the following Python code: 
 
 ```{code-cell}
 # initialize variables:
