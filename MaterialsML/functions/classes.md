@@ -14,7 +14,7 @@ kernelspec:
 
 # Classes and Object-Oriented Programming
 
-Objects and classes are fundamental concepts in [_Object-Oriented Programming_](https://en.wikipedia.org/wiki/Object-oriented_programming), which is a paradigm of programming that involves the encapsulation of data and operations performable on data into entities called _objects_. Objects provide a way to model real-world entities, concepts, or abstract ideas in a program. They enable the development of more organized, maintainable, and extensible code by grouping related data and behavior into self-contained units. In this section we will talk about how we can design and use obects in our Python code by writing _classes_. Classes serve as blueprints for objects- they define the data and behaviors that an object has when it is created during the execution of a program. In this section, we will give a brief introduction to objects, classes, and how they are useful in Python.
+Objects and classes are fundamental concepts in [_Object-Oriented Programming_](https://en.wikipedia.org/wiki/Object-oriented_programming), which is a paradigm of programming that involves the encapsulation of data and operations performable on data into entities called _objects_. Objects provide a way to model real-world entities, concepts, or abstract ideas in a program. They enable the development of more organized, maintainable, and extensible code by grouping related data and behaviors into self-contained units. In this section, we will talk about how we can design and use obects in our Python code by writing _classes_. Classes serve as blueprints for objects- they define the data and behaviors that an object has when it is created during the execution of a program. In this section, we will give a brief introduction to objects, classes, and how they are useful in Python.
 
 # Objects in Python
 
@@ -40,7 +40,7 @@ Note that the values returned or modified in each of the function calls are spec
 
 # Python Classes
 
-The easiest way to understand how objects, methods, and instance variables work it to learn how to create your own custom Python objects. To create our own objects, we must first define a kind-of "blueprint" for an object called a _class_. A class is a block of code that describes the functions (i.e. methods) and variables (i.e. instance variables) associated with each object we create in our code. The most important method that we define in a class is a _constructor_, which in Python is a method with the name `__init__` used to make a new object of the associated class. To illustrate this, let's create a simple class called `Dog`:
+The easiest way to understand how objects, methods, and instance variables work is to learn how to create your own custom Python objects. To create our own objects, we must first define a kind-of "blueprint" for an object called a _class_. A class is a block of code that describes the functions (i.e. methods) and variables (i.e. instance variables) associated with each object we create in our code. The most important method that we define in a class is a _constructor_, which in Python is a method with the name `__init__` used to make a new object of the associated class. To illustrate this, let's create a simple class called `Dog`:
 
 ```{code-cell}
 class Dog:
