@@ -200,7 +200,7 @@ We can nest conditional statements by applying double indententation to the body
 x = 0.0
 
 # check if x lies inside [-1,1]
-if -1 < x < 1:
+if -1 <= x <= 1:
 
     # check if x lies at the origin:
     if x == 0:
