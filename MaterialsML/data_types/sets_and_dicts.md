@@ -87,9 +87,9 @@ Python dictionaries (`dict`s) are a powerful built-in data type that allows you 
 # create a dictionary representing a person:
 person = {
     'name' : 'John von Neumann',
-    'age' : 40,
+    'age' : 53,
     'occupation' : 'Mathematician',
-    'birthday' : ('March', 15, 1995)
+    'birthday' : ('December ', 28, 1903)
 }
 
 # print the dictionary:
