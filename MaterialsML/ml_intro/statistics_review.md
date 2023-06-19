@@ -226,7 +226,7 @@ $$\boldsymbol{\mu} = \begin{bmatrix} \mu_1 \\ \mu_2 \\ \vdots \\ \mu_d \end{bmat
 \sigma_{d1} & \sigma_{d2} & \dots & \sigma_{d}^2
 \end{bmatrix}$$
 
-The entries $\mu_i = \mathbb{E}[X_i]$ are the coordinates of the mean $\boldsymbol{\mu}$. The entries $\sigma_i^2 = \mathbb{E}[(X_i - \mu_i)^2]$ in $\Sigma$ are the variances of each individual component of the distribution. Finally, the off-diagonal components $\sigma_{ij}$ are the _covariances_ of components $i$ and $j$. The covariance of two components is given by:
+(For a review of matrices and matrix-vector products see the next section.) The entries $\mu_i = \mathbb{E}[X_i]$ are the coordinates of the mean $\boldsymbol{\mu}$. The entries $\sigma_i^2 = \mathbb{E}[(X_i - \mu_i)^2]$ in $\Sigma$ are the variances of each individual component of the distribution. Finally, the off-diagonal components $\sigma_{ij}$ are the _covariances_ of components $i$ and $j$. The covariance of two components is given by:
 
 $$\text{Cov}(X_i,X_j) = \mathbb{E}[(X_i - \mu_i)(X_j - \mu_j)] = \iint_{\mathcal{X}_i \times \mathcal{X_j}} p(x_i,j_j)(x_i - \mu_i)(x_j - \mu_j)\ dx_jdx_i$$
 
