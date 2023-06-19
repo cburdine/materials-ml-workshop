@@ -14,13 +14,13 @@ In this section, we will do a brief review of the following concepts from linear
 
 ## Vectors
 
-A vector is a mathematical object with both direction and magnitude. Typically, we represent vectors as an ordered list of scalar values, where each scalar corresponds to the magnitude in a specified direction (i.e. the $x$, $y$, and $z$ directions). We typically write these scalar components as a column of numbers in square brackets. For example, the vector $\mathbf{a}$ with components in the $x$, $y$, and $z$ direction takes the form:
+A _vector_ is a mathematical object with both direction and magnitude. Typically, we represent vectors as an ordered list of scalar values, where each scalar corresponds to the magnitude in a specified direction (i.e. the $x$, $y$, and $z$ directions). We typically write these scalar components as a column of numbers in square brackets. For example, the vector $\mathbf{a}$ with components in the $x$, $y$, and $z$ direction takes the form:
 
 $$\mathbf{a} = \begin{bmatrix} a_x \\ a_y \\ a_z \end{bmatrix}$$
 
-For higher dimensions, we typically assign a number to each dimensional component:
+For higher dimensions, we typically assign a number to each dimensional component, ranging from $1$ to the number of dimensions $N$:
 
-$$\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix}$$
+$$\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_N \end{bmatrix}$$
 
 ## Matrices
 
