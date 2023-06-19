@@ -13,7 +13,7 @@ kernelspec:
 ---
 # The Scipy Package
 
-Scientific programming involves using computational tools and techniques to solve scientific and mathematical problems. The SciPy package in Python is a powerful library specifically designed for scientific and technical computing. It builds upon the foundation provided by NumPy and offers additional functionality for a wide range of scientific computations.
+Scientific computing often involves using domain-specific computational tools and techniques to solve certain mathematical problems. The SciPy package in Python is a powerful library specifically designed with scientific computing in mind. It builds upon the foundation provided by NumPy and offers additional functionality for solving some of the most common problems in various scientific domains, such as physics, statistics, and engineering.
 
 SciPy consists of various modules, each focusing on specific scientific computing tasks. Some of the key modules available in SciPy include:
 
@@ -51,7 +51,7 @@ print(constants.m_e)            # Electron mass [kg]
 
 # Integration
 
-As we have shown previously, Scipy also has funcionality to integrate Python functions in the `scipy.integrate` subpackage. Integration is often necessary when computing various physical quantities, such as wave function inner products in quantum mechanics. For example, we can numerically evaluate the Gaussian integral
+As we have shown previously, Scipy can also numerically integrate Python functions in the `scipy.integrate` subpackage. Integration is often necessary when computing various physical quantities, such as wave function inner products in quantum mechanics. Integration is also used to simulate the trajectories of physical systems with respect to time. For example, we can numerically evaluate the Gaussian integral
 
 $$\int_{-\infty}^\infty e^{-x^2}\ dx = \sqrt{\pi}$$
 
@@ -82,11 +82,14 @@ Scipy is only capable of numerical integration. For symbolic integration problem
 
 # Optimization
 
-In the `scipy.optimize` subpackage, Scipy provides functionality for function optimization (i.e. numerically solving for the minimum or maximum of a function) and curve fitting (fitting a 1D curve to data). Below, we give an example of using [`scipy.optimize.curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit) to fit a linear model to data:
+In the `scipy.optimize` subpackage, Scipy provides functionality for optimization (i.e. numerically solving for the minimum or maximum of a function) and curve fitting (fitting a curve function to data). Below, we give an example of using [`scipy.optimize.curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit) to fit a linear model to data:
 
 ```{code-cell}
 import numpy as np
 from scipy.optimize import curve_fit
+
+# seed random number generator:
+np.random.seed(0)
 
 # generate N datapoints that fit y = 10x + 3:
 N = 100
