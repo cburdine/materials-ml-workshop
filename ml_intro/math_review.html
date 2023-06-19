@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ml_intro/math_review';</script>
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -395,7 +397,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -411,6 +415,26 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors">Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-operations">Matrix Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-inner-product">Vector Inner Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-vector-products">Matrix-Vector Products</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#systems-of-linear-equations">Systems of Linear Equations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-products">Matrix Products</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivatives">Partial Derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-of-scalar-valued-functions">Gradient of scalar-valued functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -422,7 +446,251 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mathematics-review">
 <h1>Mathematics Review<a class="headerlink" href="#mathematics-review" title="Permalink to this heading">#</a></h1>
-<p>If there is a need for a review of calculus and linear algebra, this will go here.</p>
+<p>In this section, we will do a brief review of the following concepts from linear algebra and multivariate calculus:</p>
+<ul class="simple">
+<li><p>Vectors</p></li>
+<li><p>Matrices</p></li>
+<li><p>Matrix Operations</p></li>
+<li><p>Vector Operations</p></li>
+<li><p>Matrix-Vector Products</p></li>
+<li><p>Matrix Multiplication</p></li>
+<li><p>Eigenvalues and Eigenvectors</p></li>
+<li><p>Partial Derivatives</p></li>
+<li><p>Gradient of scalar-valued functions</p></li>
+</ul>
+<section id="vectors">
+<h2>Vectors<a class="headerlink" href="#vectors" title="Permalink to this heading">#</a></h2>
+<p>A vector is a mathematical object with both direction and magnitude. Typically, we represent vectors as an ordered list of scalar values, where each scalar corresponds to the magnitude in a specified direction (i.e. the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> directions). We typically write these scalar components as a column of numbers in square brackets. For example, the vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> with components in the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> direction takes the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{a} = \begin{bmatrix} a_x \\ a_y \\ a_z \end{bmatrix}\end{split}\]</div>
+<p>For higher dimensions, we typically assign a number to each dimensional component:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix}\end{split}\]</div>
+</section>
+<section id="matrices">
+<h2>Matrices<a class="headerlink" href="#matrices" title="Permalink to this heading">#</a></h2>
+<p>A matrix can be thought of as an ordered list of vectors (a “vector of vectors”). Typically matrices are written as a 2D rectangular grid of scalar values, where each column of the matrix corresponds to one of these vectors. For example, a Matrix that contains 3 vectors in the <span class="math notranslate nohighlight">\(x,y,z\)</span> basis can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A} = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} \\
+a_{21} &amp; a_{22} &amp; a_{23} \\
+a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}\end{split}\]</div>
+<p>A matrix is a <em>square</em> matrix if it has the same number of rows as columns. One of the most important square matrices is the <a class="reference external" href="https://en.wikipedia.org/wiki/Identity_matrix"><em>identity</em> matrix</a>, which is a matrix of ones along the diagonal. For example, the identity matrix in three dimensions is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{I} = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\end{split}\]</div>
+</section>
+<section id="matrix-operations">
+<h2>Matrix Operations<a class="headerlink" href="#matrix-operations" title="Permalink to this heading">#</a></h2>
+<p>There are several different operations that can be performed on one or more matrices. A simple operation that can be performed on one matrix is called the matrix <a class="reference external" href="https://en.wikipedia.org/wiki/Transpose"><em>transpose</em></a>, which is denoted by a superscript <span class="math notranslate nohighlight">\(T\)</span>. The transpose operation reflects a matrix over its diagonal such that columns become rows and rows become columns. For example, using the <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> matrix from before, the transpose is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A}^T = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} \\
+a_{21} &amp; a_{22} &amp; a_{23} \\
+a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}^T = \begin{bmatrix}
+a_{11} &amp; a_{21} &amp; a_{31} \\
+a_{12} &amp; a_{22} &amp; a_{32} \\
+a_{13} &amp; a_{23} &amp; a_{33}
+\end{bmatrix}\end{split}\]</div>
+<p>We can multiply a scalar times a matrix, which is commonly denoted by juxtaposing the scalar in front of the matrix. For example, multiplying a scalar <span class="math notranslate nohighlight">\(c\)</span> times <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, we get:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}c \mathbf{A} = \begin{bmatrix}
+c \cdot a_{11} &amp; c \cdot a_{12} &amp; c \cdot a_{13} \\
+c \cdot a_{21} &amp; c \cdot a_{22} &amp; c \cdot a_{23} \\
+c \cdot a_{31} &amp; c \cdot a_{32} &amp; c \cdot a_{33}
+\end{bmatrix}\end{split}\]</div>
+<p>If two matrices have the same shape, we can add or subtract them by performing the addition elementwise:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A} \pm \mathbf{B} = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} \\
+a_{21} &amp; a_{22} &amp; a_{23} \\
+a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix} \pm \begin{bmatrix}
+b_{11} &amp; b_{12} &amp; b_{13} \\
+b_{21} &amp; b_{22} &amp; b_{23} \\
+b_{31} &amp; b_{32} &amp; b_{33}
+\end{bmatrix} = \begin{bmatrix}
+a_{11} \pm b_{11} &amp; a_{12} \pm b_{12} &amp; a_{13} \pm b_{13} \\
+a_{21} \pm b_{21} &amp; a_{22} \pm b_{22} &amp; a_{23} \pm b_{23} \\
+a_{31} \pm b_{31} &amp; a_{32} \pm b_{32} &amp; a_{33} \pm b_{33}
+\end{bmatrix}\end{split}\]</div>
+<p>Since vectors are essentially the same as a matrix with one column, addition, subtraction, and multiplication by vectors behaves essentially the same with vectors as it does with matrices:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}c\mathbf{a} = \begin{bmatrix} 
+c \cdot a_1 \\
+c \cdot a_2 \\
+c \cdot a_3
+\end{bmatrix},\qquad \mathbf{a} \pm \mathbf{b} = \begin{bmatrix}
+a_1 \pm b_1 \\ a_2 \pm b_2 \\ a_3 \pm b_3 
+\end{bmatrix}\end{split}\]</div>
+<p>For any two vectors with the same number of dimensions, there are several different kinds of “vector multiplication” operations defined. In this review we will discuss two of these “multiplication” operations: the vector <em>inner product</em> (also called the <em>dot</em> product) and the vector <em>outer product</em>.</p>
+<section id="vector-inner-product">
+<h3>Vector Inner Product<a class="headerlink" href="#vector-inner-product" title="Permalink to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Dot_product">inner product</a> of two vectors (also called the dot product) is a scalar quantity that described the degree to which any two vectors are “aligned” with eachother. For two vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> the inner product often denoted either as <span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{b}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{a}^T\mathbf{b}\)</span> (the reason for the transpose superscript <span class="math notranslate nohighlight">\(T\)</span> will become clear later). The inner product is defined as the sum of the product of the corresponding scalar entries of both vectors, namely:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T\mathbf{b} = \begin{bmatrix} a_1 &amp; a_2 &amp; \dots &amp; a_N \end{bmatrix} \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ a_N \end{bmatrix} = a_1b_1 + a_2b_2 + \dots + a_Nb_N\end{split}\]</div>
+<p>The other type of vector product, the <a class="reference external" href="https://en.wikipedia.org/wiki/Outer_product"><em>outer</em> product</a> evaluates to a matrix of values representing the product of every pair of components. The outer product is typically denoted as <span class="math notranslate nohighlight">\(\mathbf{a}\mathbf{b}^T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{a}\mathbf{b}^T = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_N \end{bmatrix} \begin{bmatrix} b_1 &amp; b_2 &amp; \dots &amp; a_N \end{bmatrix} = \begin{bmatrix}
+a_1b_1 &amp; a_1b_2 &amp; \dots  &amp; a_1 b_N \\
+a_2b_1 &amp; a_2b_2 &amp; \dots  &amp; a_2 b_N \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots  \\
+a_Nb_1 &amp; a_Nb_2 &amp; \dots  &amp; a_Nb_N
+\end{bmatrix}\end{split}\]</div>
+</section>
+<section id="matrix-vector-products">
+<h3>Matrix-Vector Products<a class="headerlink" href="#matrix-vector-products" title="Permalink to this heading">#</a></h3>
+<p>We can generalize the inner product of two vectors to the matrix-vector product. Specifically, the product of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a vector consisting of the dot products of the corresponding rows of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> with the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. The product of a matrix with a vector is often denoted by juxtaposition:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A}\mathbf{x} = \begin{bmatrix}
+- ~ \mathbf{a}_1^T ~ - \\
+- ~ \mathbf{a}_2^T ~ - \\
+    \vdots             \\
+- ~ \mathbf{a}_M^T ~ - \\
+\end{bmatrix} \begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_N
+\end{bmatrix} = \begin{bmatrix}
+\mathbf{a}_1^T\mathbf{x} \\
+\mathbf{a}_2^T\mathbf{x} \\
+\vdots \\
+\mathbf{a}_N^T\mathbf{x}
+\end{bmatrix} = \begin{bmatrix}
+a_{11}x_1 + a_{12}x_2 + \dots + a_{1N}x_N \\
+a_{21}x_1 + a_{22}x_2 + \dots + a_{2N}x_N \\
+\vdots \\
+a_{M1}x_M + a_{M2}x_2 + \dots + a_{MN}x_N
+\end{bmatrix}\end{split}\]</div>
+<p>From the definition of the matrix-vector product, we see that the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> must equal the number of dimensions of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Thus, if <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(M \times N\)</span> matrix (i.e. with <span class="math notranslate nohighlight">\(M\)</span> rows and <span class="math notranslate nohighlight">\(N\)</span> columns), the matrix-vector product <span class="math notranslate nohighlight">\(\mathbf{Ax}\)</span> only exists with vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> of dimension <span class="math notranslate nohighlight">\(N\)</span>.</p>
+</section>
+<section id="systems-of-linear-equations">
+<h3>Systems of Linear Equations<a class="headerlink" href="#systems-of-linear-equations" title="Permalink to this heading">#</a></h3>
+<p>One important application of the matrix-vector product is in solving systems of linear equations. Consider a system of <span class="math notranslate nohighlight">\(M\)</span> linear equations involving <span class="math notranslate nohighlight">\(N\)</span> variables <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_N\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+a_{11}x_1 + a_{12} x_2 + \dots + a_{1N}x_{N} &amp;= b_{1} \\
+a_{21}x_1 + a_{22} x_2 + \dots + a_{2N}x_{N} &amp;= b_{2} \\
+\vdots \qquad\qquad\qquad &amp;\qquad \vdots \\
+a_{M1}x_1 + a_{M2} x_2 + \dots + a_{MN}x_{N} &amp;= b_{M} \\
+\end{aligned}\end{split}\]</div>
+<p>Above, the coefficients <span class="math notranslate nohighlight">\(a_{ij}\)</span> and <span class="math notranslate nohighlight">\(b_j\)</span> are known constants, but the values of the variables <span class="math notranslate nohighlight">\(x_i\)</span> must be solved for. We can re-write the system of equations above as an equation involving a matrix-vector product, namely:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \dots  &amp; a_{1N} \\
+a_{21} &amp; a_{22} &amp; \dots  &amp; a_{2N} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots  \\
+a_{M1} &amp; a_{M2} &amp; \dots  &amp; a_{MN}
+\end{bmatrix}\begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_N
+\end{bmatrix} = \begin{bmatrix}
+b_1 \\ b_2 \\ \vdots \\ x_M
+\end{bmatrix}\mathbf{Ax} = \mathbf{b}\end{split}\]</div>
+<p>Depending on the entries of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, the equation <span class="math notranslate nohighlight">\(\mathbf{Ax} = \mathbf{b}\)</span> may have no solution, a unique solution, or infinitely many solutions. In the special case where the number of equations equals the number of variables (i.e. <span class="math notranslate nohighlight">\(N = M\)</span>), then it can be shown that a unique solution <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> exists for this system if and only if a quantity called the <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant"><em>determinant</em> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span></a> (denoted <span class="math notranslate nohighlight">\(\det(\mathbf{A})\)</span>) is non-zero. If <span class="math notranslate nohighlight">\(\det(\mathbf{A}) \neq 0\)</span>, then the unique solution to <span class="math notranslate nohighlight">\(\mathbf{Ax} = \mathbf{b}\)</span> is given by the matrix-vector product (<span class="math notranslate nohighlight">\(\mathbf{A}^{-1})\mathbf{b}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is a matrix that is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Invertible_matrix"><em>inverse</em></a> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<p>The inverse matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> does not have a closed form solution (at least, not one that is easy to compute by hand), but there are ways of computing it numerically (for example, the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Python package has the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html"><code class="docutils literal notranslate"><span class="pre">np.linalg.inv</span></code></a> subroutine).</p>
+</section>
+</section>
+<section id="matrix-products">
+<h2>Matrix Products<a class="headerlink" href="#matrix-products" title="Permalink to this heading">#</a></h2>
+<p>We can further generalize the matrix-vector product to the product of two matrices. We denote the product of two (or more) matrices by juxtaposition (i.e. <span class="math notranslate nohighlight">\(\mathbf{AB}\)</span>). The product of two matrices is simply a matrix whose columns are the the result of the product of the left matrix times the corresponding column of the right matrix.</p>
+<p>Namely:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{A}\mathbf{B} = \mathbf{A}\begin{bmatrix}
+| &amp; | &amp; &amp; | \\
+\mathbf{b_1} &amp; \mathbf{b_2} &amp; \dots &amp; \mathbf{b_N} \\
+| &amp; | &amp; &amp; | \\
+\end{bmatrix} = \begin{bmatrix}
+| &amp; | &amp; &amp; | \\
+(\mathbf{Ab_1}) &amp; (\mathbf{Ab_2}) &amp; \dots &amp; (\mathbf{Ab_N}) \\
+| &amp; | &amp; &amp; | \\
+\end{bmatrix}\end{split}\]</div>
+<p>This product can only be computed if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. Specifically, if <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has <span class="math notranslate nohighlight">\(L\)</span> rows and <span class="math notranslate nohighlight">\(M\)</span> columns (i.e. <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(L \times M\)</span> matrix) and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> has <span class="math notranslate nohighlight">\(M\)</span> rows and <span class="math notranslate nohighlight">\(N\)</span> columne (i.e. <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is an <span class="math notranslate nohighlight">\(M \times N\)</span> matrix<span class="math notranslate nohighlight">\(), the resulting matrix \)</span>\mathbf{AB}<span class="math notranslate nohighlight">\( is \)</span>L \times N$.</p>
+<p>If we expand <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> in terms of its rows <span class="math notranslate nohighlight">\(\mathbf{a_1}^T, \mathbf{a_2}^T, ..., \mathbf{a_L}^T\)</span> we see that the entries of the matrix resulting from the product <span class="math notranslate nohighlight">\(\mathbf{AB}\)</span> consist of inner products of the rows of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the columns of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{AB} = \begin{bmatrix}
+- ~ \mathbf{a}_1^T ~ - \\
+- ~ \mathbf{a}_2^T ~ - \\
+    \vdots             \\
+- ~ \mathbf{a}_L^T ~ - \\
+\end{bmatrix}\begin{bmatrix}
+| &amp; | &amp; &amp; | \\
+\mathbf{b_1} &amp; \mathbf{b_2} &amp; \dots &amp; \mathbf{b_N} \\
+| &amp; | &amp; &amp; | \\
+\end{bmatrix} = \begin{bmatrix}
+\mathbf{a_1}^T\mathbf{b_1} &amp; \mathbf{a_1}^T\mathbf{b_2} &amp; \dots &amp; \mathbf{a_1}^T\mathbf{b_N} \\
+\mathbf{a_2}^T\mathbf{b_1} &amp; \mathbf{a_2}^T\mathbf{b_2} &amp; \dots &amp; \mathbf{a_2}^T\mathbf{b_N} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\mathbf{a_L}^T\mathbf{b_1} &amp; \mathbf{a_L}^T\mathbf{b_2} &amp; \dots &amp; \mathbf{a_L}^T\mathbf{b_N}
+\end{bmatrix}\end{split}\]</div>
+<p>From the definition of the inner product, it can be shown that the entry in row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(k\)</span> of <span class="math notranslate nohighlight">\(\mathbf{AB}\)</span> is a sum of <span class="math notranslate nohighlight">\(N\)</span> products of corresponding entries of the rows of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the columns <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. Specifically:</p>
+<div class="math notranslate nohighlight">
+\[(\mathbf{AB})_{ik} = \mathbf{a}_i^T\mathbf{b}_k = \sum_{j=1}^N a_{ij}b_{jk}\]</div>
+</section>
+<section id="eigenvalues-and-eigenvectors">
+<h2>Eigenvalues and Eigenvectors<a class="headerlink" href="#eigenvalues-and-eigenvectors" title="Permalink to this heading">#</a></h2>
+<p>If a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is square (i.e. it an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix, having <span class="math notranslate nohighlight">\(N\)</span> rows and <span class="math notranslate nohighlight">\(N\)</span> columns), then it can be shown that <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has a set of <span class="math notranslate nohighlight">\(N\)</span> scalar values associated with it called <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvalues</em></a>. These eigenvalues (often denoted <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, ... \lambda_N\)</span>) are the values that satisfy the equation:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{Au} = \lambda\mathbf{u}\]</div>
+<p>for a certain set of vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>. These vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> that satisfy this equation for each eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvectors</em></a> associated with the eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span>. Although we will not give a rigorous summary of eigenvalues and eigenvectors here, we remark that these quantities play a significant role in many fields such as mathematics, statistics, and quantum mechanics.</p>
+</section>
+<section id="partial-derivatives">
+<h2>Partial Derivatives<a class="headerlink" href="#partial-derivatives" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(f(x_1, x_2, ..., x_N)\)</span> be a real scalar-valued function of <span class="math notranslate nohighlight">\(N\)</span> real variables. In this instance, we can equivalently think of <span class="math notranslate nohighlight">\(f\)</span> as a scalar function of an <span class="math notranslate nohighlight">\(N\)</span>-dimensional vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> in the vector space <span class="math notranslate nohighlight">\(\mathbb{R}^N\)</span>, that is, we write <span class="math notranslate nohighlight">\(f(\mathbf{x}) : \mathbb{R}^N \rightarrow \mathbb{R}\)</span>.</p>
+<p>For such a function <span class="math notranslate nohighlight">\(f\)</span>, the <em>partial derivative</em> of <span class="math notranslate nohighlight">\(f\)</span> with respect to a component <span class="math notranslate nohighlight">\(x_i\)</span> (written <span class="math notranslate nohighlight">\(\partial f/\partial x_i\)</span>) is defined as the derivative of <span class="math notranslate nohighlight">\(f\)</span> in the direction of the component <span class="math notranslate nohighlight">\(x_i\)</span>. Algebraically, we compute the partial derivative just like we compute single-variable derivatives, except for the fact that all other variables (<span class="math notranslate nohighlight">\(x_j\)</span> where <span class="math notranslate nohighlight">\(j \neq i\)</span>) are treated as constants such that <span class="math notranslate nohighlight">\(dx_j  / dx_i = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial f}{\partial x_i} \equiv \dfrac{d}{dx_i} \left[ f\right]_{x_{j \neq i} \text{ all constant }}\]</div>
+<p>Below, we give some examples of partial derivatives for functions of three dimensions where <span class="math notranslate nohighlight">\((x_1,x_2,x_3) = (x,y,z)\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x,y,z) = 3x + 4y + 2\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x} = 3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial y} = 4\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial z} = 0\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(f(x,y,z) = xy/z\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x} = y/z\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial y} = x/z\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial z} = -xy/z^2\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(f(x,y,z) = \sin(xyz)\)</span>:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x} = yz\cos(xyz)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial y} = xz\cos(xyz)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{\partial f}{\partial z} = xy\cos(xyz)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="gradient-of-scalar-valued-functions">
+<h2>Gradient of scalar-valued functions<a class="headerlink" href="#gradient-of-scalar-valued-functions" title="Permalink to this heading">#</a></h2>
+<p>For a scalar valued function of a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, that is, <span class="math notranslate nohighlight">\(f: \mathbb{R}^N \rightarrow \mathbb{R}\)</span>, we can compute a vector-valued function called the <em>gradient of <span class="math notranslate nohighlight">\(f\)</span></em>. The gradient of <span class="math notranslate nohighlight">\(f\)</span>, denoted by <span class="math notranslate nohighlight">\(\nabla f\)</span>, is the vector of partial derivatives of <span class="math notranslate nohighlight">\(f\)</span> with respect to each component of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} &amp; \frac{\partial f}{\partial x_2} &amp; \dots &amp; \frac{\partial f}{\partial x_N} \end{bmatrix}^T \]</div>
+<p>If we evaluate the gradient at a point <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> it results in a vector that “points” in the direction of the greatest increase of <span class="math notranslate nohighlight">\(f\)</span>. The magnitude of <span class="math notranslate nohighlight">\(\nabla f\)</span> corresponds to the slope of <span class="math notranslate nohighlight">\(f\)</span> in this direction of greatest increase.</p>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise 1: The Matrix Inverse<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">(TODO)</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise 2: Eigenvalues<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">(TODO)</p>
+</div>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -483,6 +751,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors">Vectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices">Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-operations">Matrix Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-inner-product">Vector Inner Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-vector-products">Matrix-Vector Products</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#systems-of-linear-equations">Systems of Linear Equations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-products">Matrix Products</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivatives">Partial Derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-of-scalar-valued-functions">Gradient of scalar-valued functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

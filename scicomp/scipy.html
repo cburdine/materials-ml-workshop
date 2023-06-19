@@ -449,7 +449,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-scipy-package">
 <h1>The Scipy Package<a class="headerlink" href="#the-scipy-package" title="Permalink to this heading">#</a></h1>
-<p>Scientific programming involves using computational tools and techniques to solve scientific and mathematical problems. The SciPy package in Python is a powerful library specifically designed for scientific and technical computing. It builds upon the foundation provided by NumPy and offers additional functionality for a wide range of scientific computations.</p>
+<p>Scientific computing often involves using domain-specific computational tools and techniques to solve certain mathematical problems. The SciPy package in Python is a powerful library specifically designed with scientific computing in mind. It builds upon the foundation provided by NumPy and offers additional functionality for solving some of the most common problems in various scientific domains, such as physics, statistics, and engineering.</p>
 <p>SciPy consists of various modules, each focusing on specific scientific computing tasks. Some of the key modules available in SciPy include:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">scipy.constants</span></code>: Provides physical and mathematical constants.</p></li>
@@ -506,7 +506,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="integration">
 <h1>Integration<a class="headerlink" href="#integration" title="Permalink to this heading">#</a></h1>
-<p>As we have shown previously, Scipy also has funcionality to integrate Python functions in the <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> subpackage. Integration is often necessary when computing various physical quantities, such as wave function inner products in quantum mechanics. For example, we can numerically evaluate the Gaussian integral</p>
+<p>As we have shown previously, Scipy can also numerically integrate Python functions in the <code class="docutils literal notranslate"><span class="pre">scipy.integrate</span></code> subpackage. Integration is often necessary when computing various physical quantities, such as wave function inner products in quantum mechanics. Integration is also used to simulate the trajectories of physical systems with respect to time. For example, we can numerically evaluate the Gaussian integral</p>
 <div class="math notranslate nohighlight">
 \[\int_{-\infty}^\infty e^{-x^2}\ dx = \sqrt{\pi}\]</div>
 <p>using the following code:</p>
@@ -543,11 +543,14 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="optimization">
 <h1>Optimization<a class="headerlink" href="#optimization" title="Permalink to this heading">#</a></h1>
-<p>In the <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> subpackage, Scipy provides functionality for function optimization (i.e. numerically solving for the minimum or maximum of a function) and curve fitting (fitting a 1D curve to data). Below, we give an example of using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit"><code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code></a> to fit a linear model to data:</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> subpackage, Scipy provides functionality for optimization (i.e. numerically solving for the minimum or maximum of a function) and curve fitting (fitting a curve function to data). Below, we give an example of using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit"><code class="docutils literal notranslate"><span class="pre">scipy.optimize.curve_fit</span></code></a> to fit a linear model to data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+
+<span class="c1"># seed random number generator:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># generate N datapoints that fit y = 10x + 3:</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
@@ -570,8 +573,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated a: 9.986558455620287 (should be close to 10.0)
-Estimated b: 3.2246338710603086 (should be close to 3.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated a: 9.970267300640108 (should be close to 10.0)
+Estimated b: 3.2084715345551156 (should be close to 3.0)
 </pre></div>
 </div>
 </div>

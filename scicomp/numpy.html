@@ -447,10 +447,10 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="the-numpy-package">
 <h1>The Numpy Package<a class="headerlink" href="#the-numpy-package" title="Permalink to this heading">#</a></h1>
 <p>Numpy, short for Numerical Python, is a fundamental package for scientific computing in Python. It provides efficient data structures and functions for working with multi-dimensional arrays and matrices. It also provides an interface to a large set of mathematical functions that can perform computations on arrays of data.</p>
-<p>Another key feature of Numpy is that it provides tools to interface with low-level languages like C and FORTRAN, making it much more efficient than raw Python code. if optimized correctly, code written in Numpy can execute almost as fast as code written in these low-level languages.</p>
+<p>Another key feature of Numpy is that it interfaces with low-level languages like C and FORTRAN, making it much more efficient than raw Python code. If optimized correctly, code written with Numpy can execute almost as fast as code written in these low-level languages.</p>
 <section id="numpy-arrays">
 <h2>Numpy Arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this heading">#</a></h2>
-<p>The most important feature of the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package is that is supports <em>array-based</em> programming, where data is organized into multi-dimensional arrays and matrices. To construct a numpy array, we call <code class="docutils literal notranslate"><span class="pre">np.array</span></code> on a Python list (or nested Python lists) as follows:</p>
+<p>The most important feature of the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package is that is supports <em>array-based</em> programming, where data is organized into multi-dimensional arrays and matrices. To construct a Numpy array, we call <code class="docutils literal notranslate"><span class="pre">np.array</span></code> on a Python list (or nested Python lists) as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -469,7 +469,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Numpy arrays are technically instances of the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> class, which has an instance variable <code class="docutils literal notranslate"><span class="pre">shape</span></code> that stores a tuple representing the shape of the array:</p>
+<p>Numpy arrays are technically instances of the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> class, which has an instance variable <code class="docutils literal notranslate"><span class="pre">shape</span></code> that stores a tuple representing the shape of the array. The length of <code class="docutils literal notranslate"><span class="pre">shape</span></code> corresponds to the number of dimensions of the array, while the product of the elements in <code class="docutils literal notranslate"><span class="pre">shape</span></code> corresponds to the total number of elements in the array:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a 1D array:</span>
@@ -499,7 +499,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>There is no bound on the number of dimensions that a Numpy array can have. When organizing data, sometimes it is necessary to change the shape of the array. This can be done with the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.reshape.html"><code class="docutils literal notranslate"><span class="pre">reshape</span></code></a> method:</p>
+<p>When organizing data, sometimes it is necessary to change the shape of the array. This can be done with the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.reshape.html"><code class="docutils literal notranslate"><span class="pre">reshape</span></code></a> method:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print original shape of X:</span>
@@ -560,17 +560,17 @@ X reshaped to (9,1):
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># construct a 3x3 identity (i.e. I or &quot;eye&quot;) matrix:</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
-<span class="c1"># construct a matrix of ones:</span>
+<span class="c1"># construct an array of ones:</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
 
-<span class="c1"># construct a matrix of zeros:</span>
+<span class="c1"># construct an array of zeros:</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)))</span>
 
-<span class="c1"># construct a matrix of 11 equally spaced points from 0 to 1:</span>
+<span class="c1"># construct an array of 11 equally spaced points from 0 to 1:</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<span class="c1"># construct a matrix of ones with the same shape as x:</span>
+<span class="c1"># construct an array of ones/zeros with the same shape as x:</span>
 <span class="n">x_ones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">x_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x_ones</span><span class="p">)</span>
@@ -670,7 +670,7 @@ After:
 </section>
 <section id="operations-on-numpy-arrays">
 <h2>Operations on Numpy Arrays<a class="headerlink" href="#operations-on-numpy-arrays" title="Permalink to this heading">#</a></h2>
-<p>When we apply mathematical operations (i.e. <code class="docutils literal notranslate"><span class="pre">+</span></code>,<code class="docutils literal notranslate"><span class="pre">-</span></code>,<code class="docutils literal notranslate"><span class="pre">*</span></code>, etc.) to numpy arrays with a compatible shape, the result is a numpy array where the operation is performed elementwise. For example:</p>
+<p>When we apply mathematical operations (i.e. <code class="docutils literal notranslate"><span class="pre">+</span></code>,<code class="docutils literal notranslate"><span class="pre">-</span></code>,<code class="docutils literal notranslate"><span class="pre">*</span></code>, etc.) to Numpy arrays with a compatible shape, the result is a Numpy array where the operation is performed elementwise. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
@@ -708,16 +708,50 @@ Scalar operations:
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In order for an operation to be applied to two numpy arrays, the <code class="docutils literal notranslate"><span class="pre">shape</span></code> of one array must be <em>broadcastable</em> to the other. Arrays with the same <code class="docutils literal notranslate"><span class="pre">shape</span></code> are always broadcastable. To learn more about what <em>broadcastable</em> means, see the <a class="reference external" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">Numpy tutorial on broadcasting</a>.</p>
+<p>In order for an operation to be applied to two Numpy arrays, the <code class="docutils literal notranslate"><span class="pre">shape</span></code> of one array must be <em>broadcastable</em> to the other. Arrays with the same <code class="docutils literal notranslate"><span class="pre">shape</span></code> are always broadcastable. To learn more about what <em>broadcastable</em> means, see the <a class="reference external" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">Numpy tutorial on broadcasting</a>.</p>
 </div>
 </section>
 <section id="reducing-operations">
 <h2>Reducing Operations:<a class="headerlink" href="#reducing-operations" title="Permalink to this heading">#</a></h2>
-<p>Numpy supports reduction operations such as <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code> and <code class="docutils literal notranslate"><span class="pre">sum</span></code>, which can be applied to an entire array or just along a specified dimension. For example:</p>
+<p>Numpy supports reduction operations such as <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code> and <code class="docutils literal notranslate"><span class="pre">sum</span></code>, which can be applied to all elements in an array or only along a specified dimension. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create example matrix:</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X array:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># compute the mean of all elements:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+<span class="c1"># compute the mean along each column:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># compute the sum along each row:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># compute the min/max values:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X array:
+[[0 1 2]
+ [3 4 5]
+ [6 7 8]]
+4.0
+[3. 4. 5.]
+[ 3 12 21]
+0 8
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="matrix-operations">
 <h2>Matrix Operations<a class="headerlink" href="#matrix-operations" title="Permalink to this heading">#</a></h2>
-<p>For 2D numpy array that represents a <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">matrix</a>, numpy also supports many different operations in its <code class="docutils literal notranslate"><span class="pre">linalg</span></code> package. For example:</p>
+<p>For 2D Numpy array that represents a <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">matrix</a>, Numpy also supports many different operations in its <code class="docutils literal notranslate"><span class="pre">linalg</span></code> package. For example:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate a matrix:</span>
@@ -924,13 +958,13 @@ Exercise 2: Eigendecomposition:<div class="sd-summary-down docutils">
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A:
-[[-0.65677606  0.12801112 -0.99284379  0.18979856]
- [ 0.64959556  0.7316306  -0.97095335 -0.42473696]
- [-1.51502551 -0.49867678  1.70186929  1.18498004]
- [-0.71058837 -0.19722402  0.77345607 -0.49336461]]
-b: [-0.75757374  0.62172652 -0.19620337 -0.84789373]
-x: [0.87398966 1.1389087  0.47491873 0.74905141]
-Ax: [-0.75757374  0.62172652 -0.19620337 -0.84789373]
+[[ 0.33340319 -0.43369126 -0.70596123  0.5598148 ]
+ [-0.88845592 -0.30740346 -0.44836479  1.06908824]
+ [-0.06900785  0.28863294 -0.0268499  -0.65523372]
+ [-0.1498896  -0.80038239  1.69774599  0.3600575 ]]
+b: [-1.22772561  1.53991147 -0.72818389 -1.37265974]
+x: [0.02882073 5.64083868 1.10087405 3.54799892]
+Ax: [-1.22772561  1.53991147 -0.72818389 -1.37265974]
 </pre></div>
 </div>
 </div>
