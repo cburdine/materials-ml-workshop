@@ -23,7 +23,7 @@ Machine learning encompasses a wide range of techniques, but can generally be ca
 
 ### Supervised Learning: 
 
-In supervised learning, a predictive model is provided with a labeled dataset, where each data point is associated with a corresponding target or outcome variable. The goal is for the model to "learn" a function that can map input features to the correct output labels. This type of learning is commonly used for tasks such as classification (where the model categorizes data into predefined classes) and regression (where the model predicts a continuous numerical value) Supervised learning relies on the availability of labeled data which is usef to fit the model. The success of supervised learning depends on the quality and representativeness of the labeled examples provided.
+In supervised learning, a predictive model is provided with a labeled dataset, where each data point is associated with a corresponding target or outcome variable. The goal is for the model to "learn" a function that can map input features to the correct output labels. This type of learning is commonly used for tasks such as classification (where the model categorizes data into predefined classes) and regression (where the model predicts a continuous numerical value) Supervised learning relies on the availability of labeled data which is used to fit the model. The success of supervised learning depends on the quality and representativeness of the labeled examples provided.
 
 ### Unsupervised Learning:
 
@@ -31,7 +31,7 @@ Unsupervised learning, in contrast, deals with unlabeled data. Typically a compu
 
 ### Reinforcement Learning:
 
-Reinforcement learning involves an agent learning to interact with an environment in order to maximize its cumulative rewards. The agent takes actions in the environment and receives feedback or rewards based on its actions. The goal is to learn an optimal strategy or policy that maximizes the total expected reward over time. Reinforcement learning is often applied in sequential decision-making tasks, such as game playing or autonomous robotics, or sequential design problems. Through a trial-and-error process, the agent learns to navigate the environment and adapt its actions based on the received rewards and penalties. Reinforcement learning requires careful design of reward systems, exploration-exploitation trade-offs, and can involve complex optimization algorithms.
+Reinforcement learning involves an agent learning to interact with an environment in order to maximize its cumulative rewards. The agent takes actions in the environment and receives feedback or rewards based on its actions. The goal is to learn an optimal strategy or policy that maximizes the total expected reward over time. Reinforcement learning is often applied in sequential decision-making tasks, such as game playing, autonomous robotics, or sequential design problems. Through a trial-and-error process, the agent learns to navigate the environment and adapt its actions based on the received rewards and penalties. Reinforcement learning requires careful design of reward systems, exploration-exploitation trade-offs, and can involve complex optimization algorithms.
 
 In this workshop, we will focus primarily on the first two types of machine learning, namely _supervised learning_ and _unsupervised learning_. We will not cover reinforcement learning, as its applications tend to be very domain-specific in materials science.
 

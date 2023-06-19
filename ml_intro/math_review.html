@@ -456,16 +456,20 @@ document.write(`
 <li><p>Matrix Multiplication</p></li>
 <li><p>Eigenvalues and Eigenvectors</p></li>
 <li><p>Partial Derivatives</p></li>
-<li><p>Gradient of scalar-valued functions</p></li>
+<li><p>Gradient of Scalar-Valued Functions</p></li>
 </ul>
+<p>If you are already familiar with these concepts, feel free to skip this section or to only read the sections you need to review.</p>
 <section id="vectors">
 <h2>Vectors<a class="headerlink" href="#vectors" title="Permalink to this heading">#</a></h2>
-<p>A vector is a mathematical object with both direction and magnitude. Typically, we represent vectors as an ordered list of scalar values, where each scalar corresponds to the magnitude in a specified direction (i.e. the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> directions). We typically write these scalar components as a column of numbers in square brackets. For example, the vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> with components in the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> direction takes the form:</p>
+<p>A <em>vector</em> is a mathematical object with both direction and magnitude. Typically, we represent vectors as an ordered list of scalar values, where each scalar corresponds to the magnitude in a specified direction (i.e. the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> directions). We typically write these scalar components as a column of numbers in square brackets. For example, the vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> with components in the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> direction takes the form:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{a} = \begin{bmatrix} a_x \\ a_y \\ a_z \end{bmatrix}\end{split}\]</div>
-<p>For higher dimensions, we typically assign a number to each dimensional component:</p>
+<p>For higher dimensions, we typically assign a number to each dimensional component, ranging from <span class="math notranslate nohighlight">\(1\)</span> to the number of dimensions <span class="math notranslate nohighlight">\(N\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix}\end{split}\]</div>
+\[\begin{split}\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_N \end{bmatrix}\end{split}\]</div>
+<p>The <em>magnitude</em> of a vector (also called the <em>Euclidean norm</em>, or <em><span class="math notranslate nohighlight">\(\ell^2\)</span> norm</em>) is given by:</p>
+<div class="math notranslate nohighlight">
+\[\lVert \mathbf{a} \rVert = \sqrt{a_1^2 + a_2^2 + \dots + a_N^2}\]</div>
 </section>
 <section id="matrices">
 <h2>Matrices<a class="headerlink" href="#matrices" title="Permalink to this heading">#</a></h2>
@@ -630,7 +634,7 @@ b_1 \\ b_2 \\ \vdots \\ x_M
 <p>If a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is square (i.e. it an <span class="math notranslate nohighlight">\(N \times N\)</span> matrix, having <span class="math notranslate nohighlight">\(N\)</span> rows and <span class="math notranslate nohighlight">\(N\)</span> columns), then it can be shown that <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has a set of <span class="math notranslate nohighlight">\(N\)</span> scalar values associated with it called <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvalues</em></a>. These eigenvalues (often denoted <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2, ... \lambda_N\)</span>) are the values that satisfy the equation:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{Au} = \lambda\mathbf{u}\]</div>
-<p>for a certain set of vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>. These vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> that satisfy this equation for each eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvectors</em></a> associated with the eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span>. Although we will not give a rigorous summary of eigenvalues and eigenvectors here, we remark that these quantities play a significant role in many fields such as mathematics, statistics, and quantum mechanics.</p>
+<p>for a certain set of vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>. The vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> that satisfy this equation for an eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvectors</em></a> associated with the eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span>. Although we will not give a rigorous summary of eigenvalues and eigenvectors here, we remark that these quantities play a significant role in many fields such as mathematics, statistics, and quantum mechanics.</p>
 </section>
 <section id="partial-derivatives">
 <h2>Partial Derivatives<a class="headerlink" href="#partial-derivatives" title="Permalink to this heading">#</a></h2>

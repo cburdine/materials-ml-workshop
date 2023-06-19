@@ -10,17 +10,23 @@ In this section, we will do a brief review of the following concepts from linear
 * Matrix Multiplication
 * Eigenvalues and Eigenvectors
 * Partial Derivatives
-* Gradient of scalar-valued functions
+* Gradient of Scalar-Valued Functions
+
+If you are already familiar with these concepts, feel free to skip this section or to only read the sections you need to review.
 
 ## Vectors
 
-A vector is a mathematical object with both direction and magnitude. Typically, we represent vectors as an ordered list of scalar values, where each scalar corresponds to the magnitude in a specified direction (i.e. the $x$, $y$, and $z$ directions). We typically write these scalar components as a column of numbers in square brackets. For example, the vector $\mathbf{a}$ with components in the $x$, $y$, and $z$ direction takes the form:
+A _vector_ is a mathematical object with both direction and magnitude. Typically, we represent vectors as an ordered list of scalar values, where each scalar corresponds to the magnitude in a specified direction (i.e. the $x$, $y$, and $z$ directions). We typically write these scalar components as a column of numbers in square brackets. For example, the vector $\mathbf{a}$ with components in the $x$, $y$, and $z$ direction takes the form:
 
 $$\mathbf{a} = \begin{bmatrix} a_x \\ a_y \\ a_z \end{bmatrix}$$
 
-For higher dimensions, we typically assign a number to each dimensional component:
+For higher dimensions, we typically assign a number to each dimensional component, ranging from $1$ to the number of dimensions $N$:
 
-$$\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix}$$
+$$\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_N \end{bmatrix}$$
+
+The _magnitude_ of a vector (also called the _Euclidean norm_, or _$\ell^2$ norm_) is given by:
+
+$$\lVert \mathbf{a} \rVert = \sqrt{a_1^2 + a_2^2 + \dots + a_N^2}$$
 
 ## Matrices
 
@@ -200,7 +206,7 @@ If a matrix $\mathbf{A}$ is square (i.e. it an $N \times N$ matrix, having $N$ r
 
 $$\mathbf{Au} = \lambda\mathbf{u}$$
 
-for a certain set of vectors $\mathbf{u}$. These vectors $\mathbf{u}$ that satisfy this equation for each eigenvalue $\lambda_i$ are the [_eigenvectors_](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) associated with the eigenvalue $\lambda_i$. Although we will not give a rigorous summary of eigenvalues and eigenvectors here, we remark that these quantities play a significant role in many fields such as mathematics, statistics, and quantum mechanics.
+for a certain set of vectors $\mathbf{u}$. The vectors $\mathbf{u}$ that satisfy this equation for an eigenvalue $\lambda_i$ are the [_eigenvectors_](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) associated with the eigenvalue $\lambda_i$. Although we will not give a rigorous summary of eigenvalues and eigenvectors here, we remark that these quantities play a significant role in many fields such as mathematics, statistics, and quantum mechanics.
 
 ## Partial Derivatives
 

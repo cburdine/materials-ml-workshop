@@ -212,6 +212,10 @@ print(A.T)
 print(np.linalg.inv(X))
 ```
 
+:::{important}
+If you are in need of a review of matrices, vectors, and other linear algebra content, see the {doc}`../ml_intro/math_review` Section.
+:::
+
 We can also compute matrix-matrix products, matrix-vector products, and vector-vector products with the reserved `@` operator:
 
 ```{code-cell}
