@@ -89,7 +89,7 @@ person = {
     'name' : 'John von Neumann',
     'age' : 53,
     'occupation' : 'Mathematician',
-    'birthday' : ('December ', 28, 1903)
+    'birthday' : ('December', 28, 1903)
 }
 
 # print the dictionary:
