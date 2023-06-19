@@ -1,3 +1,13 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
 # Mathematics Review
 
 In this section, we will do a brief review of the following concepts from linear algebra and multivariate calculus:
@@ -153,7 +163,7 @@ a_{M1} & a_{M2} & \dots  & a_{MN}
 \end{bmatrix}\begin{bmatrix}
 x_1 \\ x_2 \\ \vdots \\ x_N
 \end{bmatrix} = \begin{bmatrix}
-b_1 \\ b_2 \\ \vdots \\ x_M
+b_1 \\ b_2 \\ \vdots \\ b_M
 \end{bmatrix}\mathbf{Ax} = \mathbf{b}$$
 
 Depending on the entries of $\mathbf{A}$ and $\mathbf{b}$, the equation $\mathbf{Ax} = \mathbf{b}$ may have no solution, a unique solution, or infinitely many solutions. In the special case where the number of equations equals the number of variables (i.e. $N = M$), then it can be shown that a unique solution $\mathbf{x}$ exists for this system if and only if a quantity called the [_determinant_ of $\mathbf{A}$](https://en.wikipedia.org/wiki/Determinant) (denoted $\det(\mathbf{A})$) is non-zero. If $\det(\mathbf{A}) \neq 0$, then the unique solution to $\mathbf{Ax} = \mathbf{b}$ is given by the matrix-vector product ($\mathbf{A}^{-1})\mathbf{b}$, where $\mathbf{A}^{-1}$ is a matrix that is called the [_inverse_](https://en.wikipedia.org/wiki/Invertible_matrix) of $\mathbf{A}$.
@@ -208,6 +218,10 @@ $$\mathbf{Au} = \lambda\mathbf{u}$$
 
 for a certain set of vectors $\mathbf{u}$. The vectors $\mathbf{u}$ that satisfy this equation for an eigenvalue $\lambda_i$ are the [_eigenvectors_](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) associated with the eigenvalue $\lambda_i$. Although we will not give a rigorous summary of eigenvalues and eigenvectors here, we remark that these quantities play a significant role in many fields such as mathematics, statistics, and quantum mechanics.
 
+:::{note}
+The prefix _eigen_ is adopted from the [German word _eigen_](https://en.wiktionary.org/wiki/eigen#German), meaning "own", "peculiar to", "private to", "idiosyncratic" or "proprietary".
+:::
+
 ## Partial Derivatives
 
 Let $f(x_1, x_2, ..., x_N)$ be a real scalar-valued function of $N$ real variables. In this instance, we can equivalently think of $f$ as a scalar function of an $N$-dimensional vector $\mathbf{x}$ in the vector space $\mathbb{R}^N$, that is, we write $f(\mathbf{x}) : \mathbb{R}^N \rightarrow \mathbb{R}$.
@@ -239,14 +253,82 @@ For a scalar valued function of a vector $\mathbf{x}$, that is, $f: \mathbb{R}^N
 
 $$ \nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} & \frac{\partial f}{\partial x_2} & \dots & \frac{\partial f}{\partial x_N} \end{bmatrix}^T $$
 
-If we evaluate the gradient at a point $\mathbf{x}$ it results in a vector that "points" in the direction of the greatest increase of $f$. The magnitude of $\nabla f$ corresponds to the slope of $f$ in this direction of greatest increase.
+If we evaluate the gradient at a point $\mathbf{x}$ it results in a vector that "points" in the direction of the greatest increase of $f$. The magnitude of $\nabla f$ (i.e. $\lVert \nabla f \rVert$) corresponds to the slope of $f$ in this direction of greatest increase.
 
 ## Exercises
 
 :::{dropdown} Exercise 1: The Matrix Inverse
-(TODO)
+The inverse of a matrix satisfies the identity 
+
+$$\mathbf{A}\mathbf{A}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}.$$
+
+Using the `numpy` package, verify that this relation holds for the following matrix `A`:
+```
+A = np.array([
+    [1,  2,  3 ],
+    [5,  7,  11],
+    [13, 17, 19]
+])
+```
 :::
 
 :::{dropdown} Exercise 2: Eigenvalues
-(TODO)
+The eigenvalues of a matrix $\mathbf{A}$ can be obtained by solving the equation:
+
+$$\det(\mathbf{A} - \lambda\mathbf{I}) = 0$$
+
+Verify that this identity (approximately) holds for all of the eigenvalues of the matrix `A` from Exercise 1. To obtain the eigenvalues $\lambda$ of `A`, use [`np.linalg.eigvals`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvals.html). To compute the determinant of $\mathbf{A} - \lambda\mathbf{I}$, use [`np.linalg.det`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.det.html).
 :::
+
+### Solutions
+
+#### Exercise 1: The Matrix Inverse
+
+```{code-cell}
+:tags: [hide-cell]
+import numpy as np
+
+# initialize A:
+A = np.array([
+    [1,  2,  3 ],
+    [5,  7,  11],
+    [13, 17, 19]
+])
+
+# compute the inverse of A:
+A_inv = np.linalg.inv(A)
+
+# verify the identity holds:
+print('A @ A^(-1):')
+print(A @ A_inv)
+
+print('A^(-1) @ A:')
+print(A_inv @ A)
+```
+
+#### Exercise 2: Eigenvalues
+
+```{code-cell}
+:tags: [hide-cell]
+import numpy as np
+
+# initialize A:
+A = np.array([
+    [1,  2,  3 ],
+    [5,  7,  11],
+    [13, 17, 19]
+])
+
+# construct identity matrix:
+I = np.eye(A.shape[0])
+
+# obtain the eigenvalues of A:
+A_eigs = np.linalg.eigvals(A)
+
+# verify the identity holds for each eigenvalue:
+for eigval in A_eigs:
+    print('λ:', eigval)
+    
+    eigval_det = np.linalg.det(A - eigval*I)
+    print('   det(A - λI):', eigval_det)
+```

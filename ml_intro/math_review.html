@@ -432,7 +432,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivatives">Partial Derivatives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-of-scalar-valued-functions">Gradient of scalar-valued functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-the-matrix-inverse">Exercise 1: The Matrix Inverse</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-eigenvalues">Exercise 2: Eigenvalues</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -587,7 +594,7 @@ a_{M1} &amp; a_{M2} &amp; \dots  &amp; a_{MN}
 \end{bmatrix}\begin{bmatrix}
 x_1 \\ x_2 \\ \vdots \\ x_N
 \end{bmatrix} = \begin{bmatrix}
-b_1 \\ b_2 \\ \vdots \\ x_M
+b_1 \\ b_2 \\ \vdots \\ b_M
 \end{bmatrix}\mathbf{Ax} = \mathbf{b}\end{split}\]</div>
 <p>Depending on the entries of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, the equation <span class="math notranslate nohighlight">\(\mathbf{Ax} = \mathbf{b}\)</span> may have no solution, a unique solution, or infinitely many solutions. In the special case where the number of equations equals the number of variables (i.e. <span class="math notranslate nohighlight">\(N = M\)</span>), then it can be shown that a unique solution <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> exists for this system if and only if a quantity called the <a class="reference external" href="https://en.wikipedia.org/wiki/Determinant"><em>determinant</em> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span></a> (denoted <span class="math notranslate nohighlight">\(\det(\mathbf{A})\)</span>) is non-zero. If <span class="math notranslate nohighlight">\(\det(\mathbf{A}) \neq 0\)</span>, then the unique solution to <span class="math notranslate nohighlight">\(\mathbf{Ax} = \mathbf{b}\)</span> is given by the matrix-vector product (<span class="math notranslate nohighlight">\(\mathbf{A}^{-1})\mathbf{b}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> is a matrix that is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Invertible_matrix"><em>inverse</em></a> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
 <p>The inverse matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> does not have a closed form solution (at least, not one that is easy to compute by hand), but there are ways of computing it numerically (for example, the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> Python package has the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.inv.html"><code class="docutils literal notranslate"><span class="pre">np.linalg.inv</span></code></a> subroutine).</p>
@@ -635,6 +642,10 @@ b_1 \\ b_2 \\ \vdots \\ x_M
 <div class="math notranslate nohighlight">
 \[\mathbf{Au} = \lambda\mathbf{u}\]</div>
 <p>for a certain set of vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>. The vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> that satisfy this equation for an eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors"><em>eigenvectors</em></a> associated with the eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span>. Although we will not give a rigorous summary of eigenvalues and eigenvectors here, we remark that these quantities play a significant role in many fields such as mathematics, statistics, and quantum mechanics.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The prefix <em>eigen</em> is adopted from the <a class="reference external" href="https://en.wiktionary.org/wiki/eigen#German">German word <em>eigen</em></a>, meaning “own”, “peculiar to”, “private to”, “idiosyncratic” or “proprietary”.</p>
+</div>
 </section>
 <section id="partial-derivatives">
 <h2>Partial Derivatives<a class="headerlink" href="#partial-derivatives" title="Permalink to this heading">#</a></h2>
@@ -672,7 +683,7 @@ b_1 \\ b_2 \\ \vdots \\ x_M
 <p>For a scalar valued function of a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, that is, <span class="math notranslate nohighlight">\(f: \mathbb{R}^N \rightarrow \mathbb{R}\)</span>, we can compute a vector-valued function called the <em>gradient of <span class="math notranslate nohighlight">\(f\)</span></em>. The gradient of <span class="math notranslate nohighlight">\(f\)</span>, denoted by <span class="math notranslate nohighlight">\(\nabla f\)</span>, is the vector of partial derivatives of <span class="math notranslate nohighlight">\(f\)</span> with respect to each component of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} &amp; \frac{\partial f}{\partial x_2} &amp; \dots &amp; \frac{\partial f}{\partial x_N} \end{bmatrix}^T \]</div>
-<p>If we evaluate the gradient at a point <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> it results in a vector that “points” in the direction of the greatest increase of <span class="math notranslate nohighlight">\(f\)</span>. The magnitude of <span class="math notranslate nohighlight">\(\nabla f\)</span> corresponds to the slope of <span class="math notranslate nohighlight">\(f\)</span> in this direction of greatest increase.</p>
+<p>If we evaluate the gradient at a point <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> it results in a vector that “points” in the direction of the greatest increase of <span class="math notranslate nohighlight">\(f\)</span>. The magnitude of <span class="math notranslate nohighlight">\(\nabla f\)</span> (i.e. <span class="math notranslate nohighlight">\(\lVert \nabla f \rVert\)</span>) corresponds to the slope of <span class="math notranslate nohighlight">\(f\)</span> in this direction of greatest increase.</p>
 </section>
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
@@ -683,7 +694,17 @@ Exercise 1: The Matrix Inverse<div class="sd-summary-down docutils">
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">(TODO)</p>
+<p class="sd-card-text">The inverse of a matrix satisfies the identity</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}\mathbf{A}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}.\]</div>
+<p class="sd-card-text">Using the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package, verify that this relation holds for the following matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span> <span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">11</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="p">])</span>
+</pre></div>
+</div>
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -692,9 +713,106 @@ Exercise 2: Eigenvalues<div class="sd-summary-down docutils">
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">(TODO)</p>
+<p class="sd-card-text">The eigenvalues of a matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> can be obtained by solving the equation:</p>
+<div class="math notranslate nohighlight">
+\[\det(\mathbf{A} - \lambda\mathbf{I}) = 0\]</div>
+<p class="sd-card-text">Verify that this identity (approximately) holds for all of the eigenvalues of the matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> from Exercise 1. To obtain the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of <code class="docutils literal notranslate"><span class="pre">A</span></code>, use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvals.html"><code class="docutils literal notranslate"><span class="pre">np.linalg.eigvals</span></code></a>. To compute the determinant of <span class="math notranslate nohighlight">\(\mathbf{A} - \lambda\mathbf{I}\)</span>, use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.det.html"><code class="docutils literal notranslate"><span class="pre">np.linalg.det</span></code></a>.</p>
 </div>
-</details></section>
+</details><section id="solutions">
+<h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1-the-matrix-inverse">
+<h4>Exercise 1: The Matrix Inverse<a class="headerlink" href="#exercise-1-the-matrix-inverse" title="Permalink to this heading">#</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># initialize A:</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span> <span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">11</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># compute the inverse of A:</span>
+<span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># verify the identity holds:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A @ A^(-1):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">A_inv</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A^(-1) @ A:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_inv</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A @ A^(-1):
+[[ 1.00000000e+00 -5.55111512e-17 -2.77555756e-17]
+ [ 2.77555756e-17  1.00000000e+00  8.32667268e-17]
+ [-2.41473508e-15  3.88578059e-16  1.00000000e+00]]
+A^(-1) @ A:
+[[ 1.00000000e+00  2.16493490e-15  2.27595720e-15]
+ [-9.71445147e-16  1.00000000e+00 -1.24900090e-15]
+ [ 1.38777878e-16  4.71844785e-16  1.00000000e+00]]
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="exercise-2-eigenvalues">
+<h4>Exercise 2: Eigenvalues<a class="headerlink" href="#exercise-2-eigenvalues" title="Permalink to this heading">#</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># initialize A:</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span> <span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">11</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># construct identity matrix:</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># obtain the eigenvalues of A:</span>
+<span class="n">A_eigs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># verify the identity holds for each eigenvalue:</span>
+<span class="k">for</span> <span class="n">eigval</span> <span class="ow">in</span> <span class="n">A_eigs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;λ:&#39;</span><span class="p">,</span> <span class="n">eigval</span><span class="p">)</span>
+    
+    <span class="n">eigval_det</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">eigval</span><span class="o">*</span><span class="n">I</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;   det(A - λI):&#39;</span><span class="p">,</span> <span class="n">eigval_det</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>λ: 29.626378666116207
+   det(A - λI): -2.039045040139552e-11
+λ: -0.35695853377882314
+   det(A - λI): 4.7253138908963555e-14
+λ: -2.269420132337364
+   det(A - λI): 1.5766260173138156e-14
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -776,7 +894,14 @@ Exercise 2: Eigenvalues<div class="sd-summary-down docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors">Eigenvalues and Eigenvectors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivatives">Partial Derivatives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-of-scalar-valued-functions">Gradient of scalar-valued functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-the-matrix-inverse">Exercise 1: The Matrix Inverse</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-eigenvalues">Exercise 2: Eigenvalues</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
