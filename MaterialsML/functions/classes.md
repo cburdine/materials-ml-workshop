@@ -146,7 +146,7 @@ my_dog.do_tricks()
 There are some special methods in Python that can define class behaviors for built-in Python operations (such as the `==` operator), and functions (such as `print`). 
 
 ```
-def __repr__(self):
+def __str__(self):
     """ 
         Returns a string that is printed when print() is
         called on an object of this class
