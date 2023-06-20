@@ -828,7 +828,7 @@ Download the dataset and put the <code class="docutils literal notranslate"><spa
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;-&#39;, &#39;cubic&#39;, &#39;rhombohedral&#39;, &#39;orthorhombic&#39;, &#39;tetragonal&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;-&#39;, &#39;rhombohedral&#39;, &#39;orthorhombic&#39;, &#39;tetragonal&#39;, &#39;cubic&#39;]
 </pre></div>
 </div>
 </div>
@@ -861,7 +861,7 @@ Download the dataset and put the <code class="docutils literal notranslate"><spa
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/19c6ce57d96211847bdeb5f14b61b4293becaa0041bad4f7a13f323f0aeac4f3.png" src="../_images/19c6ce57d96211847bdeb5f14b61b4293becaa0041bad4f7a13f323f0aeac4f3.png" />
+<img alt="../_images/8e21669481df3a54af06a62ddf6e4a334d48e066ea36be2f175672af2249c775.png" src="../_images/8e21669481df3a54af06a62ddf6e4a334d48e066ea36be2f175672af2249c775.png" />
 </div>
 </div>
 <p>As expected, a majority of the perovskites have the ideal cubic structure.</p>
@@ -1005,6 +1005,13 @@ Shape of z_test: (533, 3)
 </section>
 <section id="the-perceptron-linear-classification-model">
 <h2>The Perceptron (Linear Classification) Model<a class="headerlink" href="#the-perceptron-linear-classification-model" title="Permalink to this heading">#</a></h2>
+<p>One of the simplest binary (i.e. two-class) classification models is a <em>linear classifier</em> model, historically referred to as a <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron"><em>Perceptron</em></a> model.</p>
+<p>For a feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with <span class="math notranslate nohighlight">\(N\)</span> features, a linear classifier model <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> makes “0” and “1” class predictions according to the equation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(\mathbf{x}) = \begin{cases}
+1, &amp; w_0 + \sum_{i=1}^N w_ix_i &gt; 0 \\
+0, &amp; \text{ otherwise}
+\end{cases}\end{split}\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1030,8 +1037,8 @@ Shape of z_test: (533, 3)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.5629838142153413
-validation set accuracy: 0.5647279549718575
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.6263194933145672
+validation set accuracy: 0.6416510318949343
 </pre></div>
 </div>
 </div>
@@ -1064,8 +1071,8 @@ validation set accuracy: 0.5647279549718575
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8627726952850105
-validation set accuracy: 0.774859287054409
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8644147314098053
+validation set accuracy: 0.7654784240150094
 </pre></div>
 </div>
 </div>
@@ -1110,7 +1117,7 @@ validation set accuracy: 0.774859287054409
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/9d0185bf3eaaeb72b10ac889d7a80c3795516f6a31963f673b15171023867979.png" src="../_images/9d0185bf3eaaeb72b10ac889d7a80c3795516f6a31963f673b15171023867979.png" />
+<img alt="../_images/286d7b539f65dddef42a091acd1fb04af62039dc05e7c39357a722808f06548b.png" src="../_images/286d7b539f65dddef42a091acd1fb04af62039dc05e7c39357a722808f06548b.png" />
 </div>
 </div>
 </section>

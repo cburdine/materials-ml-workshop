@@ -223,6 +223,15 @@ print('Shape of z_test:',z_test.shape)
 
 ## The Perceptron (Linear Classification) Model
 
+One of the simplest binary (i.e. two-class) classification models is a _linear classifier_ model, historically referred to as a [_Perceptron_](https://en.wikipedia.org/wiki/Perceptron) model.
+
+For a feature vector $\mathbf{x}$ with $N$ features, a linear classifier model $f(\mathbf{x})$ makes "0" and "1" class predictions according to the equation:
+
+$$f(\mathbf{x}) = \begin{cases}
+1, & w_0 + \sum_{i=1}^N w_ix_i > 0 \\
+0, & \text{ otherwise}
+\end{cases}$$
+
 ```{code-cell}
 :tags: [hide-input]
 
