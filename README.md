@@ -34,7 +34,7 @@ inside this directory. if Make is not installed, you can run the command:
 jupyter-book build MaterialsML/
 ```
 
-Either of these commands will build the site using data cached from previous builds, if available. To completely rebuild the site from scratch, you can run `make buildall`.
+Either of these commands will build the site using data cached from previous builds, if available. To completely rebuild the site from scratch, you can run `make fullbuild`.
 
 Once you build the site, you can view it locally by opening `MaterialsML/_build/html/index.html` with your web browser.
 
