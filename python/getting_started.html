@@ -461,17 +461,17 @@ document.write(`
 </section>
 <section id="python-packages">
 <h2>Python Packages<a class="headerlink" href="#python-packages" title="Permalink to this heading">#</a></h2>
-<p>Although the core Python language supports several different data types, many of the features that we will be using in this workshop will come from <em>python packages</em>. Python packages are a convenient way for members of the Python community to share Python code that was written to solve a specific problem or that may provide additional code functionality in a specific setting. The avaliability of many different Python packages and the ease of installing them is what makes Python a powerful research tool. Some Python packages that are widely used in scientific computing are:</p>
+<p>Although the core Python language supports several different data types, many of the features that we will be using in this workshop will come from <em>python packages</em>. Python packages are a convenient way for members of the Python community to share Python code that was written to solve a specific problem or that may provide additional code functionality in a specific setting. The availability of many different Python packages and the ease of installing them is what makes Python a powerful research tool. Some Python packages that are widely used in scientific computing are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>: An interface to fast mathematical and numerical functions in python, such as arrays, matrices, and common mathematial functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code>: An interface to fast mathematical and numerical functions in python, such as arrays, matrices, and common mathematical functions.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">scipy</span></code>: Contains functions commonly used in the analysis of scientific data.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>: A MATLAB-like interface to plotting and visualizing data in a variety of formats. This package is widely used to create publication-quality figures and plots.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>: Used for reading, writing, and manipulating datasets. This package is increasingly being used as an alternative to Microsoft Excel for working with data in Python.</p></li>
 </ul>
-<p>So, how can we use these powerful packages? The Python language comes with an easy-to-use package manager, called <a class="reference external" href="https://pip.pypa.io/en/stable/">“pip” (Package Installer for Python)</a>. Using pip, we can easily install, manage, update, and uninstall packages in our python environment.</p>
+<p>So, how can we use these powerful packages? The Python language comes with an easy-to-use package manager, called <a class="reference external" href="https://pip.pypa.io/en/stable/">&quot;pip&quot; (Package Installer for Python)</a>. Using pip, we can easily install, manage, update, and uninstall packages in our python environment.</p>
 <section id="installing-packages">
 <h3>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this heading">#</a></h3>
-<p>First, let’s try to install the latest version of the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program “Command Prompt” (Windows) or “Terminal” (MacOS, Linux). After running the program, you should see a prompt where you can type in commands.</p>
+<p>First, let's try to install the latest version of the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program &quot;Command Prompt&quot; (Windows) or &quot;Terminal&quot; (MacOS, Linux). After running the program, you should see a prompt where you can type in commands.</p>
 <p>Type the following command into the terminal and hit Enter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
@@ -481,7 +481,7 @@ document.write(`
 <p class="admonition-title">Important</p>
 <p>On some systems, such as Linux and Mac OS, you may need to instead use the command  <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code>. where <code class="docutils literal notranslate"><span class="pre">&lt;package&gt;</span></code> is the name of the package you want to install. If you are using Anaconda and installing the package with pip does not work, you can try installing it with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">&lt;package&gt;</span></code>.</p>
 </div>
-<p>Note that if you are using Google Colab, several of the most commonly used packages (such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter notebooks also, but it should only be used as a last resort. See the dropdown block below for more details:</p>
+<p>Note that if you are using Google Colab, several of the most commonly used packages (such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter notebooks also, but it should only be used as a last resort. See the block below for more details:</p>
 <div class="important dropdown admonition">
 <p class="admonition-title">Installing packages inside Google Colab</p>
 <p>If you are using Google Colab, many packages will already be installed for you.</p>
@@ -493,13 +493,13 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install &lt;package&gt;
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">!</span></code> at the beginning of the line tells the notebook to run the line as a shell commmand. Be careful when using shell commands within the notebook, since the syntax of these commands may vary from system to system. Only execute shell commands from trusted sources.</p>
-<p>Here’s an example of installing the <a class="reference external" href="https://materialsproject.org/api">Materials Project client</a> package (<code class="docutils literal notranslate"><span class="pre">mp-api</span></code>), which has the Python alias <code class="docutils literal notranslate"><span class="pre">mp_api</span></code>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">!</span></code> at the beginning of the line tells the notebook to run the line as a shell command. Be careful when using shell commands within the notebook, since the syntax of these commands may vary from system to system. Only execute shell commands from trusted sources.</p>
+<p>Here's an example of installing the <a class="reference external" href="https://materialsproject.org/api">Materials Project client</a> package (<code class="docutils literal notranslate"><span class="pre">mp-api</span></code>), which has the Python alias <code class="docutils literal notranslate"><span class="pre">mp_api</span></code>:</p>
 <p><img alt="" src="../_images/colab_install_example.png" /></p>
 </div>
-<p>Now that you we installed numpy, let’s try to install some other important packages we need for this workshop. To do this, we will install the rest of the packages from a <em>requirements file</em>. A Python requirements file (typically called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>) is a file that lists all of the packages a project depends on. The packages a project depends on are usually called <em>dependencies</em>. For this workshop, we will use the following requirements file:</p>
+<p>Now that you we installed numpy, let's try to install some other important packages we need for this workshop. To do this, we will install the rest of the packages from a <em>requirements file</em>. A Python requirements file (typically called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>) is a file that lists all of the packages a project depends on. The packages a project depends on are usually called <em>dependencies</em>. For this workshop, we will use the following requirements file:</p>
 <script src="https://gist.github.com/cburdine/cae13221fb0e1d134d88a25f01498c67.js"></script>
-<p>Note that this is just a text file listing each Python dependency, one per line. Many Python projects will contain <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file in order to list all of the project dependencies. If you were to download this file into your working directory, you could install all depencies using the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command:</p>
+<p>Note that this is just a text file listing each Python dependency, one per line. Many Python projects will contain <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file in order to list all of the project dependencies. If you were to download this file into your working directory, you could install all dependencies using the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
@@ -510,7 +510,7 @@ document.write(`
 <p>The installation may take a bit of time. Once it finishes, if you do not see a red error message in your console it means that you are now ready to use these packages in your own Python code.</p>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Advanced Tip: Python Virtual Environments</p>
-<p>If you are confortable working the the terminal on your system, you may find it helpful to set up a <a class="reference external" href="https://realpython.com/python-virtual-environments-a-primer">virtual environment</a> for your Python projects. A virtual environment helps with organizing the dependendencies on your system, and ensures that updates to Python packages elsewhere on your system will not override the version used by your project.</p>
+<p>If you are comfortable working the the terminal on your system, you may find it helpful to set up a <a class="reference external" href="https://realpython.com/python-virtual-environments-a-primer">virtual environment</a> for your Python projects. A virtual environment helps with organizing the dependencies on your system, and ensures that updates to Python packages elsewhere on your system will not override the version used by your project.</p>
 <p>If you have the <a class="reference external" href="https://docs.python.org/3/library/venv.html"><code class="docutils literal notranslate"><span class="pre">venv</span></code> tool</a> installed on your system, you can create a virtual environment for your project by running the following command in your project work directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">my_env</span>
 </pre></div>
@@ -519,7 +519,7 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">my_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
 </pre></div>
 </div>
-<p>This will activate your environment. Any dependencies installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code> will be installed directly in this environment when it is activated. These installed packages will not be affected by packages installed or updated systemwide or in other virtual environments. To deactivate the virtual environment, simply run the command:</p>
+<p>This will activate your environment. Any dependencies installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code> will be installed directly in this environment when it is activated. These installed packages will not be affected by packages installed or updated system-wide or in other virtual environments. To deactivate the virtual environment, simply run the command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
 </pre></div>
 </div>
@@ -533,11 +533,11 @@ document.write(`
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-0">
 Windows</label><div class="sd-tab-content docutils">
-<p>The process for starting up you Jupyter notebook wil be different, depending on whether Jupyter Notebook was installed with pip or Anaconda:</p>
+<p>The process for starting up you Jupyter notebook will be different, depending on whether Jupyter Notebook was installed with pip or Anaconda:</p>
 <p><strong>If Jupyter was installed with pip:</strong></p>
 <p>Using your File Explorer, create a new folder to store your Jupyter notebooks. Then do the following steps:</p>
 <ul class="simple">
-<li><p>Inside the empty folder, right click (on some systems: Shift + right click), and click on “Open in Windows Terminal”.</p></li>
+<li><p>Inside the empty folder, right click (on some systems: Shift + right click), and click on &quot;Open in Windows Terminal&quot;.</p></li>
 <li><p>This will open a terminal window inside your folder. Inside the folder, run the command <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> to start the server from inside the folder.</p></li>
 </ul>
 <p><strong>If Jupyter was installed with Anaconda:</strong></p>
@@ -549,7 +549,7 @@ Windows</label><div class="sd-tab-content docutils">
 <li><p>Type  <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code>  and it will start the server from inside the folder</p></li>
 </ul>
 <p><strong>Stopping the Server</strong></p>
-<p>Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type <code class="docutils literal notranslate"><span class="pre">localhost:8888</span></code> in the address bar.</p>
+<p>Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Notebook landing page. If it does not open your browser automatically, open your browser and type <code class="docutils literal notranslate"><span class="pre">localhost:8888</span></code> in the address bar.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The address <code class="docutils literal notranslate"><span class="pre">localhost</span></code> tells your browser that the server is running on your computer, while <code class="docutils literal notranslate"><span class="pre">8888</span></code> is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. <code class="docutils literal notranslate"><span class="pre">8889</span></code>). The port number should be printed in the terminal when the server is started.</p>
@@ -567,8 +567,8 @@ Mac OS</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="o">.</span>
 </pre></div>
 </div>
-<p>This should start a notebook server, and open your default web browser (typically, Safari) to the Jupyter Noteboook landing page.</p>
-<p>If this doesn’t happen, not to worry: you can find the URL you need. Return to the terminal and examine the text at the bottom of the window. Look for text like this:</p>
+<p>This should start a notebook server, and open your default web browser (typically, Safari) to the Jupyter Notebook landing page.</p>
+<p>If this does not happen, do not worry: you can find the URL you need. Return to the terminal and examine the text at the bottom of the window. Look for text like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[I 20:50:20.174 NotebookApp] Jupyter Notebook 6.5.2 is running at:
 [I 20:50:20.174 NotebookApp] http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
 [I 20:50:20.174 NotebookApp]  or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
@@ -582,7 +582,7 @@ Mac OS</label><div class="sd-tab-content docutils">
      or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
 </pre></div>
 </div>
-<p>You’ll find here useful information, such as instructions on how to stop the Jupyter server, as well as three URLs, any of which you could paste into your browser’s address bar:</p>
+<p>You'll find here useful information, such as instructions on how to stop the Jupyter server, as well as three URLs, any of which you could paste into your browser's address bar:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">file:///Users/your_account_name/Library/Jupyter/runtime/nbserver-42755-open.html</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01</span></code></p></li>
@@ -606,7 +606,7 @@ Linux</label><div class="sd-tab-content docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">notebook</span> <span class="o">.</span>
 </pre></div>
 </div>
-<p>This should start a notebook server, and open your default web browser to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type <code class="docutils literal notranslate"><span class="pre">localhost:8888</span></code> in the address bar.</p>
+<p>This should start a notebook server, and open your default web browser to the Jupyter Notebook landing page. If it does not open your browser automatically, open your browser and type <code class="docutils literal notranslate"><span class="pre">localhost:8888</span></code> in the address bar.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The address <code class="docutils literal notranslate"><span class="pre">localhost</span></code> tells your browser that the server is running on your computer, while <code class="docutils literal notranslate"><span class="pre">8888</span></code> is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. <code class="docutils literal notranslate"><span class="pre">8889</span></code>). The port number should be printed in the terminal when the server is started.</p>
@@ -617,16 +617,16 @@ Linux</label><div class="sd-tab-content docutils">
 </input><label class="sd-tab-label" for="sd-tab-item-3">
 Google Colab</label><div class="sd-tab-content docutils">
 <p>In order to use Google Colab, you will need to have a google account. First, navigate to the <a class="reference external" href="https://colab.research.google.com/">Google Colab Landing Page</a>.</p>
-<p>To create a new Colab Notebok, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">New</span> <span class="pre">Notebook</span></code>:</p>
+<p>To create a new Colab Notebook, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">New</span> <span class="pre">Notebook</span></code>:</p>
 <p><img alt="" src="../_images/colab_new_notebook.png" /></p>
-<p>This shoud create a new Notebook with an empty cell where you can start writing your Python code. If you are not logged in to your Google Account, you may be prompted to log in at this time.</p>
-<p>By default, your notebook is called “Untitled.ipynb”, or something similar. If you click on the name of the notebook at the top lefthand corner, you can rename it to something more meaningful. Your notebook should look something like this:</p>
+<p>This should create a new Notebook with an empty cell where you can start writing your Python code. If you are not logged in to your Google Account, you may be prompted to log in at this time.</p>
+<p>By default, your notebook is called &quot;Untitled.ipynb&quot;, or something similar. If you click on the name of the notebook at the top left hand corner, you can rename it to something more meaningful. Your notebook should look something like this:</p>
 <p><img alt="" src="../_images/colab_notebook.png" /></p>
 <p>A Google Colab Notebook functions almost identically to a Jupyter Notebook; however, there are a few minor differences in appearance, keyboard shortcuts, etc. These are the most important differences to keep in mind:</p>
 <ul class="simple">
-<li><p>Instead of saving to your computer’s local storage, Google Colab will save your notebooks to your Google Drive. If you want to download a notebook to open in Jupyter, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">.ipynb</span></code>. If you want to upload a Jupyter notebook to Colab, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Upload</span> <span class="pre">Notebook</span></code>.</p></li>
-<li><p>The code in a Google Colab notebook is executed remotely on Google’s servers, not your computer. This means that you must have an internet connection to be able to run your code.</p></li>
-<li><p>You can also run a Google Colab Notebook on Google’s GPU (Graphics Processing Unit) and TPU (Tensor Processing Unit) hardware. You can run your code for free on <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tesla-t4/">NVIDIA Tesla T4</a> hardware or Google’s Proprietary <a class="reference external" href="https://cloud.google.com/tpu/docs/intro-to-tpu">TPU Hardware</a>. Higher-end hardware is also available for a fee. In this workshop, we will probably not need to use any hardware acceleration.</p></li>
+<li><p>Instead of saving to your computer's local storage, Google Colab will save your notebooks to your Google Drive. If you want to download a notebook to open in Jupyter, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">.ipynb</span></code>. If you want to upload a Jupyter notebook to Colab, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Upload</span> <span class="pre">Notebook</span></code>.</p></li>
+<li><p>The code in a Google Colab notebook is executed remotely on Google's servers, not your computer. This means that you must have an internet connection to be able to run your code.</p></li>
+<li><p>You can also run a Google Colab Notebook on Google's GPU (Graphics Processing Unit) and TPU (Tensor Processing Unit) hardware. You can run your code for free on <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tesla-t4/">NVIDIA Tesla T4</a> hardware or Google's Proprietary <a class="reference external" href="https://cloud.google.com/tpu/docs/intro-to-tpu">TPU Hardware</a>. Higher-end hardware is also available for a fee. In this workshop, we will probably not need to use any hardware acceleration.</p></li>
 </ul>
 </div>
 </div>

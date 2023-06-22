@@ -474,7 +474,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>All constants in the <code class="docutils literal notranslate"><span class="pre">scipy.constants</span></code> package are in <a class="reference external" href="https://en.wikipedia.org/wiki/International_System_of_Units">SI units</a> and are some are written with upppercase letters. For example:</p>
+<p>All constants in the <code class="docutils literal notranslate"><span class="pre">scipy.constants</span></code> package are in <a class="reference external" href="https://en.wikipedia.org/wiki/International_System_of_Units">SI units</a> and are some are written with uppercase letters. For example:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>             <span class="c1"># 3.141592653589793 </span>
@@ -591,7 +591,7 @@ Estimated b: 3.2084715345551156 (should be close to 3.0)
 <li><p>Bessel functions: <code class="docutils literal notranslate"><span class="pre">scipy.special.jv</span></code></p></li>
 <li><p>Spherical Bessel functions: <code class="docutils literal notranslate"><span class="pre">scipy.special.yn</span></code></p></li>
 <li><p>Gamma function: <code class="docutils literal notranslate"><span class="pre">scipy.special.gamma</span></code></p></li>
-<li><p>Rieman zeta function: <code class="docutils literal notranslate"><span class="pre">scipy.special.zeta</span></code></p></li>
+<li><p>Riemann zeta function: <code class="docutils literal notranslate"><span class="pre">scipy.special.zeta</span></code></p></li>
 </ul>
 </section>
 <section id="exercises">
@@ -603,7 +603,7 @@ Exercise 1: Resistivity of Metals<div class="sd-summary-down docutils">
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">The <a class="reference external" href="https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity"><em>resistivity</em></a> of a material (denoted by <span class="math notranslate nohighlight">\(\rho\)</span>) measures how strongly it resists electric current. In metals, <span class="math notranslate nohighlight">\(\rho\)</span> typically grows as <span class="math notranslate nohighlight">\(\rho \sim T\)</span> at high temperatures and as <span class="math notranslate nohighlight">\(\rho \sim T^n\)</span> at low temperatures, where the degree <span class="math notranslate nohighlight">\(n\)</span> dependins on what kind of electron interactions are dominant. Specifically, we can model <span class="math notranslate nohighlight">\(\rho\)</span> at a temperature <span class="math notranslate nohighlight">\(T\)</span> in Kelvin using the <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19334080504">Bloch-Gruneisen model</a>:</p>
+<p class="sd-card-text">The <a class="reference external" href="https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity"><em>resistivity</em></a> of a material (denoted by <span class="math notranslate nohighlight">\(\rho\)</span>) measures how strongly it resists electric current. In metals, <span class="math notranslate nohighlight">\(\rho\)</span> typically grows as <span class="math notranslate nohighlight">\(\rho \sim T\)</span> at high temperatures and as <span class="math notranslate nohighlight">\(\rho \sim T^n\)</span> at low temperatures, where the degree <span class="math notranslate nohighlight">\(n\)</span> depends on what kind of electron interactions are dominant. Specifically, we can model <span class="math notranslate nohighlight">\(\rho\)</span> at a temperature <span class="math notranslate nohighlight">\(T\)</span> in Kelvin using the <a class="reference external" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19334080504">Bloch-Gruneisen model</a>:</p>
 <div class="math notranslate nohighlight">
 \[\rho(T) \approx \rho(0) + A\left( \frac{T}{\Theta} \right)^n \int_0^{\Theta/T} \frac{x^n}{(e^x - 1)(1 - e^{-x})}\ dx\]</div>
 <p class="sd-card-text">where <span class="math notranslate nohighlight">\(\rho(0)\)</span> is the residual resistivity, <span class="math notranslate nohighlight">\(A\)</span> is a proportionality constant describing electron velocity at the Fermi surface, and <span class="math notranslate nohighlight">\(\Theta\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Debye_model#Debye_temperature_table">Debye temperature</a> of the material. The value of the degree <span class="math notranslate nohighlight">\(n\)</span> depends on which kind of scattering contributes most to the resistivity:</p>
@@ -616,7 +616,7 @@ Exercise 1: Resistivity of Metals<div class="sd-summary-down docutils">
     <span class="o">...</span>
 </pre></div>
 </div>
-<p class="sd-card-text">Note that you may need to define another function to seve as the integrand in the Bloch-Gruneisen model, which you can pass into <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code> to integrate.</p>
+<p class="sd-card-text">You may need to define another function to serve as the integrand in the Bloch-Gruneisen model, which you can pass into <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code> to integrate.</p>
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">

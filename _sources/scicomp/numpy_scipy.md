@@ -68,7 +68,7 @@ print(result)
 
 ## Reading Package Documentation
 
-When working with a package for the first time, it it often helpful to familiarize yourself with the package's online documentation (almost all of the popular Python packages have online documentation avaliable). Most of the time, you can find the online documentation by typing the name of the package into your web browser's search engine. For example, the [online documentation website for `numpy`](https://numpy.org/doc/stable/index.html) looks like:
+When working with a package for the first time, it it often helpful to familiarize yourself with the package's online documentation (almost all of the popular Python packages have online documentation available). Most of the time, you can find the online documentation by typing the name of the package into your web browser's search engine. For example, the [online documentation website for `numpy`](https://numpy.org/doc/stable/index.html) looks like:
 
 ![Numpy Online Documentation](./numpy_docs.png)
 

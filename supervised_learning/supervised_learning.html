@@ -508,7 +508,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/1239d1fe99c5081ef7536a9a0296dae58e54d3ee6cbc52762a6340a1ece49388.png" src="../_images/1239d1fe99c5081ef7536a9a0296dae58e54d3ee6cbc52762a6340a1ece49388.png" />
+<img alt="../_images/5fac4cebb9509ce6a6ae9474957fb2db5603522e6336e71ba4f4999f2bcf8ec1.png" src="../_images/5fac4cebb9509ce6a6ae9474957fb2db5603522e6336e71ba4f4999f2bcf8ec1.png" />
 </div>
 </div>
 <div class="admonition important">
@@ -547,7 +547,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/77cbf99594f24a7aac77e801c77c0f7d911a3a833944583bc54a1270d4d2e656.png" src="../_images/77cbf99594f24a7aac77e801c77c0f7d911a3a833944583bc54a1270d4d2e656.png" />
+<img alt="../_images/af3cd38e21e0cdc8a6190115ef58d8eb0be4f0c3da21084662cee56b3bfeb4c0.png" src="../_images/af3cd38e21e0cdc8a6190115ef58d8eb0be4f0c3da21084662cee56b3bfeb4c0.png" />
 </div>
 </div>
 <p>From this exercise, we see that some models are not valid, even though they may perfectly fit the data. So if we have a model that does seem to fit the data set well, how can we be sure that the model is also valid? Unfortunately, we can never know the degree to which a model is valid unless our dataset contains every possible input in <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and its associated label. However, there are some general tactics we can employ to maximize the validity of our model. These are the three most important guidelines to keep in mind when working with supervised models:</p>
@@ -565,7 +565,7 @@ document.write(`
 <p>Does the size of the dataset warrant the complexity of the model you are using? Are any symmetries of the data reflected in the symmetries of the model?</p>
 <section id="obtaining-data">
 <h2>Obtaining Data<a class="headerlink" href="#obtaining-data" title="Permalink to this heading">#</a></h2>
-<p>Depending on the problem you are investigating, you may or may not play a role in the data collection process. Since we are materials scientists, the data we are working with often comes from either laboratory measurements or computational simulations. If you happen to have some control over the data collection processs, make every effort to ensure that the data is collected in a consistent manner, and that meaningful features and labels are reported accurately for each laboratory sample. If you are generating data through computational simulations, be sure that any data produced is at least consistent with values measured in the laboratory or with other independently reported values in the literature. After all, your aim is to develop a model of the physics and chemistry of the real world, not a model of the (often simplified) physics and chemistry of a simulation. As a famous computational scientist once said:</p>
+<p>Depending on the problem you are investigating, you may or may not play a role in the data collection process. Since we are materials scientists, the data we are working with often comes from either laboratory measurements or computational simulations. If you happen to have some control over the data collection process, make every effort to ensure that the data is collected in a consistent manner, and that meaningful features and labels are reported accurately for each laboratory sample. If you are generating data through computational simulations, be sure that any data produced is at least consistent with values measured in the laboratory or with other independently reported values in the literature. After all, your aim is to develop a model of the physics and chemistry of the real world, not a model of the (often simplified) physics and chemistry of a simulation. As a famous computational scientist once said:</p>
 <blockquote class="epigraph">
 <div><p>“The purpose of computing is insight, not numbers.”</p>
 <p class="attribution">—Richard Hamming</p>
@@ -587,7 +587,7 @@ document.write(`
 </section>
 <section id="the-validation-set">
 <h3>The Validation Set<a class="headerlink" href="#the-validation-set" title="Permalink to this heading">#</a></h3>
-<p>The validation set is used to evaluate the accuracy of multiple configurations of the same model and to select the best one. Models can have many parameters that affect how flexible or inflexible the model is. For example, the degree of a polynomial fitted to one-dimensional data can be increased to make the model more flexible, but this flexibilty can reduce the model’s ability to make predictions outside of the training set. To find the optimal configuration of these parameters, multiple models are trained on the training set and their accuracies on the validation set are compared. As its name suggests, the validation set plays an important role in ensuring that the model is valid and can make predictions that generalize well outside the training set.</p>
+<p>The validation set is used to evaluate the accuracy of multiple configurations of the same model and to select the best one. Models can have many parameters that affect how flexible or inflexible the model is. For example, the degree of a polynomial fitted to one-dimensional data can be increased to make the model more flexible, but this flexibility can reduce the model’s ability to make predictions outside of the training set. To find the optimal configuration of these parameters, multiple models are trained on the training set and their accuracies on the validation set are compared. As its name suggests, the validation set plays an important role in ensuring that the model is valid and can make predictions that generalize well outside the training set.</p>
 </section>
 <section id="the-test-set">
 <h3>The Test Set<a class="headerlink" href="#the-test-set" title="Permalink to this heading">#</a></h3>
@@ -604,7 +604,7 @@ document.write(`
 </section>
 <section id="model-selection">
 <h2>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this heading">#</a></h2>
-<p>The task of finding the best model for a supervised learning problem is generaly quite difficult. Unfortunately, there is no tried and true method for determining which model is most appropriate for a specific supervised learning problem. Finding the best model often requires a combination of trial-and-error and expertise in both the dataset and the problem being studied. The good news is that as materials scientists, the kinds of supervised learning problems we encounter in our research often have some underlying physical theory that we can apply directly to the data. Sometimes, by adding some free parameters to these physically informed models, we can obtain a good fit of the data that generalizes well outside the training set. It may also be the case that similar supervised learning problems have been studied before, and a paper or two has been published, along with details of the models used. When it comes to selecting a few models worth trying, a good guiding principle is <a class="reference external" href="https://en.wikipedia.org/wiki/Occam's_razor"><em>Occam’s Razor</em></a>:</p>
+<p>The task of finding the best model for a supervised learning problem is generally quite difficult. Unfortunately, there is no tried and true method for determining which model is most appropriate for a specific supervised learning problem. Finding the best model often requires a combination of trial-and-error and expertise in both the dataset and the problem being studied. The good news is that as materials scientists, the kinds of supervised learning problems we encounter in our research often have some underlying physical theory that we can apply directly to the data. Sometimes, by adding some free parameters to these physically informed models, we can obtain a good fit of the data that generalizes well outside the training set. It may also be the case that similar supervised learning problems have been studied before, and a paper or two has been published, along with details of the models used. When it comes to selecting a few models worth trying, a good guiding principle is <a class="reference external" href="https://en.wikipedia.org/wiki/Occam's_razor"><em>Occam’s Razor</em></a>:</p>
 <blockquote class="epigraph">
 <div><p>“Entities must not be multiplied beyond necessity.”</p>
 <p class="attribution">—Occam’s Razor</p>
@@ -716,8 +716,8 @@ Exercise 2: Polynomial Models<div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cfab96ddcf74b9690bc1ae58bd8a0b18ea6040b51aa6ee0b4b060b110b089b44.png" src="../_images/cfab96ddcf74b9690bc1ae58bd8a0b18ea6040b51aa6ee0b4b060b110b089b44.png" />
-<img alt="../_images/c662d1ace9b01f5a247b641800ac32db299be0f11c7b766c1d5b2267138d08fb.png" src="../_images/c662d1ace9b01f5a247b641800ac32db299be0f11c7b766c1d5b2267138d08fb.png" />
+<img alt="../_images/1b68e1d9834372b5003c805d1f2c64fb345187aff2a9685a956c22320ffbd524.png" src="../_images/1b68e1d9834372b5003c805d1f2c64fb345187aff2a9685a956c22320ffbd524.png" />
+<img alt="../_images/1f1ce6b9315f6665bf609d738efdfa05adda5dfbb78390b52fd9036907079513.png" src="../_images/1f1ce6b9315f6665bf609d738efdfa05adda5dfbb78390b52fd9036907079513.png" />
 </div>
 </details>
 </div>
@@ -775,8 +775,8 @@ Exercise 2: Polynomial Models<div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ab48804fde41ab0bf7e6b93a8e85bcf199ee47592e3d0a8e15313ae9e53e8b70.png" src="../_images/ab48804fde41ab0bf7e6b93a8e85bcf199ee47592e3d0a8e15313ae9e53e8b70.png" />
-<img alt="../_images/0239b586d53c05b5f691e13f3bda80c484179613b52d34a37534509c3b0b2d52.png" src="../_images/0239b586d53c05b5f691e13f3bda80c484179613b52d34a37534509c3b0b2d52.png" />
+<img alt="../_images/a5d7038ef380e71e0dd5338acdd0042b32593dd73081a4a8ff91ea37072de081.png" src="../_images/a5d7038ef380e71e0dd5338acdd0042b32593dd73081a4a8ff91ea37072de081.png" />
+<img alt="../_images/278205beca00ab6bce900b99995270d709b7d8e04d5bb5cd78290fbaaf6881c1.png" src="../_images/278205beca00ab6bce900b99995270d709b7d8e04d5bb5cd78290fbaaf6881c1.png" />
 </div>
 </details>
 </div>

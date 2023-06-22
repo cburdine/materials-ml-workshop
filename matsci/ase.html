@@ -947,7 +947,7 @@ H
 </div>
 <p>As static image of the unit cell is given below. Since a structure like this would likely be used in a DFT calculation, and DFT calculations often have periodic boundary conditions, the unit cell features a large air gap to keep separate the main sheet from its images in the z direction.</p>
 <p><img alt="" src="../_images/Ti2C_unit_cell.png" /></p>
-<p>Now, we form a supercell by repeating the unit cell in space. To repeat the primtive cell, described by the <code class="docutils literal notranslate"><span class="pre">Ti2C</span></code> object, we simply multiply <code class="docutils literal notranslate"><span class="pre">Ti2C</span></code> by a 3-element tuple. The three integers <code class="docutils literal notranslate"><span class="pre">(nx,</span> <span class="pre">ny,</span> <span class="pre">nz)</span></code> repeat the unit cell in the x, y, and z directions, respectively.</p>
+<p>Now, we form a supercell by repeating the unit cell in space. To repeat the primitive cell, described by the <code class="docutils literal notranslate"><span class="pre">Ti2C</span></code> object, we simply multiply <code class="docutils literal notranslate"><span class="pre">Ti2C</span></code> by a 3-element tuple. The three integers <code class="docutils literal notranslate"><span class="pre">(nx,</span> <span class="pre">ny,</span> <span class="pre">nz)</span></code> repeat the unit cell in the x, y, and z directions, respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sheet</span> <span class="o">=</span> <span class="n">Ti2C</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#</span>
@@ -2994,7 +2994,7 @@ Exercise 1: Form a nitrogen-vacancy center in a diamond crystal.<div class="sd-s
 <ol class="arabic simple" start="2">
 <li><p class="sd-card-text">See the (<a class="reference external" href="https://wiki.fysik.dtu.dk/ase/ase/atoms.html">documentation</a>) for the <code class="docutils literal notranslate"><span class="pre">ase.Atoms</span></code> class to learn how to delete atoms from an <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> object.</p></li>
 </ol>
-<p class="sd-card-text">A successfully-formed NV center would still require strucural optimization.</p>
+<p class="sd-card-text">A successfully-formed NV center would still require structural optimization.</p>
 </div>
 </details><section id="solutions">
 <h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>

@@ -425,8 +425,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-cubic-versus-non-cubic-structures">Classifying Cubic versus Non-Cubic Structures:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-perceptron-linear-classification-model">The Perceptron (Linear Classification) Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nearest-neighbor-model">The Nearest Neighbor Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-classifier">Decision Tree Classifier</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-histogram-gradient-boosting-machine">Exercise 1: Histogram Gradient Boosting Machine</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -442,10 +446,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="application-classifying-perovskites">
 <h1>Application: Classifying Perovskites<a class="headerlink" href="#application-classifying-perovskites" title="Permalink to this heading">#</a></h1>
-<p>Now that we’ve covered some of the basic theory of supervised learning, let’s start applying some basic supervised learning models to a real dataset.</p>
+<p>Now that we've covered some of the basic theory of supervised learning, let's start applying some basic supervised learning models to a real dataset.</p>
 <section id="perovskite-classification-dataset">
 <h2>Perovskite Classification Dataset<a class="headerlink" href="#perovskite-classification-dataset" title="Permalink to this heading">#</a></h2>
-<p>Perovskites are materials with a crystal structure of the form  <span class="math notranslate nohighlight">\(ABX_3\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two positively charged cations and <span class="math notranslate nohighlight">\(B\)</span> is a negatively charged anion, usually oxygen (<span class="math notranslate nohighlight">\(O\)</span>). Ideal perovskites have a cubic structure, although some perovskites may attain more stable configurations with slightly perturbed structural phases, such as orthorombic or tetragonal. Here’s an example of <a class="reference external" href="https://en.wikipedia.org/wiki/Strontium_titanate">SrTiO<span class="math notranslate nohighlight">\(_3\)</span></a> (strontium titanate), which is most stable with a cubic structure:</p>
+<p>Perovskites are materials with a crystal structure of the form  <span class="math notranslate nohighlight">\(ABX_3\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two positively charged cations and <span class="math notranslate nohighlight">\(B\)</span> is a negatively charged anion, usually oxygen (<span class="math notranslate nohighlight">\(O\)</span>). Ideal perovskites have a cubic structure, although some perovskites may attain more stable configurations with slightly perturbed structural phases, such as orthorhombic or tetragonal. Here's an example of <a class="reference external" href="https://en.wikipedia.org/wiki/Strontium_titanate">SrTiO<span class="math notranslate nohighlight">\(_3\)</span></a> (strontium titanate), which is most stable with a cubic structure:</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/SrTiO3_cubic.png"><img alt="fishy" class="bg-primary mb-1 align-center" src="../_images/SrTiO3_cubic.png" style="width: 250px;" /></a>
 <p>We will be using the <a class="reference external" href="https://www-sciencedirect-com.ezproxy.baylor.edu/science/article/pii/S0927025620306820?via%3Dihub">AB03 Perovskites</a> dataset.
 This data was originally used in the paper <a class="reference external" href="https://doi-org.ezproxy.baylor.edu/10.1016/j.commatsci.2020.110191"><em>Crystal structure classification in ABO3 perovskites via machine learning</em></a> by <em>Behara et al</em>.
@@ -761,16 +765,16 @@ Download the dataset and put the <code class="docutils literal notranslate"><spa
 <li><p>Electronegativity of B: <span class="math notranslate nohighlight">\(EN(B)\)</span></p></li>
 <li><p>Bond length of A-O pair <span class="math notranslate nohighlight">\(l(A\)</span>-<span class="math notranslate nohighlight">\(O)\)</span></p></li>
 <li><p>Bond Length of B-O pair <span class="math notranslate nohighlight">\(l(B\)</span>-<span class="math notranslate nohighlight">\(O)\)</span></p></li>
-<li><p>Eletronegativity difference with radius: <span class="math notranslate nohighlight">\(\Delta ENR\)</span></p></li>
+<li><p>Electronegativity difference with radius: <span class="math notranslate nohighlight">\(\Delta ENR\)</span></p></li>
 <li><p>Goldschmidt tolerance factor: <span class="math notranslate nohighlight">\(t_G\)</span></p></li>
 <li><p>New tolerance factor: <span class="math notranslate nohighlight">\(\tau\)</span></p></li>
 <li><p>Octahedral factor: <span class="math notranslate nohighlight">\(\mu\)</span></p></li>
 </ul>
-<p>In total, there are 17 distinct factors in the dataframe; however many of these featurescan be computed directly from other features. For example, the <a class="reference external" href="https://en.wikipedia.org/wiki/Goldschmidt_tolerance_factor">Goldschmidt tolarance factor</a> is a quantity commonly used to evaluate the stability of perovskite structures. It is computed using the equation:</p>
+<p>In total, there are 17 distinct factors in the dataframe; however many of these features can be computed directly from other features. For example, the <a class="reference external" href="https://en.wikipedia.org/wiki/Goldschmidt_tolerance_factor">Goldschmidt tolarance factor</a> is a quantity commonly used to evaluate the stability of perovskite structures. It is computed using the equation:</p>
 <div class="math notranslate nohighlight">
 \[t_G = \frac{(r(A) + r(B))}{\sqrt{2}(r(B) - r(\text{O}))}\]</div>
 <p>where <span class="math notranslate nohighlight">\(r(A)\)</span> and <span class="math notranslate nohighlight">\(r(B)\)</span> are the ionic radii of the <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> elements and <span class="math notranslate nohighlight">\(r(\text{O})\)</span> is the ionic radius of oxygen.</p>
-<p>To make things a bit simpler, let’s consider only the following three factors:</p>
+<p>To make things a bit simpler, let's consider only the following three factors:</p>
 <ul class="simple">
 <li><p>Electronegativity of A: <span class="math notranslate nohighlight">\(EN(A)\)</span></p></li>
 <li><p>Electronegativity of B: <span class="math notranslate nohighlight">\(EN(B)\)</span></p></li>
@@ -809,7 +813,7 @@ Download the dataset and put the <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-<p>Let’s also take a look at all of the distinct structures that appear in the <em>Lowest distortion</em> column:</p>
+<p>Let's also take a look at all of the distinct structures that appear in the <em>Lowest distortion</em> column:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -828,12 +832,12 @@ Download the dataset and put the <code class="docutils literal notranslate"><spa
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;-&#39;, &#39;rhombohedral&#39;, &#39;orthorhombic&#39;, &#39;tetragonal&#39;, &#39;cubic&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;-&#39;, &#39;rhombohedral&#39;, &#39;orthorhombic&#39;, &#39;cubic&#39;, &#39;tetragonal&#39;]
 </pre></div>
 </div>
 </div>
 </div>
-<p>It appears that there are four different distinct phases listed in the dataset: <code class="docutils literal notranslate"><span class="pre">rhombohedral</span></code>, <code class="docutils literal notranslate"><span class="pre">cubic</span></code>, <code class="docutils literal notranslate"><span class="pre">tetragonal</span></code>, and <code class="docutils literal notranslate"><span class="pre">orthorhombic</span></code>. There are also some rows in the dataframe that do not have a phase listed (denoted by <code class="docutils literal notranslate"><span class="pre">-</span></code>). Let’s see how many of each phase are listed in the dataset:</p>
+<p>It appears that there are four different distinct phases listed in the dataset: <code class="docutils literal notranslate"><span class="pre">rhombohedral</span></code>, <code class="docutils literal notranslate"><span class="pre">cubic</span></code>, <code class="docutils literal notranslate"><span class="pre">tetragonal</span></code>, and <code class="docutils literal notranslate"><span class="pre">orthorhombic</span></code>. There are also some rows in the dataframe that do not have a phase listed (denoted by <code class="docutils literal notranslate"><span class="pre">-</span></code>). Let's see how many of each phase are listed in the dataset:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -861,14 +865,14 @@ Download the dataset and put the <code class="docutils literal notranslate"><spa
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/8e21669481df3a54af06a62ddf6e4a334d48e066ea36be2f175672af2249c775.png" src="../_images/8e21669481df3a54af06a62ddf6e4a334d48e066ea36be2f175672af2249c775.png" />
+<img alt="../_images/0883f7c96fe24ebae3c6f3e8fd260280cd3994fe6c3cddd03e4b049ca6396b6f.png" src="../_images/0883f7c96fe24ebae3c6f3e8fd260280cd3994fe6c3cddd03e4b049ca6396b6f.png" />
 </div>
 </div>
 <p>As expected, a majority of the perovskites have the ideal cubic structure.</p>
 </section>
 <section id="classifying-cubic-versus-non-cubic-structures">
 <h2>Classifying Cubic versus Non-Cubic Structures:<a class="headerlink" href="#classifying-cubic-versus-non-cubic-structures" title="Permalink to this heading">#</a></h2>
-<p>For simplicity, let’s first consider the problem of classifying cubic versus non-cubic structures. This is a simple binary classification task that we can solve using the <em>binary perceptron</em> model we learned about previously. Let’s start by removing the data entries with unknown structure (<code class="docutils literal notranslate"><span class="pre">-</span></code>) and assigning values of <code class="docutils literal notranslate"><span class="pre">1</span></code> to cubic structures and <code class="docutils literal notranslate"><span class="pre">-1</span></code> to non-cubic structures:</p>
+<p>For simplicity, let's first consider the problem of classifying cubic versus non-cubic structures. This is a simple binary classification task that we can solve using the <em>binary perceptron</em> model we learned about previously. Let's start by removing the data entries with unknown structure (<code class="docutils literal notranslate"><span class="pre">-</span></code>) and assigning values of <code class="docutils literal notranslate"><span class="pre">1</span></code> to cubic structures and <code class="docutils literal notranslate"><span class="pre">-1</span></code> to non-cubic structures:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -902,7 +906,7 @@ Binary classifier labels shape: (5329,)
 </div>
 </div>
 </div>
-<p>Let’s visualize what the cubic versus non-cubic data looks like with respect to electronegativity (A and B):</p>
+<p>Let's visualize what the cubic versus non-cubic data looks like with respect to electronegativity (A and B):</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -927,11 +931,11 @@ Binary classifier labels shape: (5329,)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/7e60a22eb4f0063502d44aff3e7ce7d9d49d945e4070aee1a2028639c6ccf1ac.png" src="../_images/7e60a22eb4f0063502d44aff3e7ce7d9d49d945e4070aee1a2028639c6ccf1ac.png" />
+<img alt="../_images/6a364d729ef263495f9ce01da835cf3b0c446912b05c59bd73b63f790034564d.png" src="../_images/6a364d729ef263495f9ce01da835cf3b0c446912b05c59bd73b63f790034564d.png" />
 </div>
 </div>
 <p>Since the <a class="reference external" href="https://en.wikipedia.org/wiki/Electronegativity">electronegativity</a> generally increases with the group and decreases with the period of elements on the periodic table, it serves as a good numerical quantity to associate with each element. This is why we observe a grid-like distribution of the data. From glancing at the distribution of cubic versus non-cubic materials, it appears that there is no immediately identifiable trend.</p>
-<p>Let’ also look at how the cubic and non-cubic structures are distributed with respect to the Goldschmidt tolerance factor <span class="math notranslate nohighlight">\(t_G\)</span>:</p>
+<p>Let' also look at how the cubic and non-cubic structures are distributed with respect to the Goldschmidt tolerance factor <span class="math notranslate nohighlight">\(t_G\)</span>:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -956,7 +960,7 @@ Binary classifier labels shape: (5329,)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/fb3e151d99e8b1882d2489ffcb3cd0958446f710a19290e222311b0a2c387615.png" src="../_images/fb3e151d99e8b1882d2489ffcb3cd0958446f710a19290e222311b0a2c387615.png" />
+<img alt="../_images/bc17c044070b81104a0fe72851d3715addd8478787d5f6cc5b18456d81b10437.png" src="../_images/bc17c044070b81104a0fe72851d3715addd8478787d5f6cc5b18456d81b10437.png" />
 </div>
 </div>
 <p>We see that a majority of the cubic structures are distributed within the range of <span class="math notranslate nohighlight">\(t_G = 0.7\)</span> to <span class="math notranslate nohighlight">\(t_G = 0.9\)</span>. According to the literature, perovskites with <span class="math notranslate nohighlight">\(t_G\)</span> in the range of <span class="math notranslate nohighlight">\(0.9\)</span> to <span class="math notranslate nohighlight">\(1.0\)</span> are generally predicted to be in the cubic phase, which appears to be inconsistent with our data. Taking note of this discrepancy, we will proceed with preparing our data. First, we will split the data into training, validation, and test sets. This can be done with the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split</span></code></a> function. We will also normalize our data using <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code></a>:</p>
@@ -1005,13 +1009,13 @@ Shape of z_test: (533, 3)
 </section>
 <section id="the-perceptron-linear-classification-model">
 <h2>The Perceptron (Linear Classification) Model<a class="headerlink" href="#the-perceptron-linear-classification-model" title="Permalink to this heading">#</a></h2>
-<p>One of the simplest binary (i.e. two-class) classification models is a <em>linear classifier</em> model, historically referred to as a <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron"><em>Perceptron</em></a> model.</p>
-<p>For a feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> with <span class="math notranslate nohighlight">\(N\)</span> features, a linear classifier model <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span> makes “0” and “1” class predictions according to the equation:</p>
+<p>One of the simplest two-class classification models is a <em>linear classifier</em> model, historically referred to as a <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron"><em>Perceptron</em></a> model. For a normalized feature vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> with <span class="math notranslate nohighlight">\(N\)</span> features, a linear classifier model <span class="math notranslate nohighlight">\(f(\mathbf{z})\)</span> makes &quot;1&quot; and &quot;-1&quot; class predictions according to the equation:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}f(\mathbf{x}) = \begin{cases}
-1, &amp; w_0 + \sum_{i=1}^N w_ix_i &gt; 0 \\
-0, &amp; \text{ otherwise}
+\[\begin{split}f(\mathbf{z}) = \begin{cases}
+1, &amp; w_0 + \sum_{i=1}^N w_iz_i &gt; 0 \\
+-1, &amp; \text{ otherwise}
 \end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(w_0, w_1, ..., w_N\)</span> are learned weights of the model. In this case, a prediction of <span class="math notranslate nohighlight">\(1\)</span> corresponds to the cubic class, and <span class="math notranslate nohighlight">\(-1\)</span> corresponds to the non-cubic class. We can fit a Perceptron model to the data using the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html"><code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Perceptron</span></code></a> class.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1037,15 +1041,20 @@ Shape of z_test: (533, 3)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.6263194933145672
-validation set accuracy: 0.6416510318949343
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.5979357260145437
+validation set accuracy: 0.5853658536585366
 </pre></div>
 </div>
 </div>
 </div>
+<p>From our visualization of the cubic vs. non-cubic perovskites, we saw that the separation between these two classes is very non-linear, so we expect both the training set and validation accuracy to be low. Nonetheless, we do see that the validation accuracy is greater than <span class="math notranslate nohighlight">\(0.6\)</span>, which appears to be statistically significant improvement upon random guessing.</p>
 </section>
 <section id="the-nearest-neighbor-model">
 <h2>The Nearest Neighbor Model<a class="headerlink" href="#the-nearest-neighbor-model" title="Permalink to this heading">#</a></h2>
+<p>Before trying other models, it may help to see what kind of accuracy can be attained by a <em>nearest neighbor classification model</em>. As the name suggests, a nearest neighbor classification model predicts the class of an unseen normalized data point <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> to be the majority class in the set of <span class="math notranslate nohighlight">\(k\)</span> normalized data points in the training set that are nearest to <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>. By &quot;nearest&quot;, we refer to the point with the smallest Euclidean distance:</p>
+<div class="math notranslate nohighlight">
+\[d(\mathbf{z},\mathbf{z}') = \lVert \mathbf{z} - \mathbf{z}' \rVert\]</div>
+<p>Typically, an odd number of neighbors <span class="math notranslate nohighlight">\(k\)</span> is used. While <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbor models tend to give good results, they may not be suitable for large datasets or datasets with many features, as searching for the nearest neighbors in a dataset may be computationally expensive.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1055,8 +1064,8 @@ validation set accuracy: 0.6416510318949343
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 
-<span class="c1"># fit a k-nearest neighbor classifier (k=3 in this case):</span>
-<span class="n">knc</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># fit a k-nearest neighbor classifier (k=7 in this case):</span>
+<span class="n">knc</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 <span class="n">knc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="c1"># evaluate the model on the training and validation set:</span>
@@ -1071,12 +1080,14 @@ validation set accuracy: 0.6416510318949343
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8644147314098053
-validation set accuracy: 0.7654784240150094
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8214872155758856
+validation set accuracy: 0.7523452157598499
 </pre></div>
 </div>
 </div>
 </div>
+<p>An important property of nearest neighbor models is that no learning actually takes place with the training data; rather, the model <em>is</em> the training data. This can be viewed as either a criticism or a strength of the model, depending on whether the goal is to just to make accurate predictions or to find a simple and interpretable model that still makes accurate predictions. Often the latter kind of model is preferred over the former, so nearest neighbor models are not often the best choice for supervised tasks. However, these models can be useful in establishing a baseline accuracy that one can attempt to match with models that have less complexity.</p>
+<p>As expected, the nearest neighbor model is much more accurate than the Perceptron model we tried earlier. This is because it is capable of capturing some of the non-linearities of classes, especially with regards to the electronegativity of the <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> atoms. We can write some Python code to visualize this as follows:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1117,14 +1128,99 @@ validation set accuracy: 0.7654784240150094
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/286d7b539f65dddef42a091acd1fb04af62039dc05e7c39357a722808f06548b.png" src="../_images/286d7b539f65dddef42a091acd1fb04af62039dc05e7c39357a722808f06548b.png" />
+<img alt="../_images/44e89b6d3930e0bf1a304ded8290521734662fde51ae8891f900a228027ec4f7.png" src="../_images/44e89b6d3930e0bf1a304ded8290521734662fde51ae8891f900a228027ec4f7.png" />
+</div>
+</div>
+<p>Now that we have established a baseline accuracy using the nearest neighbor model, let's try to exceed this baseline accuracy with a more complex model.</p>
+</section>
+<section id="decision-tree-classifier">
+<h2>Decision Tree Classifier<a class="headerlink" href="#decision-tree-classifier" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+
+<span class="c1"># fit a decision tree model to the data: </span>
+<span class="n">dtree</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">dtree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># evaluate the model on the training and validation set:</span>
+<span class="n">train_accuracy</span> <span class="o">=</span> <span class="n">dtree</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">val_accuracy</span> <span class="o">=</span> <span class="n">dtree</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+
+<span class="c1"># print the accuracy of the model:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;training set accuracy:  &#39;</span><span class="p">,</span> <span class="n">train_accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation set accuracy:&#39;</span><span class="p">,</span> <span class="n">val_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8585503166783955
+validation set accuracy: 0.7654784240150094
+</pre></div>
+</div>
 </div>
 </div>
 </section>
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
-<section id="solutions">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise 1: Histogram Gradient Boosting Machine<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">In <a class="reference external" href="https://doi-org.ezproxy.baylor.edu/10.1016/j.commatsci.2020.110191">the paper that produced this dataset</a>, the model that yielded the best accuracy was the <a class="reference external" href="https://lightgbm.readthedocs.io/en/stable/"><em>Light Gradient Boosting Machine</em> (LGBM)</a>, developed by Microsoft Research. A similar gradient boosting model is implemented in the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> package as <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingClassifier.html"><code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.HistGradientBoostingClassifier</span></code></a>.</p>
+<p class="sd-card-text">Fit this model to the same data as the other models. Try to adjust the <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code> and <code class="docutils literal notranslate"><span class="pre">max_leaf_nodes</span></code> to maximize the validation set accuracy. Estimate the final accuracy of the model by evaluating it on the test set.</p>
+</div>
+</details><section id="solutions">
 <h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>
+<section id="exercise-1-histogram-gradient-boosting-machine">
+<h4>Exercise 1: Histogram Gradient Boosting Machine<a class="headerlink" href="#exercise-1-histogram-gradient-boosting-machine" title="Permalink to this heading">#</a></h4>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">HistGradientBoostingClassifier</span>
+
+<span class="c1"># fit a histogram gradient boosting model classifier:</span>
+<span class="n">hgbm</span> <span class="o">=</span> <span class="n">HistGradientBoostingClassifier</span><span class="p">(</span>
+    <span class="n">max_leaf_nodes</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">hgbm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># evaluate the model on the training and validation set:</span>
+<span class="n">train_accuracy</span> <span class="o">=</span> <span class="n">hgbm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">val_accuracy</span> <span class="o">=</span> <span class="n">hgbm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+<span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">hgbm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">z_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1"># print the accuracy of the model:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;training set accuracy:  &#39;</span><span class="p">,</span> <span class="n">train_accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation set accuracy:&#39;</span><span class="p">,</span> <span class="n">val_accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test set accuracy:&#39;</span><span class="p">,</span> <span class="n">test_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9622331691297209
+validation set accuracy: 0.8030018761726079
+test set accuracy: 0.8161350844277674
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
 </section>
 </section>
 </section>
@@ -1201,8 +1297,12 @@ validation set accuracy: 0.7654784240150094
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-cubic-versus-non-cubic-structures">Classifying Cubic versus Non-Cubic Structures:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-perceptron-linear-classification-model">The Perceptron (Linear Classification) Model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nearest-neighbor-model">The Nearest Neighbor Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree-classifier">Decision Tree Classifier</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-histogram-gradient-boosting-machine">Exercise 1: Histogram Gradient Boosting Machine</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

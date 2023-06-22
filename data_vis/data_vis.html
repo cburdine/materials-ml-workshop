@@ -485,7 +485,7 @@ document.write(`
 <img alt="../_images/ecec9ada221958da7cb3b880db0992c21c9a22c1043b66d1f3581fc02cea9fe5.png" src="../_images/ecec9ada221958da7cb3b880db0992c21c9a22c1043b66d1f3581fc02cea9fe5.png" />
 </div>
 </div>
-<p>Take note that the default behavior of <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> is to draw straight lines between consecutive <span class="math notranslate nohighlight">\((x,y)\)</span> pairs, which means that you may need to ensure your x-axis and y-axis data are sorted in the correct order. Matplotlib allows you to customize various aspects of your plots, such as line styles, marker types, colors, axes limits, gridlines, legends, and more. As an example, let’s plot the same data, but with a different figure size, a customized line style, and a legend:</p>
+<p>Take note that the default behavior of <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> is to draw straight lines between consecutive <span class="math notranslate nohighlight">\((x,y)\)</span> pairs, which means that you may need to ensure your x-axis and y-axis data are sorted in the correct order. Matplotlib allows you to customize various aspects of your plots, such as line styles, marker types, colors, axes limits, grid lines, legends, and more. As an example, let’s plot the same data, but with a different figure size, a customized line style, and a legend:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change figure size:</span>
@@ -575,7 +575,7 @@ document.write(`
 </pre></div>
 </div>
 <p>Python’s f-strings are especially useful when formatting numerical data to be displayed in the legend of a figure. In the harmonic wave example above, we used the fstring <code class="docutils literal notranslate"><span class="pre">f'{k:.3f}'</span></code> to convert the <code class="docutils literal notranslate"><span class="pre">float</span></code> type variable <code class="docutils literal notranslate"><span class="pre">k</span></code> to a string with no more than 3 decimal places. You can learn more about the details of f-strings in the <a class="reference external" href="https://docs.python.org/3/tutorial/inputoutput.html">Official Python tutorial</a>.</p>
-<p>Also, one other special type of string to be aware of is the <em>raw string</em>, or <em>r-string</em> for short, which was used in the <code class="docutils literal notranslate"><span class="pre">label_latex</span></code> string in the example above. Raw strings are preceded by the character <code class="docutils literal notranslate"><span class="pre">r</span></code> to signal that the string’s contents should be stored verbatim and without converting any character sequences (such as <code class="docutils literal notranslate"><span class="pre">'\t'</span></code>, which converts to a tab, or <code class="docutils literal notranslate"><span class="pre">'\n'</span></code>, which converts to a new line). When using Latex in yout plots, use r-strings to store the Latex expressions.</p>
+<p>Also, one other special type of string to be aware of is the <em>raw string</em>, or <em>r-string</em> for short, which was used in the <code class="docutils literal notranslate"><span class="pre">label_latex</span></code> string in the example above. Raw strings are preceded by the character <code class="docutils literal notranslate"><span class="pre">r</span></code> to signal that the string’s contents should be stored verbatim and without converting any character sequences (such as <code class="docutils literal notranslate"><span class="pre">'\t'</span></code>, which converts to a tab, or <code class="docutils literal notranslate"><span class="pre">'\n'</span></code>, which converts to a new line). When using Latex in your plots, use r-strings to store the Latex expressions.</p>
 </div>
 </section>
 <section id="different-types-of-plots">
@@ -789,7 +789,7 @@ Exercise 3: Chaotic Dynamical Systems<div class="sd-summary-down docutils">
 <span class="n">trajectory</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">lorenz_system</span><span class="p">,</span> <span class="n">xyz_init</span><span class="p">,</span> <span class="n">t_values</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sd-card-text">To plot a trajectory in 3D, use  <code class="docutils literal notranslate"><span class="pre">ax.plot(x,y,z)</span></code> as shown in <a class="reference external" href="https://matplotlib.org/stable/gallery/mplot3d/lines3d.html#sphx-glr-gallery-mplot3d-lines3d-py">this example</a> from the Matplotlib documentaion.</p>
+<p class="sd-card-text">To plot a trajectory in 3D, use  <code class="docutils literal notranslate"><span class="pre">ax.plot(x,y,z)</span></code> as shown in <a class="reference external" href="https://matplotlib.org/stable/gallery/mplot3d/lines3d.html#sphx-glr-gallery-mplot3d-lines3d-py">this example</a> from the Matplotlib documentation.</p>
 </div>
 </details><section id="solutions">
 <h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>

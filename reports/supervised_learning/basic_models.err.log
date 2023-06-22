@@ -15,42 +15,25 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-en_range = (0.75, 2.6)
-eval_tG = np.mean(x_train[:,2])
+from sklearn.tree import DecisionTreeClassifier()
 
-mesh_size = 80
-a_mesh, b_mesh = np.meshgrid(
-    np.linspace(en_range[0],en_range[1], mesh_size),
-    np.linspace(en_range[0],en_range[1], mesh_size))
+# fit a decision tree model to the data: 
+dtree = DecisionTreeClassifier(max_depth=10)
+dtree.fit(z_train, y_train)
 
-mesh_features = np.array([
-    a_mesh.flatten(),
-    b_mesh.flatten(),
-    eval_tG*np.ones_like(a_mesh.flatten())
-]).T
+# evaluate the model on the training and validation set:
+train_accuracy = dtree.score(z_train, y_train)
+val_accuracy = dtree.score(z_val, y_val)
 
-z_mesh_features = x_scaler.transform(mesh_features)
-
-predictions = knc.predict(z_mesh_features)
-predictions_mesh = predictions.reshape(a_mesh.shape)
-
-plt.figure()
-surf = plt.contourf(a_mesh, b_mesh, predictions_mesh, cmap='binary', levels=100)
-cbar = plt.colorbar(surf)
-cbar.set_yticks([-1,1])
-cbar.set_yticklabels(['Cubic','Non-Cubic'])
-plt.show()
+# print the accuracy of the model:
+print('training set accuracy:  ', train_accuracy)
+print('validation set accuracy:', val_accuracy)
 ------------------
 
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mAttributeError[0m                            Traceback (most recent call last)
-Cell [0;32mIn[11], line 23[0m
-[1;32m     21[0m surf [38;5;241m=[39m plt[38;5;241m.[39mcontourf(a_mesh, b_mesh, predictions_mesh, cmap[38;5;241m=[39m[38;5;124m'[39m[38;5;124mbinary[39m[38;5;124m'[39m, levels[38;5;241m=[39m[38;5;241m100[39m)
-[1;32m     22[0m cbar [38;5;241m=[39m plt[38;5;241m.[39mcolorbar(surf)
-[0;32m---> 23[0m [43mcbar[49m[38;5;241;43m.[39;49m[43mset_yticks[49m([[38;5;241m-[39m[38;5;241m1[39m,[38;5;241m1[39m])
-[1;32m     24[0m cbar[38;5;241m.[39mset_yticklabels([[38;5;124m'[39m[38;5;124mCubic[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124mNon-Cubic[39m[38;5;124m'[39m])
-[1;32m     25[0m plt[38;5;241m.[39mshow()
+[0;36m  Cell [0;32mIn[12], line 1[0;36m[0m
+[0;31m    from sklearn.tree import DecisionTreeClassifier()[0m
+[0m                                                   ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
 
-[0;31mAttributeError[0m: 'Colorbar' object has no attribute 'set_yticks'
 

@@ -104,7 +104,7 @@ For any two vectors with the same number of dimensions, there are several differ
 
 ### Vector Inner Product
 
-The [inner product](https://en.wikipedia.org/wiki/Dot_product) of two vectors (also called the dot product) is a scalar quantity that described the degree to which any two vectors are "aligned" with eachother. For two vectors $\mathbf{a}$ and $\mathbf{b}$ the inner product often denoted either as $\mathbf{a} \cdot \mathbf{b}$ or $\mathbf{a}^T\mathbf{b}$ (the reason for the transpose superscript $T$ will become clear later). The inner product is defined as the sum of the product of the corresponding scalar entries of both vectors, namely:
+The [inner product](https://en.wikipedia.org/wiki/Dot_product) of two vectors (also called the dot product) is a scalar quantity that describes the degree to which any two vectors are "aligned" with each other. For two vectors $\mathbf{a}$ and $\mathbf{b}$ the inner product often denoted either as $\mathbf{a} \cdot \mathbf{b}$ or $\mathbf{a}^T\mathbf{b}$ (the reason for the transpose superscript $T$ will become clear later). The inner product is defined as the sum of the product of the corresponding scalar entries of both vectors, namely:
 
 $$\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T\mathbf{b} = \begin{bmatrix} a_1 & a_2 & \dots & a_N \end{bmatrix} \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ a_N \end{bmatrix} = a_1b_1 + a_2b_2 + \dots + a_Nb_N$$
 
@@ -186,7 +186,7 @@ $$\mathbf{A}\mathbf{B} = \mathbf{A}\begin{bmatrix}
 | & | & & | \\
 \end{bmatrix}$$
 
-This product can only be computed if the number of columns of $\mathbf{A}$ equals the number of rows of $\mathbf{B}$. Specifically, if $\mathbf{A}$ has $L$ rows and $M$ columns (i.e. $\mathbf{A}$ is an $L \times M$ matrix) and $\mathbf{B}$ has $M$ rows and $N$ columne (i.e. $\mathbf{B}$ is an $M \times N$ matrix$), the resulting matrix $\mathbf{AB}$ is $L \times N$.
+This product can only be computed if the number of columns of $\mathbf{A}$ equals the number of rows of $\mathbf{B}$. Specifically, if $\mathbf{A}$ has $L$ rows and $M$ columns (i.e. $\mathbf{A}$ is an $L \times M$ matrix) and $\mathbf{B}$ has $M$ rows and $N$ columns (i.e. $\mathbf{B}$ is an $M \times N$ matrix$), the resulting matrix $\mathbf{AB}$ is $L \times N$.
 
 If we expand $\mathbf{A}$ in terms of its rows $\mathbf{a_1}^T, \mathbf{a_2}^T, ..., \mathbf{a_L}^T$ we see that the entries of the matrix resulting from the product $\mathbf{AB}$ consist of inner products of the rows of $\mathbf{A}$ and the columns of $\mathbf{B}$:
 

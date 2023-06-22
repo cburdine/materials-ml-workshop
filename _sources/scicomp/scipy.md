@@ -37,7 +37,7 @@ To import the constants subpackage use the import statement
 from scipy import constants
 ```
 
-All constants in the `scipy.constants` package are in [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) and are some are written with upppercase letters. For example:
+All constants in the `scipy.constants` package are in [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) and are some are written with uppercase letters. For example:
 
 ```{code-cell}
 :tags: [hide-output]
@@ -122,13 +122,13 @@ Finally, Scipy has support for evaluating common mathematical functions that do 
 * Bessel functions: `scipy.special.jv`
 * Spherical Bessel functions: `scipy.special.yn`
 * Gamma function: `scipy.special.gamma`
-* Rieman zeta function: `scipy.special.zeta`
+* Riemann zeta function: `scipy.special.zeta`
 
 ## Exercises
 
 :::{dropdown} Exercise 1: Resistivity of Metals
 
-The [_resistivity_](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) of a material (denoted by $\rho$) measures how strongly it resists electric current. In metals, $\rho$ typically grows as $\rho \sim T$ at high temperatures and as $\rho \sim T^n$ at low temperatures, where the degree $n$ dependins on what kind of electron interactions are dominant. Specifically, we can model $\rho$ at a temperature $T$ in Kelvin using the [Bloch-Gruneisen model](https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19334080504):
+The [_resistivity_](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) of a material (denoted by $\rho$) measures how strongly it resists electric current. In metals, $\rho$ typically grows as $\rho \sim T$ at high temperatures and as $\rho \sim T^n$ at low temperatures, where the degree $n$ depends on what kind of electron interactions are dominant. Specifically, we can model $\rho$ at a temperature $T$ in Kelvin using the [Bloch-Gruneisen model](https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19334080504):
 
 $$\rho(T) \approx \rho(0) + A\left( \frac{T}{\Theta} \right)^n \int_0^{\Theta/T} \frac{x^n}{(e^x - 1)(1 - e^{-x})}\ dx$$
 
@@ -144,7 +144,7 @@ def rho_estimate(T,rho_0, A, theta, n):
     ...
 ```
 
-Note that you may need to define another function to seve as the integrand in the Bloch-Gruneisen model, which you can pass into `scipy.integrate.quad` to integrate.
+You may need to define another function to serve as the integrand in the Bloch-Gruneisen model, which you can pass into `scipy.integrate.quad` to integrate.
 :::
 
 :::{dropdown} Exercise 2: Modeling the Resistivity of Platinum

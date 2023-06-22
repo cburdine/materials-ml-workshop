@@ -34,7 +34,7 @@ print(stuff)
 ```
 
 
-We can construct a list using the square bracket notation, or by converting any sequence (i.e. anything we can interate over with a `for` loop) to a list using the `list` function. For example, to construct a list of consecutive integers from 0 to $n-1$, we could use `list(range(n))`. Below, we give some examples of constructing various lists: 
+We can construct a list using the square bracket notation, or by converting any sequence (i.e. anything we can iterate over with a `for` loop) to a list using the `list` function. For example, to construct a list of consecutive integers from 0 to $n-1$, we could use `list(range(n))`. Below, we give some examples of constructing various lists: 
 
 ```{code-cell}
 # initialize some examples of lists:
@@ -143,7 +143,7 @@ Unfortunately, Python does not have built-in matrix operations like addition, ma
 
 So far, the `list` and `tuple` types may seem to have essentially the same functionality. When we introduced these data types, we mentioned that the key difference was that lists are _mutable_ data types, whereas tuples are _immutable_. This means that the values of lists can be modified, but the values of tuples cannot be modified.
 
-We can modify a specific element in a list using list indexing combined with the asignment operator `=`:
+We can modify a specific element in a list using list indexing combined with the assignment operator `=`:
 
 ```{code-cell}
 # initialize list:
@@ -273,7 +273,7 @@ The [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
 > 3. For each prime $p < N$, cross off all multiples of $p$ in the large list, starting with $2p$, then $3p$, $4p$, and so on.
 > 4. The remaining numbers from 2 to $N^2$ that have not been crossed off are primes.
 
-Here is an animaton of this process for the numbers up to $120$ (credit: Wikipedia):
+Here is an animation of this process for the numbers up to $120$ (credit: Wikipedia):
 
 ![Sieve of Eratosthenes](prime_sieve.gif)
 

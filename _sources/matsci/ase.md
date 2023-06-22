@@ -170,7 +170,7 @@ As static image of the unit cell is given below. Since a structure like this wou
 
 ![](Ti2C_unit_cell.png)
 
-Now, we form a supercell by repeating the unit cell in space. To repeat the primtive cell, described by the `Ti2C` object, we simply multiply `Ti2C` by a 3-element tuple. The three integers `(nx, ny, nz)` repeat the unit cell in the x, y, and z directions, respectively.
+Now, we form a supercell by repeating the unit cell in space. To repeat the primitive cell, described by the `Ti2C` object, we simply multiply `Ti2C` by a 3-element tuple. The three integers `(nx, ny, nz)` repeat the unit cell in the x, y, and z directions, respectively.
 ```{code-cell}
 
 sheet = Ti2C*(3,3,1) #
@@ -254,7 +254,7 @@ si_crystal[k].symbol = 'C'
 ```
 2. See the ([documentation](https://wiki.fysik.dtu.dk/ase/ase/atoms.html)) for the `ase.Atoms` class to learn how to delete atoms from an `Atoms` object.
 
-A successfully-formed NV center would still require strucural optimization.
+A successfully-formed NV center would still require structural optimization.
 
 :::
 

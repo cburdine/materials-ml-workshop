@@ -27,7 +27,7 @@ In supervised learning, a predictive model is provided with a labeled dataset, w
 
 ### Unsupervised Learning:
 
-Unsupervised learning, in contrast, deals with unlabeled data. Typically a computational procedute (i.e. an _algorithm_) is used to find patterns, structures, or relationships within the data without any predefined labels. Clustering is a popular unsupervised learning technique that groups similar data points together based on their inherent similarities or distances. Dimensionality reduction is another common application, where the algorithm aims to reduce the number of input features while preserving important information. Unsupervised learning can reveal hidden insights, discover anomalies, or aid in exploratory data analysis, making it useful when labeled data is scarce or unavailable.
+Unsupervised learning, in contrast, deals with unlabeled data. Typically a computational procedure (i.e. an _algorithm_) is used to find patterns, structures, or relationships within the data without any predefined labels. Clustering is a popular unsupervised learning technique that groups similar data points together based on their inherent similarities or distances. Dimensionality reduction is another common application, where the algorithm aims to reduce the number of input features while preserving important information. Unsupervised learning can reveal hidden insights, discover anomalies, or aid in exploratory data analysis, making it useful when labeled data is scarce or unavailable.
 
 ### Reinforcement Learning:
 

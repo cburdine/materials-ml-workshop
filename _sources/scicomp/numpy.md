@@ -270,7 +270,7 @@ _Hint_: Recall from linear algebra that the solution to a linear system is $\mat
 :::
 
 :::{dropdown} Exercise 2: Eigendecomposition:
-Here's an exercise for the physicsts:
+Here's an exercise for the physicists:
 
 Any square matrix $\mathbf{A}$ that is [non-defective](https://en.wikipedia.org/wiki/Defective_matrix) can be written in the form:
 
@@ -279,7 +279,7 @@ $$\mathbf{A} = \mathbf{P} \Lambda \mathbf{P}^{-1}$$
 where $\Lambda$ is a diagonal matrix containing the eigenvalues of $\mathbf{A}$, and $\mathbf{P}$ is a matrix whose columns are the corresponding eigenvalues of $\mathbf{A}$. When $\mathbf{A}$ is factorized in this form it is called an [_eigendecomposition_](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Eigendecomposition_of_a_matrix), and it is an important result that is often used in physics and quantum mechanics. Do the following:
 
 
-First, solve for $\mathbf{P}$ and $\Lambda$ ising [`np.linalg.eig`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) for the following matrix:
+First, solve for $\mathbf{P}$ and $\Lambda$ using [`np.linalg.eig`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) for the following matrix:
 
 $$\mathbf{A} = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$$
 
