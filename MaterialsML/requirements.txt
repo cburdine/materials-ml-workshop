@@ -10,3 +10,4 @@ tqdm
 itables
 ase
 mp-api
+sphinxcontrib-spelling
