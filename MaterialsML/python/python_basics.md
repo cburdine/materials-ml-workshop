@@ -184,8 +184,8 @@ print(y)
 In Python, variables can be used to store the value of an object of any type (whether `str`, `int`, `float`, or any other type we will learn about in the future). As the example above shows, we can perform some computation on one variable (i.e. `x`) and store that result in another variable (i.e.`y`).
 
 :::{important}
-It might be tempting to think of the assignment operator `=` as a mathematical equality operator $=$. This is not a correct way to think of the `=` operator, since matematical equality is symmetric (i.e. $x = y$ and $y = x$ are identical statements), whereas the assignment operator is not symmetric. 
-In Python, `x = y` assigns the value of the variable `y` to `x`, overriding the previous value of `x`, wheras `y = x` does the reverse, overriding the previous value of `y` with the value of `x`.
+It might be tempting to think of the assignment operator `=` as a mathematical equality operator $=$. This is not a correct way to think of the `=` operator, since mathematical equality is symmetric (i.e. $x = y$ and $y = x$ are identical statements), whereas the assignment operator is not symmetric. 
+In Python, `x = y` assigns the value of the variable `y` to `x`, overriding the previous value of `x`, whereas `y = x` does the reverse, overriding the previous value of `y` with the value of `x`.
 :::
 
 When creating variables, it is encouraged that you pick names for your variables that best reflect the kind of value that they hold. Your variable names should also abide by the conventions of the programming language your code is written in. Here are some general guidelines for selecting good variable names:

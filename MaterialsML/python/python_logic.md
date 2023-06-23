@@ -15,7 +15,7 @@ An important part of programming is the use of logic to control the execution of
 
 ## The Boolean Type
 
-In order to understand how Python handles logic, we must first learn about the Boolean type, which is called `bool` in Python. A Boolean type (named after the mathematician [George Bool](https://en.wikipedia.org/wiki/George_Boole)) is a type that can store either a `True` or `False` value. Let's create some `bool` varibles using the following Python code:
+In order to understand how Python handles logic, we must first learn about the Boolean type, which is called `bool` in Python. A Boolean type (named after the mathematician [George Bool](https://en.wikipedia.org/wiki/George_Boole)) is a type that can store either a `True` or `False` value. Let's create some `bool` variables using the following Python code:
 
 ```{code-cell}
 # True and False are constant Boolean values:
@@ -162,7 +162,7 @@ print('Quotient:', quotient)
 We can see from the output that the line `quotient = numerator / denominator` is not executed, since the condition `denominator != 0` evaluates to `False`. Also note that the body of the `if` statement is indented by either a single tab or four spaces. 
 
 :::{important}
-Although Python is generally not very strict about white space between operations, it is important to make sure that the beginning of each indented line in an `if` statement has the proper amount of white space. This whitespace can be either four spaces or a single tab, but whether tabs or spaces are used must be consistent throughout the entire block of Python code. If you are writing Python code in an editor or Integrated Development Environment (IDE), it is usually good practice to configure your editor to convert tabs to spaces when saving.
+Although Python is generally not very strict about white space between operations, it is important to make sure that the beginning of each indented line in an `if` statement has the proper amount of white space. This white space can be either four spaces or a single tab, but whether tabs or spaces are used must be consistent throughout the entire block of Python code. If you are writing Python code in an editor or Integrated Development Environment (IDE), it is usually good practice to configure your editor to convert tabs to spaces when saving.
 :::
 
 Sometimes, we might also want to handle the case when the expression inside an `if` statement evaluates to `False`. This is achieved through `if`/`else` statements:

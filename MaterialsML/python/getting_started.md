@@ -26,7 +26,7 @@ Unlike other scientific languages like [MATLAB](https://www.mathworks.com/produc
 
 Although the core Python language supports several different data types, many of the features that we will be using in this workshop will come from _python packages_. Python packages are a convenient way for members of the Python community to share Python code that was written to solve a specific problem or that may provide additional code functionality in a specific setting. The availability of many different Python packages and the ease of installing them is what makes Python a powerful research tool. Some Python packages that are widely used in scientific computing are:
 
-* `numpy`: An interface to fast mathematical and numerical functions in python, such as arrays, matrices, and common mathematial functions.
+* `numpy`: An interface to fast mathematical and numerical functions in python, such as arrays, matrices, and common mathematical functions.
 
 * `scipy`: Contains functions commonly used in the analysis of scientific data.
 
