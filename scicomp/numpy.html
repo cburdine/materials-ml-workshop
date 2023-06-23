@@ -910,14 +910,14 @@ Exercise 2: Eigendecomposition:<div class="sd-summary-down docutils">
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Here’s an exercise for the physicists:</p>
+<p class="sd-card-text">Here's an exercise for the physicists:</p>
 <p class="sd-card-text">Any square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> that is <a class="reference external" href="https://en.wikipedia.org/wiki/Defective_matrix">non-defective</a> can be written in the form:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{A} = \mathbf{P} \Lambda \mathbf{P}^{-1}\]</div>
 <p class="sd-card-text">where <span class="math notranslate nohighlight">\(\Lambda\)</span> is a diagonal matrix containing the eigenvalues of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is a matrix whose columns are the corresponding eigenvalues of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. When <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is factorized in this form it is called an <a class="reference external" href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Eigendecomposition_of_a_matrix"><em>eigendecomposition</em></a>, and it is an important result that is often used in physics and quantum mechanics. Do the following:</p>
 <p class="sd-card-text">First, solve for <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> and <span class="math notranslate nohighlight">\(\Lambda\)</span> using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html"><code class="docutils literal notranslate"><span class="pre">np.linalg.eig</span></code></a> for the following matrix:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\mathbf{A} = \begin{bmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{bmatrix}\end{split}\]</div>
+\[\begin{split}\mathbf{A} = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}\end{split}\]</div>
 <p class="sd-card-text">Using the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> operator, verify numerically that the identity above holds. Does the largest entry of <span class="math notranslate nohighlight">\(\Lambda\)</span> <a class="reference external" href="https://en.wikipedia.org/wiki/Golden_ratio">look familiar</a>?</p>
 <p class="sd-card-text">Next, do the same thing, but with the matrix:</p>
 <div class="math notranslate nohighlight">
@@ -962,13 +962,13 @@ Exercise 2: Eigendecomposition:<div class="sd-summary-down docutils">
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A:
-[[ 0.9277287   0.06486145 -0.7062052   0.63432671]
- [ 1.47952748  1.09251112  0.69175829 -0.73150204]
- [ 0.70583157 -1.47542387 -0.07010965  0.35666591]
- [-0.36647299  0.06115261  1.04522423  0.80912734]]
-b: [-1.35728156  3.34756384  1.72876285 -0.82132146]
-x: [ 1.30494992 -1.16614215  1.4939583  -2.26577603]
-Ax: [-1.35728156  3.34756384  1.72876285 -0.82132146]
+[[ 1.05141676  1.66452881  0.59382419  1.33275447]
+ [-1.2073491  -0.93950036  1.77577186 -0.07092095]
+ [ 0.49266101  0.86663749  1.34989066  0.81582463]
+ [ 0.77929524 -1.54917417  0.85513327 -1.84235034]]
+b: [ 1.64921082  0.57755436  1.0211178  -0.17181767]
+x: [ 3.41991851 -6.35752907 -0.44637761  6.67850793]
+Ax: [ 1.64921082  0.57755436  1.0211178  -0.17181767]
 </pre></div>
 </div>
 </div>

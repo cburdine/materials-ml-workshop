@@ -281,7 +281,7 @@ where $\Lambda$ is a diagonal matrix containing the eigenvalues of $\mathbf{A}$,
 
 First, solve for $\mathbf{P}$ and $\Lambda$ using [`np.linalg.eig`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) for the following matrix:
 
-$$\mathbf{A} = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$$
+$$\mathbf{A} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$$
 
 Using the `@` operator, verify numerically that the identity above holds. Does the largest entry of $\Lambda$ [look familiar](https://en.wikipedia.org/wiki/Golden_ratio)?
 
