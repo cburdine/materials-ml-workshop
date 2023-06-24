@@ -14,11 +14,11 @@ kernelspec:
 
 # Data Handling and Visualization
 
-Now that we have learned about the Numpy and Scipy packages, let's take a look at some packages that can help us with visualizing and handling data. Although there are several Python packages that can assist with these tasks, we will focuse on the two most popular packages: _Pandas_ and _Matplotlib_. Pandas (`pandas`) is a package that provides an interface for working with large heterogeneous datasets using array-like structures called DataFrames. Matplotlib (`matplotlib`) is the most popular data visualization tool in Python, with an interface inspired by the plotting functionality in MATLAB. In this section, we will discuss how to handle data with the `pandas` package, and discuss hot to plot and visualize data with `matplotlib` in the next section.
+Now that we have learned about the Numpy and Scipy packages, let's take a look at some packages that can help us with visualizing and handling data. Although there are several Python packages that can assist with these tasks, we will focus on the two most popular packages: _Pandas_ and _Matplotlib_. Pandas (`pandas`) is a package that provides an interface for working with large heterogeneous datasets using array-like structures called DataFrames. Matplotlib (`matplotlib`) is the most popular data visualization tool in Python, with an interface inspired by the plotting functionality in MATLAB. In this section, we will discuss how to handle data with the `pandas` package, and discuss how to plot and visualize data with `matplotlib` in the next section.
 
 ## The Pandas Package
 
-Pandas is an open-source Python package for data manipulation and analysis. The name of package is (sadly) not named after the fuzzy black and white mammal. It is a contraction of "panel data", which is a term from econometrics that refers to series-based datasets. Much like how the `numpy` package is centered around the `numpy.ndarray` data type, Pandas is centered around an array-like type called `pandas.DataFrame`.
+Pandas is an open-source Python package for data manipulation and analysis. The name of package is (sadly) not named after the fuzzy black and white mammal. It is a contraction of "panel datasets", which is a term from econometrics that refers to the type of series-based data commonly used in that field. Much like how the `numpy` package is centered around the `numpy.ndarray` data type, Pandas is centered around an array-like data type called `pandas.DataFrame`.
 
 When using the Pandas package, it is customary to import it with the alias `pd`:
 
@@ -51,7 +51,7 @@ display(df)
 
 ## Data Manipulation:
 
-Pandas provides various functions and methods that make the manipulation and transformation of data relatively simple. Using square brackets (i.e. `[`...`]`) and the methods in the Dataframe class, we can index the DataFrame by rrow or column or even ranges of rows and columns. For example:
+Pandas provides various functions and methods that make the manipulation and transformation of data relatively simple. Using square brackets (i.e. `[`...`]`) and the methods in the Dataframe class, we can index the DataFrame by row or column or even ranges of rows and columns. For example:
 
 ```{code-cell}
 :tags: [hide-output]
@@ -114,16 +114,16 @@ display(filtered_df)
 We can also add columns to the DataFrame by assigning a list (or Numpy array) of values to the new column name. For example:
 
 ```{code-cell}
-# add group and period columns:
+# add group and period columns to the dataframe:
 df['Group'] = [ 1, 18, 1, 2 ]
-df['Period'] = [ 1, 1, 2, 2 ]
+df['Period'] = np.array([ 1, 1, 2, 2 ])
 
 display(df)
 ```
 
 ## Transforming Data
 
-A crucial part of working with Pandas Dataframes is the transformation of data. Usually this involves applying some mathematical function to a column (or sometimes more than one column) and storing the result into a new Dataframe column. To show how this is done in Pandas, let's write a function calles `approximate_mass`, which naively approximates atomic mass as the atomic number times the sum of the proton and neutron masses (in atomic mass units). We can apply the function using the [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html?highlight=dataframe%20apply#pandas.DataFrame.apply) function on either a Series or DataFrame object:
+A crucial part of working with Pandas Dataframes is the transformation of data. Usually this involves applying some mathematical function to a Dataframe column and storing the result in a new Dataframe column. To show how this is done in Pandas, let's write a function called `approximate_mass`, which (naively) approximates atomic mass as the atomic number times the sum of the proton and neutron masses (in atomic mass units). We can apply the function using the [`apply`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html?highlight=dataframe%20apply#pandas.DataFrame.apply) function on either a Series or DataFrame object:
 
 ```{code-cell}
 from scipy.constants import proton_mass, neutron_mass, m_u

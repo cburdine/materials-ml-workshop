@@ -79,7 +79,7 @@ for j in range(7,10):
 
 ## Iterating over Lists:
 
-We can also use `for` loops for iterating over lists of values. In Python, a list is denoted by a sequence of comma-separated values within square brackets (`[`...`]`). We will discuss lists in greater detail in the next section. For now, just keep in mind that we can interate over a finite sequence of values as follows:
+We can also use `for` loops for iterating over lists of values. In Python, a list is denoted by a sequence of comma-separated values within square brackets (`[`...`]`). We will discuss lists in greater detail in the next section. For now, just keep in mind that we can iterate over a finite sequence of values as follows:
 
 ```{code-cell}
 for element in ['H', 'He', 'Li', 'Be']:

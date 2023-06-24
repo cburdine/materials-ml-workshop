@@ -10,6 +10,11 @@ logo: logo.svg
 execute:
   execute_notebooks: force
 
+# Sphinx extensions:
+sphinx:
+  extra_extensions:
+  - sphinxcontrib.spelling
+
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:

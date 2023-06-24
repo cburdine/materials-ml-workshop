@@ -14,7 +14,7 @@ kernelspec:
 
 # Python Functions and Classes
 
-Functions are an essential concept in Python and programming in general. They allow you to encapsulate reusable pieces of code into named blocks, which can be called and executed whenever needed. Functions promote code modularity, readability, and reusability, making them a fundamental building block for structuring and organizing programs. Likewise, Classes in Python provide a way of encapsulating both data and the operations performable on it. In this section we will focus on writing Python functions, and see how they can help us write more concise code.
+_Functions_ are an essential concept in Python and programming in general. They allow you to encapsulate reusable pieces of code into named blocks, which can be called and executed whenever needed. Functions promote code modularity, readability, and reusability, making them a fundamental building block for structuring and organizing programs. Likewise, _Classes_ in Python provide a way of encapsulating both data and the operations performable on it. In this section we will focus on writing Python functions, and see how they can help us write more concise code.
 
 ## Function Basics
 
@@ -43,7 +43,7 @@ def greet():
     print('Hello, world!')
 ```
 
-In the example, we have defined a function `greet` that does not take any parameters (similar to the `list.pop`) function above. To execute a function and perform its associated actions, you call the function by using its name followed by parentheses `()`. If the functon has parameters, you can pass values within the parentheses. Since our `greet` function has no parameters, we can call the function (i.e. execute is corresponding block of code) by using its name followed by parentheses `()`:
+In the example, we have defined a function `greet` that does not take any parameters (similar to the `list.pop`) function above. To execute a function and perform its associated actions, you call the function by using its name followed by parentheses `()`. If the function has parameters, you can pass values within the parentheses. Since our `greet` function has no parameters, we can call the function (i.e. execute is corresponding block of code) by using its name followed by parentheses `()`:
 
 ```{code-cell} ipython3
 greet()
@@ -66,7 +66,7 @@ def greet(name):
 greet('Albert')
 ```
 
-Functions can also have multiple parameters, which we can denote using a comma separated list of parameters. When calling a function witih multiple parameters, be sure that the order of the parameters match the order of the corresponding values:
+Functions can also have multiple parameters, which we can denote using a comma separated list. When calling a function with multiple parameters, be sure that the order of the parameters match the order of the corresponding values:
 
 ```{code-cell} ipython3
 # This function prints out a greeting of a name (with a title):
@@ -92,7 +92,7 @@ result = add_numbers(3,5)
 print(result)
 ```
 
-Python also support returning more than one value from a function. To return multiple values, use a comma separated list of values after the `return` statement. This will pack the returned value into a tuple of the appropriate size and return the tuple. Note that you can upack the returned results by assigning the result to a comma separated list of variables.
+It is also possible to return more than one value from a function. To do this, use a comma separated list of values after the `return` statement. This will pack the returned value into a tuple of the appropriate size and return the tuple. Note that you can unpack the returned results by assigning the result to a comma separated list of variables.
 
 To illustrate this, Let's write a Python function that solves for the roots of a quadratic equation of the form 
 
@@ -122,7 +122,7 @@ print(x2)
 
 An important part of good programming practice is writing comments that document what your code does and how it works. Documentation is especially important when working with Python functions, since someone else (including you at a later time) may want to be able to use your code, but not have to understand all of the details about how your code executes. This is why functions are powerful; they allow you to write code at a higher level of abstraction than basic Python operations by reducing many lines of code to a single function call. However, with this power comes the responsibility of communicating what a function does and what kind of guarantees are provided with regards to parameters, returned values, and any other variables that my be modified during a function call. 
 
-Up until now, we have been documenting code using single line comments (i.e. `#`). In Python, it is considered better practice to use a multiline string called a _docstring_ instead of a single line comment to document a function. A docstring is a comment enclosed by triple quotes (`"""` ... `"""`). If an indented docstring is put beneath a function's  `def` statement, the docstring will be printed when the `help` function is used to print out the details of a function. Below, we give some examples of docstrings:
+Up until now, we have been documenting code using single line comments (i.e. `#`). In Python, it is considered better practice to use a multi-line string called a _docstring_ instead of a single line comment to document a function. A docstring is a comment enclosed by triple quotes (`"""` ... `"""`). If an indented docstring is put beneath a function's  `def` statement, the docstring will be printed when the `help` function is used to print out the details of a function. Below, we give some examples of docstrings:
 
 ```{code-cell} ipython3
 :tags: [hide-output]
@@ -215,7 +215,7 @@ print(solve_quadratic(2,c=-8))
 print(solve_quadratic(c=-8, a=2))
 ```
 
-When parameters are assigned by name, the order of named parameters does not matter. However, any unnamed parameters must preceed named parameters.
+When parameters are assigned by name, the order of named parameters does not matter. However, any unnamed parameters must precede named parameters.
 
 ## Exercises
 
@@ -238,7 +238,7 @@ sum(my_list) # returns 6
 :::{dropdown} Exercise 2: Star Rectangle
 Write a Python function called `print_rectangle` that prints out a rectangle consisting of `*` characters.
 
-This function shoud have two parameters, `width` and `height`, indicating the width and height of the rectangle to be printed.
+This function should have two parameters, `width` and `height`, indicating the width and height of the rectangle to be printed.
 You function should assign a default value of 16 to `width` and 4 to `height`.
 
 For example, the result of calling `print_rectangle(height=2)` should be:

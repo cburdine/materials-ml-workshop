@@ -32,8 +32,13 @@ You can use either pip or Anaconda to install Jupyter Notebook on Windows. It is
 * Search for Anaconda Navigator from the Start Menu. After Anaconda Navigator launches, click the Install button under Jupyter. Wait until the Jupyter Notebook installation is completed. Then, the Install button will turn to a Launch button. Launch it for use.
 * When launching Jupyter Notebook from Anaconda, notebooks will be saved to the default folder of Anaconda Powershell Prompt. To save the notebooks to a different folder, follow these steps:
 * launch Anaconda Powershell Prompt
-* Type  ```cd ```  to move the working directory to the folder of your choice
+* Type  ```cd <your folder>```  to move the working directory to the folder of your choice
 * Type  ```jupyter notebook```  and it will start the server from your folder
+* Alternatively, you can use the command:
+
+```
+jupyter notebook --notebook-dir C:/Path/to/your/folder
+```
 
 :::
 

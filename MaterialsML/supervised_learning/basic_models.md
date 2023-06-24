@@ -14,7 +14,7 @@ Now that we've covered some of the basic theory of supervised learning, let's st
 
 ## Perovskite Classification Dataset
 
-Perovskites are materials with a crystal structure of the form  $ABX_3$, where $A$ and $B$ are two positively charged cations and $B$ is a negatively charged anion, usually oxygen ($O$). Ideal perovskites have a cubic structure, although some perovskites may attain more stable configurations with slightly perturbed structural phases, such as orthorombic or tetragonal. Here's an example of [SrTiO$_3$](https://en.wikipedia.org/wiki/Strontium_titanate) (strontium titanate), which is most stable with a cubic structure:
+Perovskites are materials with a crystal structure of the form  $ABX_3$, where $A$ and $B$ are two positively charged cations and $B$ is a negatively charged anion, usually oxygen ($O$). Ideal perovskites have a cubic structure, although some perovskites may attain more stable configurations with slightly perturbed structural phases, such as orthorhombic or tetragonal. Here's an example of [SrTiO$_3$](https://en.wikipedia.org/wiki/Strontium_titanate) (strontium titanate), which is most stable with a cubic structure:
 
 ```{image} SrTiO3_cubic.png
 :alt: fishy
@@ -54,12 +54,12 @@ For now, we will focus primarily on the prediction of the perovskite structure (
 * Electronegativity of B: $EN(B)$
 * Bond length of A-O pair $l(A$-$O)$
 * Bond Length of B-O pair $l(B$-$O)$
-* Eletronegativity difference with radius: $\Delta ENR$
+* Electronegativity difference with radius: $\Delta ENR$
 * Goldschmidt tolerance factor: $t_G$
 * New tolerance factor: $\tau$
 * Octahedral factor: $\mu$
 
-In total, there are 17 distinct factors in the dataframe; however many of these featurescan be computed directly from other features. For example, the [Goldschmidt tolarance factor](https://en.wikipedia.org/wiki/Goldschmidt_tolerance_factor) is a quantity commonly used to evaluate the stability of perovskite structures. It is computed using the equation:
+In total, there are 17 distinct factors in the dataframe; however many of these features can be computed directly from other features. For example, the [Goldschmidt tolarance factor](https://en.wikipedia.org/wiki/Goldschmidt_tolerance_factor) is a quantity commonly used to evaluate the stability of perovskite structures. It is computed using the equation:
 
 $$t_G = \frac{(r(A) + r(B))}{\sqrt{2}(r(B) - r(\text{O}))}$$
 
@@ -223,6 +223,15 @@ print('Shape of z_test:',z_test.shape)
 
 ## The Perceptron (Linear Classification) Model
 
+One of the simplest two-class classification models is a _linear classifier_ model, historically referred to as a [_Perceptron_](https://en.wikipedia.org/wiki/Perceptron) model. For a normalized feature vector $\mathbf{z}$ with $N$ features, a linear classifier model $f(\mathbf{z})$ makes "1" and "-1" class predictions according to the equation:
+
+$$f(\mathbf{z}) = \begin{cases}
+1, & w_0 + \sum_{i=1}^N w_iz_i > 0 \\
+-1, & \text{ otherwise}
+\end{cases}$$
+
+where $w_0, w_1, ..., w_N$ are learned weights of the model. In this case, a prediction of $1$ corresponds to the cubic class, and $-1$ corresponds to the non-cubic class. We can fit a Perceptron model to the data using the [`sklearn.linear_model.Perceptron`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html) class.
+
 ```{code-cell}
 :tags: [hide-input]
 
@@ -241,17 +250,23 @@ print('training set accuracy:  ', train_accuracy)
 print('validation set accuracy:', val_accuracy)
 ```
 
-
+From our visualization of the cubic vs. non-cubic perovskites, we saw that the separation between these two classes is very non-linear, so we expect both the training set and validation accuracy to be low. Nonetheless, we do see that the validation accuracy is greater than $0.6$, which appears to be statistically significant improvement upon random guessing.
 
 ## The Nearest Neighbor Model
+
+Before trying other models, it may help to see what kind of accuracy can be attained by a _nearest neighbor classification model_. As the name suggests, a nearest neighbor classification model predicts the class of an unseen normalized data point $\mathbf{z}$ to be the majority class in the set of $k$ normalized data points in the training set that are nearest to $\mathbf{z}$. By "nearest", we refer to the point with the smallest Euclidean distance:
+
+$$d(\mathbf{z},\mathbf{z}') = \lVert \mathbf{z} - \mathbf{z}' \rVert$$
+
+Typically, an odd number of neighbors $k$ is used. While $k$-nearest neighbor models tend to give good results, they may not be suitable for large datasets or datasets with many features, as searching for the nearest neighbors in a dataset may be computationally expensive.
 
 ```{code-cell}
 :tags: [hide-input]
 
 from sklearn.neighbors import KNeighborsClassifier
 
-# fit a k-nearest neighbor classifier (k=3 in this case):
-knc = KNeighborsClassifier(n_neighbors=3)
+# fit a k-nearest neighbor classifier (k=7 in this case):
+knc = KNeighborsClassifier(n_neighbors=7)
 knc.fit(z_train, y_train)
 
 # evaluate the model on the training and validation set:
@@ -262,6 +277,10 @@ val_accuracy = knc.score(z_val, y_val)
 print('training set accuracy:  ', train_accuracy)
 print('validation set accuracy:', val_accuracy)
 ```
+
+An important property of nearest neighbor models is that no learning actually takes place with the training data; rather, the model _is_ the training data. This can be viewed as either a criticism or a strength of the model, depending on whether the goal is to just to make accurate predictions or to find a simple and interpretable model that still makes accurate predictions. Often the latter kind of model is preferred over the former, so nearest neighbor models are not often the best choice for supervised tasks. However, these models can be useful in establishing a baseline accuracy that one can attempt to match with models that have less complexity.
+
+As expected, the nearest neighbor model is much more accurate than the Perceptron model we tried earlier. This is because it is capable of capturing some of the non-linearities of classes, especially with regards to the electronegativity of the $A$ and $B$ atoms. We can write some Python code to visualize this as follows:
 
 ```{code-cell}
 :tags: [hide-input]
@@ -296,9 +315,58 @@ plt.title(r'Nearest Neighbor Classification [$t_G$ = ' + f'{eval_tG:.3f}]')
 plt.show()
 ```
 
+Now that we have established a baseline accuracy using the nearest neighbor model, let's try to exceed this baseline accuracy with a more complex model.
 
+## Decision Tree Classifier
+
+```{code-cell}
+:tags: [hide-input]
+
+from sklearn.tree import DecisionTreeClassifier
+
+# fit a decision tree model to the data: 
+dtree = DecisionTreeClassifier(max_depth=10)
+dtree.fit(z_train, y_train)
+
+# evaluate the model on the training and validation set:
+train_accuracy = dtree.score(z_train, y_train)
+val_accuracy = dtree.score(z_val, y_val)
+
+# print the accuracy of the model:
+print('training set accuracy:  ', train_accuracy)
+print('validation set accuracy:', val_accuracy)
+```
 
 ## Exercises
 
+:::{dropdown} Exercise 1: Histogram Gradient Boosting Machine
+In [the paper that produced this dataset](https://doi-org.ezproxy.baylor.edu/10.1016/j.commatsci.2020.110191), the model that yielded the best accuracy was the [_Light Gradient Boosting Machine_ (LGBM)](https://lightgbm.readthedocs.io/en/stable/), developed by Microsoft Research. A similar gradient boosting model is implemented in the `sklearn` package as [`sklearn.ensemble.HistGradientBoostingClassifier`](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingClassifier.html).
+
+Fit this model to the same data as the other models. Try to adjust the `learning_rate` and `max_leaf_nodes` to maximize the validation set accuracy. Estimate the final accuracy of the model by evaluating it on the test set.
+:::
+
 ### Solutions
 
+#### Exercise 1: Histogram Gradient Boosting Machine
+```{code-cell}
+:tags: [hide-cell]
+
+from sklearn.ensemble import HistGradientBoostingClassifier
+
+# fit a histogram gradient boosting model classifier:
+hgbm = HistGradientBoostingClassifier(
+    max_leaf_nodes=180,
+    learning_rate=0.08,
+)
+hgbm.fit(z_train, y_train)
+
+# evaluate the model on the training and validation set:
+train_accuracy = hgbm.score(z_train, y_train)
+val_accuracy = hgbm.score(z_val, y_val)
+test_accuracy = hgbm.score(z_test, y_test)
+
+# print the accuracy of the model:
+print('training set accuracy:  ', train_accuracy)
+print('validation set accuracy:', val_accuracy)
+print('test set accuracy:', test_accuracy)
+```

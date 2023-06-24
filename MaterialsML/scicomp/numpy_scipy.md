@@ -18,7 +18,7 @@ Now that we have covered some of the built-in functionality of Python, it's time
 
 ## Python Packages
 
-In order to use these Python packages, we must first make sure that the package is installed in our Python environment. The quickest way to check if a package is properly installed is to try to import it into our Python code with an `import` statement. Let's try to import the `numpy` and `scipy` base packages a follows:
+In order to use these Python packages, we must first make sure that the package is installed in our Python environment. The quickest way to check if a package is properly installed is to try to import it into our Python code with an `import` statement. Let's try to import the `numpy` and `scipy` base packages by putting the following two lines in the first cell of our notebook:
 
 ```{code-cell}
 # import packages:
@@ -31,7 +31,7 @@ If a package is not correctly installed on your system, attempting to import it 
 In the {doc}`../python/getting_started` section, we give additional details about how to install all needed dependencies for this workshop in your Python environment.
 :::
 
-If importing the package did not create an error, the package was installed correctly. In our Python code, we typically put `import` statements at the very top, so that all of the packages used in our code are imported at the very beginning. We will be using the `numpy` package a lot in this workshop. So, to avoid typing `numpy.<function>` whenever we want to use a function in the numpy package, we will import `numpy` with the shortened alias `np`. To do this we replace the `import numpy` statement with the following:
+If importing the package did not create an error, the package was installed correctly. In our Python code, we typically put `import` statements at the very top, so that all of the packages used in our code are imported at the very beginning. We will be using the `numpy` package a lot in this workshop. So, to avoid typing `numpy.<function>` whenever we want to use a function in the numpy package, we will import `numpy` with the shortened alias `np`. To do this, we replace the `import numpy` statement with the following:
 
 ```{code-cell}
 # imports the numpy package with the alias 'np':
@@ -44,7 +44,7 @@ This allows us to use `numpy` functions as follows:
 # call the numpy.sqrt (square root) function:
 x = np.sqrt(2)
 ```
-When using the scipy package, we will often import functions only as we need them. This will avoid unnecessarily importing the entire base package. For example, to integrate a function, we might want to import the `scipy.integrate.quad` function
+When using the `scipy` package, we will often import functions only as we need them. This will avoid unnecessarily importing the entire base package. For example, to integrate a function, we might want to import the `scipy.integrate.quad` function
 
 ```{code-cell}
 # imports the scipy.integrate.quad function as `quad`
@@ -68,7 +68,7 @@ print(result)
 
 ## Reading Package Documentation
 
-When working with a package for the first time, it it often helpful to familiarize yourself with the package's online documentation (almost all of the popular Python packages have online documentation avaliable). Most of the time, you can find the online documentation by typing the name of the package into your search engine. For example, the [online documentation website for `numpy`](https://numpy.org/doc/stable/index.html) looks like:
+When working with a package for the first time, it it often helpful to familiarize yourself with the package's online documentation (almost all of the popular Python packages have online documentation available). Most of the time, you can find the online documentation by typing the name of the package into your web browser's search engine. For example, the [online documentation website for `numpy`](https://numpy.org/doc/stable/index.html) looks like:
 
 ![Numpy Online Documentation](./numpy_docs.png)
 

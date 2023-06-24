@@ -16,11 +16,11 @@ kernelspec:
 
 Numpy, short for Numerical Python, is a fundamental package for scientific computing in Python. It provides efficient data structures and functions for working with multi-dimensional arrays and matrices. It also provides an interface to a large set of mathematical functions that can perform computations on arrays of data.
 
-Another key feature of Numpy is that it provides tools to interface with low-level languages like C and FORTRAN, making it much more efficient than raw Python code. if optimized correctly, code written in Numpy can execute almost as fast as code written in these low-level languages.
+Another key feature of Numpy is that it interfaces with low-level languages like C and FORTRAN, making it much more efficient than raw Python code. If optimized correctly, code written with Numpy can execute almost as fast as code written in these low-level languages.
 
 ## Numpy Arrays
 
-The most important feature of the `numpy` package is that is supports _array-based_ programming, where data is organized into multi-dimensional arrays and matrices. To construct a numpy array, we call `np.array` on a Python list (or nested Python lists) as follows:
+The most important feature of the `numpy` package is that is supports _array-based_ programming, where data is organized into multi-dimensional arrays and matrices. To construct a Numpy array, we call `np.array` on a Python list (or nested Python lists) as follows:
 
 ```{code-cell}
 import numpy as np
@@ -31,7 +31,7 @@ print(np_array)
 print(type(np_array))
 ```
 
-Numpy arrays are technically instances of the `numpy.ndarray` class, which has an instance variable `shape` that stores a tuple representing the shape of the array:
+Numpy arrays are technically instances of the `numpy.ndarray` class, which has an instance variable `shape` that stores a tuple representing the shape of the array. The length of `shape` corresponds to the number of dimensions of the array, while the product of the elements in `shape` corresponds to the total number of elements in the array:
 
 ```{code-cell}
 # create a 1D array:
@@ -49,7 +49,7 @@ print(X)
 print(X.shape)
 ```
 
-There is no bound on the number of dimensions that a Numpy array can have. When organizing data, sometimes it is necessary to change the shape of the array. This can be done with the [`reshape`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.reshape.html) method:
+When organizing data, sometimes it is necessary to change the shape of the array. This can be done with the [`reshape`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.reshape.html) method:
 
 ```{code-cell}
 :tags: [hide-output]
@@ -81,17 +81,17 @@ Numpy also provides some functions that can easily build arrays of of different 
 # construct a 3x3 identity (i.e. I or "eye") matrix:
 print(np.eye(3))
 
-# construct a matrix of ones:
+# construct an array of ones:
 print(np.ones((2,3)))
 
-# construct a matrix of zeros:
+# construct an array of zeros:
 print(np.zeros((3,5)))
 
-# construct a matrix of 11 equally spaced points from 0 to 1:
+# construct an array of 11 equally spaced points from 0 to 1:
 x = np.linspace(0.0, 1.0, 11)
 print(x)
 
-# construct a matrix of ones with the same shape as x:
+# construct an array of ones/zeros with the same shape as x:
 x_ones = np.ones_like(x)
 x_zeros = np.zeros_like(x)
 print(x_ones)
@@ -143,7 +143,7 @@ print(Z)
 
 ## Operations on Numpy Arrays
 
-When we apply mathematical operations (i.e. `+`,`-`,`*`, etc.) to numpy arrays with a compatible shape, the result is a numpy array where the operation is performed elementwise. For example:
+When we apply mathematical operations (i.e. `+`,`-`,`*`, etc.) to Numpy arrays with a compatible shape, the result is a Numpy array where the operation is performed elementwise. For example:
 
 ```{code-cell}
 x1 = np.array([1,2,3])
@@ -164,20 +164,36 @@ print(-x1)
 ```
 
 :::{note}
-In order for an operation to be applied to two numpy arrays, the `shape` of one array must be _broadcastable_ to the other. Arrays with the same `shape` are always broadcastable. To learn more about what _broadcastable_ means, see the [Numpy tutorial on broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html).
+In order for an operation to be applied to two Numpy arrays, the `shape` of one array must be _broadcastable_ to the other. Arrays with the same `shape` are always broadcastable. To learn more about what _broadcastable_ means, see the [Numpy tutorial on broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html).
 :::
 
 ## Reducing Operations:
 
-Numpy supports reduction operations such as `min`, `max`, `mean` and `sum`, which can be applied to an entire array or just along a specified dimension. For example:
+Numpy supports reduction operations such as `min`, `max`, `mean` and `sum`, which can be applied to all elements in an array or only along a specified dimension. For example:
 
 ```{code-cell}
+# create example matrix:
+X = np.array(range(9)).reshape(3,3)
+print('X array:')
+print(X)
+
+# compute the mean of all elements:
+print(np.mean(X))
+
+# compute the mean along each column:
+print(np.mean(X, axis=0))
+
+# compute the sum along each row:
+print(np.sum(X, axis=1))
+
+# compute the min/max values:
+print(np.min(X), np.max(X))
 
 ```
 
 ## Matrix Operations
 
-For 2D numpy array that represents a [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)), numpy also supports many different operations in its `linalg` package. For example:
+For 2D Numpy array that represents a [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)), Numpy also supports many different operations in its `linalg` package. For example:
 
 ```{code-cell}
 :tags: [hide-output]
@@ -195,6 +211,10 @@ print(A.T)
 # matrix inverse:
 print(np.linalg.inv(X))
 ```
+
+:::{important}
+If you are in need of a review of matrices, vectors, and other linear algebra content, see the {doc}`../ml_intro/math_review` Section.
+:::
 
 We can also compute matrix-matrix products, matrix-vector products, and vector-vector products with the reserved `@` operator:
 
@@ -250,18 +270,18 @@ _Hint_: Recall from linear algebra that the solution to a linear system is $\mat
 :::
 
 :::{dropdown} Exercise 2: Eigendecomposition:
-Here's an exercise for the physicsts:
+Here's an exercise for the physicists:
 
 Any square matrix $\mathbf{A}$ that is [non-defective](https://en.wikipedia.org/wiki/Defective_matrix) can be written in the form:
 
 $$\mathbf{A} = \mathbf{P} \Lambda \mathbf{P}^{-1}$$
 
-where $\Lambda$ is a diagonal matrix containing the eigenvalues of $\mathbf{A}$, and $\mathbf{P}$ is a matrix whose columns are the corresponding eigenvalues of $\mathbf{A}$. When $\mathbf{A}$ is factorized in this form it is called an [_eigendecomposition_](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Eigendecomposition_of_a_matrix), and it is an important result that is often used in physics and quantum mechanics. Do the following:
+where $\Lambda$ is a diagonal matrix containing the eigenvalues of $\mathbf{A}$, and $\mathbf{P}$ is a matrix whose columns are the corresponding eigenvectors of $\mathbf{A}$. When $\mathbf{A}$ is factorized in this form it is called an [_eigendecomposition_](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Eigendecomposition_of_a_matrix), and it is an important result that is often used in physics and quantum mechanics. Do the following:
 
 
-First, solve for $\mathbf{P}$ and $\Lambda$ ising [`np.linalg.eig`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) for the following matrix:
+First, solve for $\mathbf{P}$ and $\Lambda$ using [`np.linalg.eig`](https://numpy.org/doc/stable/reference/generated/numpy.linalg.eig.html) for the following matrix:
 
-$$\mathbf{A} = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$$
+$$\mathbf{A} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$$
 
 Using the `@` operator, verify numerically that the identity above holds. Does the largest entry of $\Lambda$ [look familiar](https://en.wikipedia.org/wiki/Golden_ratio)?
 

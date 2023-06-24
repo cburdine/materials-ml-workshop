@@ -11,7 +11,7 @@ kernelspec:
 
 # Sets and Dictionaries
 
-Now that we have talked about lists and tuples and Python, let's talk about two more of the built-in Python data types: sets and dictionaries. Unlike lists and tuples, which deal with sequentially ordered data, sets and dictionaries deal with unordered data. These data types are especially useful for finding unique elements or assigning values to a collection of unique keys. In this section, we will take a look at each of these types and learn how they are used in Python programming.
+Now that we have talked about lists and tuples and Python, let's talk about two more of the built-in Python data types: _sets_ and _dictionaries_. Unlike lists and tuples, which deal with sequentially ordered data, sets and dictionaries deal with unordered data. These data types are especially useful for finding unique elements or assigning values to a collection of unique keys. In this section, we will take a look at each of these types and learn how they are used in Python programming.
 
 ## Python Sets
 
@@ -25,7 +25,7 @@ example_set = {'A', 'B', 'C', 'A', 'F', 'B'}
 print(example_set)
 ```
 
-Just like mathematical sets, the Python `set` type supports various mathematical set operations, such as union, intersection, difference, etc. These operations allow you to combine, compare, or manipulate sets efficiently. In Python we can perform the `union`, `intersection`, and `difference` operations using either the function with the same name or the operator shorthand (union: '|', intersection: '&', difference: '-'). Below, we give examples of how these operations can be applied:
+Just like mathematical sets, the Python `set` type supports canonical set operations, such as union, intersection, difference, etc. These operations allow you to combine, compare, or manipulate sets efficiently. In Python we can perform the `union`, `intersection`, and `difference` operations using either the function with the same name or the operator shorthand (union: `|`, intersection: `&`, difference: `-`). Below, we give examples of how these operations can be applied:
 
 
 ```{code-cell}
@@ -87,16 +87,16 @@ Python dictionaries (`dict`s) are a powerful built-in data type that allows you 
 # create a dictionary representing a person:
 person = {
     'name' : 'John von Neumann',
-    'age' : 40,
+    'age' : 53,
     'occupation' : 'Mathematician',
-    'birthday' : ('March', 15, 1995)
+    'birthday' : ('December', 28, 1903)
 }
 
 # print the dictionary:
 print(person)
 ```
 
-In the example above, a dictionary named `person` with five key-value pairs is created, representing the name, age, occupation, and birthday associated with the person.
+In the example above, a dictionary named `person` with four key-value pairs is created, representing the name, age, occupation, and birthday associated with the person.
 
 :::{note}
 In Python, `{}` denotes an empty dictionary, not an empty set. To construct an empty set, use `set()`:
@@ -244,4 +244,5 @@ most_frequent_numbers = [
 
 # print most frequent numbers:
 print('Most frequent numbers:', most_frequent_numbers)
+print('Frequency:', max_frequency)
 ```

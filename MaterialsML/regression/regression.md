@@ -97,6 +97,9 @@ To help illustrate underfitting and overfitting, let's return to the familiar ex
 import numpy as np
 import matplotlib.pyplot as plt
 
+# seed random number generator:
+np.random.seed(0)
+
 # define data distribution:
 def y_distribution(x):
 	return -0.1*(x-5)**2 + 1.0 + \
@@ -189,7 +192,7 @@ We can see that some underfitting occurs with the linear model ($D_{emb} = 1$). 
 
 ## Regularization
 
-There are a few ways to deal with overfitting. One way is by going out and collecting more data. As the size and diversity of the training dataset increases, the harder it will be for our model to "memorize" the dataset, therby reducing overfitting. Another way to deal with overfitting is to try a less complex model. In general, the fewer weights a model has, the less prone it is to overfitting data. There is also a third method for reducing overfitting in some models which requires changing neither the model nor the dataset. This is called _regularization_.
+There are a few ways to deal with overfitting. One way is by going out and collecting more data. As the size and diversity of the training dataset increases, the harder it will be for our model to "memorize" the dataset, thereby reducing overfitting. Another way to deal with overfitting is to try a less complex model. In general, the fewer weights a model has, the less prone it is to overfitting data. There is also a third method for reducing overfitting in some models which requires changing neither the model nor the dataset. This is called _regularization_.
 
 The most common forms of regularization incorporate a "model complexity penalty" term directly into the model loss function $\mathcal{E}(f)$. For linear regression problems (both with and without an embedding $\mathbf{\Phi}$), a popular choice of the regularization term is the sums of squares of the model weights times a constant $\lambda$, called the _regularization parameter_:
 
@@ -252,12 +255,14 @@ Let's get some practice working with Ridge and Regression. To start, copy & past
 import numpy as np
 
 def generate_X(n_data):
+    np.random.seed(0) 
     return np.array([
         np.random.uniform(0,10,n_data)*(10**(-n/4))
         for n in range(40)
     ]).T
 
 def generate_y(X, noise=0.5):
+    np.random.seed(0)
     return np.array([
         np.sum([ 2e-6*(10**(n/4))*x_n for n,x_n in enumerate(x) ]) + \
             np.random.normal(0,noise)
@@ -274,7 +279,7 @@ X_validation = generate_X(20)
 y_validation = generate_y(X_validation, noise=0.0)
 ```
 
-First, normalize the data and then fit a Ridge regression model to the training data using [`sklearn.linear_model.Ridge`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html). Plot the training set and validation set mean square error versus the regularization parameter $\lambda$ as $\lambda$ is varied from $0$ to $1$ (Note: $\lambda$ is the argument `alpha` in the `Ridge` object). You should see that the model overfits the training set for $\lambda = 0$ (no regularization), but as $\lambda$ increases the validation set error should decrease.
+First, normalize the data and then fit a Ridge regression model to the training data using [`sklearn.linear_model.Ridge`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html). Plot the training set and validation set mean square error versus the regularization parameter $\lambda$ as $\lambda$ is varied from $0$ to $10$ (Note: $\lambda$ is the argument `alpha` in the `Ridge` object). You should see that the model overfits the training set for $\lambda = 0$ (no regularization), but as $\lambda$ increases the validation set error should decrease.
 
 ---
 
@@ -282,10 +287,10 @@ _Hint:_ To fit a Ridge regression model to a normalized data matrix `Z_train` an
 ```
 from sklearn.linear_model import Ridge
 
-lambda = 0.5 # regularization parameter
+lambda_reg = 0.5 # regularization parameter
 
 # fit model to training data:
-model = Ridge(alpha=lambda)
+model = Ridge(alpha=lambda_reg)
 model.fit(Z_train,y_train)
 
 # make predictions on validation set data:
@@ -337,12 +342,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import Ridge 
 
 def generate_X(n_data):
+    np.random.seed(0)
     return np.array([
         np.random.uniform(0,10,n_data)*(10**(-n/4))
         for n in range(40)
     ]).T
 
 def generate_y(X, noise=0.5):
+    np.random.seed(0)
     return np.array([
         np.sum([ 2e-6*(10**(n/4))*x_n for n,x_n in enumerate(x) ]) + \
             np.random.normal(0,noise)
@@ -364,7 +371,7 @@ scaler.fit(X_train)
 Z_train = scaler.transform(X_train)
 Z_validation = scaler.transform(X_validation)
 
-lambda_values = np.linspace(0,1.0, 100)
+lambda_values = np.linspace(0,10.0, 100)
 
 train_mse_values = []
 validation_mse_values = []

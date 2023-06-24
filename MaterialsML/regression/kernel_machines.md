@@ -56,12 +56,12 @@ $$\begin{aligned}
 \ \text{ for $n = 1, 2, ..., N$}
 \end{aligned}$$
 
-Note that we have added a coefficient of $1/2$ to the objective function, which does not affect the solution to the optimization problem. In total, this problem has $k=2N$ contraint functions, which means that we must introduce a total of $2N$ Lagrange multipliers. Letting $\alpha_1, \alpha_2, ..., \alpha_n$ and $\alpha_1^*, \alpha_2^*, ..., \alpha_n^*$ be the Lagrange multipliers of the top and bottom set of constraints respectively, the Lagrangian function with respect to the weights $\mathbf{w}$ is:
+Note that we have added a coefficient of $1/2$ to the objective function, which does not affect the solution to the optimization problem. In total, this problem has $k=2N$ constraint functions, which means that we must introduce a total of $2N$ Lagrange multipliers. Letting $\alpha_1, \alpha_2, ..., \alpha_n$ and $\alpha_1^*, \alpha_2^*, ..., \alpha_n^*$ be the Lagrange multipliers of the top and bottom set of constraints respectively, the Lagrangian function with respect to the weights $\mathbf{w}$ is:
 
 $$\mathcal{L}(\mathbf{w}) = \frac{1}{2}(\mathbf{w}^T\mathbf{w}) + \sum_{n=1}^N \left[ (\alpha_n - \alpha_n^*)\left(w_0 + \sum_{i=1}^{D_{emb}} w_i \phi_i(\mathbf{x}_n) - y_n\right) - (\alpha_n + \alpha_n^*)\varepsilon \right]$$
 
 :::{important}
-A couple of notational warnings for physicists: 
+A couple of notation warnings for physicists: 
 1. The notation $\alpha_n^*$ does not denote the complex conjugate here; the Lagrange multipliers $\alpha_n$ and $\alpha_n^*$ are independent real scalar values.
 2. The "Lagrangian" function used here is unrelated to the Lagrangian operator $\mathcal{L} = \mathcal{T} - \mathcal{V}$, though both of these formalisms are attributed to [Lagrange](https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange). (Same guy, different crime).
 ::: 
@@ -96,7 +96,7 @@ $$K(\mathbf{x}, \mathbf{x}') = \sum_{i=1}^{D_{emb}} \phi_i(\mathbf{x})\phi_i(\ma
 While the kernel function $K(\mathbf{x},\mathbf{x}')$ can be concretely interpreted as the inner product of $\mathbf{x}$ and $\mathbf{x}'$ in the embedding space, we can abstractly think of $K$ as a measure of "similarity" between two points $\mathbf{x}$ and $\mathbf{x}'$. The higher the value of $K(\mathbf{x},\mathbf{x}')$, the more similar $\mathbf{x}$ is to $\mathbf{x}'$.
 
 :::{important}
-In most software packages, the $y_1,y_2, ..., y_N$ values are normalized prior to solving the dual problem to ensure that $w_0 = 0$ (this ensures that the regularization parameter $C$ does not bound the bias weight $w_0$). Because $w_0 = 0$, the leading column of $1$s in the embedding matrix $\mathbf{\Phi}(\mathbf{X})$ is unnecessary, and is thusremoved. This results in a Gram matrix $\mathbf{G}$ with entries:
+In most software packages, the $y_1,y_2, ..., y_N$ values are normalized prior to solving the dual problem to ensure that $w_0 = 0$ (this ensures that the regularization parameter $C$ does not bound the bias weight $w_0$). Because $w_0 = 0$, the leading column of $1$s in the embedding matrix $\mathbf{\Phi}(\mathbf{X})$ is unnecessary, and is thus removed. This results in a Gram matrix $\mathbf{G}$ with entries:
 
 $$\mathbf{G}_{mn} = \sum_{i=1}^{D_{emb}} \phi_i(\mathbf{x}_m)\phi_i(\mathbf{x}_n) = K(\mathbf{x}_m, \mathbf{x}_n)$$
 :::
@@ -111,7 +111,7 @@ $$ f(\mathbf{x}) = w_0 + \sum_{i=1}^{D_{emb}} w_i\phi_i(\mathbf{x})\quad \Righta
 
 This is an important result, as it allows us to quantitatively measure the "importance" of each datapoint $\mathbf{x}_n$ in training the model by examining the values of $(\alpha_n - \alpha_n^*)$. Furthermore, it also allows us quantify how each of the training datapoints $\mathbf{x}_n$ contribute to predictions made on an unseen datapoint $\mathbf{x}$. This contribution is the product of $(\alpha_n - \alpha_n^*)$ (the "importance" of $\mathbf{x}_n$) and $K(\mathbf{x}_n,\mathbf{x})$ (the "similarity" of $\mathbf{x}_n$ and $\mathbf{x}$).
 
-Recall that the $\alpha_n$ and $\alpha_n^*$ are Lagrange multipliers corrsesponding to the constraint $|f(\mathbf{x}_n) - y_n| \le \varepsilon$. In Lagrange multiplier problems, if the optimal solution has $\lambda_i = 0$ for any multiplier $\lambda_i$, it means that the solution does not lie on the boundary of the corresponding constraint $g_i(\mathbf{w}) = 0$. So, if $\alpha_n = \alpha_n^* = 0$, it means that the constraint $|\hat{y} - y| < \epsilon$ was not necessary in fitting the model. In other words, the points with $|(\alpha - \alpha^*)| > 0$ are the only points that were "important" in finding the best fit of the model. These points are called _support vectors_. In the simple case of a linear model, the points with $(\alpha - \alpha^*) \neq 0$ are the points that lie above and below the $f(x) \pm \varepsilon$ region, as shown in the illustration below:
+Recall that the $\alpha_n$ and $\alpha_n^*$ are Lagrange multipliers corresponding to the constraint $|f(\mathbf{x}_n) - y_n| \le \varepsilon$. In Lagrange multiplier problems, if the optimal solution has $\lambda_i = 0$ for any multiplier $\lambda_i$, it means that the solution does not lie on the boundary of the corresponding constraint $g_i(\mathbf{w}) = 0$. So, if $\alpha_n = \alpha_n^* = 0$, it means that the constraint $|\hat{y} - y| < \epsilon$ was not necessary in fitting the model. In other words, the points with $|(\alpha - \alpha^*)| > 0$ are the only points that were "important" in finding the best fit of the model. These points are called _support vectors_. In the simple case of a linear model, the points with $(\alpha - \alpha^*) \neq 0$ are the points that lie above and below the $f(x) \pm \varepsilon$ region, as shown in the illustration below:
 
 ![Support Vector Regression](support_vectors.svg)
 
@@ -148,14 +148,14 @@ $$K(\mathbf{x},\mathbf{x}') \sim \langle \psi_\mathbf{x} | \psi_{\mathbf{x}'} \r
 
 This kernel can be used in a variety of solid state physics problems involving the electronic structure of materials. For example, $\mathbf{x}$ could be a vector representing a linear combination of atomic orbitals. We note, however, that additional care must be taken when working with kernel functions that are complex-valued.
 
-Kernel machines are also currently being explored in the field of [_Quantum Machine Learning_](https://en.wikipedia.org/wiki/Quantum_machine_learning), which seeks to integrate quantum computation with existing classical machine learning. Quantum Kernel machines naturally make use of the $L^2$ kernel, and appear to be promising model for predicting quantum mechanical properties of materials. Unfortunatly, quantum computers have yet to reach the scale necessary to apply machine learning algorithms to large datasets.
+Kernel machines are also currently being explored in the field of [_Quantum Machine Learning_](https://en.wikipedia.org/wiki/Quantum_machine_learning), which seeks to integrate quantum computation with existing classical machine learning. Quantum Kernel machines naturally make use of the $L^2$ kernel, and appear to be promising model for predicting quantum mechanical properties of materials. Unfortunately, quantum computers have yet to reach the scale necessary to apply machine learning algorithms to large datasets.
 :::
 
-Recall that the kernel function $K(\mathbf{x},\mathbf{x}')$ computes the inner product of two data points embedded in $D_{emb}$-dimensional space. Remarkably, it can be shown that for some kernel functions, such as RBF kernel and the $L^2$ kernel, the embedding space has dimension $D_{emb} = \infty$! This means that when we fit a kernel machine using these kernels, we are actually performing linear regression in an infinite dimensional space, which is impossibe to do with a traditional linear regression model. This neat little result is called the ["_kernel trick_"](https://en.wikipedia.org/wiki/Kernel_method#Mathematics:_the_kernel_trick).
+Recall that the kernel function $K(\mathbf{x},\mathbf{x}')$ computes the inner product of two data points embedded in $D_{emb}$-dimensional space. Remarkably, it can be shown that for some kernel functions, such as RBF kernel and the $L^2$ kernel, the embedding space has dimension $D_{emb} = \infty$! This means that when we fit a kernel machine using these kernels, we are actually performing linear regression in an infinite dimensional space, which is impossible to do with a traditional linear regression model. This neat little result is called the ["_kernel trick_"](https://en.wikipedia.org/wiki/Kernel_method#Mathematics:_the_kernel_trick).
 
 ## Support Vector Regression
 
-Although the theory of support vector regression and other types of kernel machines is quite complex, using them in practice is quite easy. The `sklearn` library contains a several different kernel machine models that we can integrate into our Python code. Many different kernels are also suppported. For example, to fit a support vector regression model with a linear kernel, we can use [`sklearn.svm.SVR`](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html) as shown in the following code:
+Although the theory of support vector regression and other types of kernel machines is quite complex, using them in practice is quite easy. The `sklearn` library contains a several different kernel machine models that we can integrate into our Python code. Many different kernels are also supported. For example, to fit a support vector regression model with a linear kernel, we can use [`sklearn.svm.SVR`](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html) as shown in the following code:
 
 ```{code-cell}
 :tags: [hide-input]

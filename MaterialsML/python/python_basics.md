@@ -21,7 +21,7 @@ The first thing we will learn about is how to use the `print` function. The `pri
 print('Hello World!')
 ```
 
-If you don't see an empty cell to type your code into, click on the **+** button at the top lefthand corner to create a new empty cell. Your notebook should now look something like this:
+If you don't see an empty cell to type your code into, click on the **+** button at the top left hand corner to create a new empty cell. Your notebook should now look something like this:
 
 ![](hello_world.png)
 
@@ -92,7 +92,7 @@ print(3.1415926535)
 print(4 * (1 - 1/3 + 1/5 - 1/7 + 1/9 - 1/11 + 1/13))
 
 ```
-Even if you don't understand what the Taylor expansion of $\arctan(x)$ is, the comments still clearly describe the intent behind each of the `print` statements. If these comments weren't present in the code, we would probably have difficulty understanding what is going on. This shows that adding good comments to your code is almost as important as the code itself. Even if you think you will be the only one reading or modifying your code in the future, adding comments is still very important, as it can make your code immune to the scourge known as [_Eagleson's Law_:
+Even if you don't understand what the Taylor expansion of $\arctan(x)$ is, the comments still clearly describe the intent behind each of the `print` statements. If these comments were not present in the code, we would probably have difficulty understanding what is going on. This shows that adding good comments to your code is almost as important as the code itself. Even if you think you will be the only one reading or modifying your code in the future, adding comments is still very important, as it can make your code immune to the scourge known as [_Eagleson's Law_:
 
 ```{epigraph}
 "Any code of your own that you haven’t looked at for six or more months, might as well have been written by someone else."
@@ -151,7 +151,7 @@ print(type(42 / 6))     # 7.0 (!)
 print(type(16**(-2)))   # 4.0 (!)
 ```
 
-For the last few lines of the code cell (with `(!)` in the comments) note that even though the resulting values are effectively integers, the types are still `float`. The reason is that Python automatically converts the result of all division (`/`) and most exponentiation (`**`) operations to `float`s, even if the results are in fact integers. We also see that any value given with a trailing `.0` is interpreteted by Python as a `float` type.
+For the last few lines of the code cell (with `(!)` in the comments) note that even though the resulting values are effectively integers, the types are still `float`. The reason is that Python automatically converts the result of all division (`/`) and most exponentiation (`**`) operations to `float`s, even if the results are in fact integers. We also see that any value given with a trailing `.0` is interpreted by Python as a `float` type.
 
 In addition to the `float` type, which stores real numbers, Python also has the `complex` type for storing complex numbers of the form $z = a + bi$, where $a$ and $b$ are real numbers and $i = \sqrt{-1}$ is the imaginary constant. To denote complex numbers in Python, we use the same $a + bi$ syntax, but we use the suffix `j` instead of $i$ to denote the imaginary part of the number:
 
@@ -181,11 +181,11 @@ y = 10*(x**2) + 3*x + 4
 # print the result stored in the "y" variable:
 print(y)
 ```
-In Python, variables can be used to store the value of an object of any type (whether `str`, `int`, `float`, or any other type we will learn about in the future). As the example above shows, we can perform some computation on one variable (i.e. `x`) and store that result in another varible (i.e.`y`).
+In Python, variables can be used to store the value of an object of any type (whether `str`, `int`, `float`, or any other type we will learn about in the future). As the example above shows, we can perform some computation on one variable (i.e. `x`) and store that result in another variable (i.e.`y`).
 
 :::{important}
-It might be tempting to think of the assignment operator `=` as a mathematical equality operator $=$. This is not a correct way to think of the `=` operator, since matematical equality is symmetric (i.e. $x = y$ and $y = x$ are identical statements), whereas the assignment operator is not symmetric. 
-In Python, `x = y` assigns the value of the variable `y` to `x`, overriding the previous value of `x`, wheras `y = x` does the reverse, overriding the previous value of `y` with the value of `x`.
+It might be tempting to think of the assignment operator `=` as a mathematical equality operator $=$. This is not a correct way to think of the `=` operator, since mathematical equality is symmetric (i.e. $x = y$ and $y = x$ are identical statements), whereas the assignment operator is not symmetric. 
+In Python, `x = y` assigns the value of the variable `y` to `x`, overriding the previous value of `x`, whereas `y = x` does the reverse, overriding the previous value of `y` with the value of `x`.
 :::
 
 When creating variables, it is encouraged that you pick names for your variables that best reflect the kind of value that they hold. Your variable names should also abide by the conventions of the programming language your code is written in. Here are some general guidelines for selecting good variable names:
