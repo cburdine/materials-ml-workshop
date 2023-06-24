@@ -13,7 +13,7 @@ kernelspec:
 ---
 # The Scipy Package
 
-Scientific programming involves using computational tools and techniques to solve scientific and mathematical problems. The SciPy package in Python is a powerful library specifically designed for scientific and technical computing. It builds upon the foundation provided by NumPy and offers additional functionality for a wide range of scientific computations.
+Scientific computing often involves using domain-specific computational tools and techniques to solve certain mathematical problems. The SciPy package in Python is a powerful library specifically designed with scientific computing in mind. It builds upon the foundation provided by NumPy and offers additional functionality for solving some of the most common problems in various scientific domains, such as physics, statistics, and engineering.
 
 SciPy consists of various modules, each focusing on specific scientific computing tasks. Some of the key modules available in SciPy include:
 
@@ -37,7 +37,7 @@ To import the constants subpackage use the import statement
 from scipy import constants
 ```
 
-All constants in the `scipy.constants` package are in [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) and are some are written with upppercase letters. For example:
+All constants in the `scipy.constants` package are in [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) and are some are written with uppercase letters. For example:
 
 ```{code-cell}
 :tags: [hide-output]
@@ -51,7 +51,7 @@ print(constants.m_e)            # Electron mass [kg]
 
 # Integration
 
-As we have shown previously, Scipy also has funcionality to integrate Python functions in the `scipy.integrate` subpackage. Integration is often necessary when computing various physical quantities, such as wave function inner products in quantum mechanics. For example, we can numerically evaluate the Gaussian integral
+As we have shown previously, Scipy can also numerically integrate Python functions in the `scipy.integrate` subpackage. Integration is often necessary when computing various physical quantities, such as wave function inner products in quantum mechanics. Integration is also used to simulate the trajectories of physical systems with respect to time. For example, we can numerically evaluate the Gaussian integral
 
 $$\int_{-\infty}^\infty e^{-x^2}\ dx = \sqrt{\pi}$$
 
@@ -82,11 +82,14 @@ Scipy is only capable of numerical integration. For symbolic integration problem
 
 # Optimization
 
-In the `scipy.optimize` subpackage, Scipy provides functionality for function optimization (i.e. numerically solving for the minimum or maximum of a function) and curve fitting (fitting a 1D curve to data). Below, we give an example of using [`scipy.optimize.curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit) to fit a linear model to data:
+In the `scipy.optimize` subpackage, Scipy provides functionality for optimization (i.e. numerically solving for the minimum or maximum of a function) and curve fitting (fitting a curve function to data). Below, we give an example of using [`scipy.optimize.curve_fit`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit) to fit a linear model to data:
 
 ```{code-cell}
 import numpy as np
 from scipy.optimize import curve_fit
+
+# seed random number generator:
+np.random.seed(0)
 
 # generate N datapoints that fit y = 10x + 3:
 N = 100
@@ -119,13 +122,13 @@ Finally, Scipy has support for evaluating common mathematical functions that do 
 * Bessel functions: `scipy.special.jv`
 * Spherical Bessel functions: `scipy.special.yn`
 * Gamma function: `scipy.special.gamma`
-* Rieman zeta function: `scipy.special.zeta`
+* Riemann zeta function: `scipy.special.zeta`
 
 ## Exercises
 
 :::{dropdown} Exercise 1: Resistivity of Metals
 
-The [_resistivity_](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) of a material (denoted by $\rho$) measures how strongly it resists electric current. In metals, $\rho$ typically grows as $\rho \sim T$ at high temperatures and as $\rho \sim T^n$ at low temperatures, where the degree $n$ dependins on what kind of electron interactions are dominant. Specifically, we can model $\rho$ at a temperature $T$ in Kelvin using the [Bloch-Gruneisen model](https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19334080504):
+The [_resistivity_](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) of a material (denoted by $\rho$) measures how strongly it resists electric current. In metals, $\rho$ typically grows as $\rho \sim T$ at high temperatures and as $\rho \sim T^n$ at low temperatures, where the degree $n$ depends on what kind of electron interactions are dominant. Specifically, we can model $\rho$ at a temperature $T$ in Kelvin using the [Bloch-Gruneisen model](https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19334080504):
 
 $$\rho(T) \approx \rho(0) + A\left( \frac{T}{\Theta} \right)^n \int_0^{\Theta/T} \frac{x^n}{(e^x - 1)(1 - e^{-x})}\ dx$$
 
@@ -141,7 +144,7 @@ def rho_estimate(T,rho_0, A, theta, n):
     ...
 ```
 
-Note that you may need to define another function to seve as the integrand in the Bloch-Gruneisen model, which you can pass into `scipy.integrate.quad` to integrate.
+You may need to define another function to serve as the integrand in the Bloch-Gruneisen model, which you can pass into `scipy.integrate.quad` to integrate.
 :::
 
 :::{dropdown} Exercise 2: Modeling the Resistivity of Platinum

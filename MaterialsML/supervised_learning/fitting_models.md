@@ -55,7 +55,7 @@ The physicists in the room may recognize the RMSE as the $\ell^2$ norm error ("L
 
 ## Fitting Models to Data
 
-The process of fitting models to data can sometimes be very complex, and the computational method for determining the fit is often specific the type of model being used. These computatiomethods are called _learning algorithms_, since they employ iterative procedures for gradually improving the fit of a model.
+The process of fitting models to data can sometimes be very complex, and the computational method for determining the fit is often specific the type of model being used. These computational methods are called _learning algorithms_, since they employ iterative procedures for gradually improving the fit of a model.
 
 Since this workshop is not directed at computer scientists, we will not cover these computational methods in detail; however, having at least a cursory understanding of them is crucial in understanding how most models work. As a motivating example, let's recall a simple 1D polynomial model with degree $D$:
 
@@ -78,7 +78,7 @@ As its name suggests, _gradient descent_ is a learning algorithm that minimizes 
 
 $$\nabla_{w} f(\mathbf{x}) = \begin{bmatrix} \dfrac{\partial f}{\partial w_0}(\mathbf{x}) & \dfrac{\partial f}{\partial w_1}(\mathbf{x}) & \dots & \dfrac{\partial f}{\partial w_D}(\mathbf{x}) \end{bmatrix}^T$$
 
-Any loss function $E(\hat{y},y)$ that satisfies properties 1-3 is continouous and differentiable, meaning $\frac{\partial E}{\partial \hat{y}}$ exists. This means that we can compute the gradient of a loss function $E$ with respect to the weights for a single data point $(\mathbf{x}, y)$ using chain rule:
+Any loss function $E(\hat{y},y)$ that satisfies properties 1-3 is continuous and differentiable, meaning $\frac{\partial E}{\partial \hat{y}}$ exists. This means that we can compute the gradient of a loss function $E$ with respect to the weights for a single data point $(\mathbf{x}, y)$ using chain rule:
 
 $$\nabla_w E(f(\mathbf{x}), y) = \dfrac{\partial E}{\partial \hat{y}}(f(\mathbf{x}), y) \cdot \nabla_w f(\mathbf{x})$$
 
@@ -98,16 +98,16 @@ This process is illustrated for a simple 2D vector of weights $\mathbf{w} = \beg
 
 
 :::{tip}
-Here's another one for the physicists in the room: If we interpret $\mathcal{E}$ as a potential energy function within the $D$+1-dimensional space of weight configurations, we can interpret $-\nabla_w \mathcal{E}(f)$ as proportional to the net "force" vector exerted on the current weight configuration by each datapoint. When the model fit convges to a local minimum of $\mathcal{E}$, the system reaches a stable equilibrium where the net "force" on the weight configuration is zero. This is somewhat analogous to the dynamics of a ball rolling down a hill:
+Here's another one for the physicists in the room: If we interpret $\mathcal{E}$ as a potential energy function within the $D$+1-dimensional space of weight configurations, we can interpret $-\nabla_w \mathcal{E}(f)$ as proportional to the net "force" vector exerted on the current weight configuration by each datapoint. When the model fit converges to a local minimum of $\mathcal{E}$, the system reaches a stable equilibrium where the net "force" on the weight configuration is zero. This is somewhat analogous to the dynamics of a ball rolling down a hill:
 
 ![Gradient Descent Balls](grad_local.svg)
 :::
 
-Ideally, we should expect $\mathcal{E}(f)$ to gradually decrease with each timestep until $-\nabla_w \mathcal{E}(f) \approx \mathbf{0}$, at which point $\mathcal{E}(f)$ has attained a local minimum. Take note that at some points where $\mathcal{E}(f)$ is steep, the magnitude of the gradient, $\lVert -\nabla_w \mathcal{E}(f) \rVert$, can be quite large. This can sometimes cause the gradient descent procedure to completely overstep local minima and even increase $\mathcal{E}(f)$ from last step. Problems can also be encountered when $\lVert -\nabla_w \mathcal{E}(f) \rVert$ is very small, as many small steps may be required to reach the nearest minimum. To avoid these pathologies, we can set the changes in the weight vector $\mathbf{w}$ to have a fixed magnitide $\eta$:
+Ideally, we should expect $\mathcal{E}(f)$ to gradually decrease with each timestep until $-\nabla_w \mathcal{E}(f) \approx \mathbf{0}$, at which point $\mathcal{E}(f)$ has attained a local minimum. Take note that at some points where $\mathcal{E}(f)$ is steep, the magnitude of the gradient, $\lVert -\nabla_w \mathcal{E}(f) \rVert$, can be quite large. This can sometimes cause the gradient descent procedure to completely overstep local minima and even increase $\mathcal{E}(f)$ from last step. Problems can also be encountered when $\lVert -\nabla_w \mathcal{E}(f) \rVert$ is very small, as many small steps may be required to reach the nearest minimum. To avoid these pathologies, we can set the changes in the weight vector $\mathbf{w}$ to have a fixed magnitude $\eta$:
 
 $$\mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} + \eta \frac{-\nabla_w \mathcal{E}(f)}{\lVert{-\nabla_w \mathcal{E}(f)}\rVert}$$
 
-The value of $\eta$ is called the _learning rate_. Note that if $\eta$ is set too high, then the model may overstep local minima, but if $\eta$ is set too low, then the gradient descent may take a long time to converge. Choosing the right value of $\eta$ is important for obtainig a good fit of the data. 
+The value of $\eta$ is called the _learning rate_. Note that if $\eta$ is set too high, then the model may overstep local minima, but if $\eta$ is set too low, then the gradient descent may take a long time to converge. Choosing the right value of $\eta$ is important for obtaining a good fit of the data. 
 
 ## Example: Fitting a Linear Model
 
@@ -289,7 +289,7 @@ Using your new polynomial gradient descent function, determine the weights of a 
 data_x = np.linspace(-2,2,100)
 data_y = np.cos(x_data*np.pi)
 ```
-Plot both the data and your fited degree-6 polynomial.
+Plot both the data and your fitted degree-6 polynomial.
 Don't worry about normalization or splitting into train/validation/test sets here. 
 :::
 

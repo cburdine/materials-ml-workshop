@@ -49,7 +49,7 @@ plt.title('Example of a Line plot')
 plt.show()
 ```
 
-Take note that the default behavior of `plt.plot` is to draw straight lines between consecutive $(x,y)$ pairs, which means that you may need to ensure your x-axis and y-axis data are sorted in the correct order. Matplotlib allows you to customize various aspects of your plots, such as line styles, marker types, colors, axes limits, gridlines, legends, and more. As an example, let's plot the same data, but with a different figure size, a customized line style, and a legend:
+Take note that the default behavior of `plt.plot` is to draw straight lines between consecutive $(x,y)$ pairs, which means that you may need to ensure your x-axis and y-axis data are sorted in the correct order. Matplotlib allows you to customize various aspects of your plots, such as line styles, marker types, colors, axes limits, grid lines, legends, and more. As an example, let's plot the same data, but with a different figure size, a customized line style, and a legend:
 
 ```{code-cell}
 
@@ -128,7 +128,7 @@ greeting = f'My name is {name} and I am {age} years old}'
 ```
 Python's f-strings are especially useful when formatting numerical data to be displayed in the legend of a figure. In the harmonic wave example above, we used the fstring `f'{k:.3f}'` to convert the `float` type variable `k` to a string with no more than 3 decimal places. You can learn more about the details of f-strings in the [Official Python tutorial](https://docs.python.org/3/tutorial/inputoutput.html).
 
-Also, one other special type of string to be aware of is the _raw string_, or _r-string_ for short, which was used in the `label_latex` string in the example above. Raw strings are preceded by the character `r` to signal that the string's contents should be stored verbatim and without converting any character sequences (such as `'\t'`, which converts to a tab, or `'\n'`, which converts to a new line). When using Latex in yout plots, use r-strings to store the Latex expressions.
+Also, one other special type of string to be aware of is the _raw string_, or _r-string_ for short, which was used in the `label_latex` string in the example above. Raw strings are preceded by the character `r` to signal that the string's contents should be stored verbatim and without converting any character sequences (such as `'\t'`, which converts to a tab, or `'\n'`, which converts to a new line). When using Latex in your plots, use r-strings to store the Latex expressions.
 :::
 
 ## Different Types of Plots
@@ -312,7 +312,7 @@ t_values = np.linspace(0,60,10000)
 trajectory = odeint(lorenz_system, xyz_init, t_values)
 ```
 
-To plot a trajectory in 3D, use  `ax.plot(x,y,z)` as shown in [this example](https://matplotlib.org/stable/gallery/mplot3d/lines3d.html#sphx-glr-gallery-mplot3d-lines3d-py) from the Matplotlib documentaion.
+To plot a trajectory in 3D, use  `ax.plot(x,y,z)` as shown in [this example](https://matplotlib.org/stable/gallery/mplot3d/lines3d.html#sphx-glr-gallery-mplot3d-lines3d-py) from the Matplotlib documentation.
 :::
 
 ### Solutions

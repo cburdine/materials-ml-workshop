@@ -100,7 +100,7 @@ with MPRester(MP_API_KEY) as mpr:
 
 ```
 
-The `MPRester` method, `get_structure_by_material_id()`, accessable as `mpr.get_structure_by_material()`, queries the Materials Project and returns the crystal structure, storing it in an object `structure`. Having accessed the Materials Project, we no longer require the `mpr` object. We can now exit the `MPRester` code block by resetting the indentation.
+The `MPRester` method, `get_structure_by_material_id()`, accessible as `mpr.get_structure_by_material()`, queries the Materials Project and returns the crystal structure, storing it in an object `structure`. Having accessed the Materials Project, we no longer require the `mpr` object. We can now exit the `MPRester` code block by resetting the indentation.
 
 Next, we provide code to inspect the structure we downloaded. What is its data type? How can we use it?
 

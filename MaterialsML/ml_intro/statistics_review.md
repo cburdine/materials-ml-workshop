@@ -124,7 +124,7 @@ plt.show()
 
 ## The Central Limit Theorem
 
-The _[Law of Large Numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers)_ and the _[Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem)_ are two important theorems in statistics. The Law of Large Numbers states states that as the number of samples $n$ of a random variable $X$ increases, the average of these samples aproaches the distribution mean $\mu = \mathbb{E}[X]$:
+The _[Law of Large Numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers)_ and the _[Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem)_ are two important theorems in statistics. The Law of Large Numbers states states that as the number of samples $n$ of a random variable $X$ increases, the average of these samples approaches the distribution mean $\mu = \mathbb{E}[X]$:
 
 $$\text{For samples } x_1, x_2, ..., x_n,\quad \sum_{i=1}^n \frac{x_i}{n} \rightarrow \mu \quad\text{ as }\quad n \rightarrow \infty.$$
 
@@ -183,10 +183,10 @@ plt.legend()
 plt.show()
 ```
 
-In order to evaluate whether or not our result is statistically significant, we will compute the [_$p$-value_](https://en.wikipedia.org/wiki/P-value) associated with our hypothesis testing. A $p$-value is a quantity between $0$ and $1$ that describes the probability of obtaining a result at least as exteme as the experimentally observed value assuming that $H_0$ is true. Roughly speaking, we can interpret a $p$-value as the probability of observing the experimental data "by coincidence" if $H_0$ is in fact true. If a $p$-value is low, it means that the alternative hypothesis $H_1$ is likely to be true. In most research settings, a p-value of at most $0.05$ ($5\%$ chance of coincidence) is considered sufficient to show that the alternative hypothesis $H_1$ is true.
+In order to evaluate whether or not our result is statistically significant, we will compute the [_$p$-value_](https://en.wikipedia.org/wiki/P-value) associated with our hypothesis testing. A $p$-value is a quantity between $0$ and $1$ that describes the probability of obtaining a result at least as extreme as the experimentally observed value assuming that $H_0$ is true. Roughly speaking, we can interpret a $p$-value as the probability of observing the experimental data "by coincidence" if $H_0$ is in fact true. If a $p$-value is low, it means that the alternative hypothesis $H_1$ is likely to be true. In most research settings, a p-value of at most $0.05$ ($5\%$ chance of coincidence) is considered sufficient to show that the alternative hypothesis $H_1$ is true.
 
 
-From inspecting thie plot of the distribution above, we see that the accuracy distribution is approximately normal, having mean $\mu_X \approx p = 0.5$ and variance $\sigma^2_X \approx p(1-p) = 0.25$. Per the Central Limit Theorem, we conclude that the estimated accuracy of random guessing is normally distributed with mean $\mu = \mu_X$ and $\sigma = \sigma_X/\sqrt{40}$. The $p$-value corresponds to the area under this normal distribution curve corresponding to accuracies with $0.6$ or greater. Using the values from the previous code cell, we can compute the $p$-value as follows:
+From inspecting this plot we see that the accuracy distribution is approximately normal, having mean $\mu_X \approx p = 0.5$ and variance $\sigma^2_X \approx p(1-p) = 0.25$. Per the Central Limit Theorem, we conclude that the estimated accuracy of random guessing is normally distributed with mean $\mu = \mu_X$ and $\sigma = \sigma_X/\sqrt{40}$. The $p$-value corresponds to the area under this normal distribution curve corresponding to accuracies with $0.6$ or greater. Using the values from the previous code cell, we can compute the $p$-value as follows:
 
 ```{code-cell}
 :tags: [hide-input]
@@ -230,7 +230,7 @@ $$\boldsymbol{\mu} = \begin{bmatrix} \mu_1 \\ \mu_2 \\ \vdots \\ \mu_d \end{bmat
 \sigma_{d1} & \sigma_{d2} & \dots & \sigma_{d}^2
 \end{bmatrix}$$
 
-The entries $\mu_i = \mathbb{E}[X_i]$ are the coordinates of the mean $\boldsymbol{\mu}$. The entries $\sigma_i^2 = \mathbb{E}[(X_i - \mu_i)^2]$ in $\Sigma$ are the variances of each individual component of the distribution. Finally, the off-diagonal components $\sigma_{ij}$ are the _covariances_ of components $i$ and $j$. The covariance of two components is given by:
+(For a review of matrices and matrix-vector products see the next section.) The entries $\mu_i = \mathbb{E}[X_i]$ are the coordinates of the mean $\boldsymbol{\mu}$. The entries $\sigma_i^2 = \mathbb{E}[(X_i - \mu_i)^2]$ in $\Sigma$ are the variances of each individual component of the distribution. Finally, the off-diagonal components $\sigma_{ij}$ are the _covariances_ of components $i$ and $j$. The covariance of two components is given by:
 
 $$\text{Cov}(X_i,X_j) = \mathbb{E}[(X_i - \mu_i)(X_j - \mu_j)] = \iint_{\mathcal{X}_i \times \mathcal{X_j}} p(x_i,j_j)(x_i - \mu_i)(x_j - \mu_j)\ dx_jdx_i$$
 
@@ -296,7 +296,7 @@ Next, suppose that we instead used a dataset of $80$ materials and found that $5
 
 :::{dropdown} Exercise 2: Fitting a Multivariate Normal Distribution:
 
-Generate a 2D dataset of 10,000 random points uniformly sampled within a rectangle of width $2$ and height $1$, where the lower lefthand corner of the rectangle is fixed at the origin. You can generate uniform values on the interval $[a,b]$ using the [`np.random.uniform`](https://numpy.org/doc/stable/reference/random/generated/numpy.random.uniform.html) function in the numpy package.
+Generate a 2D dataset of 10,000 random points uniformly sampled within a rectangle of width $2$ and height $1$, where the lower left hand corner of the rectangle is fixed at the origin. You can generate uniform values on the interval $[a,b]$ using the [`np.random.uniform`](https://numpy.org/doc/stable/reference/random/generated/numpy.random.uniform.html) function in the numpy package.
 
 Fit this distribution to a multivariate normal distribution by computing the sample mean vector $\boldsymbol{\mu}$ and sample covariance matrix $\mathbf{\Sigma}$. You can do this with the [`np.mean`](https://numpy.org/doc/stable/reference/generated/numpy.mean.html) function and the [`np.cov`](https://numpy.org/doc/stable/reference/generated/numpy.cov.html) functions respectively (these are also contained in the `numpy` package).
 

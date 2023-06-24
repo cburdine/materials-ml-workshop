@@ -15,7 +15,7 @@ An important part of programming is the use of logic to control the execution of
 
 ## The Boolean Type
 
-In order to understand how Python handles logic, we must first learn about the Boolean type, which is called `bool` in Python. A Boolean type (named after the mathematician [George Bool](https://en.wikipedia.org/wiki/George_Boole)) is a type that can store either a `True` or `False` value. Let's create some `bool` varibles using the following Python code:
+In order to understand how Python handles logic, we must first learn about the Boolean type, which is called `bool` in Python. A Boolean type (named after the mathematician [George Bool](https://en.wikipedia.org/wiki/George_Boole)) is a type that can store either a `True` or `False` value. Let's create some `bool` variables using the following Python code:
 
 ```{code-cell}
 # True and False are constant Boolean values:
@@ -102,7 +102,7 @@ print(y >= 3.0)
 Sometimes it is necessary to combine together comparison operators with Boolean operators:
 
 ```{code-cell}
-# create som numerical variables:
+# create some numerical variables:
 x = 0.25
 y = 1.23
 z = 0.0
@@ -117,7 +117,7 @@ print((0 < x) and (x <= 1))
 print(0 < x <= 1)
 ```
 
-We can also apply comparison operators to variables of the `str` (string) type, which store text. For any two strings `str_a` and `str_b`, the `<` operator evaluates to True if `str_a` preceeds `str_b` alphabetically:
+We can also apply comparison operators to variables of the `str` (string) type, which store text. For any two strings `str_a` and `str_b`, the `<` operator evaluates to True if `str_a` precedes `str_b` alphabetically:
 
 ```{code-cell}
 # create some strings:
@@ -142,7 +142,7 @@ str_a.lower() < str_b.lower()
 
 ## Conditional statements
 
-Sometimes, it is necessary to control whether or not a block of code executes based on a boolean condition. For example, to avoid division by $0$, we might want to check if the demoninator in a division operation is zero prior to performing the division. We can accomplish this in Python using an `if` statement. An `if` statement executes only if the subsequent Boolean value (or expression that evaluates to a boolean value) is `True`. To see how `if` statements work, try executing the following Python code: 
+Sometimes, it is necessary to control whether or not a block of code executes based on a boolean condition. For example, to avoid division by $0$, we might want to check if the denominator in a division operation is zero prior to performing the division. We can accomplish this in Python using an `if` statement. An `if` statement executes only if the subsequent Boolean value (or expression that evaluates to a boolean value) is `True`. To see how `if` statements work, try executing the following Python code: 
 
 ```{code-cell}
 # initialize variables:
@@ -162,7 +162,7 @@ print('Quotient:', quotient)
 We can see from the output that the line `quotient = numerator / denominator` is not executed, since the condition `denominator != 0` evaluates to `False`. Also note that the body of the `if` statement is indented by either a single tab or four spaces. 
 
 :::{important}
-Although Python is generally not very strict about whitespace between operations, it is important to make sure that the beginning of each indented line in an `if` statement has the proper amount of whitespace. This whitespace can be either four spaces or a single tab, but whether tabs or spaces are used must be consistent throughout the entire block of Python code. If you are writing Python code in an editor or Integrated Development Environment (IDE), it is usually good practice to configure your editor to convert tabs to spaces when saving.
+Although Python is generally not very strict about white space between operations, it is important to make sure that the beginning of each indented line in an `if` statement has the proper amount of white space. This white space can be either four spaces or a single tab, but whether tabs or spaces are used must be consistent throughout the entire block of Python code. If you are writing Python code in an editor or Integrated Development Environment (IDE), it is usually good practice to configure your editor to convert tabs to spaces when saving.
 :::
 
 Sometimes, we might also want to handle the case when the expression inside an `if` statement evaluates to `False`. This is achieved through `if`/`else` statements:
@@ -178,7 +178,7 @@ else:
     print(name_2, 'precedes', name_1)
 ```
 
-We can also chain multiple mutually exclusive conditions into `if`/`elif`/`else` statements (the `elif` is a contraction of "else if"). In these statments, conditions are checked from top to bottom, and the block of the first condition that is met is executed. If an `else` block is specified, that block is executed only if none of the preceding conditions are met. For example: 
+We can also chain multiple mutually exclusive conditions into `if`/`elif`/`else` statements (the `elif` is a contraction of "else if"). In these statements, conditions are checked from top to bottom, and the block of the first condition that is met is executed. If an `else` block is specified, that block is executed only if none of the preceding conditions are met. For example: 
 
 ```{code-cell}
 # initialize a numeric value:
@@ -193,14 +193,14 @@ else:
     print('Value is positive.')
 ```
 
-We can nest conditional statements by applying double indententation to the body of the interior conditional statement:
+We can nest conditional statements by applying double indentation to the body of the interior conditional statement:
 
 ```{code-cell}
 # initialize x
 x = 0.0
 
 # check if x lies inside [-1,1]
-if -1 < x < 1:
+if -1 <= x <= 1:
 
     # check if x lies at the origin:
     if x == 0:
@@ -216,8 +216,8 @@ if -1 < x < 1:
 Write a program that uses conditional statements to classify chemical compounds as organic, carbon-based, or inorganic based upon the following (naive) rules:
 
 1. If a compound contains carbon ('C') and hydrogen ('H') in its chemical formula, it is organic.
-2. If a compond contains carbon but no hydrogen in its chemical formula, it is carbon-based.
-3. If a compond contains neither carbon nor hydrogen in its chemical formula, it is inorganic.
+2. If a compound contains carbon but no hydrogen in its chemical formula, it is carbon-based.
+3. If a compound contains neither carbon nor hydrogen in its chemical formula, it is inorganic.
 
 The program should take a compound's formula string (i.e. `'CH3COOH'`, `'NH3'`, or `'SiC'`) that is stored in a variable `formula` and print out the classification of the compound. Try to make your logic and conditional statements as concise as possible.
 

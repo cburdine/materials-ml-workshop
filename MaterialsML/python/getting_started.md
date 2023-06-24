@@ -24,9 +24,9 @@ Unlike other scientific languages like [MATLAB](https://www.mathworks.com/produc
 
 ## Python Packages
 
-Although the core Python language supports several different data types, many of the features that we will be using in this workshop will come from _python packages_. Python packages are a convenient way for members of the Python community to share Python code that was written to solve a specific problem or that may provide additional code functionality in a specific setting. The avaliability of many different Python packages and the ease of installing them is what makes Python a powerful research tool. Some Python packages that are widely used in scientific computing are:
+Although the core Python language supports several different data types, many of the features that we will be using in this workshop will come from _python packages_. Python packages are a convenient way for members of the Python community to share Python code that was written to solve a specific problem or that may provide additional code functionality in a specific setting. The availability of many different Python packages and the ease of installing them is what makes Python a powerful research tool. Some Python packages that are widely used in scientific computing are:
 
-* `numpy`: An interface to fast mathematical and numerical functions in python, such as arrays, matrices, and common mathematial functions.
+* `numpy`: An interface to fast mathematical and numerical functions in python, such as arrays, matrices, and common mathematical functions.
 
 * `scipy`: Contains functions commonly used in the analysis of scientific data.
 
@@ -53,7 +53,7 @@ After the installation finishes, you should see no error messages (usually appea
 On some systems, such as Linux and Mac OS, you may need to instead use the command  `python -m pip install <package>` or `pip3 install <package>`. where `<package>` is the name of the package you want to install. If you are using Anaconda and installing the package with pip does not work, you can try installing it with `conda install <package>`.
 :::
 
-Note that if you are using Google Colab, several of the most commonly used packages (such as `numpy`) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter notebooks also, but it should only be used as a last resort. See the dropdown block below for more details:
+Note that if you are using Google Colab, several of the most commonly used packages (such as `numpy`) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter notebooks also, but it should only be used as a last resort. See the block below for more details:
 
 :::{admonition} Installing packages inside Google Colab
 :class: important, dropdown
@@ -71,7 +71,7 @@ where `<package>` is the package you want to use. If this fails with a `ModuleNo
 !pip install <package>
 ```
 
-The `!` at the beginning of the line tells the notebook to run the line as a shell commmand. Be careful when using shell commands within the notebook, since the syntax of these commands may vary from system to system. Only execute shell commands from trusted sources.
+The `!` at the beginning of the line tells the notebook to run the line as a shell command. Be careful when using shell commands within the notebook, since the syntax of these commands may vary from system to system. Only execute shell commands from trusted sources.
 
 Here's an example of installing the [Materials Project client](https://materialsproject.org/api) package (`mp-api`), which has the Python alias `mp_api`:
 
@@ -84,7 +84,7 @@ Now that you we installed numpy, let's try to install some other important packa
 
 <script src="https://gist.github.com/cburdine/cae13221fb0e1d134d88a25f01498c67.js"></script>
 
-Note that this is just a text file listing each Python dependency, one per line. Many Python projects will contain `requirements.txt` file in order to list all of the project dependencies. If you were to download this file into your working directory, you could install all depencies using the `pip` command:
+Note that this is just a text file listing each Python dependency, one per line. Many Python projects will contain `requirements.txt` file in order to list all of the project dependencies. If you were to download this file into your working directory, you could install all dependencies using the `pip` command:
 
 ```
 pip install -r requirements.txt
@@ -100,7 +100,7 @@ The installation may take a bit of time. Once it finishes, if you do not see a r
 
 :::{admonition} Advanced Tip: Python Virtual Environments
 :class: tip, dropdown
-If you are confortable working the the terminal on your system, you may find it helpful to set up a [virtual environment](https://realpython.com/python-virtual-environments-a-primer) for your Python projects. A virtual environment helps with organizing the dependendencies on your system, and ensures that updates to Python packages elsewhere on your system will not override the version used by your project.
+If you are comfortable working the the terminal on your system, you may find it helpful to set up a [virtual environment](https://realpython.com/python-virtual-environments-a-primer) for your Python projects. A virtual environment helps with organizing the dependencies on your system, and ensures that updates to Python packages elsewhere on your system will not override the version used by your project.
 
 If you have the [`venv` tool](https://docs.python.org/3/library/venv.html) installed on your system, you can create a virtual environment for your project by running the following command in your project work directory:
 
@@ -114,7 +114,7 @@ where `my_env` is the name of your environment. To activate your environment, ru
 source my_env/bin/activate
 ```
 
-This will activate your environment. Any dependencies installed using `pip` will be installed directly in this environment when it is activated. These installed packages will not be affected by packages installed or updated systemwide or in other virtual environments. To deactivate the virtual environment, simply run the command:
+This will activate your environment. Any dependencies installed using `pip` will be installed directly in this environment when it is activated. These installed packages will not be affected by packages installed or updated system-wide or in other virtual environments. To deactivate the virtual environment, simply run the command:
 ```
 deactivate
 ```
@@ -127,7 +127,7 @@ To get started running code in your Python Notebook, you will need to start up y
 ::::{tab-set}
 :::{tab-item} Windows
 
-The process for starting up you Jupyter notebook wil be different, depending on whether Jupyter Notebook was installed with pip or Anaconda:
+The process for starting up you Jupyter notebook will be different, depending on whether Jupyter Notebook was installed with pip or Anaconda:
 
 **If Jupyter was installed with pip:**
 
@@ -145,7 +145,7 @@ When launching Jupyter Notebook from Anaconda, notebooks will be saved to the de
 
 **Stopping the Server**
 
-Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
+Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Notebook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
 
 ```{note}
 The address `localhost` tells your browser that the server is running on your computer, while `8888` is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. `8889`). The port number should be printed in the terminal when the server is started.
@@ -167,9 +167,9 @@ Once inside your jupyter notebook work directory, you can start the notebook in 
 jupyter-notebook .
 ```
 
-This should start a notebook server, and open your default web browser (typically, Safari) to the Jupyter Noteboook landing page.
+This should start a notebook server, and open your default web browser (typically, Safari) to the Jupyter Notebook landing page.
 
-If this doesn't happen, not to worry: you can find the URL you need. Return to the terminal and examine the text at the bottom of the window. Look for text like this:
+If this does not happen, do not worry: you can find the URL you need. Return to the terminal and examine the text at the bottom of the window. Look for text like this:
 ```
 [I 20:50:20.174 NotebookApp] Jupyter Notebook 6.5.2 is running at:
 [I 20:50:20.174 NotebookApp] http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
@@ -210,7 +210,7 @@ Once inside your jupyter notebook work directory, you can start the notebook in 
 jupyter-notebook .
 ```
 
-This should start a notebook server, and open your default web browser to the Jupyter Noteboook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
+This should start a notebook server, and open your default web browser to the Jupyter Notebook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
 
 ```{note}
 The address `localhost` tells your browser that the server is running on your computer, while `8888` is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. `8889`). The port number should be printed in the terminal when the server is started.
@@ -223,13 +223,13 @@ To stop the server, hit the keys `Ctrl + C` in the terminal where the server is 
 
 In order to use Google Colab, you will need to have a google account. First, navigate to the [Google Colab Landing Page](https://colab.research.google.com/).
 
-To create a new Colab Notebok, click on `File > New Notebook`:
+To create a new Colab Notebook, click on `File > New Notebook`:
 
 ![](colab_new_notebook.png)
 
-This shoud create a new Notebook with an empty cell where you can start writing your Python code. If you are not logged in to your Google Account, you may be prompted to log in at this time.
+This should create a new Notebook with an empty cell where you can start writing your Python code. If you are not logged in to your Google Account, you may be prompted to log in at this time.
 
-By default, your notebook is called "Untitled.ipynb", or something similar. If you click on the name of the notebook at the top lefthand corner, you can rename it to something more meaningful. Your notebook should look something like this:
+By default, your notebook is called "Untitled.ipynb", or something similar. If you click on the name of the notebook at the top left hand corner, you can rename it to something more meaningful. Your notebook should look something like this:
 
 ![](colab_notebook.png)
 
