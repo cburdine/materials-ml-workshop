@@ -8,6 +8,7 @@ kernelspec:
   language: python
   name: python3
 ---
+
 # Application: Classifying Perovskites
 
 Now that we've covered some of the basic theory of supervised learning, let's start applying some basic supervised learning models to a real dataset.
@@ -24,7 +25,20 @@ Perovskites are materials with a crystal structure of the form  $ABX_3$, where $
 ```
 We will be using the [AB03 Perovskites](https://www-sciencedirect-com.ezproxy.baylor.edu/science/article/pii/S0927025620306820?via%3Dihub) dataset. 
 This data was originally used in the paper [_Crystal structure classification in ABO3 perovskites via machine learning_](https://doi-org.ezproxy.baylor.edu/10.1016/j.commatsci.2020.110191) by _Behara et al_.
-Download the dataset and put the `perovskites.csv` file in the same directory as your Python notebook.
+
+First, you will need to download the dataset CSV file (`perovskites.csv`) into the same directory as your Python notebook. You can do this by executing the following Python code in your Jupyter notebook:
+
+```
+import requests
+
+CSV_URL = 'https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/supervised_learning/perovskites.csv'
+
+r = requests.get(CSV_URL)
+with open('perovskites.csv', 'w') as f:
+    f.write(r.text)
+```
+
+If the code above doesn't work, you can also download the raw CSV file [here](https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/supervised_learning/perovskites.csv).
 
 Once downloaded, you can load the dataset into a `pandas` dataframe using the following Python code:
 
@@ -176,7 +190,6 @@ Let' also look at how the cubic and non-cubic structures are distributed with re
 ```{code-cell}
 :tags: [hide-input]
 
-
 # define the histogram "bins" used to visualize the t_G distribution:
 hist_bins = np.linspace(np.min(goldschmidt_tolerance), 
                         np.max(goldschmidt_tolerance), 51)
@@ -319,6 +332,8 @@ Now that we have established a baseline accuracy using the nearest neighbor mode
 
 ## Decision Tree Classifier
 
+Next, let's try a model that is slightly more complex than the perceptron classifier: a [_Decision Tree Classifier_](https://en.wikipedia.org/wiki/Decision_tree_learning). As the name suggests, a decision tree classifier works by constructing a decision tree based on individual features. Decision trees are especially well-suited to datasets with independent features that tend to exist in many small clusters. Since the distribution of cubic and non-cubic perovskites with respect to electronegativity is grid-like and contains many small clusters, we may obtain good results with a decision tree. To fit a decision tree to the data, we will use the [`sklearn.tree.DecisionTreeClassifier`](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier) model. Since most of the sklearn models conform to the same interface for fitting and evaluating model accuracy, we only need to make a few changes to our code to try out this model:
+
 ```{code-cell}
 :tags: [hide-input]
 
@@ -336,6 +351,8 @@ val_accuracy = dtree.score(z_val, y_val)
 print('training set accuracy:  ', train_accuracy)
 print('validation set accuracy:', val_accuracy)
 ```
+
+Comparing the validation error of the decision tree classifier with the nearest neighbor model from before, we see that the decision tree classifier performs slightly better.
 
 ## Exercises
 

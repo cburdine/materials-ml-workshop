@@ -245,11 +245,11 @@ Compute the weight matrix $\mathbf{w} = \mathbf{X}^+\mathbf{y}$ for a standard m
 
 $$\mathbf{X}^+ = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^T$$
 
-Compare the weights $\mathbf{w}$ computed from each method and verify they are roughly the same. Compute the mean square error (MSE) of the linear regression model $f(x) = \mathbf{w}^{T}\underline{X}$. Do not worry about normalizing the data in $\mathbf{x}$.
+Compare the weights $\mathbf{w}$ computed from each method and verify they are roughly the same. Compute the mean square error (MSE) of the linear regression model $f(x) = \mathbf{w}^{T}\underline{x}$. Do not worry about normalizing the data in $\mathbf{x}$.
 :::
 
 :::{dropdown} Exercise 2: Regularized Polynomials
-Let's get some practice working with Ridge and Regression. To start, copy & paste the following code to generate a training and validation dataset:
+Let's get some practice working with Ridge regression. To start, copy & paste the following code to generate a training and validation dataset:
 
 ```
 import numpy as np
