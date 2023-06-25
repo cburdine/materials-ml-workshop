@@ -55,12 +55,21 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'regression/regression_models';</script>
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -418,14 +427,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-features">Data Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bandgap-dataset">Bandgap Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-metals-and-non-metals">Classifying Metals and Non-Metals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-bandgap-of-non-metals">Estimating the Bandgap of Non-Metals:</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression-model">Ridge Regression Model:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-regression-model">Nearest Neighbor Regression Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf-support-vector-regression">RBF Support Vector Regression</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting-regression">Gradient Boosting Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions:</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-classifying-direct-vs-indirect-bandgaps">Exercise 1: Classifying Direct vs. Indirect Bandgaps</a></li>
@@ -446,8 +456,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="application-bandgap-prediction">
 <h1>Application: Bandgap Prediction<a class="headerlink" href="#application-bandgap-prediction" title="Permalink to this heading">#</a></h1>
-<section id="data-features">
-<h2>Data Features<a class="headerlink" href="#data-features" title="Permalink to this heading">#</a></h2>
+<p>Let’s now try to tackle a more difficult regression problem: predicting material bandgaps. The bandgap of a material is an important property related to whether or not a material is a conductor: Materials with no band gap are conductors, whereas materials with a nonzero band gap are inusulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the band gap by examining the largest gap between the energies of two states in the material’s <em>band structure</em>. For example, the Band gap of the insulator SiO<span class="math notranslate nohighlight">\(_2\)</span> <a class="reference external" href="https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2">(mp-546794)</a> is roughly 5.69 eV, which is the difference in band energy ate the <span class="math notranslate nohighlight">\(\Gamma\)</span> point (shown in purple):</p>
+<p><img alt="YBCO bandgap" src="../_images/SiO2_band.png" /></p>
+<section id="bandgap-dataset">
+<h2>Bandgap Dataset<a class="headerlink" href="#bandgap-dataset" title="Permalink to this heading">#</a></h2>
+<p>The band gap can be estimated through <em>ab initio</em> calculation methods, such as <em>density functional theory</em> (DFT); however, sometimes the results obtained with DFT can vary significantly from experimental bandgap values. In this section, we will use band gap values estimated through DFT calculations on the Materials Project Database.</p>
+<div class="important dropdown admonition">
+<p class="admonition-title">Notes about Bandgap Estimation and DFT</p>
+<p>For more information on how bandgaps are estimated in the Materials Project, see the <a class="reference external" href="https://docs.materialsproject.org/methodology/materials-methodology/electronic-structure">Electronic Structure</a> documentation page. Take particular note of the “Computed Gap” versus “Experimental Gap” plot, which reflects a mean absolute error of 0.6 eV:</p>
+<p><img alt="bandgap errors" src="../_images/bandgap_errs.png" /></p>
+<p>It is suggested that this discrepancy between the theoretical and experimental values is due to the inability of DFT to capture. This is due to the fact that the <a class="reference external" href="https://en.wikipedia.org/wiki/Density_functional_theory#Hohenberg%E2%80%93Kohn_theorems">Hohenberg-Kohn theorems</a> (which yield the eigenstates of the crystal system in the DFT framework) only guarantee correctness for states up to the highest occupied electronic state.</p>
+<p>This means that we must be very careful if we want to apply our models from this section to make predictions of real bandgaps measured through experiment.</p>
+</div>
 </section>
 <section id="loading-the-dataset">
 <h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h2>
@@ -886,7 +906,19 @@ data_y shape: (29195, 2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ac5ddc3dc301f1da432e2f525174e623010fe8cbaf2b9c67ff366be18613072d.png" src="../_images/ac5ddc3dc301f1da432e2f525174e623010fe8cbaf2b9c67ff366be18613072d.png" />
+<img alt="../_images/5a4ecef67e5db4407479e02fb663499ef204e94e13447b0f5d1402ae6eb16ecc.png" src="../_images/5a4ecef67e5db4407479e02fb663499ef204e94e13447b0f5d1402ae6eb16ecc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8676440364458451
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -955,55 +987,40 @@ bandgap_y shape: (11464,)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8665268001657571
-training MSE: 0.4477097634806429
-validation MSE: 0.4572652669952219
-validation MSE/stddev: 0.5276989319981241
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8663032169918667
+training MSE: 0.44927921169331336
+validation MSE: 0.4369444751890855
+validation MSE/stddev: 0.5043782207185175
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="nearest-neighbor-regression-model">
-<h3>Nearest Neighbor Regression Model<a class="headerlink" href="#nearest-neighbor-regression-model" title="Permalink to this heading">#</a></h3>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+<section id="rbf-support-vector-regression">
+<h3>RBF Support Vector Regression<a class="headerlink" href="#rbf-support-vector-regression" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">NuSVR</span>
 
-<span class="n">nn_model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                               <span class="n">weights</span><span class="o">=</span><span class="s1">&#39;distance&#39;</span><span class="p">,</span>
-                               <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;ball_tree&#39;</span><span class="p">)</span>
-<span class="n">nn_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_z</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+<span class="n">svr_model</span> <span class="o">=</span> <span class="n">NuSVR</span><span class="p">(</span><span class="n">nu</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">80.0</span><span class="p">,</span> <span class="n">cache_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">svr_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_z</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
 
-<span class="n">train_yhat</span> <span class="o">=</span> <span class="n">nn_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_z</span><span class="p">)</span>
-<span class="n">val_yhat</span> <span class="o">=</span> <span class="n">nn_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_z</span><span class="p">)</span>
+<span class="n">train_yhat</span> <span class="o">=</span> <span class="n">svr_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_z</span><span class="p">)</span>
+<span class="n">val_yhat</span> <span class="o">=</span> <span class="n">svr_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_z</span><span class="p">)</span>
 
 <span class="n">train_mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">train_yhat</span> <span class="o">-</span> <span class="n">train_y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">val_mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">val_yhat</span> <span class="o">-</span> <span class="n">val_y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# of support vectors:&#39;</span><span class="p">,</span> <span class="n">svr_model</span><span class="o">.</span><span class="n">n_support_</span><span class="p">)</span> 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;training stddev:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">train_y</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;training MSE:&#39;</span><span class="p">,</span> <span class="n">train_mse</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation MSE:&#39;</span><span class="p">,</span> <span class="n">val_mse</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation MSE/stddev:&#39;</span><span class="p">,</span> <span class="n">val_mse</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">train_y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;validation RMSE/stddev:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">val_mse</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">train_y</span><span class="p">))</span>
 </pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8665268001657571
-training MSE: 0.0
-validation MSE: 0.09373009013760847
-validation MSE/stddev: 0.10816756056440369
-</pre></div>
-</div>
-</div>
 </div>
 </section>
+</section>
+<section id="gradient-boosting-regression">
+<h2>Gradient Boosting Regression<a class="headerlink" href="#gradient-boosting-regression" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
@@ -1125,14 +1142,15 @@ direct_gap_y shape: (11464,)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-features">Data Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bandgap-dataset">Bandgap Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-metals-and-non-metals">Classifying Metals and Non-Metals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-bandgap-of-non-metals">Estimating the Bandgap of Non-Metals:</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression-model">Ridge Regression Model:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-regression-model">Nearest Neighbor Regression Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rbf-support-vector-regression">RBF Support Vector Regression</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting-regression">Gradient Boosting Regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions:</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-classifying-direct-vs-indirect-bandgaps">Exercise 1: Classifying Direct vs. Indirect Bandgaps</a></li>

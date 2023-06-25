@@ -55,6 +55,13 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -496,7 +503,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/c91f064e0d6090a346ac024084ab4584f0ace37342c08c32970acf4335d7c359.png" src="../_images/c91f064e0d6090a346ac024084ab4584f0ace37342c08c32970acf4335d7c359.png" />
+<img alt="../_images/ec8a5271c58b649550fc57e43f785102e7757641224df16311273c4ea3525c11.png" src="../_images/ec8a5271c58b649550fc57e43f785102e7757641224df16311273c4ea3525c11.png" />
 </div>
 </div>
 <p>Next, we normalize the dataset and compute <span class="math notranslate nohighlight">\(\bar{\Sigma}\)</span> using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.cov.html"><code class="docutils literal notranslate"><span class="pre">np.cov</span></code></a>:</p>
@@ -535,7 +542,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/a46ae430bae2eb20c86d7b74c2c42abe3f855d85dce896ad51583f1aad5da7e6.png" src="../_images/a46ae430bae2eb20c86d7b74c2c42abe3f855d85dce896ad51583f1aad5da7e6.png" />
+<img alt="../_images/25cb836b5283d83de8b2bf79e57fdb370bd6b1bf0ba142f4a53e99c530e0d57b.png" src="../_images/25cb836b5283d83de8b2bf79e57fdb370bd6b1bf0ba142f4a53e99c530e0d57b.png" />
 </div>
 </div>
 <p>Examining the correlation matrix, we see strong positive correlation between <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_3\)</span> and strong negative correlation between <span class="math notranslate nohighlight">\(x_2\)</span> and <span class="math notranslate nohighlight">\(x_3\)</span>, which corresponds to the relationship <span class="math notranslate nohighlight">\(x_3 \approx 3x_1 - 2 x_2\)</span>. Since the third row of <span class="math notranslate nohighlight">\(\bar{\Sigma}\)</span> is highly correlated with the other features, it contributes the least to the overall variance of the data.</p>
@@ -579,19 +586,19 @@ document.write(`
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P matrix:
-[[ 0.57840777  0.575554   -0.57808481]
- [-0.36942157  0.81663625  0.44343312]
- [-0.72730472  0.04292817 -0.68497082]]
+[[ 0.56181792 -0.60312602 -0.56621518]
+ [-0.39716418 -0.79705453  0.45493372]
+ [-0.72568674 -0.03070953 -0.68733957]]
 
 D matrix:
-[[0.01924405 0.         0.        ]
- [0.         0.87891406 0.        ]
- [0.         0.         2.11691726]]
+[[0.02529919 0.         0.        ]
+ [0.         0.89243165 0.        ]
+ [0.         0.         2.09734453]]
 
 P @ D @ P.T (correlation matrix):
-[[ 1.00502513 -0.13366104  0.85185851]
- [-0.13366104  1.00502513 -0.60700744]
- [ 0.85185851 -0.60700744  1.00502513]]
+[[ 1.00502513 -0.11688727  0.82246373]
+ [-0.11688727  1.00502513 -0.62669109]
+ [ 0.82246373 -0.62669109  1.00502513]]
 </pre></div>
 </div>
 </div>
@@ -635,7 +642,7 @@ P @ D @ P.T (correlation matrix):
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/9d9181c5e88c5f48c2de390008cd8f94920b905a2a745e86e313acb6b81e8997.png" src="../_images/9d9181c5e88c5f48c2de390008cd8f94920b905a2a745e86e313acb6b81e8997.png" />
+<img alt="../_images/a9af750b9b7f7e8a5c578e15954e4a846dad709c2a69f6e7fe2d1d63b40a5a97.png" src="../_images/a9af750b9b7f7e8a5c578e15954e4a846dad709c2a69f6e7fe2d1d63b40a5a97.png" />
 </div>
 </div>
 </section>
@@ -731,8 +738,8 @@ Exercise 1: Applying PCA <div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/be5073189b59db2b0c80042a6401acd71cd59ac37eac809b1f755a959e811b80.png" src="../_images/be5073189b59db2b0c80042a6401acd71cd59ac37eac809b1f755a959e811b80.png" />
-<img alt="../_images/3f4d656fa879f591755ab9e0800162353a11775c741a60eb08acb2e6f75e2fda.png" src="../_images/3f4d656fa879f591755ab9e0800162353a11775c741a60eb08acb2e6f75e2fda.png" />
+<img alt="../_images/0ca75a7249b7890ca68a35ea51ee953d45b13e4e030a96350797c2b1ca267e18.png" src="../_images/0ca75a7249b7890ca68a35ea51ee953d45b13e4e030a96350797c2b1ca267e18.png" />
+<img alt="../_images/80126cf691c190176fd6d2724752d7bc5556d4df96c65cc72da7eea9c1500e67.png" src="../_images/80126cf691c190176fd6d2724752d7bc5556d4df96c65cc72da7eea9c1500e67.png" />
 </div>
 </details>
 </div>

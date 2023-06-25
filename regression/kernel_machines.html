@@ -55,6 +55,13 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -638,7 +645,7 @@ simply by swapping out kernels.</p>
 <span class="c1"># Generate training dataset:</span>
 <span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> 
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">2e-2</span><span class="p">,</span><span class="mf">2e-2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">2e-2</span><span class="p">,</span><span class="mf">2e-2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span> 
 <span class="p">])</span><span class="o">.</span><span class="n">T</span>
 <span class="n">data_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
@@ -697,9 +704,9 @@ Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docu
 <span class="c1"># Generate training dataset:</span>
 <span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> 
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">2e-2</span><span class="p">,</span><span class="mf">2e-2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">3e-2</span><span class="p">,</span><span class="mf">3e-2</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
 <span class="p">])</span><span class="o">.</span><span class="n">T</span>
-<span class="n">data_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">data_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">50</span><span class="o">*</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 <p class="sd-card-text">Above, <code class="docutils literal notranslate"><span class="pre">data_y</span></code> contains +1 values for the positive class and -1 values for the negative class. Use the same three kernels as in Exercise 1:</p>
@@ -805,10 +812,10 @@ Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2abb82e6f48bbbb008738715a40bb8843f87382eade890fd5f512e6165dbb85d.png" src="../_images/2abb82e6f48bbbb008738715a40bb8843f87382eade890fd5f512e6165dbb85d.png" />
-<img alt="../_images/9c2e83f48e8d0cf8f1e1b57bb9a872716d1ccda47bd515cb1489057053e2acc9.png" src="../_images/9c2e83f48e8d0cf8f1e1b57bb9a872716d1ccda47bd515cb1489057053e2acc9.png" />
-<img alt="../_images/95d359d1349d780d5d64ec2d457f67af305fbf653aca2594299b2e8d769a07eb.png" src="../_images/95d359d1349d780d5d64ec2d457f67af305fbf653aca2594299b2e8d769a07eb.png" />
-<img alt="../_images/2e8517399352b589e3651ad26553f2498c3d2a38a20524bf911b74c3ab6cf761.png" src="../_images/2e8517399352b589e3651ad26553f2498c3d2a38a20524bf911b74c3ab6cf761.png" />
+<img alt="../_images/b41c5a4fb79e4e96259f01c3111b5eb56f4620e3b06727a48f369899ad390364.png" src="../_images/b41c5a4fb79e4e96259f01c3111b5eb56f4620e3b06727a48f369899ad390364.png" />
+<img alt="../_images/9b6bdce3318e52398645e7b8c1c42f9b016e4872757cd59543741f2ab2858785.png" src="../_images/9b6bdce3318e52398645e7b8c1c42f9b016e4872757cd59543741f2ab2858785.png" />
+<img alt="../_images/5e6b3e85c58cca00ca433ae7ef92851e1ed26db09d7a38418b331cc53ce0c300.png" src="../_images/5e6b3e85c58cca00ca433ae7ef92851e1ed26db09d7a38418b331cc53ce0c300.png" />
+<img alt="../_images/bb4b7b763540979359b3cf0d01796dc53cff7cad0050fa38af47827096c07ce4.png" src="../_images/bb4b7b763540979359b3cf0d01796dc53cff7cad0050fa38af47827096c07ce4.png" />
 </div>
 </details>
 </div>
@@ -876,10 +883,10 @@ Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ebacc9c8434cd785aeca0c740c07e75a2816d8ec2547bca47543e00286c5b352.png" src="../_images/ebacc9c8434cd785aeca0c740c07e75a2816d8ec2547bca47543e00286c5b352.png" />
-<img alt="../_images/2b17a4775f85ca18254d27cd210b6b9479c56287d356a0b4c8447babb914d6f7.png" src="../_images/2b17a4775f85ca18254d27cd210b6b9479c56287d356a0b4c8447babb914d6f7.png" />
-<img alt="../_images/9ac1523f77ef2f1baccecf26f83afc6bc007278ef2cb020b83f206897e09af9e.png" src="../_images/9ac1523f77ef2f1baccecf26f83afc6bc007278ef2cb020b83f206897e09af9e.png" />
-<img alt="../_images/ccef6de3bc9990f8f25b0090b43e6154b440f0d62e2f76a79b05c03143e2f269.png" src="../_images/ccef6de3bc9990f8f25b0090b43e6154b440f0d62e2f76a79b05c03143e2f269.png" />
+<img alt="../_images/b10641bbfecd4bca6cd9747c0946364c669966a0cc9a9e23fdc2907c72dc88f1.png" src="../_images/b10641bbfecd4bca6cd9747c0946364c669966a0cc9a9e23fdc2907c72dc88f1.png" />
+<img alt="../_images/aa2e30a21e054ad82a8e875b51fa287895d0bac4c535d9146dc008c7a7293029.png" src="../_images/aa2e30a21e054ad82a8e875b51fa287895d0bac4c535d9146dc008c7a7293029.png" />
+<img alt="../_images/a259f317312db05ec700c3fc0181b8ccfd1efb33a93a48bfebcfd7b7152c1bc7.png" src="../_images/a259f317312db05ec700c3fc0181b8ccfd1efb33a93a48bfebcfd7b7152c1bc7.png" />
+<img alt="../_images/3b2940d1a7d757203b6376d735ddee2267e9b54aef1ac825bac9d5382d69f99c.png" src="../_images/3b2940d1a7d757203b6376d735ddee2267e9b54aef1ac825bac9d5382d69f99c.png" />
 </div>
 </details>
 </div>

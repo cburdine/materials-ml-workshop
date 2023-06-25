@@ -55,6 +55,13 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -910,7 +917,7 @@ Exercise 2: Eigendecomposition:<div class="sd-summary-down docutils">
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Here's an exercise for the physicists:</p>
+<p class="sd-card-text">Here’s an exercise for the physicists:</p>
 <p class="sd-card-text">Any square matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> that is <a class="reference external" href="https://en.wikipedia.org/wiki/Defective_matrix">non-defective</a> can be written in the form:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{A} = \mathbf{P} \Lambda \mathbf{P}^{-1}\]</div>
@@ -962,13 +969,13 @@ Exercise 2: Eigendecomposition:<div class="sd-summary-down docutils">
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A:
-[[ 0.3947387  -0.23392038 -1.18427054  0.26262112]
- [-0.13869366 -0.71932496 -0.60659584 -0.18624696]
- [-1.59964233 -0.49627794 -0.97019958  1.48165101]
- [-1.10600894 -0.22115753 -0.04731908  0.58423986]]
-b: [ 0.37991544  0.25001276 -0.44868988 -0.86686186]
-x: [ 3.26124839 -3.78772115  2.27739254  3.44069144]
-Ax: [ 0.37991544  0.25001276 -0.44868988 -0.86686186]
+[[-0.29182767 -0.50626616 -1.28788353  0.04250507]
+ [ 0.19240115 -1.1550568   0.91773576  0.3974315 ]
+ [-0.48094532 -0.44130636  2.06682925 -1.36831511]
+ [ 0.15670254 -0.66808965  0.51157445  0.43684929]]
+b: [ 2.22430103 -0.98737544  0.55091567  1.11825639]
+x: [-30.96782356   4.25231185   4.12478525  15.34118014]
+Ax: [ 2.22430103 -0.98737544  0.55091567  1.11825639]
 </pre></div>
 </div>
 </div>

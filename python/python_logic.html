@@ -55,6 +55,13 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -444,7 +451,7 @@ document.write(`
 <p>An important part of programming is the use of logic to control the execution of a Python program. Sometimes, we may only want to do certain computational steps when certain conditions are met. For example, in performing a division operation (i.e. <code class="docutils literal notranslate"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">/</span> <span class="pre">y</span></code> for two variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>) we may want to have a special procedure in place to handle when <code class="docutils literal notranslate"><span class="pre">y</span></code> is equal to 0. This is where logic and conditional statements come in.</p>
 <section id="the-boolean-type">
 <h2>The Boolean Type<a class="headerlink" href="#the-boolean-type" title="Permalink to this heading">#</a></h2>
-<p>In order to understand how Python handles logic, we must first learn about the Boolean type, which is called <code class="docutils literal notranslate"><span class="pre">bool</span></code> in Python. A Boolean type (named after the mathematician <a class="reference external" href="https://en.wikipedia.org/wiki/George_Boole">George Bool</a>) is a type that can store either a <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> value. Let's create some <code class="docutils literal notranslate"><span class="pre">bool</span></code> variables using the following Python code:</p>
+<p>In order to understand how Python handles logic, we must first learn about the Boolean type, which is called <code class="docutils literal notranslate"><span class="pre">bool</span></code> in Python. A Boolean type (named after the mathematician <a class="reference external" href="https://en.wikipedia.org/wiki/George_Boole">George Bool</a>) is a type that can store either a <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> value. Let’s create some <code class="docutils literal notranslate"><span class="pre">bool</span></code> variables using the following Python code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># True and False are constant Boolean values:</span>
@@ -636,7 +643,7 @@ True
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Technically, strings in Python are compared character-by-character according to each character's <a class="reference external" href="https://www.asciitable.com/">ASCII character code</a>. This means that the string <code class="docutils literal notranslate"><span class="pre">'BBB'</span></code> precedes the string <code class="docutils literal notranslate"><span class="pre">'aaa'</span></code> according to Python's <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> operator, since capital letters precede lowercase letters in ASCII. In order to compare strings in a true case-insensitive lexicographical ordering, you can use the <code class="docutils literal notranslate"><span class="pre">str.lower()</span></code> function:</p>
+<p>Technically, strings in Python are compared character-by-character according to each character’s <a class="reference external" href="https://www.asciitable.com/">ASCII character code</a>. This means that the string <code class="docutils literal notranslate"><span class="pre">'BBB'</span></code> precedes the string <code class="docutils literal notranslate"><span class="pre">'aaa'</span></code> according to Python’s <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> operator, since capital letters precede lowercase letters in ASCII. In order to compare strings in a true case-insensitive lexicographical ordering, you can use the <code class="docutils literal notranslate"><span class="pre">str.lower()</span></code> function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">str_a</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">str_b</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -694,7 +701,7 @@ True
 </div>
 </div>
 </div>
-<p>We can also chain multiple mutually exclusive conditions into <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> statements (the <code class="docutils literal notranslate"><span class="pre">elif</span></code> is a contraction of &quot;else if&quot;). In these statements, conditions are checked from top to bottom, and the block of the first condition that is met is executed. If an <code class="docutils literal notranslate"><span class="pre">else</span></code> block is specified, that block is executed only if none of the preceding conditions are met. For example:</p>
+<p>We can also chain multiple mutually exclusive conditions into <code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">elif</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> statements (the <code class="docutils literal notranslate"><span class="pre">elif</span></code> is a contraction of “else if”). In these statements, conditions are checked from top to bottom, and the block of the first condition that is met is executed. If an <code class="docutils literal notranslate"><span class="pre">else</span></code> block is specified, that block is executed only if none of the preceding conditions are met. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize a numeric value:</span>
@@ -752,11 +759,11 @@ Exercise 1: Classifying Chemical Compounds<div class="sd-summary-down docutils">
 </summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Write a program that uses conditional statements to classify chemical compounds as organic, carbon-based, or inorganic based upon the following (naive) rules:</p>
 <ol class="arabic simple">
-<li><p class="sd-card-text">If a compound contains carbon ('C') and hydrogen ('H') in its chemical formula, it is organic.</p></li>
+<li><p class="sd-card-text">If a compound contains carbon (‘C’) and hydrogen (‘H’) in its chemical formula, it is organic.</p></li>
 <li><p class="sd-card-text">If a compound contains carbon but no hydrogen in its chemical formula, it is carbon-based.</p></li>
 <li><p class="sd-card-text">If a compound contains neither carbon nor hydrogen in its chemical formula, it is inorganic.</p></li>
 </ol>
-<p class="sd-card-text">The program should take a compound's formula string (i.e. <code class="docutils literal notranslate"><span class="pre">'CH3COOH'</span></code>, <code class="docutils literal notranslate"><span class="pre">'NH3'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'SiC'</span></code>) that is stored in a variable <code class="docutils literal notranslate"><span class="pre">formula</span></code> and print out the classification of the compound. Try to make your logic and conditional statements as concise as possible.</p>
+<p class="sd-card-text">The program should take a compound’s formula string (i.e. <code class="docutils literal notranslate"><span class="pre">'CH3COOH'</span></code>, <code class="docutils literal notranslate"><span class="pre">'NH3'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'SiC'</span></code>) that is stored in a variable <code class="docutils literal notranslate"><span class="pre">formula</span></code> and print out the classification of the compound. Try to make your logic and conditional statements as concise as possible.</p>
 <hr class="docutils" />
 <p class="sd-card-text"><em>Hint</em>: To test if a string contains a character or another string as a substring, you can use the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string_1</span> <span class="o">=</span> <span class="s1">&#39;Hello World.&#39;</span>

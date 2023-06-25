@@ -55,6 +55,13 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -468,10 +475,10 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>: A MATLAB-like interface to plotting and visualizing data in a variety of formats. This package is widely used to create publication-quality figures and plots.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code>: Used for reading, writing, and manipulating datasets. This package is increasingly being used as an alternative to Microsoft Excel for working with data in Python.</p></li>
 </ul>
-<p>So, how can we use these powerful packages? The Python language comes with an easy-to-use package manager, called <a class="reference external" href="https://pip.pypa.io/en/stable/">&quot;pip&quot; (Package Installer for Python)</a>. Using pip, we can easily install, manage, update, and uninstall packages in our python environment.</p>
+<p>So, how can we use these powerful packages? The Python language comes with an easy-to-use package manager, called <a class="reference external" href="https://pip.pypa.io/en/stable/">“pip” (Package Installer for Python)</a>. Using pip, we can easily install, manage, update, and uninstall packages in our python environment.</p>
 <section id="installing-packages">
 <h3>Installing Packages<a class="headerlink" href="#installing-packages" title="Permalink to this heading">#</a></h3>
-<p>First, let's try to install the latest version of the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program &quot;Command Prompt&quot; (Windows) or &quot;Terminal&quot; (MacOS, Linux). After running the program, you should see a prompt where you can type in commands.</p>
+<p>First, let’s try to install the latest version of the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program “Command Prompt” (Windows) or “Terminal” (MacOS, Linux). After running the program, you should see a prompt where you can type in commands.</p>
 <p>Type the following command into the terminal and hit Enter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
@@ -494,10 +501,10 @@ document.write(`
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">!</span></code> at the beginning of the line tells the notebook to run the line as a shell command. Be careful when using shell commands within the notebook, since the syntax of these commands may vary from system to system. Only execute shell commands from trusted sources.</p>
-<p>Here's an example of installing the <a class="reference external" href="https://materialsproject.org/api">Materials Project client</a> package (<code class="docutils literal notranslate"><span class="pre">mp-api</span></code>), which has the Python alias <code class="docutils literal notranslate"><span class="pre">mp_api</span></code>:</p>
+<p>Here’s an example of installing the <a class="reference external" href="https://materialsproject.org/api">Materials Project client</a> package (<code class="docutils literal notranslate"><span class="pre">mp-api</span></code>), which has the Python alias <code class="docutils literal notranslate"><span class="pre">mp_api</span></code>:</p>
 <p><img alt="" src="../_images/colab_install_example.png" /></p>
 </div>
-<p>Now that you we installed numpy, let's try to install some other important packages we need for this workshop. To do this, we will install the rest of the packages from a <em>requirements file</em>. A Python requirements file (typically called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>) is a file that lists all of the packages a project depends on. The packages a project depends on are usually called <em>dependencies</em>. For this workshop, we will use the following requirements file:</p>
+<p>Now that you we installed numpy, let’s try to install some other important packages we need for this workshop. To do this, we will install the rest of the packages from a <em>requirements file</em>. A Python requirements file (typically called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>) is a file that lists all of the packages a project depends on. The packages a project depends on are usually called <em>dependencies</em>. For this workshop, we will use the following requirements file:</p>
 <script src="https://gist.github.com/cburdine/cae13221fb0e1d134d88a25f01498c67.js"></script>
 <p>Note that this is just a text file listing each Python dependency, one per line. Many Python projects will contain <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file in order to list all of the project dependencies. If you were to download this file into your working directory, you could install all dependencies using the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
@@ -537,7 +544,7 @@ Windows</label><div class="sd-tab-content docutils">
 <p><strong>If Jupyter was installed with pip:</strong></p>
 <p>Using your File Explorer, create a new folder to store your Jupyter notebooks. Then do the following steps:</p>
 <ul class="simple">
-<li><p>Inside the empty folder, right click (on some systems: Shift + right click), and click on &quot;Open in Windows Terminal&quot;.</p></li>
+<li><p>Inside the empty folder, right click (on some systems: Shift + right click), and click on “Open in Windows Terminal”.</p></li>
 <li><p>This will open a terminal window inside your folder. Inside the folder, run the command <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> to start the server from inside the folder.</p></li>
 </ul>
 <p><strong>If Jupyter was installed with Anaconda:</strong></p>
@@ -582,7 +589,7 @@ Mac OS</label><div class="sd-tab-content docutils">
      or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
 </pre></div>
 </div>
-<p>You'll find here useful information, such as instructions on how to stop the Jupyter server, as well as three URLs, any of which you could paste into your browser's address bar:</p>
+<p>You’ll find here useful information, such as instructions on how to stop the Jupyter server, as well as three URLs, any of which you could paste into your browser’s address bar:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">file:///Users/your_account_name/Library/Jupyter/runtime/nbserver-42755-open.html</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01</span></code></p></li>
@@ -620,13 +627,13 @@ Google Colab</label><div class="sd-tab-content docutils">
 <p>To create a new Colab Notebook, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">New</span> <span class="pre">Notebook</span></code>:</p>
 <p><img alt="" src="../_images/colab_new_notebook.png" /></p>
 <p>This should create a new Notebook with an empty cell where you can start writing your Python code. If you are not logged in to your Google Account, you may be prompted to log in at this time.</p>
-<p>By default, your notebook is called &quot;Untitled.ipynb&quot;, or something similar. If you click on the name of the notebook at the top left hand corner, you can rename it to something more meaningful. Your notebook should look something like this:</p>
+<p>By default, your notebook is called “Untitled.ipynb”, or something similar. If you click on the name of the notebook at the top left hand corner, you can rename it to something more meaningful. Your notebook should look something like this:</p>
 <p><img alt="" src="../_images/colab_notebook.png" /></p>
 <p>A Google Colab Notebook functions almost identically to a Jupyter Notebook; however, there are a few minor differences in appearance, keyboard shortcuts, etc. These are the most important differences to keep in mind:</p>
 <ul class="simple">
-<li><p>Instead of saving to your computer's local storage, Google Colab will save your notebooks to your Google Drive. If you want to download a notebook to open in Jupyter, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">.ipynb</span></code>. If you want to upload a Jupyter notebook to Colab, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Upload</span> <span class="pre">Notebook</span></code>.</p></li>
-<li><p>The code in a Google Colab notebook is executed remotely on Google's servers, not your computer. This means that you must have an internet connection to be able to run your code.</p></li>
-<li><p>You can also run a Google Colab Notebook on Google's GPU (Graphics Processing Unit) and TPU (Tensor Processing Unit) hardware. You can run your code for free on <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tesla-t4/">NVIDIA Tesla T4</a> hardware or Google's Proprietary <a class="reference external" href="https://cloud.google.com/tpu/docs/intro-to-tpu">TPU Hardware</a>. Higher-end hardware is also available for a fee. In this workshop, we will probably not need to use any hardware acceleration.</p></li>
+<li><p>Instead of saving to your computer’s local storage, Google Colab will save your notebooks to your Google Drive. If you want to download a notebook to open in Jupyter, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">&gt;</span> <span class="pre">Download</span> <span class="pre">.ipynb</span></code>. If you want to upload a Jupyter notebook to Colab, click on <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Upload</span> <span class="pre">Notebook</span></code>.</p></li>
+<li><p>The code in a Google Colab notebook is executed remotely on Google’s servers, not your computer. This means that you must have an internet connection to be able to run your code.</p></li>
+<li><p>You can also run a Google Colab Notebook on Google’s GPU (Graphics Processing Unit) and TPU (Tensor Processing Unit) hardware. You can run your code for free on <a class="reference external" href="https://www.nvidia.com/en-us/data-center/tesla-t4/">NVIDIA Tesla T4</a> hardware or Google’s Proprietary <a class="reference external" href="https://cloud.google.com/tpu/docs/intro-to-tpu">TPU Hardware</a>. Higher-end hardware is also available for a fee. In this workshop, we will probably not need to use any hardware acceleration.</p></li>
 </ul>
 </div>
 </div>

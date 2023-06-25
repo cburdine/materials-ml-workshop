@@ -209,7 +209,7 @@ import numpy as np
 # Generate training dataset:
 data_x = np.array([ 
     np.random.uniform(0,10, 400),
-    np.random.uniform(-2e-2,2e-2, 400)
+    np.random.uniform(-2e-2,2e-2, 400) 
 ]).T
 data_y = np.cos((data_x[:,0]-5)**2/10 + (100*data_x[:,1])**2)
 ```
@@ -269,9 +269,9 @@ import numpy as np
 # Generate training dataset:
 data_x = np.array([ 
     np.random.uniform(0,10, 400),
-    np.random.uniform(-2e-2,2e-2, 400)
+    np.random.uniform(-3e-2,3e-2, 400)
 ]).T
-data_y = np.cos((data_x[:,0]-5)**2/10 + (100*data_x[:,1])**2)
+data_y = np.sign(3-(data_x[:,0]**(0.7) + (50*data_x[:,1])**2))
 ```
 
 Above, `data_y` contains +1 values for the positive class and -1 values for the negative class. Use the same three kernels as in Exercise 1:

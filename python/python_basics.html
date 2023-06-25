@@ -55,6 +55,13 @@
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -446,16 +453,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="python-basics">
 <h1>Python Basics<a class="headerlink" href="#python-basics" title="Permalink to this heading">#</a></h1>
-<p>Now that we have our notebook up and running, let's start writing some Python code.</p>
+<p>Now that we have our notebook up and running, let’s start writing some Python code.</p>
 <section id="the-print-function">
 <h2>The Print Function<a class="headerlink" href="#the-print-function" title="Permalink to this heading">#</a></h2>
-<p>The first thing we will learn about is how to use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function. The <code class="docutils literal notranslate"><span class="pre">print</span></code> function lets us output a representation of any object in Python as text. To start, let's use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function to output the text <code class="docutils literal notranslate"><span class="pre">'Hello</span> <span class="pre">World!'</span></code>. To do this, click on the first cell in the notebook and type the following:</p>
+<p>The first thing we will learn about is how to use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function. The <code class="docutils literal notranslate"><span class="pre">print</span></code> function lets us output a representation of any object in Python as text. To start, let’s use the <code class="docutils literal notranslate"><span class="pre">print</span></code> function to output the text <code class="docutils literal notranslate"><span class="pre">'Hello</span> <span class="pre">World!'</span></code>. To do this, click on the first cell in the notebook and type the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you don't see an empty cell to type your code into, click on the <strong>+</strong> button at the top left hand corner to create a new empty cell. Your notebook should now look something like this:</p>
+<p>If you don’t see an empty cell to type your code into, click on the <strong>+</strong> button at the top left hand corner to create a new empty cell. Your notebook should now look something like this:</p>
 <p><img alt="" src="../_images/hello_world.png" /></p>
-<p>To execute this cell, click on the cell to make sure it is selected (indicated by the green border). Then click the &quot;Run&quot; button. Your notebook should now show the output <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code> below the cell:</p>
+<p>To execute this cell, click on the cell to make sure it is selected (indicated by the green border). Then click the “Run” button. Your notebook should now show the output <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code> below the cell:</p>
 <p><img alt="" src="../_images/hello_world_out.png" /></p>
 <p>Altogether, the combined input and output of the first cell should look like this:</p>
 <div class="cell docutils container">
@@ -562,10 +569,10 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Even if you don't understand what the Taylor expansion of <span class="math notranslate nohighlight">\(\arctan(x)\)</span> is, the comments still clearly describe the intent behind each of the <code class="docutils literal notranslate"><span class="pre">print</span></code> statements. If these comments were not present in the code, we would probably have difficulty understanding what is going on. This shows that adding good comments to your code is almost as important as the code itself. Even if you think you will be the only one reading or modifying your code in the future, adding comments is still very important, as it can make your code immune to the scourge known as [<em>Eagleson's Law</em>:</p>
+<p>Even if you don’t understand what the Taylor expansion of <span class="math notranslate nohighlight">\(\arctan(x)\)</span> is, the comments still clearly describe the intent behind each of the <code class="docutils literal notranslate"><span class="pre">print</span></code> statements. If these comments were not present in the code, we would probably have difficulty understanding what is going on. This shows that adding good comments to your code is almost as important as the code itself. Even if you think you will be the only one reading or modifying your code in the future, adding comments is still very important, as it can make your code immune to the scourge known as [<em>Eagleson’s Law</em>:</p>
 <blockquote class="epigraph">
-<div><p>&quot;Any code of your own that you haven’t looked at for six or more months, might as well have been written by someone else.&quot;</p>
-<p class="attribution">—Eagleson's Law</p>
+<div><p>“Any code of your own that you haven’t looked at for six or more months, might as well have been written by someone else.”</p>
+<p class="attribution">—Eagleson’s Law</p>
 </div></blockquote>
 <p>In other words, comments provide a kind of scaffolding that can help you orient yourself when writing your code. If written clearly, they will help you and your peers understand your thought process when reading your code.</p>
 <div class="admonition note">
@@ -605,7 +612,7 @@ document.write(`
 </div>
 <p>So why do the first two lines evaluate to <code class="docutils literal notranslate"><span class="pre">7</span></code> and the last three lines evaluate to <code class="docutils literal notranslate"><span class="pre">7.0</span></code>? Although these printed values are effectively the same, the underlying <em>types</em> of the printed values differ. Specifically, the first two printed values are of the <code class="docutils literal notranslate"><span class="pre">int</span></code> (short for <em>integer</em>) type, while the last three values have the <code class="docutils literal notranslate"><span class="pre">float</span></code> type (short for <a class="reference external" href="https://en.wikipedia.org/wiki/Decimal_floating_point">floating-point</a> numbers).</p>
 <p>The reason that Python differentiates between these two types of numbers has to do with the fact that a computer can represent any integer with a finite number of symbols. (We humans use the <a class="reference external" href="https://en.wikipedia.org/wiki/Arabic_numerals">base-10 arabic numeral system</a>, whereas our computers use 1s and 0s in a <a class="reference external" href="https://en.wikipedia.org/wiki/Binary_number">binary system</a>.) However, some numbers (such as the mathematical constant <span class="math notranslate nohighlight">\(\pi\)</span>) have an infinite decimal representation, and cannot be stored exactly in a computer. Instead, the precision of the value must be rounded off to a certain number of decimal points. For Python <code class="docutils literal notranslate"><span class="pre">float</span></code> types, numbers are represented using a kind of scientific notation (e.g. <span class="math notranslate nohighlight">\(1.23456 \cdot 10^{-20}, 3.14159256 \cdot 10^{0}\)</span>) but with binary. On most platforms, Python <code class="docutils literal notranslate"><span class="pre">floats</span></code> contain <a class="reference external" href="https://docs.python.org/3/tutorial/floatingpoint.html">roughly  17 significant digits of precision</a>, which is more than enough for most scientific applications.</p>
-<p>In Python, we can view the type of any object using the <code class="docutils literal notranslate"><span class="pre">type</span></code> function. Let's see what happens when we invoke the <code class="docutils literal notranslate"><span class="pre">type</span></code> function on several different values:</p>
+<p>In Python, we can view the type of any object using the <code class="docutils literal notranslate"><span class="pre">type</span></code> function. Let’s see what happens when we invoke the <code class="docutils literal notranslate"><span class="pre">type</span></code> function on several different values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print the type of string (str) objects:</span>
@@ -671,7 +678,7 @@ document.write(`
 </section>
 <section id="variables">
 <h2>Variables<a class="headerlink" href="#variables" title="Permalink to this heading">#</a></h2>
-<p>When doing calculations in Python, it is often necessary to break up the calculation into multiple steps. We can store the results of these intermediate steps using a <em>variable</em>. A variable is simply a named object capable of storing a value. For example, let's create a variable called <code class="docutils literal notranslate"><span class="pre">x</span></code> and use it for evaluating the polynomial function <span class="math notranslate nohighlight">\(y(x) = 10x^2 + 3x + 4\)</span>. To assign a value to a Python variable, we use the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>. Try typing out the following example in a cell in your notebook:</p>
+<p>When doing calculations in Python, it is often necessary to break up the calculation into multiple steps. We can store the results of these intermediate steps using a <em>variable</em>. A variable is simply a named object capable of storing a value. For example, let’s create a variable called <code class="docutils literal notranslate"><span class="pre">x</span></code> and use it for evaluating the polynomial function <span class="math notranslate nohighlight">\(y(x) = 10x^2 + 3x + 4\)</span>. To assign a value to a Python variable, we use the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>. Try typing out the following example in a cell in your notebook:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># assign a value of 3 to &quot;x&quot;</span>
@@ -719,7 +726,7 @@ In Python, <code class="docutils literal notranslate"><span class="pre">x</span>
 </section>
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
-<p>Let's take a moment to apply what we have learned so far. Try to do each of the following exercises:</p>
+<p>Let’s take a moment to apply what we have learned so far. Try to do each of the following exercises:</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 Exercise 1: Golden Ratio<div class="sd-summary-down docutils">
