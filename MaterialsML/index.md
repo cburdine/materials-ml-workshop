@@ -30,6 +30,15 @@ You can reach the corresponding author of this workshop at:
 | Day 9         | 06/29/2023 (2:30-3:30 PM) | Neural Networks                                   |
 | Day 10        | 06/30/2023 (2:30-3:30 PM) | Advanced Applications in Materials Science        |
 
+## Video Recordings of Workshop Sessions:
+
+Video recordings of the sessions can be found on [mediaspace.baylor.edu](https://mediaspace.baylor.edu/channel/channelid/305141402). Accessing these recordings requires a Baylor email address. If you are having trouble accessing the recordings, please send an email to  `colin_burdine1@baylor.edu`
+
+## Workshop Session Slides
+
+You can access the slides for the workshop below:
+* 
+
 ## Table of Contents
 
 ```{tableofcontents}
