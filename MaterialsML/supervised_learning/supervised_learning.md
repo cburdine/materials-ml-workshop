@@ -21,7 +21,7 @@ For both classification and regression problems, we can think of a model as a fu
 
 Ideally, we would like the function $f$ to be a _valid_ model, meaning it maps every possible set of features in $\mathcal{X}$ to the correct output label; however, finding such a function may be impossible for a number of reasons. First, it is possible that $\mathcal{X}$ might be an infinite set, meaning it is impossible to verify that $f$ is valid for all sets of features $\mathbf{x}$. In some situations, we may not even know what the correct labels are for every single $\mathbf{x}$. For these reasons, it might appear that _learning_ a valid model $f: \mathcal{X} \rightarrow \mathcal{Y}$ is an impossible challenge.  
 
-Fortunately, we have a powerful tool that we can use to tackle this seemingly insurmountable task: _data_. Using the data we have gathered, we can estimate the validity of a model by determining how well it _fits_ the data. Quantitatively speaking, we say that a model $f$ fits a dataset of $(\mathbf{x}_i,y_i)$ pairs if $f(\mathbf{x}_i) \approx y_i$ for each $i$. 
+Fortunately, we have a powerful tool that we can use to tackle this seemingly insurmountable task: _data_. Using the data we have gathered, we can estimate the validity of a model by determining how well it _fits_ the data. Quantitatively speaking, we say that a model $f$ fits a dataset of $(\mathbf{x}_i,y_i)$ pairs if $f(\mathbf{x}_i) \approx y_i$ for each $i$.
 
 We also know that following statement is generally true with regards to our data and any potential model $f$:
 
@@ -101,7 +101,7 @@ plt.show()
 
 From this exercise, we see that some models are not valid, even though they may perfectly fit the data. So if we have a model that does seem to fit the data set well, how can we be sure that the model is also valid? Unfortunately, we can never know the degree to which a model is valid unless our dataset contains every possible input in $\mathcal{X}$ and its associated label. However, there are some general tactics we can employ to maximize the validity of our model. These are the three most important guidelines to keep in mind when working with supervised models:
 
-* **Be cautious in how the data is obtained.** 
+* **Be cautious in how the data is obtained.**
 
 Is the data accurate? Are sources of noise identified and accounted for? Does the dataset adequately span the set of relevant input features $\mathcal{X}$ and labels $\mathcal{Y}$? You can _never_ have too much data, but you _can_ have too much data of a particular kind.
 
@@ -129,7 +129,7 @@ If you are collecting data for a classification problem, make sure that all clas
 
 ## Handling Data
 
-Let's return to the problem of determining model validity. We said earlier that a model $f$ is _valid_ if $f(\mathbf{x}) = \hat{y} \approx y$ for points $\mathbf{x}$ both _inside_ and _outside_ of the dataset. However, we do not know what the correct values in $\mathcal{Y}$ that correspond to feature sets $\mathbf{x}'$ lying outside the dataset: 
+Let's return to the problem of determining model validity. We said earlier that a model $f$ is _valid_ if $f(\mathbf{x}) = \hat{y} \approx y$ for points $\mathbf{x}$ both _inside_ and _outside_ of the dataset. However, we do not know what the correct values in $\mathcal{Y}$ that correspond to feature sets $\mathbf{x}'$ lying outside the dataset:
 
 ![Out-of-distribution Validity](supervised_model_ood.svg)
 
@@ -143,7 +143,7 @@ Let's take a look at each of these three subsets and their importance in supervi
 
 ### The Training Set
 
-The training set comprises most of our dataset, and rightfully so. It contains the data that we fit our model to (often the process of fitting a model to data is referred to as _training_). Later in this workshop we will discuss some of the algorithms used to train various models. 
+The training set comprises most of our dataset, and rightfully so. It contains the data that we fit our model to (often the process of fitting a model to data is referred to as _training_). Later in this workshop we will discuss some of the algorithms used to train various models.
 
 As a general rule of thumb for large datasets, the training set should be about 80% of the data. For some smaller datasets you may want to instead use only 60-70% to ensure the validation and test sets are large enough.
 
@@ -157,7 +157,7 @@ Since the validation set is used to evaluate and select the best of many differe
 
 ### Normalizing Data
 
-When working with datasets containing many different features, the differences in the numerical scale of each feature can cause the model to be more sensitive to some features and less sensitive to others. Sometimes, even changing the units of the features can significantly affect the accuracy of a model. To avoid this problem and ensure that the accuracy of the model is invariant under how the data is scaled, we use a technique called _data normalization_. 
+When working with datasets containing many different features, the differences in the numerical scale of each feature can cause the model to be more sensitive to some features and less sensitive to others. Sometimes, even changing the units of the features can significantly affect the accuracy of a model. To avoid this problem and ensure that the accuracy of the model is invariant under how the data is scaled, we use a technique called _data normalization_.
 
 Data normalization works as follows: instead of fitting a model to a training set consisting of $(\mathbf{x}, y)$ pairs, we fit the model to a transformed dataset, consisting of pairs $(\mathbf{z}, y)$, where the $i$th entry of $\mathbf{z}$ is given by:
 
@@ -192,13 +192,13 @@ y_data = 10 - 0.01*x_data**2 + np.random.normal(0,2,size=100)
 To prepare this dataset for use with a model, do the following:
 
 1. Plot the data. What kind of model might produce a good fit?
-2. Split the dataset into training, validation and test sets with the standard 80%-20%-20% split. There are a few ways to do this. One way is by shuffling the data using Python's [`random.shuffle`](https://docs.python.org/3/library/random.html#random.shuffle) and selecting subsets of the data by their indices. Another (easier) way is to use [`sklearn.model_selection.train_test_split`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html). This function can only split the data into two subsets, so you will need to use it twice: once to split off the training set and once more to split the remaining data into the validation and test sets.
+2. Split the dataset into training, validation and test sets with the standard 80%-10%-10% split. There are a few ways to do this. One way is by shuffling the data using Python's [`random.shuffle`](https://docs.python.org/3/library/random.html#random.shuffle) and selecting subsets of the data by their indices. Another (easier) way is to use [`sklearn.model_selection.train_test_split`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html). This function can only split the data into two subsets, so you will need to use it twice: once to split off the training set and once more to split the remaining data into the validation and test sets.
 3. Normalize the training, validation, and test sets (transform $x \rightarrow z$). You can do this by computing $\mu_x$ and $\sigma_x$ with [`np.mean`](https://numpy.org/doc/stable/reference/generated/numpy.mean.html) and [`np.std`](https://numpy.org/doc/stable/reference/generated/numpy.std.html) respectively, or by using [`sklearn.preprocessing.StandardScaler`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler).
 4. Plot the normalized training, validation, and test sets on the same axes. Use a different color for each set.
 :::
 
 :::{dropdown} Exercise 2: Polynomial Models
-Using the normalized training, validation, and test sets from Exercise 1, generate three different fits using polynomials of degree 1, 2, and 3. 
+Using the normalized training, validation, and test sets from Exercise 1, generate three different fits using polynomials of degree 1, 2, and 3.
 
 Visually inspect the fit of these three models by plotting the validation set and each fit on the same axes. (Plot the non-normalized $(x,y)$ data, not the normalized $(z,y)$ data.)
 
@@ -305,7 +305,7 @@ plt.show()
 
 # Note: The second degree and third degree polynomials fit the data
 #       quite well and do not appear to differ much in accuracy. Per
-#       Occam's razor, the second degree polynomial is the better 
+#       Occam's razor, the second degree polynomial is the better
 #       model because it has fewer parameters.
 
 # plot best polynomial fit and test set:
@@ -318,4 +318,3 @@ plt.ylabel('y')
 plt.legend()
 plt.show()
 ```
-
