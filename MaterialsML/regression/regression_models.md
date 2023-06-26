@@ -11,7 +11,24 @@ kernelspec:
 
 # Application: Bandgap Prediction
 
-## Data Features
+Let's now try to tackle a more difficult regression problem: predicting material bandgaps. The bandgap of a material is an important property related to whether or not a material is a conductor: Materials with no band gap are conductors, whereas materials with a nonzero band gap are inusulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the band gap by examining the largest gap between the energies of two states in the material's _band structure_. For example, the Band gap of the insulator SiO$_2$ [(mp-546794)](https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2) is roughly 5.69 eV, which is the difference in band energy ate the $\Gamma$ point (shown in purple):
+
+![YBCO bandgap](SiO2_band.png)
+
+## Bandgap Dataset
+
+The band gap can be estimated through _ab initio_ calculation methods, such as _density functional theory_ (DFT); however, sometimes the results obtained with DFT can vary significantly from experimental bandgap values. In this section, we will use band gap values estimated through DFT calculations on the Materials Project Database.
+
+:::{admonition} Notes about Bandgap Estimation and DFT
+:class: important, dropdown
+For more information on how bandgaps are estimated in the Materials Project, see the [Electronic Structure](https://docs.materialsproject.org/methodology/materials-methodology/electronic-structure) documentation page. Take particular note of the "Computed Gap" versus "Experimental Gap" plot, which reflects a mean absolute error of 0.6 eV:
+
+![bandgap errors](bandgap_errs.png)
+
+It is suggested that this discrepancy between the theoretical and experimental values is due to the inability of DFT to capture. This is due to the fact that the [Hohenberg-Kohn theorems](https://en.wikipedia.org/wiki/Density_functional_theory#Hohenberg%E2%80%93Kohn_theorems) (which yield the eigenstates of the crystal system in the DFT framework) only guarantee correctness for states up to the highest occupied electronic state.
+
+This means that we must be very careful if we want to apply our models from this section to make predictions of real bandgaps measured through experiment.
+:::
 
 ## Loading the Dataset
 
@@ -196,6 +213,10 @@ plt.gca().set_xticklabels(['Non Metal', 'Metal'])
 plt.show()
 ```
 
+```{code-cell}
+print(accuracy)
+```
+
 ## Estimating the Bandgap of Non-Metals:
 
 ```{code-cell}
@@ -239,27 +260,35 @@ print('validation MSE:', val_mse)
 print('validation MSE/stddev:', val_mse/np.std(train_y))
 ```
 
-### Nearest Neighbor Regression Model
+### RBF Support Vector Regression
 
-```{code-cell}
-:tags: [hide-input]
-from sklearn.neighbors import KNeighborsRegressor
+```
+from sklearn.svm import NuSVR
 
-nn_model = KNeighborsRegressor(n_neighbors=5,
-                               weights='distance',
-                               algorithm='ball_tree')
-nn_model.fit(train_z, train_y)
+svr_model = NuSVR(nu=0.25, kernel='rbf', C=80.0, cache_size=1000)
+svr_model.fit(train_z, train_y)
 
-train_yhat = nn_model.predict(train_z)
-val_yhat = nn_model.predict(val_z)
+train_yhat = svr_model.predict(train_z)
+val_yhat = svr_model.predict(val_z)
 
 train_mse = np.mean((train_yhat - train_y)**2)
 val_mse = np.mean((val_yhat - val_y)**2)
 
+
+print('# of support vectors:', svr_model.n_support_) 
 print('training stddev:', np.std(train_y))
 print('training MSE:', train_mse)
 print('validation MSE:', val_mse)
-print('validation MSE/stddev:', val_mse/np.std(train_y))
+print('validation RMSE/stddev:', np.sqrt(val_mse)/np.std(train_y))
+```
+
+## Gradient Boosting Regression
+
+```{code-cell}
+:tags: [hide-input]
+
+
+
 ```
 
 ## Exercises
@@ -292,4 +321,3 @@ direct_gap_y = data_y[(data_y[:,0] > 0),1]
 print('direct_gap_x shape:', direct_gap_x.shape)
 print('direct_gap_y shape:', direct_gap_y.shape)
 ```
-

@@ -30,6 +30,25 @@ You can reach the corresponding author of this workshop at:
 | Day 9         | 06/29/2023 (2:30-3:30 PM) | Neural Networks                                   |
 | Day 10        | 06/30/2023 (2:30-3:30 PM) | Advanced Applications in Materials Science        |
 
+## Video Recordings of Workshop Sessions:
+
+Video recordings of the sessions can be found on [mediaspace.baylor.edu](https://mediaspace.baylor.edu/channel/channelid/305141402). Accessing these recordings requires a Baylor email address. If you are having trouble accessing the recordings, please send an email to  `colin_burdine1@baylor.edu`
+
+## Workshop Session Slides
+
+You can access the slides for the workshop below:
+
+* Day 0: [Introduction | Getting Started with Python](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%200.slides.html)
+
+* Day 1: [Python Data Types](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%201.slides.html)
+
+* Day 2: [Python Functions and Classes](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%202.slides.html)
+
+* Day 3: [Scientific Computing with Numpy and Scipy](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%203.slides.html)
+
+* Day 4: [Data Manipulation and Visualization](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%204.slides.html)
+
+* Day 5: [Materials Science Packages](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%205.slides.html)
 ## Table of Contents
 
 ```{tableofcontents}
