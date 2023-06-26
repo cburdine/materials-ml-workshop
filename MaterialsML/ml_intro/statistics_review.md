@@ -36,7 +36,7 @@ $$1 = \begin{cases} \sum_{x} p(x) &  [\text{for discrete } p(x)]\\ \int_\mathcal
 
 The _expected value_ of a distribution $p(x)$, denoted $\mathbb{E}[x]$ is given by:
 
-$$\mathbb{E}[p(x)] = \begin{cases} \sum_{x} p(x)x &   [\text{for discrete } p(x)]\quad \\ \int_{\mathcal{X}} p(x)x\ dx  & [\text{for continuous } p(x)] \end{cases}$$ 
+$$\mathbb{E}[p(x)] = \begin{cases} \sum_{x} p(x)x &   [\text{for discrete } p(x)]\quad \\ \int_{\mathcal{X}} p(x)x\ dx  & [\text{for continuous } p(x)] \end{cases}$$
 
 The _expected value_ of a random variable, sometimes called the _average_ value or _mean_ value, is the average of all possible outcomes weighted according to their likelihoods. The mean of a random variable is also often denoted by $\mu$.
 
@@ -60,6 +60,10 @@ The _binomial distribution_ is a discrete probability distribution that models t
 
 $$p(x) = p^{x} (1-p)^{N-x} \binom{N}{x} = p^x (1-p)^{N-x} \left[ \frac{N!}{x!(N-x)!} \right]$$
 
+:::{Note}
+
+We emphasize that $p(x)$ is not the same as $p$. $p$ is the probability of success within any single, intedpendent trial (experiment), so that $(1-p)$ is the probability of failure in any trial. We interpret $p(x)$ as the probability that in a set of $N$ trials, exactly $x$ trials are successful, and $N-x$ trials are failures.
+:::
 
 Let's write some Python code to visualize a Binomial distribution. We can compute the probability distribution by hand, or we can use the [`scipy.stats.binom.pmf`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html) function:
 
@@ -146,7 +150,7 @@ Typically, hypothesis testing involves two competing hypotheses: the _null hypot
 
 Suppose we are developing a classifier model that predicts whether a material is a conductor or an insulator. For simplicity, we shall assume that roughly half of all materials are insulators and half are insulators. Our two competing hypotheses would then be:
 
-* $H_0$: The accuracy of our classifier is the same as random guessing (accuracy = 0.5) 
+* $H_0$: The accuracy of our classifier is the same as random guessing (accuracy = 0.5)
 * $H_1$: The accuracy of our classifier is better than than random guessing (accuracy > 0.5)
 
 Suppose that in order to test our alternative hypothesis $H_1$, we compile a dataset of 40 materials (20 conductors and 20 insulators) and use these to evaluate our model. We find that the model has an accuracy of 0.6, meaning it correctly classifies $60\%$ of the dataset. Since the accuracy is greater than 0.5, does this mean we immediately reject $H_0$ in favor of $H_1$? Not necessarily; it could be the case that our model simply got lucky and "randomly guessed" the classification of more than $50\%$ of the dataset.
@@ -167,7 +171,7 @@ model_accuracy = 0.6
 # evaluate distribution:
 n_correct = np.array(np.arange(N+1))
 probs = binom.pmf(n_correct,n=N,p=p_guess_correct)
-accuracies = n_correct / N 
+accuracies = n_correct / N
 
 # plot distribution
 plt.figure()
@@ -256,7 +260,7 @@ mu = np.array([ 0.0, 0.0 ])
 # covariance matrix of distribution:
 sigma = np.array([
     [  1.0, -1.0 ],
-    [ -1.0,  2.0 ] 
+    [ -1.0,  2.0 ]
 ])
 
 # define 2D mesh grid:
@@ -319,7 +323,7 @@ experiment_results = [
 
 # perform analysis for N = 40 and 80:
 for (n_correct, N) in experiment_results:
-    
+
     # compute accuracy:
     accuracy = n_correct/N
 

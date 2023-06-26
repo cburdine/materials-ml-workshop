@@ -65,6 +65,22 @@ As a Mac user, I've had the *most success* with the *command-line* installation,
    ```
    * To access your Mac terminal, use the Mac OS search feature ("Spotlight") and enter `terminal`.
 
+<!--
+Note for building on Mac:
+
+After the spellcheck was added, I (EPB, a conda user) couldn't build until I manually installed the following packages using:
+
+conda install -c conda-forge sphinxcontrib-spelling
+conda install -c conda-forge enchant
+
+Even after this, I was still getting errors about not finding the enchant library. Finally, I did this:
+
+conda install -c conda-forge pyenchant
+
+and I was able to build again.
+
+I'm not really sure where the best place for this note is, so I drop it here in a Mac-specific tab.
+-->
 :::
 
 :::{tab-item} Linux
