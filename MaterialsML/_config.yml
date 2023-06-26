@@ -9,9 +9,12 @@ logo: logo.svg
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  timeout: 600
 
 # Sphinx extensions:
 sphinx:
+  config:
+    html_extra_path: ['slides']
   extra_extensions:
   - sphinxcontrib.spelling
 
@@ -36,3 +39,4 @@ html:
   favicon: "./logo_small.png"
   use_issues_button: true
   use_repository_button: true
+  google_analytics_id: G-MBS9YS5YW0
