@@ -25,7 +25,7 @@ You can reach the corresponding author of this workshop at:
 | Day 4         | 06/22/2023 (2:30-3:30 PM) | Data Manipulation and Visualization               |
 | Day 5         | 06/23/2023 (2:30-3:30 PM) | Materials Science Packages                        |
 | Day 6         | 06/26/2023 (2:30-3:30 PM) | Introduction to ML, Supervised Learning           |
-| Day 7         | 06/27/2023 (2:30-3:30 PM) | Regression Models                                 |
+| Day 7         | 06/27/2023 (2:30-3:30 PM) | Advanced Regression Models                        |
 | Day 8         | 06/28/2023 (2:30-3:30 PM) | Unsupervised Learning                             |
 | Day 9         | 06/29/2023 (2:30-3:30 PM) | Neural Networks                                   |
 | Day 10        | 06/30/2023 (2:30-3:30 PM) | Advanced Applications in Materials Science        |
@@ -52,6 +52,7 @@ You can access the slides for the workshop below:
 
 * Day 6: [Introduction to ML | Supervised Learning](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%206.slides.html)
 
+* Day 7: [Advanced Regression Models](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%207.slides.html)
 ## Table of Contents
 
 ```{tableofcontents}
