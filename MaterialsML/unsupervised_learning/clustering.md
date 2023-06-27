@@ -11,11 +11,14 @@ kernelspec:
 
 # Clustering and Distribution Estimation
 
+Clustering and Distribution Estimation are important techniques in unsupervised learning that allow us to partition data into groups, find regions of high density in a dataset, and even detect outliers and anomalies in our data.
+
 ## The K-Means Algorithm
 
-One of the most popular algorithms for identifying clusters in data is the [$k$-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering). The $k$-means algorithm 
+One of the most popular algorithms for identifying clusters in data is the [$k$-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering). It is a simple yet effective algorithm that aims to partition a dataset into $k$ distinct clusters based on similarity or proximity. $k$-means is widely employed in various domains, including data mining, image processing, customer segmentation, and pattern recognition. The way that this algorithm works is by initializing the cluster centers (called _centroids_) at randomly selected data points, and then iteratively improving the fit by re-assigning points to clusters and recalculating the centroid locations. We can summarize this procedure as follows:
 
-> 1. Randomly select $k$ points from the dataset as the initial centroid positions: $\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k$.
+
+> 1. Randomly select $k$ points from the dataset as the initial centroid positions: $\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k$. (Alternatively, the programmer can initialize the centroids positions by hand.)
 >
 > 2. Assign each point to the cluster with the nearest centroid.
 >
@@ -23,6 +26,7 @@ One of the most popular algorithms for identifying clusters in data is the [$k$-
 >
 > 4. If none of the cluster centroids moved, stop. Otherwise, repeat steps 2-4.
 
+Because this is a relatively easy algorithm to implement, let's write some Python code that performs the $k$-means algorithm:
 
 ```{code-cell}
 import numpy as np
@@ -63,7 +67,6 @@ def k_means(data_x, k, max_steps=10**7, centroids=None):
 ```
 
 ```{code-cell}
-import matplotlib.pyplot as plt
 
 # initialize dataset with centers roughly at the following coordinates:
 centers = np.array([ [3,3], [-1,2], [1,-4] ]).T
@@ -72,6 +75,8 @@ data_x = np.random.normal(centers.reshape(2,3,1),0.6,(2,3,100)).reshape(2,-1).T
 
 ```{code-cell}
 :tags: [hide-input]
+
+import matplotlib.pyplot as plt
 
 #  set the initial centroid points:
 #  (modify these and see how the results change)
@@ -155,6 +160,5 @@ plt.scatter(data_x[:,0], data_x[:,1], label=f'Dataset', alpha=0.3)
 plt.xlabel(r'$x_1$')
 plt.ylabel(r'$x_2$')
 plt.show()
-
 ```
 
