@@ -495,6 +495,10 @@ document.write(`
 <p>The <em>binomial distribution</em> is a discrete probability distribution that models the number of successes in a set of <span class="math notranslate nohighlight">\(N\)</span> independent trials, where each trial succeeds with a fixed probability <span class="math notranslate nohighlight">\(p\)</span>. A random variable <span class="math notranslate nohighlight">\(X\)</span> that is binomially distributed has support <span class="math notranslate nohighlight">\(\mathcal{X} = \{ 0, 1, ..., N \}\)</span> and probability distribution:</p>
 <div class="math notranslate nohighlight">
 \[p(x) = p^{x} (1-p)^{N-x} \binom{N}{x} = p^x (1-p)^{N-x} \left[ \frac{N!}{x!(N-x)!} \right]\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We emphasize that <span class="math notranslate nohighlight">\(p(x)\)</span> is not the same as <span class="math notranslate nohighlight">\(p\)</span>. <span class="math notranslate nohighlight">\(p\)</span> is the probability of success within any single, intedpendent trial (experiment), so that <span class="math notranslate nohighlight">\((1-p)\)</span> is the probability of failure in any trial. We interpret <span class="math notranslate nohighlight">\(p(x)\)</span> as the probability that in a set of <span class="math notranslate nohighlight">\(N\)</span> trials, exactly <span class="math notranslate nohighlight">\(x\)</span> trials are successful, and <span class="math notranslate nohighlight">\(N-x\)</span> trials are failures.</p>
+</div>
 <p>Let’s write some Python code to visualize a Binomial distribution. We can compute the probability distribution by hand, or we can use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.binom.pmf</span></code></a> function:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -615,7 +619,7 @@ document.write(`
 <span class="c1"># evaluate distribution:</span>
 <span class="n">n_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">probs</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">n_correct</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="n">p_guess_correct</span><span class="p">)</span>
-<span class="n">accuracies</span> <span class="o">=</span> <span class="n">n_correct</span> <span class="o">/</span> <span class="n">N</span> 
+<span class="n">accuracies</span> <span class="o">=</span> <span class="n">n_correct</span> <span class="o">/</span> <span class="n">N</span>
 
 <span class="c1"># plot distribution</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -690,7 +694,7 @@ document.write(`
 \end{bmatrix}\end{split}\]</div>
 <p>(For a review of matrices and matrix-vector products see the next section.) The entries <span class="math notranslate nohighlight">\(\mu_i = \mathbb{E}[X_i]\)</span> are the coordinates of the mean <span class="math notranslate nohighlight">\(\boldsymbol{\mu}\)</span>. The entries <span class="math notranslate nohighlight">\(\sigma_i^2 = \mathbb{E}[(X_i - \mu_i)^2]\)</span> in <span class="math notranslate nohighlight">\(\Sigma\)</span> are the variances of each individual component of the distribution. Finally, the off-diagonal components <span class="math notranslate nohighlight">\(\sigma_{ij}\)</span> are the <em>covariances</em> of components <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. The covariance of two components is given by:</p>
 <div class="math notranslate nohighlight">
-\[\text{Cov}(X_i,X_j) = \mathbb{E}[(X_i - \mu_i)(X_j - \mu_j)] = \iint_{\mathcal{X}_i \times \mathcal{X_j}} p(x_i,j_j)(x_i - \mu_i)(x_j - \mu_j)\ dx_jdx_i\]</div>
+\[\text{Cov}(X_i,X_j) = \mathbb{E}[(X_i - \mu_i)(X_j - \mu_j)] = \iint_{\mathcal{X}_i \times \mathcal{X_j}} p(x_i,x_j)(x_i - \mu_i)(x_j - \mu_j)\ dx_jdx_i\]</div>
 <p>The probability distribution of a multivariate normal distribution is given by:</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf{x}) = \frac{1}{\sqrt{(2\pi)^d \det(\Sigma)}} \exp\left(-\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^T\mathbf{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})\right)\]</div>
@@ -718,7 +722,7 @@ document.write(`
 <span class="c1"># covariance matrix of distribution:</span>
 <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="p">[</span>  <span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span> <span class="p">],</span>
-    <span class="p">[</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span>  <span class="mf">2.0</span> <span class="p">]</span> 
+    <span class="p">[</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span>  <span class="mf">2.0</span> <span class="p">]</span>
 <span class="p">])</span>
 
 <span class="c1"># define 2D mesh grid:</span>
@@ -800,7 +804,7 @@ Exercise 2: Fitting a Multivariate Normal Distribution:<div class="sd-summary-do
 
 <span class="c1"># perform analysis for N = 40 and 80:</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">n_correct</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="ow">in</span> <span class="n">experiment_results</span><span class="p">:</span>
-    
+
     <span class="c1"># compute accuracy:</span>
     <span class="n">accuracy</span> <span class="o">=</span> <span class="n">n_correct</span><span class="o">/</span><span class="n">N</span>
 
@@ -893,7 +897,7 @@ Exercise 2: Fitting a Multivariate Normal Distribution:<div class="sd-summary-do
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21bf2ddb3b63f0fdbccd3b4ed9dc47ddea83c9802bde2de93ceb3d9b89a264ce.png" src="../_images/21bf2ddb3b63f0fdbccd3b4ed9dc47ddea83c9802bde2de93ceb3d9b89a264ce.png" />
+<img alt="../_images/e161d0e47465552d1c248334eb3a8c28866d53cd138bf06654a7f1cf6985f237.png" src="../_images/e161d0e47465552d1c248334eb3a8c28866d53cd138bf06654a7f1cf6985f237.png" />
 </div>
 </details>
 </div>

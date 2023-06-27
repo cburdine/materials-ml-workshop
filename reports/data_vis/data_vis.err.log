@@ -1,41 +1,128 @@
 Traceback (most recent call last):
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 1093, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
-    return loop.run_until_complete(inner)
+  File "/usr/lib/python3/dist-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/lib/python3/dist-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
   File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
     return future.result()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 559, in async_execute
     await self.async_execute_cell(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 854, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/usr/lib/python3/dist-packages/nbclient/client.py", line 756, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-
-plt.figure(figsize=(10,3))
-
-# sample sizes to plot:
-sample_sizes = [ 100, 1000, 10000 ]
-
-# visualize histogram for each sample size:
-for i, N in enumerate(sample_sizes):
-    plt.subplot(1, len(sample_sizes), i+1)
-    samples = np.random.normal(0,1,size=N)
-    plt.hist(samples, bins=30, density)
-    plt.title(f'N = {N}')
-
-plt.show()
+import matplotlib.pyplot as plt
 ------------------
 
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mKeyboardInterrupt[0m                         Traceback (most recent call last)
+[0;32m/tmp/ipykernel_18919/322768712.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/usr/lib/python3/dist-packages/matplotlib/pyplot.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     47[0m [0;32mfrom[0m [0mcycler[0m [0;32mimport[0m [0mcycler[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     48[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 49[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mcolorbar[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     50[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mimage[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     51[0m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_api[0m[0;34m[0m[0;34m[0m[0m
 
-[0;36m  Cell [0;32mIn[9], line 12[0;36m[0m
-[0;31m    plt.hist(samples, bins=30, density)[0m
-[0m                                      ^[0m
-[0;31mSyntaxError[0m[0;31m:[0m positional argument follows keyword argument
+[0;32m/usr/lib/python3/dist-packages/matplotlib/colorbar.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     19[0m [0;34m[0m[0m
+[1;32m     20[0m [0;32mimport[0m [0mmatplotlib[0m [0;32mas[0m [0mmpl[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 21[0;31m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_api[0m[0;34m,[0m [0mcollections[0m[0;34m,[0m [0mcm[0m[0;34m,[0m [0mcolors[0m[0;34m,[0m [0mcontour[0m[0;34m,[0m [0mticker[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     22[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0martist[0m [0;32mas[0m [0mmartist[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     23[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpatches[0m [0;32mas[0m [0mmpatches[0m[0;34m[0m[0;34m[0m[0m
 
+[0;32m/usr/lib/python3/dist-packages/matplotlib/contour.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     11[0m [0;32mimport[0m [0mmatplotlib[0m [0;32mas[0m [0mmpl[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_api[0m[0;34m,[0m [0mdocstring[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 13[0;31m [0;32mfrom[0m [0mmatplotlib[0m[0;34m.[0m[0mbackend_bases[0m [0;32mimport[0m [0mMouseButton[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     14[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpath[0m [0;32mas[0m [0mmpath[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mticker[0m [0;32mas[0m [0mticker[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/backend_bases.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     44[0m [0;34m[0m[0m
+[1;32m     45[0m [0;32mimport[0m [0mmatplotlib[0m [0;32mas[0m [0mmpl[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 46[0;31m from matplotlib import (
+[0m[1;32m     47[0m     [0m_api[0m[0;34m,[0m [0mbackend_tools[0m [0;32mas[0m [0mtools[0m[0;34m,[0m [0mcbook[0m[0;34m,[0m [0mcolors[0m[0;34m,[0m [0mdocstring[0m[0;34m,[0m [0mtextpath[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     48[0m     tight_bbox, transforms, widgets, get_backend, is_interactive, rcParams)
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/widgets.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     20[0m [0;32mfrom[0m [0;34m.[0m [0;32mimport[0m [0m_api[0m[0;34m,[0m [0mbackend_tools[0m[0;34m,[0m [0mcbook[0m[0;34m,[0m [0mcolors[0m[0;34m,[0m [0mticker[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     21[0m [0;32mfrom[0m [0;34m.[0m[0mlines[0m [0;32mimport[0m [0mLine2D[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 22[0;31m [0;32mfrom[0m [0;34m.[0m[0mpatches[0m [0;32mimport[0m [0mCircle[0m[0;34m,[0m [0mRectangle[0m[0;34m,[0m [0mEllipse[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     23[0m [0;32mfrom[0m [0;34m.[0m[0mtransforms[0m [0;32mimport[0m [0mTransformedPatchPath[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     24[0m [0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/patches.py[0m in [0;36m<module>[0;34m[0m
+[1;32m   1841[0m [0;34m[0m[0m
+[1;32m   1842[0m [0;34m[0m[0m
+[0;32m-> 1843[0;31m [0;32mclass[0m [0mArc[0m[0;34m([0m[0mEllipse[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1844[0m     """
+[1;32m   1845[0m     [0mAn[0m [0melliptical[0m [0marc[0m[0;34m,[0m [0mi[0m[0;34m.[0m[0me[0m[0;34m.[0m [0ma[0m [0msegment[0m [0mof[0m [0man[0m [0mellipse[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/artist.py[0m in [0;36m__init_subclass__[0;34m(cls)[0m
+[1;32m    117[0m         [0mcls[0m[0;34m.[0m[0mset[0m[0;34m.[0m[0m__name__[0m [0;34m=[0m [0;34m"set"[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    118[0m         [0mcls[0m[0;34m.[0m[0mset[0m[0;34m.[0m[0m__qualname__[0m [0;34m=[0m [0;34mf"{cls.__qualname__}.set"[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 119[0;31m         [0mcls[0m[0;34m.[0m[0m_update_set_signature_and_docstring[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    120[0m [0;34m[0m[0m
+[1;32m    121[0m     _PROPERTIES_EXCLUDED_FROM_SET = [
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/artist.py[0m in [0;36m_update_set_signature_and_docstring[0;34m(cls)[0m
+[1;32m    145[0m             [0;34m"Set multiple properties at once.\n\n"[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    146[0m             [0;34m"Supported properties are\n\n"[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 147[0;31m             + kwdoc(cls))
+[0m[1;32m    148[0m [0;34m[0m[0m
+[1;32m    149[0m     [0;32mdef[0m [0m__init__[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/artist.py[0m in [0;36mkwdoc[0;34m(artist)[0m
+[1;32m   1747[0m     return ('\n'.join(ai.pprint_setters_rest(leadingspace=4))
+[1;32m   1748[0m             [0;32mif[0m [0mmpl[0m[0;34m.[0m[0mrcParams[0m[0;34m[[0m[0;34m'docstring.hardcopy'[0m[0;34m][0m [0;32melse[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1749[0;31m             'Properties:\n' + '\n'.join(ai.pprint_setters(leadingspace=4)))
+[0m[1;32m   1750[0m [0;34m[0m[0m
+[1;32m   1751[0m [0;31m# We defer this to the end of them module, because it needs ArtistInspector[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/artist.py[0m in [0;36mpprint_setters[0;34m(self, prop, leadingspace)[0m
+[1;32m   1507[0m [0;34m[0m[0m
+[1;32m   1508[0m         [0mlines[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1509[0;31m         [0;32mfor[0m [0mprop[0m [0;32min[0m [0msorted[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mget_setters[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1510[0m             [0maccepts[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mget_valid_values[0m[0;34m([0m[0mprop[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1511[0m             [0mname[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0maliased_name[0m[0;34m([0m[0mprop[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/artist.py[0m in [0;36mget_setters[0;34m(self)[0m
+[1;32m   1434[0m             if (not callable(func)
+[1;32m   1435[0m                     [0;32mor[0m [0mlen[0m[0;34m([0m[0minspect[0m[0;34m.[0m[0msignature[0m[0;34m([0m[0mfunc[0m[0;34m)[0m[0;34m.[0m[0mparameters[0m[0;34m)[0m [0;34m<[0m [0;36m2[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1436[0;31m                     or self.is_alias(func)):
+[0m[1;32m   1437[0m                 [0;32mcontinue[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1438[0m             [0msetters[0m[0;34m.[0m[0mappend[0m[0;34m([0m[0mname[0m[0;34m[[0m[0;36m4[0m[0;34m:[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3/dist-packages/matplotlib/artist.py[0m in [0;36mis_alias[0;34m(self, o)[0m
+[1;32m   1441[0m     [0;32mdef[0m [0mis_alias[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mo[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1442[0m         [0;34m"""Return whether method object *o* is an alias for another method."""[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1443[0;31m         [0mds[0m [0;34m=[0m [0minspect[0m[0;34m.[0m[0mgetdoc[0m[0;34m([0m[0mo[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1444[0m         [0;32mif[0m [0mds[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1445[0m             [0;32mreturn[0m [0;32mFalse[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3.10/inspect.py[0m in [0;36mgetdoc[0;34m(object)[0m
+[1;32m    740[0m     [0;32mif[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mdoc[0m[0;34m,[0m [0mstr[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    741[0m         [0;32mreturn[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 742[0;31m     [0;32mreturn[0m [0mcleandoc[0m[0;34m([0m[0mdoc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    743[0m [0;34m[0m[0m
+[1;32m    744[0m [0;32mdef[0m [0mcleandoc[0m[0;34m([0m[0mdoc[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/lib/python3.10/inspect.py[0m in [0;36mcleandoc[0;34m(doc)[0m
+[1;32m    763[0m             [0mlines[0m[0;34m[[0m[0;36m0[0m[0;34m][0m [0;34m=[0m [0mlines[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m.[0m[0mlstrip[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    764[0m         [0;32mif[0m [0mmargin[0m [0;34m<[0m [0msys[0m[0;34m.[0m[0mmaxsize[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 765[0;31m             [0;32mfor[0m [0mi[0m [0;32min[0m [0mrange[0m[0;34m([0m[0;36m1[0m[0;34m,[0m [0mlen[0m[0;34m([0m[0mlines[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m [0mlines[0m[0;34m[[0m[0mi[0m[0;34m][0m [0;34m=[0m [0mlines[0m[0;34m[[0m[0mi[0m[0;34m][0m[0;34m[[0m[0mmargin[0m[0;34m:[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    766[0m         [0;31m# Remove any trailing or leading blank lines.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    767[0m         [0;32mwhile[0m [0mlines[0m [0;32mand[0m [0;32mnot[0m [0mlines[0m[0;34m[[0m[0;34m-[0m[0;36m1[0m[0;34m][0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mKeyboardInterrupt[0m: 
+KeyboardInterrupt: 
 

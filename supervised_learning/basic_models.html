@@ -456,8 +456,8 @@ document.write(`
 <p>Now that we’ve covered some of the basic theory of supervised learning, let’s start applying some basic supervised learning models to a real dataset.</p>
 <section id="perovskite-classification-dataset">
 <h2>Perovskite Classification Dataset<a class="headerlink" href="#perovskite-classification-dataset" title="Permalink to this heading">#</a></h2>
-<p>Perovskites are materials with a crystal structure of the form  <span class="math notranslate nohighlight">\(ABX_3\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two positively charged cations and <span class="math notranslate nohighlight">\(B\)</span> is a negatively charged anion, usually oxygen (<span class="math notranslate nohighlight">\(O\)</span>). Ideal perovskites have a cubic structure, although some perovskites may attain more stable configurations with slightly perturbed structural phases, such as orthorhombic or tetragonal. Here’s an example of <a class="reference external" href="https://en.wikipedia.org/wiki/Strontium_titanate">SrTiO<span class="math notranslate nohighlight">\(_3\)</span></a> (strontium titanate), which is most stable with a cubic structure:</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/SrTiO3_cubic.png"><img alt="fishy" class="bg-primary mb-1 align-center" src="../_images/SrTiO3_cubic.png" style="width: 250px;" /></a>
+<p>Perovskites are materials with a crystal structure of the form  <span class="math notranslate nohighlight">\(ABX_3\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two positively charged cations and <span class="math notranslate nohighlight">\(X\)</span> is a negatively charged anion, usually oxygen (<span class="math notranslate nohighlight">\(O\)</span>). Ideal perovskites have a cubic structure, although some perovskites may attain more stable configurations with slightly perturbed structural phases, such as orthorhombic or tetragonal. Here’s an example of <a class="reference external" href="https://en.wikipedia.org/wiki/Strontium_titanate">SrTiO<span class="math notranslate nohighlight">\(_3\)</span></a> (strontium titanate), which is most stable with a cubic structure:</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/SrTiO3_cubic.png"><img alt="SrTiO3" class="bg-primary mb-1 align-center" src="../_images/SrTiO3_cubic.png" style="width: 250px;" /></a>
 <p>We will be using the <a class="reference external" href="https://www-sciencedirect-com.ezproxy.baylor.edu/science/article/pii/S0927025620306820?via%3Dihub">AB03 Perovskites</a> dataset.
 This data was originally used in the paper <a class="reference external" href="https://doi-org.ezproxy.baylor.edu/10.1016/j.commatsci.2020.110191"><em>Crystal structure classification in ABO3 perovskites via machine learning</em></a> by <em>Behara et al</em>.</p>
 <p>First, you will need to download the dataset CSV file (<code class="docutils literal notranslate"><span class="pre">perovskites.csv</span></code>) into the same directory as your Python notebook. You can do this by executing the following Python code in your Jupyter notebook:</p>
@@ -849,7 +849,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;cubic&#39;, &#39;orthorhombic&#39;, &#39;-&#39;, &#39;tetragonal&#39;, &#39;rhombohedral&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;-&#39;, &#39;rhombohedral&#39;, &#39;tetragonal&#39;, &#39;orthorhombic&#39;, &#39;cubic&#39;]
 </pre></div>
 </div>
 </div>
@@ -882,7 +882,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/33e68d04c5349dc8fab9ec35e83c697e0c304e6057319e3714dd00b753802a2f.png" src="../_images/33e68d04c5349dc8fab9ec35e83c697e0c304e6057319e3714dd00b753802a2f.png" />
+<img alt="../_images/4e182d04261863112defb755494844acf50be96b32de84fc3c1f9fd23ad39ef6.png" src="../_images/4e182d04261863112defb755494844acf50be96b32de84fc3c1f9fd23ad39ef6.png" />
 </div>
 </div>
 <p>As expected, a majority of the perovskites have the ideal cubic structure.</p>
@@ -1058,8 +1058,8 @@ Shape of z_test: (533, 3)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.648369692704668
-validation set accuracy: 0.6097560975609756
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.6206896551724138
+validation set accuracy: 0.6060037523452158
 </pre></div>
 </div>
 </div>
@@ -1097,8 +1097,8 @@ validation set accuracy: 0.6097560975609756
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.819376026272578
-validation set accuracy: 0.7636022514071295
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8238329814684494
+validation set accuracy: 0.7654784240150094
 </pre></div>
 </div>
 </div>
@@ -1145,7 +1145,7 @@ validation set accuracy: 0.7636022514071295
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/e9b47a1509a017a3d15f087cf9084dcb57d6eba572cad5ba2cedc1d6d5b0a0eb.png" src="../_images/e9b47a1509a017a3d15f087cf9084dcb57d6eba572cad5ba2cedc1d6d5b0a0eb.png" />
+<img alt="../_images/88b18ca3ec61ba7c6abec43266bf994f917b4d0225ec19a21523bc61a8fe652e.png" src="../_images/88b18ca3ec61ba7c6abec43266bf994f917b4d0225ec19a21523bc61a8fe652e.png" />
 </div>
 </div>
 <p>Now that we have established a baseline accuracy using the nearest neighbor model, let’s try to exceed this baseline accuracy with a more complex model.</p>
@@ -1178,8 +1178,8 @@ validation set accuracy: 0.7636022514071295
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8714520290874971
-validation set accuracy: 0.776735459662289
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8747361013370866
+validation set accuracy: 0.7542213883677298
 </pre></div>
 </div>
 </div>
@@ -1231,9 +1231,9 @@ Exercise 1: Histogram Gradient Boosting Machine<div class="sd-summary-down docut
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9662209711470795
-validation set accuracy: 0.8255159474671669
-test set accuracy: 0.8030018761726079
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9671592775041051
+validation set accuracy: 0.8086303939962477
+test set accuracy: 0.801125703564728
 </pre></div>
 </div>
 </div>

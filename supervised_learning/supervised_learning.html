@@ -515,7 +515,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/d5e154102c980648d33af0cbfc7fc0d64f77997a64fa54fc4dbc43d54744269b.png" src="../_images/d5e154102c980648d33af0cbfc7fc0d64f77997a64fa54fc4dbc43d54744269b.png" />
+<img alt="../_images/98881ad5bb42dc2865143de051054ca6ba2411e2fe6ac5b9326435abad1ddadc.png" src="../_images/98881ad5bb42dc2865143de051054ca6ba2411e2fe6ac5b9326435abad1ddadc.png" />
 </div>
 </div>
 <div class="admonition important">
@@ -554,7 +554,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/136957ffd708d6ba008cadf7b3fa51adf3fe18e510cd7bd5a6ccb8aa5ba736f3.png" src="../_images/136957ffd708d6ba008cadf7b3fa51adf3fe18e510cd7bd5a6ccb8aa5ba736f3.png" />
+<img alt="../_images/65c85a80d48d2895582130980822f81afea811e00401feda37bdf36c6cc89dc4.png" src="../_images/65c85a80d48d2895582130980822f81afea811e00401feda37bdf36c6cc89dc4.png" />
 </div>
 </div>
 <p>From this exercise, we see that some models are not valid, even though they may perfectly fit the data. So if we have a model that does seem to fit the data set well, how can we be sure that the model is also valid? Unfortunately, we can never know the degree to which a model is valid unless our dataset contains every possible input in <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and its associated label. However, there are some general tactics we can employ to maximize the validity of our model. These are the three most important guidelines to keep in mind when working with supervised models:</p>
@@ -635,7 +635,7 @@ Exercise 1: Training, Validation, and Test Sets<div class="sd-summary-down docut
 <p class="sd-card-text">To prepare this dataset for use with a model, do the following:</p>
 <ol class="arabic simple">
 <li><p class="sd-card-text">Plot the data. What kind of model might produce a good fit?</p></li>
-<li><p class="sd-card-text">Split the dataset into training, validation and test sets with the standard 80%-20%-20% split. There are a few ways to do this. One way is by shuffling the data using Python’s <a class="reference external" href="https://docs.python.org/3/library/random.html#random.shuffle"><code class="docutils literal notranslate"><span class="pre">random.shuffle</span></code></a> and selecting subsets of the data by their indices. Another (easier) way is to use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split</span></code></a>. This function can only split the data into two subsets, so you will need to use it twice: once to split off the training set and once more to split the remaining data into the validation and test sets.</p></li>
+<li><p class="sd-card-text">Split the dataset into training, validation and test sets with the standard 80%-10%-10% split. There are a few ways to do this. One way is by shuffling the data using Python’s <a class="reference external" href="https://docs.python.org/3/library/random.html#random.shuffle"><code class="docutils literal notranslate"><span class="pre">random.shuffle</span></code></a> and selecting subsets of the data by their indices. Another (easier) way is to use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split</span></code></a>. This function can only split the data into two subsets, so you will need to use it twice: once to split off the training set and once more to split the remaining data into the validation and test sets.</p></li>
 <li><p class="sd-card-text">Normalize the training, validation, and test sets (transform <span class="math notranslate nohighlight">\(x \rightarrow z\)</span>). You can do this by computing <span class="math notranslate nohighlight">\(\mu_x\)</span> and <span class="math notranslate nohighlight">\(\sigma_x\)</span> with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html"><code class="docutils literal notranslate"><span class="pre">np.mean</span></code></a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.std.html"><code class="docutils literal notranslate"><span class="pre">np.std</span></code></a> respectively, or by using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code></a>.</p></li>
 <li><p class="sd-card-text">Plot the normalized training, validation, and test sets on the same axes. Use a different color for each set.</p></li>
 </ol>
@@ -723,8 +723,8 @@ Exercise 2: Polynomial Models<div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e2b1af7af94698ff9214ac55c292089af27643ec6feb05794c5130cd7acfaaaf.png" src="../_images/e2b1af7af94698ff9214ac55c292089af27643ec6feb05794c5130cd7acfaaaf.png" />
-<img alt="../_images/335dc2716414718dceeaffc46310b4d5a43cf8481de06bd81485f9691182067c.png" src="../_images/335dc2716414718dceeaffc46310b4d5a43cf8481de06bd81485f9691182067c.png" />
+<img alt="../_images/d0b03af761f5d95826f7d4187542203bac98b6a0196b73a3491cd4050f9b799f.png" src="../_images/d0b03af761f5d95826f7d4187542203bac98b6a0196b73a3491cd4050f9b799f.png" />
+<img alt="../_images/9a02dc7832b2dda2647f59ec8b7e36707e0ad1a3367dd30e26fd335d9a788d5d.png" src="../_images/9a02dc7832b2dda2647f59ec8b7e36707e0ad1a3367dd30e26fd335d9a788d5d.png" />
 </div>
 </details>
 </div>
@@ -766,7 +766,7 @@ Exercise 2: Polynomial Models<div class="sd-summary-down docutils">
 
 <span class="c1"># Note: The second degree and third degree polynomials fit the data</span>
 <span class="c1">#       quite well and do not appear to differ much in accuracy. Per</span>
-<span class="c1">#       Occam&#39;s razor, the second degree polynomial is the better </span>
+<span class="c1">#       Occam&#39;s razor, the second degree polynomial is the better</span>
 <span class="c1">#       model because it has fewer parameters.</span>
 
 <span class="c1"># plot best polynomial fit and test set:</span>
@@ -782,8 +782,8 @@ Exercise 2: Polynomial Models<div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ec28bd51772dd19b62c9eef7189699bbdeb03dcf57d49d9aa2c3f11358f3f50b.png" src="../_images/ec28bd51772dd19b62c9eef7189699bbdeb03dcf57d49d9aa2c3f11358f3f50b.png" />
-<img alt="../_images/9015a5910bec7efd5f223df5d397bbea0aef100d7efaa6639d26c2ee5697e56e.png" src="../_images/9015a5910bec7efd5f223df5d397bbea0aef100d7efaa6639d26c2ee5697e56e.png" />
+<img alt="../_images/b04cb6b836ae4f070640e7e4741f5bb78c84605270e2ffab581685826a68ffd5.png" src="../_images/b04cb6b836ae4f070640e7e4741f5bb78c84605270e2ffab581685826a68ffd5.png" />
+<img alt="../_images/d3d461d0507890a963e63db1dee16fa960dd30a510afbdc78488ffb7ab6c62dc.png" src="../_images/d3d461d0507890a963e63db1dee16fa960dd30a510afbdc78488ffb7ab6c62dc.png" />
 </div>
 </details>
 </div>

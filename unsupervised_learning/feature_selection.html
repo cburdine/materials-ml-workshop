@@ -503,7 +503,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/ec8a5271c58b649550fc57e43f785102e7757641224df16311273c4ea3525c11.png" src="../_images/ec8a5271c58b649550fc57e43f785102e7757641224df16311273c4ea3525c11.png" />
+<img alt="../_images/ebf00a41ed57ae22bc54b90969290d5970c78d22bd428273f745bcc6bcd5c6c6.png" src="../_images/ebf00a41ed57ae22bc54b90969290d5970c78d22bd428273f745bcc6bcd5c6c6.png" />
 </div>
 </div>
 <p>Next, we normalize the dataset and compute <span class="math notranslate nohighlight">\(\bar{\Sigma}\)</span> using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.cov.html"><code class="docutils literal notranslate"><span class="pre">np.cov</span></code></a>:</p>
@@ -542,7 +542,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/25cb836b5283d83de8b2bf79e57fdb370bd6b1bf0ba142f4a53e99c530e0d57b.png" src="../_images/25cb836b5283d83de8b2bf79e57fdb370bd6b1bf0ba142f4a53e99c530e0d57b.png" />
+<img alt="../_images/6a364cd0cc1be6c06b05b51f3c57b44a26d8a28c9628218b4d231162e0b1b637.png" src="../_images/6a364cd0cc1be6c06b05b51f3c57b44a26d8a28c9628218b4d231162e0b1b637.png" />
 </div>
 </div>
 <p>Examining the correlation matrix, we see strong positive correlation between <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_3\)</span> and strong negative correlation between <span class="math notranslate nohighlight">\(x_2\)</span> and <span class="math notranslate nohighlight">\(x_3\)</span>, which corresponds to the relationship <span class="math notranslate nohighlight">\(x_3 \approx 3x_1 - 2 x_2\)</span>. Since the third row of <span class="math notranslate nohighlight">\(\bar{\Sigma}\)</span> is highly correlated with the other features, it contributes the least to the overall variance of the data.</p>
@@ -586,19 +586,19 @@ document.write(`
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P matrix:
-[[ 0.56181792 -0.60312602 -0.56621518]
- [-0.39716418 -0.79705453  0.45493372]
- [-0.72568674 -0.03070953 -0.68733957]]
+[[-6.01157458e-01 -5.26463201e-01  6.01203966e-01]
+ [ 3.72526089e-01 -8.50197853e-01 -3.72005275e-01]
+ [ 7.06989409e-01  3.30416034e-04  7.07224057e-01]]
 
 D matrix:
-[[0.02529919 0.         0.        ]
- [0.         0.89243165 0.        ]
- [0.         0.         2.09734453]]
+[[0.03291102 0.         0.        ]
+ [0.         1.00567009 0.        ]
+ [0.         0.         1.97649427]]
 
 P @ D @ P.T (correlation matrix):
-[[ 1.00502513 -0.11688727  0.82246373]
- [-0.11688727  1.00502513 -0.62669109]
- [ 0.82246373 -0.62669109  1.00502513]]
+[[ 1.00502513e+00  7.20473453e-04  8.26214997e-01]
+ [ 7.20473453e-04  1.00502513e+00 -5.11612684e-01]
+ [ 8.26214997e-01 -5.11612684e-01  1.00502513e+00]]
 </pre></div>
 </div>
 </div>
@@ -642,7 +642,7 @@ P @ D @ P.T (correlation matrix):
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/a9af750b9b7f7e8a5c578e15954e4a846dad709c2a69f6e7fe2d1d63b40a5a97.png" src="../_images/a9af750b9b7f7e8a5c578e15954e4a846dad709c2a69f6e7fe2d1d63b40a5a97.png" />
+<img alt="../_images/a58513957be5c7c7702d3dfe58e73c5070fee83758cc320d24f97a98ce611e22.png" src="../_images/a58513957be5c7c7702d3dfe58e73c5070fee83758cc320d24f97a98ce611e22.png" />
 </div>
 </div>
 </section>
@@ -738,8 +738,8 @@ Exercise 1: Applying PCA <div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0ca75a7249b7890ca68a35ea51ee953d45b13e4e030a96350797c2b1ca267e18.png" src="../_images/0ca75a7249b7890ca68a35ea51ee953d45b13e4e030a96350797c2b1ca267e18.png" />
-<img alt="../_images/80126cf691c190176fd6d2724752d7bc5556d4df96c65cc72da7eea9c1500e67.png" src="../_images/80126cf691c190176fd6d2724752d7bc5556d4df96c65cc72da7eea9c1500e67.png" />
+<img alt="../_images/f836b8e8d9221b74d007d17dde4d6c5a70d3e5667c95e1d622e61201cebadef9.png" src="../_images/f836b8e8d9221b74d007d17dde4d6c5a70d3e5667c95e1d622e61201cebadef9.png" />
+<img alt="../_images/412d761b91d69cde6a45e42ae9d84d51cdc38472c72c4c120114aada69962ad5.png" src="../_images/412d761b91d69cde6a45e42ae9d84d51cdc38472c72c4c120114aada69962ad5.png" />
 </div>
 </details>
 </div>
