@@ -19,19 +19,19 @@ A [loss function](https://en.wikipedia.org/wiki/Loss_function) measures the erro
 
 $$E(\hat{y}, y) = (\hat{y} - y)^2$$
 
-For a loss function to be effective, it must satisfy three properties:
+For a loss function to be effective for fitting a supervised model, it must satisfy the following properties:
 
 1. _Continuity_: $E(\hat{y},y)$ varies smoothly with $y$ and $\hat{y}$.
-2. _Non-Trivial Differentiability_: The derivative of $E(\hat{y},y)$ with respect to $\hat{y}$ exists and is not zero everywhere.
+2. _Non-Trivial Differentiability_: The derivative of $E(\hat{y},y)$ with respect to $\hat{y}$ exists and is not identically zero.
 3. _Effective Monotonicity_: If $E(\hat{y},y) < E(\hat{y}',y)$ if $\hat{y}$ is a better prediction of $y$ than $\hat{y}$'.
 
-Note that property 3 is somewhat subjective, but it is necessary to ensure that the "best" prediction of $y$ is the one that minimizes $E(\hat{y}, y)$. In addition to properties 1-3, we see that the square error loss function satisfies some other useful properties, (i.e. _non-negativity_: $E \ge 0$, _symmetry_: $E(\hat{y},y) = E(y,\hat{y})$, etc.). These properties are desirable, but is not all loss functions will have them. Ultimately, the kind of loss function we choose will depend on what kind of data $y$ represents and the model we are using.
+Note that property 3 is somewhat subjective, but it is necessary to ensure that the "best" prediction of $y$ is the one that minimizes $E(\hat{y}, y)$. In addition to properties 1-3, we see that the square error loss function satisfies some other useful properties, (i.e. _non-negativity_: $E \ge 0$, _symmetry_: $E(\hat{y},y) = E(y,\hat{y})$, etc.). These properties are desirable, but not all loss functions will have them. Ultimately, the kind of loss function we choose will depend on what kind of data $y$ represents and the model we are using.
 
 We now know how to measure the accuracy of a single prediction $\hat{y} = f(\mathbf{x})$; however, a model $f: \mathcal{X} \rightarrow \mathcal{Y}$ may make better better predictions on some data points $(\mathbf{x},y)$ than others. To evaluate a model on a dataset $\{ (\mathbf{x}_n, y_n) \}_{n=1}^N$ with $N$ datapoints, we use a _model loss function_, denoted $\mathcal{E}(f)$. Often, $\mathcal{E}(f)$ is simply the average of a loss function $E$ evaluated on a dataset:
 
 $$\mathcal{E}(f) = \frac{1}{N}\sum_{n=1}^N E(f(x),y)$$
 
-These are some commonly used loss functions used when $y$ is a scalar (or vector) quantity:
+These are some loss functions commonly used for regression:
 
 * Mean Square Error (MSE):
 
@@ -49,13 +49,9 @@ These are some commonly used loss functions used when $y$ is a scalar (or vector
 
     $$\mathcal{E}(f) = \max_{n} |f(\mathbf{x}_n) - y_n|$$
 
-:::{tip}
-The physicists in the room may recognize the RMSE as the $\ell^2$ norm error ("L2") and the MAE as the $\ell^1$ norm error ("L1"). The maximum absolute error is sometimes defined as the $\ell^\infty$ norm error ("L-infinity"). These names are also commonly used in the machine learning literature.
-:::
-
 ## Fitting Models to Data
 
-The process of fitting models to data can sometimes be very complex, and the computational method for determining the fit is often specific the type of model being used. These computational methods are called _learning algorithms_, since they employ iterative procedures for gradually improving the fit of a model.
+The process of fitting models to data can sometimes be very complex, and the computational method for determining the fit is often specific to the type of model being used. These computational methods are called _learning algorithms_, since they employ iterative procedures for gradually improving the fit of a model.
 
 Since this workshop is not directed at computer scientists, we will not cover these computational methods in detail; however, having at least a cursory understanding of them is crucial in understanding how most models work. As a motivating example, let's recall a simple 1D polynomial model with degree $D$:
 
@@ -78,7 +74,7 @@ As its name suggests, _gradient descent_ is a learning algorithm that minimizes 
 
 $$\nabla_{w} f(\mathbf{x}) = \begin{bmatrix} \dfrac{\partial f}{\partial w_0}(\mathbf{x}) & \dfrac{\partial f}{\partial w_1}(\mathbf{x}) & \dots & \dfrac{\partial f}{\partial w_D}(\mathbf{x}) \end{bmatrix}^T$$
 
-Any loss function $E(\hat{y},y)$ that satisfies properties 1-3 is continuous and differentiable, meaning $\frac{\partial E}{\partial \hat{y}}$ exists. This means that we can compute the gradient of a loss function $E$ with respect to the weights for a single data point $(\mathbf{x}, y)$ using chain rule:
+Any loss function $E(\hat{y},y)$ that satisfies properties 1-3 is continuous and differentiable, meaning $\frac{\partial E}{\partial \hat{y}}$ exists. It follows that we can compute the gradient of a loss function $E$ with respect to the weights for a single data point $(\mathbf{x}, y)$ using chain rule:
 
 $$\nabla_w E(f(\mathbf{x}), y) = \dfrac{\partial E}{\partial \hat{y}}(f(\mathbf{x}), y) \cdot \nabla_w f(\mathbf{x})$$
 
@@ -103,7 +99,7 @@ Here's another one for the physicists in the room: If we interpret $\mathcal{E}$
 ![Gradient Descent Balls](grad_local.svg)
 :::
 
-Ideally, we should expect $\mathcal{E}(f)$ to gradually decrease with each timestep until $-\nabla_w \mathcal{E}(f) \approx \mathbf{0}$, at which point $\mathcal{E}(f)$ has attained a local minimum. Take note that at some points where $\mathcal{E}(f)$ is steep, the magnitude of the gradient, $\lVert -\nabla_w \mathcal{E}(f) \rVert$, can be quite large. This can sometimes cause the gradient descent procedure to completely overstep local minima and even increase $\mathcal{E}(f)$ from last step. Problems can also be encountered when $\lVert -\nabla_w \mathcal{E}(f) \rVert$ is very small, as many small steps may be required to reach the nearest minimum. To avoid these pathologies, we can set the changes in the weight vector $\mathbf{w}$ to have a fixed magnitude $\eta$:
+Ideally, we should expect $\mathcal{E}(f)$ to gradually decrease with each timestep until $-\nabla_w \mathcal{E}(f) \approx \mathbf{0}$, at which point $\mathcal{E}(f)$ has attained a local minimum. Take note that at some points where $\mathcal{E}(f)$ is steep, the magnitude of the gradient, $\lVert -\nabla_w \mathcal{E}(f) \rVert$, can be quite large. This can sometimes cause the gradient descent procedure to completely overstep local minima and even increase $\mathcal{E}(f)$ from last step. Problems can also be encountered when $\lVert -\nabla_w \mathcal{E}(f) \rVert$ is very small, as many small steps may be required to reach the nearest minimum. To avoid these pitfalls, we can set the changes in the weight vector $\mathbf{w}$ to have a fixed magnitude $\eta$:
 
 $$\mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} + \eta \frac{-\nabla_w \mathcal{E}(f)}{\lVert{-\nabla_w \mathcal{E}(f)}\rVert}$$
 
@@ -113,7 +109,7 @@ The value of $\eta$ is called the _learning rate_. Note that if $\eta$ is set to
 
 Let's write some Python code that uses gradient descent to fit a 1D linear model ($f(x) = w_0 + w_1x$) to data with the MSE model loss function.
 
-Let's start by writing the functions necessary for gradient descent, namely $E(\hat{y}, y), \partial E/ \partial $\hat{y}$, f(x)$, and $\nabla_w f(x)$:
+Let's start by writing the functions necessary for gradient descent, namely $E(\hat{y}, y), \partial E/ \partial \hat{y}$, $f(x)$, and $\nabla_w f(x)$:
 
 ```{code-cell}
 import numpy as np
