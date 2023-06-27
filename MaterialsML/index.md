@@ -49,6 +49,9 @@ You can access the slides for the workshop below:
 * Day 4: [Data Manipulation and Visualization](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%204.slides.html)
 
 * Day 5: [Materials Science Packages](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%205.slides.html)
+
+* Day 6: [Introduction to ML | Supervised Learning](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%206.slides.html)
+
 ## Table of Contents
 
 ```{tableofcontents}
