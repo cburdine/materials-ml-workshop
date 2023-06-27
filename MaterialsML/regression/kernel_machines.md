@@ -119,7 +119,7 @@ Recall that the $\alpha_n$ and $\alpha_n^*$ are Lagrange multipliers correspondi
 
 One practical trade-off that we experience when transitioning from an embedding model to an equivalent kernel-based model (often called a _kernel machine_) is that in order to compute a prediction $f(\mathbf{x})$, we are shifting from a computation that involves a summation of $D_{emb}$ terms to a computation that can involve up to $N$ terms, where $N$ is the size of the dataset. Fortunately, the summation only needs to carried out over the support vectors where $(\alpha_n - \alpha_n^*)$ is nonzero:
 
-$$ f(\mathbf{x}) = \sum_{\{ n:~(\alpha_{n} - \alpha_{n}^*) = 0 \}} (\alpha_n - \alpha_n^*)K(\mathbf{x}_n - \mathbf{x}) $$
+$$ f(\mathbf{x}) = \sum_{\{ n:~(\alpha_{n} - \alpha_{n}^*) = 0 \}} (\alpha_n - \alpha_n^*)K(\mathbf{x}_n, \mathbf{x}) $$
 
 Depending on the type of the kernel function $K$, the tolerance factor $\varepsilon$, and the size of the dataset, the number of support vectors may be large or small. When working with kernel machines, it is common to try out multiple kernels, and select the best fit that strikes a balance between model accuracy and the number of support vectors. Below are some kernels that are commonly used:
 

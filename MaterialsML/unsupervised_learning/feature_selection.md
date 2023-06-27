@@ -90,6 +90,14 @@ plt.show()
 
 Examining the correlation matrix, we see strong positive correlation between $x_1$ and $x_3$ and strong negative correlation between $x_2$ and $x_3$, which corresponds to the relationship $x_3 \approx 3x_1 - 2 x_2$. Since the third row of $\bar{\Sigma}$ is highly correlated with the other features, it contributes the least to the overall variance of the data.
 
+:::{admonition} The Correlation Matrix in Supervised Learning
+:class: dropdown, tip
+
+In supervised learning (where the dataset contains $(\mathbf{x},y)$ pairs, not just $\mathbf{x}$ values) the correlation matrix and also be used to quantify the linear relationship between features and the output label $y$. This is done by 
+simply appending the corresponding $y$ to the end of each $\mathbf{x}$, normalizing this vector, and then computing the correlation matrix.
+
+The values in ths matrix that correspond to the correlation of $y$ with each feature in $\mathbf{x}$ can be used to reduce the dimensionality of the $\mathbf{x}$ data. Specifically, features with the weakest correlation with $y$ can be dropped, resuling in a much smaller feature vector. Since the dropped features had low correlation with $y$, it is likely that it will not cause a drop in model accuracy. In fact, this will sometimes result an increase in model accuracy.
+:::
 ## Principal Components Analysis
 
 Because the correlation matrix is symmetric, we can [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#Diagonalization) the matrix by writing it as the product:
@@ -129,15 +137,15 @@ From examining the printout of the $\mathbf{D}$ matrix above, we see that $\math
 
 One of the most powerful aspects of _principal components analysis_ (often abbreviated _PCA_), is that we can project the normalized data onto the subset of principal components that are significant (i.e. have large $\lambda_i$), thereby reducing the dimensionality of the data while maximizing the amount of variance that is accounted for in the reduced data.
 
-To project a normalized feature vector $\mathbf{z}$ onto the first $k$ principal components, we write it as a linear combination of $\mathbf{p}^{(1)}, ..., \mathbf{p}^{(k)}$:
+To project a normalized feature vector $\mathbf{z}$ onto the first $k$ principal components, we write it as a linear combination of all the principal components \mathbf{p}^{(1)}, ..., \mathbf{p}^{(D)}$:
 
-$$\mathbf{z} = u_1\mathbf{p}^{(1)} + u_2\mathbf{p}^{(2)} + ... u_k\mathbf{p}^{(k)}$$
+$$\mathbf{z} = u_1\mathbf{p}^{(1)} + u_2\mathbf{p}^{(2)} + ... u_D\mathbf{p}^{(D)}$$
 
-Next, we solve for the coefficients $u_i$. Since the $\mathbf{p}^{(k)}$ are all orthonormal basis vectors, the coefficients can be computed as follows:
+Next, we solve for the coefficients $u_i$. Since the $\mathbf{p}^{(i)}$ are all orthonormal basis vectors, the coefficients can be computed independently of one another as follows:
 
 $$ u_i = \mathbf{z}^T\mathbf{p}^{(i)} $$
 
-The vector of coefficients $\mathbf{u} = \begin{bmatrix} u_1 & u_2 & ... & u_k \end{bmatrix}^T$ is the reduced $k$-dimensional representation of $\mathbf{z}$.
+The vector of the first $k$ coefficients $\mathbf{u} = \begin{bmatrix} u_1 & u_2 & ... & u_k \end{bmatrix}^T$ is the reduced $k$-dimensional representation of $\mathbf{z}$. This vector is the projection of the data onto the first $k$ principal components.
 
 ### PCA Dimension Reduction
 
