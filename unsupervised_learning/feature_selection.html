@@ -503,7 +503,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/ebf00a41ed57ae22bc54b90969290d5970c78d22bd428273f745bcc6bcd5c6c6.png" src="../_images/ebf00a41ed57ae22bc54b90969290d5970c78d22bd428273f745bcc6bcd5c6c6.png" />
+<img alt="../_images/5dd5bae0f6f69e5aa31defbeb1c67456187cce6f381635b8dd6d1b0b2b6c87e1.png" src="../_images/5dd5bae0f6f69e5aa31defbeb1c67456187cce6f381635b8dd6d1b0b2b6c87e1.png" />
 </div>
 </div>
 <p>Next, we normalize the dataset and compute <span class="math notranslate nohighlight">\(\bar{\Sigma}\)</span> using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.cov.html"><code class="docutils literal notranslate"><span class="pre">np.cov</span></code></a>:</p>
@@ -542,10 +542,16 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/6a364cd0cc1be6c06b05b51f3c57b44a26d8a28c9628218b4d231162e0b1b637.png" src="../_images/6a364cd0cc1be6c06b05b51f3c57b44a26d8a28c9628218b4d231162e0b1b637.png" />
+<img alt="../_images/f720bac0ef8e7026aa6dc1a8d165a5e9e3d95ac230a444b811b1d2c2a03dfeb2.png" src="../_images/f720bac0ef8e7026aa6dc1a8d165a5e9e3d95ac230a444b811b1d2c2a03dfeb2.png" />
 </div>
 </div>
 <p>Examining the correlation matrix, we see strong positive correlation between <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_3\)</span> and strong negative correlation between <span class="math notranslate nohighlight">\(x_2\)</span> and <span class="math notranslate nohighlight">\(x_3\)</span>, which corresponds to the relationship <span class="math notranslate nohighlight">\(x_3 \approx 3x_1 - 2 x_2\)</span>. Since the third row of <span class="math notranslate nohighlight">\(\bar{\Sigma}\)</span> is highly correlated with the other features, it contributes the least to the overall variance of the data.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">The Correlation Matrix in Supervised Learning</p>
+<p>In supervised learning (where the dataset contains <span class="math notranslate nohighlight">\((\mathbf{x},y)\)</span> pairs, not just <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> values) the correlation matrix and also be used to quantify the linear relationship between features and the output label <span class="math notranslate nohighlight">\(y\)</span>. This is done by
+simply appending the corresponding <span class="math notranslate nohighlight">\(y\)</span> to the end of each <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, normalizing this vector, and then computing the correlation matrix.</p>
+<p>The values in ths matrix that correspond to the correlation of <span class="math notranslate nohighlight">\(y\)</span> with each feature in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> can be used to reduce the dimensionality of the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> data. Specifically, features with the weakest correlation with <span class="math notranslate nohighlight">\(y\)</span> can be dropped, resuling in a much smaller feature vector. Since the dropped features had low correlation with <span class="math notranslate nohighlight">\(y\)</span>, it is likely that it will not cause a drop in model accuracy. In fact, this will sometimes result an increase in model accuracy.</p>
+</div>
 </section>
 <section id="principal-components-analysis">
 <h2>Principal Components Analysis<a class="headerlink" href="#principal-components-analysis" title="Permalink to this heading">#</a></h2>
@@ -586,19 +592,19 @@ document.write(`
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P matrix:
-[[-6.01157458e-01 -5.26463201e-01  6.01203966e-01]
- [ 3.72526089e-01 -8.50197853e-01 -3.72005275e-01]
- [ 7.06989409e-01  3.30416034e-04  7.07224057e-01]]
+[[-0.59908364 -0.52842756  0.60155058]
+ [ 0.38778371 -0.84878862 -0.35941851]
+ [ 0.70051594  0.01794976  0.71341098]]
 
 D matrix:
-[[0.03291102 0.         0.        ]
- [0.         1.00567009 0.        ]
- [0.         0.         1.97649427]]
+[[0.0253727  0.         0.        ]
+ [0.         1.0401421  0.        ]
+ [0.         0.         1.94956057]]
 
 P @ D @ P.T (correlation matrix):
-[[ 1.00502513e+00  7.20473453e-04  8.26214997e-01]
- [ 7.20473453e-04  1.00502513e+00 -5.11612684e-01]
- [ 8.26214997e-01 -5.11612684e-01  1.00502513e+00]]
+[[ 1.00502513  0.0391221   0.81614536]
+ [ 0.0391221   1.00502513 -0.50884758]
+ [ 0.81614536 -0.50884758  1.00502513]]
 </pre></div>
 </div>
 </div>
@@ -606,13 +612,13 @@ P @ D @ P.T (correlation matrix):
 <p>Each principal component <span class="math notranslate nohighlight">\(\mathbf{p}_i\)</span> (the <span class="math notranslate nohighlight">\(i\)</span>th column of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>) has an associated eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span>, which is the corresponding value along the diagonal in the <span class="math notranslate nohighlight">\(i\)</span>th column of <span class="math notranslate nohighlight">\(\mathbf{D}\)</span>. The eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> describe the total variance of the data in the direction <span class="math notranslate nohighlight">\(\mathbf{p}_i\)</span>. The principal component with the highest value of <span class="math notranslate nohighlight">\(\lambda_i\)</span> is called the <em>first principal component</em>, since it is a vector that points in the direction that “accounts for” most of the variance of the data. Similarly, the second principal component points in the direction that “accounts for” most of the variance not captured by the first principal component, and so on. Here, we will denote the first principal component as <span class="math notranslate nohighlight">\(\mathbf{p}^{(1)}\)</span>, the second as <span class="math notranslate nohighlight">\(\mathbf{p}^{(2)}\)</span>, and so on. We will use the same notation for the principal component eigenvalues, i.e. <span class="math notranslate nohighlight">\(\lambda^{(1)}, \lambda^{(2)}\)</span>, etc.</p>
 <p>From examining the printout of the <span class="math notranslate nohighlight">\(\mathbf{D}\)</span> matrix above, we see that <span class="math notranslate nohighlight">\(\mathbf{p}^{(1)} = \mathbf{p}_3\)</span> (the first principal component is the third column of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>) and <span class="math notranslate nohighlight">\(\mathbf{p}^{(2)} = \mathbf{p}_2\)</span> (the second principal component is the second column of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>). The corresponding eigenvalues are <span class="math notranslate nohighlight">\(\lambda^{(1)} = 2.033\)</span> and <span class="math notranslate nohighlight">\(\lambda^{(2)} = 0.97\)</span>. However, we observe that <span class="math notranslate nohighlight">\(\lambda^{(3)} = 0.024 \ll \lambda^{(1)}, \lambda^{(2)}\)</span>, which suggests that the third principal component accounts for very little variance in the data. This is due to the fact that the data is approximately confined to a 2D plane embedded in a larger 3D space.</p>
 <p>One of the most powerful aspects of <em>principal components analysis</em> (often abbreviated <em>PCA</em>), is that we can project the normalized data onto the subset of principal components that are significant (i.e. have large <span class="math notranslate nohighlight">\(\lambda_i\)</span>), thereby reducing the dimensionality of the data while maximizing the amount of variance that is accounted for in the reduced data.</p>
-<p>To project a normalized feature vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> onto the first <span class="math notranslate nohighlight">\(k\)</span> principal components, we write it as a linear combination of <span class="math notranslate nohighlight">\(\mathbf{p}^{(1)}, ..., \mathbf{p}^{(k)}\)</span>:</p>
+<p>To project a normalized feature vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> onto the first <span class="math notranslate nohighlight">\(k\)</span> principal components, we write it as a linear combination of all the principal components \mathbf{p}^{(1)}, …, \mathbf{p}^{(D)}$:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{z} = u_1\mathbf{p}^{(1)} + u_2\mathbf{p}^{(2)} + ... u_k\mathbf{p}^{(k)}\]</div>
-<p>Next, we solve for the coefficients <span class="math notranslate nohighlight">\(u_i\)</span>. Since the <span class="math notranslate nohighlight">\(\mathbf{p}^{(k)}\)</span> are all orthonormal basis vectors, the coefficients can be computed as follows:</p>
+\[\mathbf{z} = u_1\mathbf{p}^{(1)} + u_2\mathbf{p}^{(2)} + ... u_D\mathbf{p}^{(D)}\]</div>
+<p>Next, we solve for the coefficients <span class="math notranslate nohighlight">\(u_i\)</span>. Since the <span class="math notranslate nohighlight">\(\mathbf{p}^{(i)}\)</span> are all orthonormal basis vectors, the coefficients can be computed independently of one another as follows:</p>
 <div class="math notranslate nohighlight">
 \[ u_i = \mathbf{z}^T\mathbf{p}^{(i)} \]</div>
-<p>The vector of coefficients <span class="math notranslate nohighlight">\(\mathbf{u} = \begin{bmatrix} u_1 &amp; u_2 &amp; ... &amp; u_k \end{bmatrix}^T\)</span> is the reduced <span class="math notranslate nohighlight">\(k\)</span>-dimensional representation of <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>.</p>
+<p>The vector of the first <span class="math notranslate nohighlight">\(k\)</span> coefficients <span class="math notranslate nohighlight">\(\mathbf{u} = \begin{bmatrix} u_1 &amp; u_2 &amp; ... &amp; u_k \end{bmatrix}^T\)</span> is the reduced <span class="math notranslate nohighlight">\(k\)</span>-dimensional representation of <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>. This vector is the projection of the data onto the first <span class="math notranslate nohighlight">\(k\)</span> principal components.</p>
 <section id="pca-dimension-reduction">
 <h3>PCA Dimension Reduction<a class="headerlink" href="#pca-dimension-reduction" title="Permalink to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> Python package has functionality that makes PCA dimensionality reduction very easy. To compute the 2D PCA embedding of the 3D dataset we have been working on so far, we can use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"><code class="docutils literal notranslate"><span class="pre">sklearn.decomposition.PCA</span></code></a>, and visualize the projected data as follows:</p>
@@ -642,7 +648,7 @@ P @ D @ P.T (correlation matrix):
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/a58513957be5c7c7702d3dfe58e73c5070fee83758cc320d24f97a98ce611e22.png" src="../_images/a58513957be5c7c7702d3dfe58e73c5070fee83758cc320d24f97a98ce611e22.png" />
+<img alt="../_images/c8899441de126049e48f63bbc1a07c8505aaa1487a4e9e85d2b676c716591705.png" src="../_images/c8899441de126049e48f63bbc1a07c8505aaa1487a4e9e85d2b676c716591705.png" />
 </div>
 </div>
 </section>
@@ -738,8 +744,8 @@ Exercise 1: Applying PCA <div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f836b8e8d9221b74d007d17dde4d6c5a70d3e5667c95e1d622e61201cebadef9.png" src="../_images/f836b8e8d9221b74d007d17dde4d6c5a70d3e5667c95e1d622e61201cebadef9.png" />
-<img alt="../_images/412d761b91d69cde6a45e42ae9d84d51cdc38472c72c4c120114aada69962ad5.png" src="../_images/412d761b91d69cde6a45e42ae9d84d51cdc38472c72c4c120114aada69962ad5.png" />
+<img alt="../_images/63b51691aaabf3edd14e59daac6458a42a1fa77aef6409533341238e714b748f.png" src="../_images/63b51691aaabf3edd14e59daac6458a42a1fa77aef6409533341238e714b748f.png" />
+<img alt="../_images/59e48ee6293deca438fe8efd168e9862203061f3481e5d2f0d34d8b372528833.png" src="../_images/59e48ee6293deca438fe8efd168e9862203061f3481e5d2f0d34d8b372528833.png" />
 </div>
 </details>
 </div>

@@ -542,7 +542,7 @@ document.write(`
 <h2>Kernel Functions<a class="headerlink" href="#kernel-functions" title="Permalink to this heading">#</a></h2>
 <p>One practical trade-off that we experience when transitioning from an embedding model to an equivalent kernel-based model (often called a <em>kernel machine</em>) is that in order to compute a prediction <span class="math notranslate nohighlight">\(f(\mathbf{x})\)</span>, we are shifting from a computation that involves a summation of <span class="math notranslate nohighlight">\(D_{emb}\)</span> terms to a computation that can involve up to <span class="math notranslate nohighlight">\(N\)</span> terms, where <span class="math notranslate nohighlight">\(N\)</span> is the size of the dataset. Fortunately, the summation only needs to carried out over the support vectors where <span class="math notranslate nohighlight">\((\alpha_n - \alpha_n^*)\)</span> is nonzero:</p>
 <div class="math notranslate nohighlight">
-\[ f(\mathbf{x}) = \sum_{\{ n:~(\alpha_{n} - \alpha_{n}^*) = 0 \}} (\alpha_n - \alpha_n^*)K(\mathbf{x}_n - \mathbf{x}) \]</div>
+\[ f(\mathbf{x}) = \sum_{\{ n:~(\alpha_{n} - \alpha_{n}^*) = 0 \}} (\alpha_n - \alpha_n^*)K(\mathbf{x}_n, \mathbf{x}) \]</div>
 <p>Depending on the type of the kernel function <span class="math notranslate nohighlight">\(K\)</span>, the tolerance factor <span class="math notranslate nohighlight">\(\varepsilon\)</span>, and the size of the dataset, the number of support vectors may be large or small. When working with kernel machines, it is common to try out multiple kernels, and select the best fit that strikes a balance between model accuracy and the number of support vectors. Below are some kernels that are commonly used:</p>
 <ul class="simple">
 <li><p>Linear Kernel:</p></li>
@@ -812,10 +812,10 @@ Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4a7c24cdb6680d686d47f26bcc1c186ccccc602e9f0dadcc00bde4e14159b6e6.png" src="../_images/4a7c24cdb6680d686d47f26bcc1c186ccccc602e9f0dadcc00bde4e14159b6e6.png" />
-<img alt="../_images/0441f994df2a3760ef0f22bb6db962dd479f8be3a908803571e66fa0d5ece31d.png" src="../_images/0441f994df2a3760ef0f22bb6db962dd479f8be3a908803571e66fa0d5ece31d.png" />
-<img alt="../_images/1769dda4b446c1b5411ea91149538fb690d583c606cc44792912ed07b2e7d2b8.png" src="../_images/1769dda4b446c1b5411ea91149538fb690d583c606cc44792912ed07b2e7d2b8.png" />
-<img alt="../_images/c8018f6a58d4186ac1b97597fa03b2c0e1962fd969eee4b1d57b5c29edaf4fa5.png" src="../_images/c8018f6a58d4186ac1b97597fa03b2c0e1962fd969eee4b1d57b5c29edaf4fa5.png" />
+<img alt="../_images/12754a5dee6503f61808c01cc290c7d2702f4573cb5b9dfdc0d18dcbfbdbe067.png" src="../_images/12754a5dee6503f61808c01cc290c7d2702f4573cb5b9dfdc0d18dcbfbdbe067.png" />
+<img alt="../_images/d821275371a286aa93ab4e993a100c0e32ddc3f5c9664d08e37868af31648570.png" src="../_images/d821275371a286aa93ab4e993a100c0e32ddc3f5c9664d08e37868af31648570.png" />
+<img alt="../_images/39256e5014f29f495b16485b6689202b69e85512dfb0f51b8aafb6f283aa3675.png" src="../_images/39256e5014f29f495b16485b6689202b69e85512dfb0f51b8aafb6f283aa3675.png" />
+<img alt="../_images/30ea569134c68003f3432fda7d8ffbf2cfa42e8c18d28390835f8d18454f0ac2.png" src="../_images/30ea569134c68003f3432fda7d8ffbf2cfa42e8c18d28390835f8d18454f0ac2.png" />
 </div>
 </details>
 </div>
@@ -883,10 +883,10 @@ Exercise 2: Kernel Support Vector Classification<div class="sd-summary-down docu
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/98856887627743e0ae2d3265348ad3fd2b82536959d791147f9ef9bc0173d80f.png" src="../_images/98856887627743e0ae2d3265348ad3fd2b82536959d791147f9ef9bc0173d80f.png" />
-<img alt="../_images/fd5966db9e24b4bc8ae1f8b7db83618702d8f71d200230e4a6d281fe6262c559.png" src="../_images/fd5966db9e24b4bc8ae1f8b7db83618702d8f71d200230e4a6d281fe6262c559.png" />
-<img alt="../_images/d1e1f214ba62ea691a18d6bb48293d739b53686b39508a2f0e72a0d7fbb727a7.png" src="../_images/d1e1f214ba62ea691a18d6bb48293d739b53686b39508a2f0e72a0d7fbb727a7.png" />
-<img alt="../_images/f3bc6281c5ac44d5da571ba12987618facfa7c25b58114cb127cd27c73846c50.png" src="../_images/f3bc6281c5ac44d5da571ba12987618facfa7c25b58114cb127cd27c73846c50.png" />
+<img alt="../_images/9fe10e65038acd210eeee6aafa2f060b0548f867a672da2460b812960fb35209.png" src="../_images/9fe10e65038acd210eeee6aafa2f060b0548f867a672da2460b812960fb35209.png" />
+<img alt="../_images/096771448dfa64db0e3c24242f7e377f44a5f7651e55eb24ebea21c4c864db2f.png" src="../_images/096771448dfa64db0e3c24242f7e377f44a5f7651e55eb24ebea21c4c864db2f.png" />
+<img alt="../_images/a375d8f1253464e147d9f5a8c2df7da1923356b4ab877b30444654ef79d6d87c.png" src="../_images/a375d8f1253464e147d9f5a8c2df7da1923356b4ab877b30444654ef79d6d87c.png" />
+<img alt="../_images/09124cbcc2f2d4cfb026441e517d6706a0705fa0ebe9623f089e18e2e40cc17d.png" src="../_images/09124cbcc2f2d4cfb026441e517d6706a0705fa0ebe9623f089e18e2e40cc17d.png" />
 </div>
 </details>
 </div>

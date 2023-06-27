@@ -443,17 +443,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="clustering-and-distribution-estimation">
 <h1>Clustering and Distribution Estimation<a class="headerlink" href="#clustering-and-distribution-estimation" title="Permalink to this heading">#</a></h1>
+<p>Clustering and Distribution Estimation are important techniques in unsupervised learning that allow us to partition data into groups, find regions of high density in a dataset, and even detect outliers and anomalies in our data.</p>
 <section id="the-k-means-algorithm">
 <h2>The K-Means Algorithm<a class="headerlink" href="#the-k-means-algorithm" title="Permalink to this heading">#</a></h2>
-<p>One of the most popular algorithms for identifying clusters in data is the <a class="reference external" href="https://en.wikipedia.org/wiki/K-means_clustering"><span class="math notranslate nohighlight">\(k\)</span>-means algorithm</a>. The <span class="math notranslate nohighlight">\(k\)</span>-means algorithm</p>
+<p>One of the most popular algorithms for identifying clusters in data is the <a class="reference external" href="https://en.wikipedia.org/wiki/K-means_clustering"><span class="math notranslate nohighlight">\(k\)</span>-means algorithm</a>. It is a simple yet effective algorithm that aims to partition a dataset into <span class="math notranslate nohighlight">\(k\)</span> distinct clusters based on similarity or proximity. <span class="math notranslate nohighlight">\(k\)</span>-means is widely employed in various domains, including data mining, image processing, customer segmentation, and pattern recognition. The way that this algorithm works is by initializing the cluster centers (called <em>centroids</em>) at randomly selected data points, and then iteratively improving the fit by re-assigning points to clusters and recalculating the centroid locations. We can summarize this procedure as follows:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>Randomly select <span class="math notranslate nohighlight">\(k\)</span> points from the dataset as the initial centroid positions: <span class="math notranslate nohighlight">\(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k\)</span>.</p></li>
+<li><p>Randomly select <span class="math notranslate nohighlight">\(k\)</span> points from the dataset as the initial centroid positions: <span class="math notranslate nohighlight">\(\mathbf{c}_1, \mathbf{c}_2, ..., \mathbf{c}_k\)</span>. (Alternatively, the programmer can initialize the centroids positions by hand.)</p></li>
 <li><p>Assign each point to the cluster with the nearest centroid.</p></li>
 <li><p>For each cluster, set the centroid to be the mean of all assigned points.</p></li>
 <li><p>If none of the cluster centroids moved, stop. Otherwise, repeat steps 2-4.</p></li>
 </ol>
 </div></blockquote>
+<p>Because this is a relatively easy algorithm to implement, let’s write some Python code that performs the <span class="math notranslate nohighlight">\(k\)</span>-means algorithm:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -497,9 +499,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># initialize dataset with centers roughly at the following coordinates:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize dataset with centers roughly at the following coordinates:</span>
 <span class="n">centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="p">])</span><span class="o">.</span><span class="n">T</span>
 <span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">centers</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mf">0.6</span><span class="p">,(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
@@ -513,7 +513,9 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  set the initial centroid points:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#  set the initial centroid points:</span>
 <span class="c1">#  (modify these and see how the results change)</span>
 <span class="n">init_centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
@@ -538,7 +540,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/2296f1448a47968b559347a916a95e8c643ff5f5352a5beb1ad9102211c6c024.png" src="../_images/2296f1448a47968b559347a916a95e8c643ff5f5352a5beb1ad9102211c6c024.png" />
+<img alt="../_images/13a58e676e51d2af7ce12046bef146271b0240eae47d875a71404c186e909cba.png" src="../_images/13a58e676e51d2af7ce12046bef146271b0240eae47d875a71404c186e909cba.png" />
 </div>
 </div>
 </section>
@@ -584,7 +586,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/3017711318f6f6b3f4f296edf1e672fba7f2b464130a9af6fb33e25ad41a25fd.png" src="../_images/3017711318f6f6b3f4f296edf1e672fba7f2b464130a9af6fb33e25ad41a25fd.png" />
+<img alt="../_images/fd968982476f6e9cb132127b17e72af2f6543f49b2984fde9db5246744404669.png" src="../_images/fd968982476f6e9cb132127b17e72af2f6543f49b2984fde9db5246744404669.png" />
 </div>
 </div>
 </section>
@@ -624,7 +626,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/77fb7a0299026471c33f7fa59a1f41e6ad019c90bf36262f6df1de9df0183864.png" src="../_images/77fb7a0299026471c33f7fa59a1f41e6ad019c90bf36262f6df1de9df0183864.png" />
+<img alt="../_images/05ab533f9adbcd0f3255ca791431a95cabae945518009d18f5d8bbbaeb399ed8.png" src="../_images/05ab533f9adbcd0f3255ca791431a95cabae945518009d18f5d8bbbaeb399ed8.png" />
 </div>
 </div>
 </section>
