@@ -503,7 +503,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/5dd5bae0f6f69e5aa31defbeb1c67456187cce6f381635b8dd6d1b0b2b6c87e1.png" src="../_images/5dd5bae0f6f69e5aa31defbeb1c67456187cce6f381635b8dd6d1b0b2b6c87e1.png" />
+<img alt="../_images/875039b9a48aca781f2eb822d77d33a8e594a8610d7f86b5a1d75b000e4d7e08.png" src="../_images/875039b9a48aca781f2eb822d77d33a8e594a8610d7f86b5a1d75b000e4d7e08.png" />
 </div>
 </div>
 <p>Next, we normalize the dataset and compute <span class="math notranslate nohighlight">\(\bar{\Sigma}\)</span> using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.cov.html"><code class="docutils literal notranslate"><span class="pre">np.cov</span></code></a>:</p>
@@ -542,7 +542,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/f720bac0ef8e7026aa6dc1a8d165a5e9e3d95ac230a444b811b1d2c2a03dfeb2.png" src="../_images/f720bac0ef8e7026aa6dc1a8d165a5e9e3d95ac230a444b811b1d2c2a03dfeb2.png" />
+<img alt="../_images/9bc64da0767bb11a43bae897978846b12698d8cc899d292093ba07e143099bc8.png" src="../_images/9bc64da0767bb11a43bae897978846b12698d8cc899d292093ba07e143099bc8.png" />
 </div>
 </div>
 <p>Examining the correlation matrix, we see strong positive correlation between <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_3\)</span> and strong negative correlation between <span class="math notranslate nohighlight">\(x_2\)</span> and <span class="math notranslate nohighlight">\(x_3\)</span>, which corresponds to the relationship <span class="math notranslate nohighlight">\(x_3 \approx 3x_1 - 2 x_2\)</span>. Since the third row of <span class="math notranslate nohighlight">\(\bar{\Sigma}\)</span> is highly correlated with the other features, it contributes the least to the overall variance of the data.</p>
@@ -592,19 +592,19 @@ simply appending the corresponding <span class="math notranslate nohighlight">\(
 </details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P matrix:
-[[-0.59908364 -0.52842756  0.60155058]
- [ 0.38778371 -0.84878862 -0.35941851]
- [ 0.70051594  0.01794976  0.71341098]]
+[[ 0.58496986  0.56249989 -0.58429799]
+ [-0.3874962   0.8267072   0.4079239 ]
+ [-0.7125005   0.01220993 -0.70156536]]
 
 D matrix:
-[[0.0253727  0.         0.        ]
- [0.         1.0401421  0.        ]
- [0.         0.         1.94956057]]
+[[0.03180337 0.         0.        ]
+ [0.         0.97444063 0.        ]
+ [0.         0.         2.00883138]]
 
 P @ D @ P.T (correlation matrix):
-[[ 1.00502513  0.0391221   0.81614536]
- [ 0.0391221   1.00502513 -0.50884758]
- [ 0.81614536 -0.50884758  1.00502513]]
+[[ 1.00502513 -0.03287514  0.81690382]
+ [-0.03287514  1.00502513 -0.55628128]
+ [ 0.81690382 -0.55628128  1.00502513]]
 </pre></div>
 </div>
 </div>
@@ -612,7 +612,7 @@ P @ D @ P.T (correlation matrix):
 <p>Each principal component <span class="math notranslate nohighlight">\(\mathbf{p}_i\)</span> (the <span class="math notranslate nohighlight">\(i\)</span>th column of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>) has an associated eigenvalue <span class="math notranslate nohighlight">\(\lambda_i\)</span>, which is the corresponding value along the diagonal in the <span class="math notranslate nohighlight">\(i\)</span>th column of <span class="math notranslate nohighlight">\(\mathbf{D}\)</span>. The eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> describe the total variance of the data in the direction <span class="math notranslate nohighlight">\(\mathbf{p}_i\)</span>. The principal component with the highest value of <span class="math notranslate nohighlight">\(\lambda_i\)</span> is called the <em>first principal component</em>, since it is a vector that points in the direction that “accounts for” most of the variance of the data. Similarly, the second principal component points in the direction that “accounts for” most of the variance not captured by the first principal component, and so on. Here, we will denote the first principal component as <span class="math notranslate nohighlight">\(\mathbf{p}^{(1)}\)</span>, the second as <span class="math notranslate nohighlight">\(\mathbf{p}^{(2)}\)</span>, and so on. We will use the same notation for the principal component eigenvalues, i.e. <span class="math notranslate nohighlight">\(\lambda^{(1)}, \lambda^{(2)}\)</span>, etc.</p>
 <p>From examining the printout of the <span class="math notranslate nohighlight">\(\mathbf{D}\)</span> matrix above, we see that <span class="math notranslate nohighlight">\(\mathbf{p}^{(1)} = \mathbf{p}_3\)</span> (the first principal component is the third column of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>) and <span class="math notranslate nohighlight">\(\mathbf{p}^{(2)} = \mathbf{p}_2\)</span> (the second principal component is the second column of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>). The corresponding eigenvalues are <span class="math notranslate nohighlight">\(\lambda^{(1)} = 2.033\)</span> and <span class="math notranslate nohighlight">\(\lambda^{(2)} = 0.97\)</span>. However, we observe that <span class="math notranslate nohighlight">\(\lambda^{(3)} = 0.024 \ll \lambda^{(1)}, \lambda^{(2)}\)</span>, which suggests that the third principal component accounts for very little variance in the data. This is due to the fact that the data is approximately confined to a 2D plane embedded in a larger 3D space.</p>
 <p>One of the most powerful aspects of <em>principal components analysis</em> (often abbreviated <em>PCA</em>), is that we can project the normalized data onto the subset of principal components that are significant (i.e. have large <span class="math notranslate nohighlight">\(\lambda_i\)</span>), thereby reducing the dimensionality of the data while maximizing the amount of variance that is accounted for in the reduced data.</p>
-<p>To project a normalized feature vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> onto the first <span class="math notranslate nohighlight">\(k\)</span> principal components, we write it as a linear combination of all the principal components \mathbf{p}^{(1)}, …, \mathbf{p}^{(D)}$:</p>
+<p>To project a normalized feature vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> onto the first <span class="math notranslate nohighlight">\(k\)</span> principal components, we write it as a linear combination of all the principal components <span class="math notranslate nohighlight">\(\mathbf{p}^{(1)}, ..., \mathbf{p}^{(D)}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{z} = u_1\mathbf{p}^{(1)} + u_2\mathbf{p}^{(2)} + ... u_D\mathbf{p}^{(D)}\]</div>
 <p>Next, we solve for the coefficients <span class="math notranslate nohighlight">\(u_i\)</span>. Since the <span class="math notranslate nohighlight">\(\mathbf{p}^{(i)}\)</span> are all orthonormal basis vectors, the coefficients can be computed independently of one another as follows:</p>
@@ -648,7 +648,7 @@ P @ D @ P.T (correlation matrix):
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/c8899441de126049e48f63bbc1a07c8505aaa1487a4e9e85d2b676c716591705.png" src="../_images/c8899441de126049e48f63bbc1a07c8505aaa1487a4e9e85d2b676c716591705.png" />
+<img alt="../_images/e1a4ba9240bec2d3c37a334fa9d5e0d869cd95e7b91fcb9a2fe055a5c58faded.png" src="../_images/e1a4ba9240bec2d3c37a334fa9d5e0d869cd95e7b91fcb9a2fe055a5c58faded.png" />
 </div>
 </div>
 </section>
@@ -744,8 +744,8 @@ Exercise 1: Applying PCA <div class="sd-summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/63b51691aaabf3edd14e59daac6458a42a1fa77aef6409533341238e714b748f.png" src="../_images/63b51691aaabf3edd14e59daac6458a42a1fa77aef6409533341238e714b748f.png" />
-<img alt="../_images/59e48ee6293deca438fe8efd168e9862203061f3481e5d2f0d34d8b372528833.png" src="../_images/59e48ee6293deca438fe8efd168e9862203061f3481e5d2f0d34d8b372528833.png" />
+<img alt="../_images/a2fc08707deeed9b320e52b398a447ee1633db870fa42c938fb7e301677488b0.png" src="../_images/a2fc08707deeed9b320e52b398a447ee1633db870fa42c938fb7e301677488b0.png" />
+<img alt="../_images/0d6ca03cf5f0a90961d8a922add36f11840e3b35bfae311108ec492ec045b244.png" src="../_images/0d6ca03cf5f0a90961d8a922add36f11840e3b35bfae311108ec492ec045b244.png" />
 </div>
 </details>
 </div>

@@ -68,6 +68,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'unsupervised_learning/unsupervised_applications';</script>
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -402,7 +404,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -418,6 +422,21 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">Preprocessing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-the-empirical-distribution-of-t-c">Estimate the Empirical Distribution of <span class="math notranslate nohighlight">\(T_c\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-outliers-in-the-distribution">Identifying Outliers in the Distribution:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlations-of-composition-with-t-c">Correlations of Composition with <span class="math notranslate nohighlight">\(T_c\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-clusters-in-the-data">Identifying Clusters in the Data</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -429,7 +448,1037 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="application-classifying-superconductors">
 <h1>Application: Classifying Superconductors<a class="headerlink" href="#application-classifying-superconductors" title="Permalink to this heading">#</a></h1>
-<p>(TODO)</p>
+<p>You can download the dataset for this section using the following Python code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">CSV_URL</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/unsupervised_learning/matml_supercon_cleaned.csv&#39;</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">CSV_URL</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;matml_supercon_cleaned.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, you can download the CSV file directly <a class="reference external" href="https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/unsupervised_learning/matml_supercon_cleaned.csv">here</a>.</p>
+<section id="loading-the-dataset">
+<h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h2>
+<p>Let’s begin by loading the dataset in to a Pandas dataframe so we can view the features:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># load dataset into a pandas DataFrame:</span>
+<span class="n">SUPERCON_CSV</span> <span class="o">=</span> <span class="s1">&#39;matml_supercon_cleaned.csv&#39;</span>
+<span class="n">data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">SUPERCON_CSV</span><span class="p">)</span>
+
+<span class="c1"># remove rows for materials with an ambiguous composition:</span>
+<span class="n">data_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Composition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]</span>
+
+<span class="c1"># remove corrupted data with invalid Tc:</span>
+<span class="n">data_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Tc (K)&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">]</span>
+
+<span class="c1"># show dataframe in notebook:</span>
+<span class="n">display</span><span class="p">(</span><span class="n">data_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Substitutions</th>
+      <th>Composition</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>Shape</th>
+      <th>Substrate</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>In O</td>
+      <td>{}</td>
+      <td>{'In': 1, 'O': 1}</td>
+      <td>2.00</td>
+      <td>0.0</td>
+      <td>films</td>
+      <td>NaN</td>
+      <td>10.1134/1.568304</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Pr Ru 2 Si 2</td>
+      <td>{}</td>
+      <td>{'Pr': 1, 'Ru': 2, 'Si': 2}</td>
+      <td>14.00</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.1088/0953-8984/12/34/307</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Lu 3 Os 4 Ge 13</td>
+      <td>{}</td>
+      <td>{'Lu': 3, 'Os': 4, 'Ge': 13}</td>
+      <td>2.85</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>La Mn O 3.04</td>
+      <td>{}</td>
+      <td>{'La': 1, 'Mn': 1, 'O': 3.04}</td>
+      <td>125.00</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.1103/physrevlett.87.127206</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>La Mn O 3.045</td>
+      <td>{}</td>
+      <td>{'La': 1, 'Mn': 1, 'O': 3.045}</td>
+      <td>130.00</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.1103/physrevlett.87.127206</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>23876</th>
+      <td>Nb Se 2</td>
+      <td>{}</td>
+      <td>{'Nb': 1, 'Se': 2}</td>
+      <td>7.00</td>
+      <td>0.0</td>
+      <td>nanobelts</td>
+      <td>NaN</td>
+      <td>10.1103/physrevb.75.020501</td>
+    </tr>
+    <tr>
+      <th>23877</th>
+      <td>Mg B 2</td>
+      <td>{}</td>
+      <td>{'Mg': 1, 'B': 2}</td>
+      <td>40.00</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.1103/physrevb.66.012511</td>
+    </tr>
+    <tr>
+      <th>23878</th>
+      <td>Ca Bi 2</td>
+      <td>{}</td>
+      <td>{'Ca': 1, 'Bi': 2}</td>
+      <td>2.00</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>23879</th>
+      <td>Ca Bi 2</td>
+      <td>{}</td>
+      <td>{'Ca': 1, 'Bi': 2}</td>
+      <td>2.00</td>
+      <td>0.0</td>
+      <td>single-crystalline</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>23880</th>
+      <td>Cd 2 Re 2 O 7</td>
+      <td>{}</td>
+      <td>{'Cd': 2, 'Re': 2, 'O': 7}</td>
+      <td>1.00</td>
+      <td>0.0</td>
+      <td>single crystals</td>
+      <td>NaN</td>
+      <td>10.1016/s0022-3697(02)00090-2</td>
+    </tr>
+  </tbody>
+</table>
+<p>19463 rows × 8 columns</p>
+</div></div></div>
+</div>
+<p>Here’s a summary of the different features included in the dataset:</p>
+<ul class="simple">
+<li><p><em>Material</em>: The chemical formula of the superconducting material.</p></li>
+<li><p><em>Substitutions</em>: Python dictionary consisting of doping ratios.</p></li>
+<li><p><em>Composition</em>: Composition of the chemical formula under doping.</p></li>
+<li><p><em>Tc</em>: Reported critical temperature of superconductivity (K).</p></li>
+<li><p><em>Pressure</em>: Applied pressure to superconducting sample (GPa).</p></li>
+<li><p><em>Shape</em>: Shape of the superconducting sample (if any).</p></li>
+<li><p><em>Substrate</em>: Substrate the sample was deposited on (if any).</p></li>
+<li><p><em>DOI</em>: DOI of paper that data was extracted from.</p></li>
+</ul>
+<p>In this section, we will try to attempt to precict any superconductor properties; rather, we will aim to extract insight from this dataset by applying clustering and distribution estimation models.</p>
+</section>
+<section id="preprocessing-data">
+<h2>Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Generate a list of elements in the dataset:</span>
+<span class="n">ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">&#39;Composition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">ELEMENTS</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">ELEMENTS</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">vectorize_composition</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; converts an elemental composition dict to a vector. &quot;&quot;&quot;</span>
+    <span class="n">total_n</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">composition</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">elem</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">composition</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+            <span class="n">vec</span><span class="p">[</span><span class="n">elements</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">elem</span><span class="p">)]</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="n">total_n</span>
+    <span class="k">return</span> <span class="n">vec</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of elements:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of elements: 86
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_data_vector</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; parses data from a dataframe row &quot;&quot;&quot;</span>
+    
+    <span class="c1"># parse the composition dict:</span>
+    <span class="n">composition_dict</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Composition&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># parse feature vector (x):</span>
+    <span class="n">x_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+        <span class="n">vectorize_composition</span><span class="p">(</span><span class="n">composition_dict</span><span class="p">,</span> <span class="n">ELEMENTS</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Pressure (GPa)&#39;</span><span class="p">]</span> <span class="p">]),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Tc (K)&#39;</span><span class="p">]</span> <span class="p">]),</span>
+    <span class="p">])</span>
+     
+    <span class="k">return</span> <span class="n">x_vector</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">parse_data_vector</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># normalize data:</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">data_z</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
+
+<span class="c1"># extract a matrix of only compositions:</span>
+<span class="n">composition_z</span> <span class="o">=</span> <span class="n">data_z</span><span class="p">[:,:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(19463, 88)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimate-the-empirical-distribution-of-t-c">
+<h2>Estimate the Empirical Distribution of <span class="math notranslate nohighlight">\(T_c\)</span><a class="headerlink" href="#estimate-the-empirical-distribution-of-t-c" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
+
+<span class="n">Tc_data</span> <span class="o">=</span> <span class="n">data_x</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Tc_kde</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Tc_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># generate points to evaluate the KDE model:</span>
+<span class="n">Tc_eval_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Tc_data</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># determine the normalized density of the distribution:</span>
+<span class="n">Tc_density</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">Tc_kde</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span>
+                        <span class="n">Tc_eval_pts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+<span class="n">Tc_density</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">Tc_density</span><span class="p">,</span> <span class="n">Tc_eval_pts</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tc_eval_pts</span><span class="p">,</span> <span class="n">Tc_density</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;KDE Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">Tc_eval_pts</span><span class="p">,</span> <span class="n">Tc_density</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span>
+    <span class="mi">40</span><span class="p">,</span>  <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Limit of Conventional</span><span class="se">\n</span><span class="s1">Superconductivity (40 K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Tc_data</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="../_images/343d1798b01f27a78b3ac6847e100b79093231fd7e1c05317ffa0b5a4ce7ae93.png" src="../_images/343d1798b01f27a78b3ac6847e100b79093231fd7e1c05317ffa0b5a4ce7ae93.png" />
+</div>
+</details>
+</div>
+<section id="identifying-outliers-in-the-distribution">
+<h3>Identifying Outliers in the Distribution:<a class="headerlink" href="#identifying-outliers-in-the-distribution" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_outliers</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">log_likelihoods</span> <span class="o">=</span> <span class="n">Tc_kde</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">Tc_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">cutoff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">log_likelihoods</span><span class="p">)[</span><span class="n">N_outliers</span><span class="p">]</span>
+
+<span class="n">outlier_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="n">log_likelihoods</span> <span class="o">&lt;</span> <span class="n">cutoff</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">outlier_df</span><span class="p">[[</span><span class="s1">&#39;Material&#39;</span><span class="p">,</span><span class="s1">&#39;Tc (K)&#39;</span><span class="p">,</span><span class="s1">&#39;Pressure (GPa)&#39;</span><span class="p">,</span><span class="s1">&#39;DOI&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>520</th>
+      <td>Y H 6</td>
+      <td>290.0</td>
+      <td>300.0</td>
+      <td>10.1103/physrevb.99.220502</td>
+    </tr>
+    <tr>
+      <th>618</th>
+      <td>Si 2 H 6</td>
+      <td>153.0</td>
+      <td>170.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1422</th>
+      <td>Sc H 6</td>
+      <td>196.0</td>
+      <td>170.0</td>
+      <td>10.1007/1-4020-3989-1_6</td>
+    </tr>
+    <tr>
+      <th>2879</th>
+      <td>H 3 S 0.96 Si 0.04</td>
+      <td>274.0</td>
+      <td>170.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3714</th>
+      <td>Y H 10</td>
+      <td>303.0</td>
+      <td>400.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4164</th>
+      <td>Y H 9</td>
+      <td>256.0</td>
+      <td>177.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6699</th>
+      <td>K H 2 P O 4</td>
+      <td>210.0</td>
+      <td>170.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10629</th>
+      <td>Si 2 H 6</td>
+      <td>174.0</td>
+      <td>275.0</td>
+      <td>10.1016/j.physc.2012.12.002</td>
+    </tr>
+    <tr>
+      <th>14301</th>
+      <td>H 3 S</td>
+      <td>178.0</td>
+      <td>170.0</td>
+      <td>10.1038/srep38570</td>
+    </tr>
+    <tr>
+      <th>20021</th>
+      <td>La H 10</td>
+      <td>218.0</td>
+      <td>170.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="correlations-of-composition-with-t-c">
+<h2>Correlations of Composition with <span class="math notranslate nohighlight">\(T_c\)</span><a class="headerlink" href="#correlations-of-composition-with-t-c" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">data_z</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">Tc_covs</span> <span class="o">=</span> <span class="n">cov_matrix</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pymatgen.util.plotting</span> <span class="kn">import</span> <span class="n">periodic_table_heatmap</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="c1"># convert Tc covariances to an (element -&gt; cov.) dictionary:</span>
+<span class="n">Tc_element_covs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">elem</span> <span class="p">:</span> <span class="n">cov</span>
+    <span class="k">for</span> <span class="n">elem</span><span class="p">,</span> <span class="n">cov</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">,</span> <span class="n">Tc_covs</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># plot covariance periodic table heatmap:</span>
+<span class="n">max_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Tc_covs</span><span class="p">))</span>
+<span class="n">heatmap</span> <span class="o">=</span> <span class="n">periodic_table_heatmap</span><span class="p">(</span>
+    <span class="n">Tc_element_covs</span><span class="p">,</span> 
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> 
+    <span class="n">symbol_fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">cmap_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">max_cov</span><span class="p">,</span> <span class="n">max_cov</span><span class="p">),</span>
+    <span class="n">blank_color</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colormaps</span><span class="p">[</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">](</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation of Element Composition with $T_c$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;20&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="../_images/84ed81c277677fcd04d9702800a3a00c47a2f5ca52ccd6c98a15937e01040f45.png" src="../_images/84ed81c277677fcd04d9702800a3a00c47a2f5ca52ccd6c98a15937e01040f45.png" />
+</div>
+</details>
+</div>
+</section>
+<section id="identifying-clusters-in-the-data">
+<h2>Identifying Clusters in the Data<a class="headerlink" href="#identifying-clusters-in-the-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">full_pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">data_z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">full_pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_z</span><span class="p">)</span>
+<span class="n">lambdas</span> <span class="o">=</span> <span class="n">full_pca</span><span class="o">.</span><span class="n">explained_variance_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cutoff (selected by inspecting the plot below)</span>
+<span class="n">pca_cutoff</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot explained variance vs. principal component:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">lambdas</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">lambdas</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Explained Variance ($\lambda$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">pca_cutoff</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> 
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Selected Cutoff: </span><span class="si">{</span><span class="n">pca_cutoff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/a1f6da77d60f78b5e00ce1068cee50c8883ae17af138a1a539b3bced165888e0.png" src="../_images/a1f6da77d60f78b5e00ce1068cee50c8883ae17af138a1a539b3bced165888e0.png" />
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">pca_cutoff</span><span class="p">)</span>
+<span class="n">data_u</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_z</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_u</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_u</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Projection onto Principal Components&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="../_images/1c4e52d9b0ce742561d422ef33ce48d6f1ba02426d8b39ae8ae6e3a10a767f40.png" src="../_images/1c4e52d9b0ce742561d422ef33ce48d6f1ba02426d8b39ae8ae6e3a10a767f40.png" />
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="c1"># number of clusters to find:</span>
+<span class="n">n_clusters</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_u</span><span class="p">)</span>
+<span class="n">assignments</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_u</span><span class="p">)</span>
+
+<span class="n">clusters</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">):</span>
+    <span class="n">clusters</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_u</span><span class="p">[</span><span class="n">assignments</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+   <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cluster</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">cluster</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> 
+               <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Principal Component Clusters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/984fcb7a0af565d84638bda043f67b6774da9b3792f61f2ea91798251f583481.png" src="../_images/984fcb7a0af565d84638bda043f67b6774da9b3792f61f2ea91798251f583481.png" />
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show some samples of each cluster:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">clusters</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+
+    <span class="c1"># obtain cluster dataframe:</span>
+    <span class="n">cluster_df</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="n">assignments</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">sample_df</span> <span class="o">=</span> <span class="n">cluster_df</span><span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;Material&#39;</span><span class="p">,</span> <span class="s1">&#39;Tc (K)&#39;</span><span class="p">,</span> <span class="s1">&#39;Pressure (GPa)&#39;</span><span class="p">,</span> <span class="s1">&#39;DOI&#39;</span><span class="p">]</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1"># show sample dataframe:</span>
+    <span class="n">display</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> Examples:&#39;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">sample_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 0 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10578</th>
+      <td>Mo 3 Sb 7</td>
+      <td>2.08</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.92.064507</td>
+    </tr>
+    <tr>
+      <th>9998</th>
+      <td>V 3 Ga</td>
+      <td>16.00</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.95.024514</td>
+    </tr>
+    <tr>
+      <th>19393</th>
+      <td>Rb V 3 Sb 5</td>
+      <td>0.92</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4624</th>
+      <td>Pr Os 4 Sb 12</td>
+      <td>1.82</td>
+      <td>0.0</td>
+      <td>10.1103/physrevlett.91.067003</td>
+    </tr>
+    <tr>
+      <th>9970</th>
+      <td>Nb Ru B</td>
+      <td>3.10</td>
+      <td>0.0</td>
+      <td>10.1021/cm504449s</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 1 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7642</th>
+      <td>Si H 4</td>
+      <td>17.0</td>
+      <td>113.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16456</th>
+      <td>H 2 S</td>
+      <td>200.0</td>
+      <td>170.0</td>
+      <td>10.1002/chin.201621003</td>
+    </tr>
+    <tr>
+      <th>20188</th>
+      <td>H 3 S</td>
+      <td>203.0</td>
+      <td>170.0</td>
+      <td>10.1002/andp.201500316</td>
+    </tr>
+    <tr>
+      <th>4671</th>
+      <td>H 3 S</td>
+      <td>200.0</td>
+      <td>150.0</td>
+      <td>10.1103/physrevb.100.174513</td>
+    </tr>
+    <tr>
+      <th>16536</th>
+      <td>Sn H 14</td>
+      <td>97.0</td>
+      <td>300.0</td>
+      <td>10.1103/physrevb.99.024508</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 2 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4449</th>
+      <td>In</td>
+      <td>3.41</td>
+      <td>0.0</td>
+      <td>10.1063/1.3551532</td>
+    </tr>
+    <tr>
+      <th>8923</th>
+      <td>Er</td>
+      <td>11.00</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.65.140514</td>
+    </tr>
+    <tr>
+      <th>19909</th>
+      <td>Ce Co In 5</td>
+      <td>1.30</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1695</th>
+      <td>Ce Co In 5</td>
+      <td>2.30</td>
+      <td>0.0</td>
+      <td>10.1088/0953-8984/15/28/329</td>
+    </tr>
+    <tr>
+      <th>13974</th>
+      <td>Ce Pt 3 Si</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.97.024501</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 3 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5245</th>
+      <td>Ca Rb Fe 4 As 4</td>
+      <td>30.0</td>
+      <td>0.0</td>
+      <td>10.1007/s10948-017-4404-y</td>
+    </tr>
+    <tr>
+      <th>16899</th>
+      <td>(Li Fe) O H Fe Se</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>10.1088/1367-2630/aa5a71</td>
+    </tr>
+    <tr>
+      <th>2406</th>
+      <td>Fe Se</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>10.1038/ncomms1946</td>
+    </tr>
+    <tr>
+      <th>14143</th>
+      <td>Ga 0.94 Mn 0.06 As</td>
+      <td>110.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.68.193203</td>
+    </tr>
+    <tr>
+      <th>8637</th>
+      <td>Eu (Fe 0.86 Ir 0.14) 2 As 2</td>
+      <td>22.5</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.91.064506</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 4 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19341</th>
+      <td>Mg B 2</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.65.024502</td>
+    </tr>
+    <tr>
+      <th>23758</th>
+      <td>Mg B 2</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevlett.88.127001</td>
+    </tr>
+    <tr>
+      <th>13734</th>
+      <td>Mg B 2</td>
+      <td>39.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.65.052413</td>
+    </tr>
+    <tr>
+      <th>14021</th>
+      <td>Mg B 2</td>
+      <td>40.0</td>
+      <td>0.0</td>
+      <td>10.1038/35079024</td>
+    </tr>
+    <tr>
+      <th>14376</th>
+      <td>Mg B 2</td>
+      <td>4.2</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.81.020506</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 5 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10191</th>
+      <td>Tl 2 Ca 2 Ba 2 Cu 3 O 10</td>
+      <td>121.5</td>
+      <td>0.0</td>
+      <td>10.1140/epjb/e2003-00166-7</td>
+    </tr>
+    <tr>
+      <th>19576</th>
+      <td>Y Ba 2 Cu 3 O 6.92</td>
+      <td>91.0</td>
+      <td>0.0</td>
+      <td>10.1038/43843</td>
+    </tr>
+    <tr>
+      <th>13316</th>
+      <td>Hg Ba 2 Ca 2 Cu 3 O 8</td>
+      <td>134.0</td>
+      <td>0.0</td>
+      <td>10.7566/jpsj.83.093601</td>
+    </tr>
+    <tr>
+      <th>18126</th>
+      <td>Tl 2 Ba 2 Ca 2 Cu 3 O 10</td>
+      <td>116.5</td>
+      <td>0.0</td>
+      <td>10.1016/j.apsusc.2006.03.025</td>
+    </tr>
+    <tr>
+      <th>14180</th>
+      <td>Y Ba 2 Cu 3 O 6.35</td>
+      <td>18.0</td>
+      <td>0.0</td>
+      <td>10.1002/chin.200621216</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</details>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -490,6 +1539,27 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">Preprocessing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimate-the-empirical-distribution-of-t-c">Estimate the Empirical Distribution of <span class="math notranslate nohighlight">\(T_c\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-outliers-in-the-distribution">Identifying Outliers in the Distribution:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlations-of-composition-with-t-c">Correlations of Composition with <span class="math notranslate nohighlight">\(T_c\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-clusters-in-the-data">Identifying Clusters in the Data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

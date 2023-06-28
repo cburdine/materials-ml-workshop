@@ -15,59 +15,40 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
-from scipy.stats import ortho_group, multivariate_normal
+import numpy as np
+import matplotlip.pyplot as plt
+from sklearn.decomposition import KernelPCA
 
-# generate multivariate normal random dataset:
-D = np.diag([1e-2]*20+list(np.linspace(1,3,10)**1.2))
-U = ortho_group.rvs(D.shape[0])
-mu = np.random.uniform(0,100, size=30)
-data_x = multivariate_normal.rvs(mean=mu,cov=(U @ D @ U.T), size=4000)
+# number of points:
+N = 1500
 
-# normalize dataset:
-scaler = StandardScaler()
-scaler.fit(data_x)
-data_z = scaler.transform(data_x)
+# generate "swiss roll" manifold:
+theta = np.linspace(0, 3*np.pi, N)
+r = theta/np.pi
+x = r*np.cos(theta)
+y = np.random.uniform(0,6,N)
+z = r*np.sin(theta)
 
-# fit a full PCA to data to determine explained variances:
-full_pca = PCA(n_components=30)
-full_pca.fit(data_z)
+data = np.array([ x, y, z ]).T
 
-# extract explained variances (entries of D):
-variances = full_pca.explained_variance_
+kpca = KernelPCA(n_components=2)
+kpca.fit(data)
 
-# plot explained variance versus p.c. number:
+projected_data = kpca.transform(data)
+
 plt.figure()
-plt.bar(np.arange(1,len(variances)+1), variances)
-plt.xlabel('Principal component')
-plt.ylabel('Explained variance')
-plt.axvline(10.5, color='r', linestyle=':', label='Recommended cutoff\n(n=10 dimensions)')
-plt.legend()
-plt.show()
-
-# use a 10-dimensional PCA to reduce data:
-partial_pca = PCA(n_components=10)
-partial_pca.fit(data_z)
-data_u = partial_pca.transform(data_u)
-
-# plot u1 versus u10 to observe differences:
-plt.figure()
-plt.scatter(data_u[:,0], data_u[:,-1])
-plt.xlabel(r'$u_1$')
-plt.ylabel(r'$u_{10}$')
+plt.plot(projected_data[:,0], projected_data[:,1])
 plt.show()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[5], line 35[0m
-[1;32m     33[0m partial_pca [38;5;241m=[39m PCA(n_components[38;5;241m=[39m[38;5;241m10[39m)
-[1;32m     34[0m partial_pca[38;5;241m.[39mfit(data_z)
-[0;32m---> 35[0m data_u [38;5;241m=[39m partial_pca[38;5;241m.[39mtransform([43mdata_u[49m)
-[1;32m     37[0m [38;5;66;03m# plot u1 versus u10 to observe differences:[39;00m
-[1;32m     38[0m plt[38;5;241m.[39mfigure()
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[6], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlip[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdecomposition[39;00m [38;5;28;01mimport[39;00m KernelPCA
+[1;32m      5[0m [38;5;66;03m# number of points:[39;00m
 
-[0;31mNameError[0m: name 'data_u' is not defined
+[0;31mModuleNotFoundError[0m: No module named 'matplotlip'
 
