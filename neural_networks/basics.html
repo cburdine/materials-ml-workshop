@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Training Neural Networks &#8212; Materials + Machine Learning</title>
+    <title>Basic Neural Networks &#8212; Materials + Machine Learning</title>
   
   
   
@@ -68,12 +68,14 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'neural_networks/training';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'neural_networks/basics';</script>
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Types of Neural Network Models" href="architectures.html" />
-    <link rel="prev" title="Basic Neural Networks" href="basics.html" />
+    <link rel="next" title="Training Neural Networks" href="training.html" />
+    <link rel="prev" title="Neural Networks" href="neural_networks.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -227,8 +229,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="neural_networks.html">Neural Networks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="basics.html">Basic Neural Networks</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Training Neural Networks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="training.html">Training Neural Networks</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="architectures.html">Types of Neural Network Models</a></li>
 </ul>
@@ -305,7 +307,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/cburdine/materials-ml-workshop/issues/new?title=Issue%20on%20page%20%2Fneural_networks/training.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cburdine/materials-ml-workshop/issues/new?title=Issue%20on%20page%20%2Fneural_networks/basics.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -335,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/neural_networks/training.md" target="_blank"
+      <li><a href="../_sources/neural_networks/basics.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,7 +419,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Training Neural Networks</h1>
+    <h1>Basic Neural Networks</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -427,13 +429,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Training Neural Networks</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-feed-forward-network-with-pytorch">Basic Feed-Forward Network with Pytorch</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feed-forward-neural-network">Feed-Forward neural network:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-single-neuron">A Single Neuron</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activation-functions">Activation Functions:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networks-of-neurons">Networks of Neurons</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -444,11 +443,54 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="training-neural-networks">
-<h1>Training Neural Networks<a class="headerlink" href="#training-neural-networks" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-neural-networks">
+<h1>Basic Neural Networks<a class="headerlink" href="#basic-neural-networks" title="Permalink to this heading">#</a></h1>
+<p>In this section we will describe in greater detail how a basic neural network model works and why a neural network has greater flexibility than some of the models we have studied previously. This flexibility, however, often comes at the cost of low interpretability, as generating a simple explanation of why a large neural network makes a particular prediction is often quite difficult.</p>
+<p>In this section we will learn some basic principles about neural networks and then implement a densely-connected feed-forward neural network using the popular machine learning framework Pytorch.</p>
+<section id="a-single-neuron">
+<h2>A Single Neuron<a class="headerlink" href="#a-single-neuron" title="Permalink to this heading">#</a></h2>
+<p>In previous sections, we encountered the linear classifier model (or Perceptron), which had the following form:</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = \text{sign}\left( w_0 + \sum_{i=1}^D w_ix_i \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\text{sign}(x) = \begin{cases} +1 &amp;  x &gt; 0\\ -1 &amp; x &lt;= 0 \end{cases}\)</span>.</p>
+<p>Originally, the perceptron model was inspired by the biological function of a <a class="reference external" href="https://en.wikipedia.org/wiki/Multipolar_neuron">multipolar neuron</a>, which produces an electrical response (the “output” of the neuron) if a weighted sum of electrical stimuli from neighboring neurons (the “inputs” of the neuron) exceed a given threshold. In this model of a neuron, the function that dictates the neuron’s response with respect to the sum of inputs is referred to as a <em>neuron activation function</em>, which we will denote here as <span class="math notranslate nohighlight">\(\sigma(x)\)</span>. This activation function is applied before the neuron outputs a response, as shown in the diagram below:</p>
+<p><img alt="neuron" src="../_images/neuron.svg" /></p>
+<p>More generally, the output of a single neuron with weight vector <span class="math notranslate nohighlight">\(\mathbf{w} = \begin{bmatrix} w_0 &amp; w_1 &amp; \dots &amp;  w_D \end{bmatrix}^T\)</span> and activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> can be written as follows:</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = \sigma(\mathbf{w}^T\underline{\mathbf{x}}) = \sigma\left( w_0 + \sum_{i=1}^D w_ix_i \right)\]</div>
+<p>(Recall that <span class="math notranslate nohighlight">\(\underline{\mathbf{x}}\)</span> is the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> prependend with <span class="math notranslate nohighlight">\(1\)</span>: <span class="math notranslate nohighlight">\(\underline{\mathbf{x}} = \begin{bmatrix} 1 &amp; x_1 &amp; x_2 &amp; \dots &amp; x_D \end{bmatrix}\)</span>)</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="basic-feed-forward-network-with-pytorch">
-<h1>Basic Feed-Forward Network with Pytorch<a class="headerlink" href="#basic-feed-forward-network-with-pytorch" title="Permalink to this heading">#</a></h1>
+<section id="activation-functions">
+<h2>Activation Functions:<a class="headerlink" href="#activation-functions" title="Permalink to this heading">#</a></h2>
+<p>In order for a network of neurons to “learn” from non-linear data, it is critical that the neuron activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> is non-linear. For example, in the perceptron model, the activation function is <span class="math notranslate nohighlight">\(\sigma(x) = \text{sign}(x)\)</span>, which fits this criterion. However, this function is not continuous, and its derivative is <span class="math notranslate nohighlight">\(0\)</span> almost everywhere. In order to fit a neural network to data though a method such as gradient descent, it is desirable that the activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> be both continuous and differentiable. Below, we give some alternative activation functions that are commonly used in neural networks:</p>
+<ul class="simple">
+<li><p><em>Sigmoid function</em>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sigma(x) = \frac{1}{1 + e^{-x}}\]</div>
+<ul class="simple">
+<li><p><em>Hyperbolic Tangent</em>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sigma(x) = \tanh(x)\]</div>
+<ul class="simple">
+<li><p><em>Rectified Linear Unit (ReLU)</em>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma(x) = \begin{cases} x &amp; x &gt; 0 \\ 0 &amp; x \le 0 \end{cases}\end{split}\]</div>
+<ul class="simple">
+<li><p><em>Leaky ReLU</em>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma(x) = \begin{cases} x &amp; x &gt; 0 \\ \alpha x &amp; x \le 0\end{cases}\end{split}\]</div>
+<p>(<span class="math notranslate nohighlight">\(\alpha\)</span> is chosen such that <span class="math notranslate nohighlight">\(0 &lt; \alpha \ll 1\)</span>. Typically, <span class="math notranslate nohighlight">\(\alpha = 10^{-3}\)</span>)</p>
+<ul class="simple">
+<li><p><em>Sigmoid Linear Unit (SiLU)</em>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{x}{1 + e^{-x}}\]</div>
+<p>The activation function used is ofte chosen depending on the kind of outputs desired for each neuron and the kind of model being used. In most cases, the ReLU activation function is a good choice.</p>
+<p>Below, we write some Python code that visualizes each of these activation functions:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -492,102 +534,35 @@ document.write(`
 <img alt="../_images/5c1930850c17fee7ec1933d90bc16d7234d01a447e047413b05e69e94cecc217.png" src="../_images/5c1930850c17fee7ec1933d90bc16d7234d01a447e047413b05e69e94cecc217.png" />
 </div>
 </div>
-<section id="feed-forward-neural-network">
-<h2>Feed-Forward neural network:<a class="headerlink" href="#feed-forward-neural-network" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-
-<span class="c1"># Define the neural network class</span>
-<span class="k">class</span> <span class="nc">FeedForwardNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    torch.nn Module for a standard feed-forward</span>
-<span class="sd">    neural network with a single hidden layer</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Constructs a simple feed-forward neural network &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">FeedForwardNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-        <span class="c1"># Define layer 1 weights (input -&gt; hidden layer):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">layer1_weights</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
-
-        <span class="c1"># define activation function:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
-
-        <span class="c1"># define layer 2 weights (hidden layer -&gt; output layer):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">layer2_weights</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; computes the neural network prediction &quot;&quot;&quot;</span>
-        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">x3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">out</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage</span>
-<span class="n">input_size</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">output_size</span> <span class="o">=</span> <span class="mi">5</span>
-
-<span class="c1"># Create an instance of the feed-forward neural network</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">FeedForwardNN</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
-
-<span class="c1"># Create a random normally-distributed input array:</span>
-<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span>
-
-<span class="c1"># Forward pass</span>
-<span class="n">output_tensor</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
-
-<span class="c1"># Print the output tensor shape</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">13</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># Forward pass</span>
-<span class="ne">---&gt; </span><span class="mi">13</span> <span class="n">output_tensor</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># Print the output tensor shape</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-<span class="nn">File /media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1501,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1496</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
-<span class="g g-Whitespace">   </span><span class="mi">1497</span> <span class="c1"># this function, and just call forward.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1498</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1499</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1500</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1501</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1502</span> <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1503</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">Cell In[2], line 26,</span> in <span class="ni">FeedForwardNN.forward</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="w">     </span><span class="sd">&quot;&quot;&quot; computes the neural network prediction &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span>     <span class="n">x3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span>     <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-
-<span class="nn">File /media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1614,</span> in <span class="ni">Module.__getattr__</span><span class="nt">(self, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1612</span>     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1613</span>         <span class="k">return</span> <span class="n">modules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-<span class="ne">-&gt; </span><span class="mi">1614</span> <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39; object has no attribute &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1615</span>     <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
-
-<span class="ne">AttributeError</span>: &#39;FeedForwardNN&#39; object has no attribute &#39;fc1&#39;
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="networks-of-neurons">
+<h2>Networks of Neurons<a class="headerlink" href="#networks-of-neurons" title="Permalink to this heading">#</a></h2>
+<p>By networks of individual neurons into layers and stacking these layers, we can produce some very powerfule non-linear models. Layered neural network models can be applied to almost any supervised learning task, even tasks where the there are multiple labels that need to be predicted (i.e. where <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is a vector, not just a scalar).</p>
+<p>The simplest kind of neural network layer we can construct is a <em>fully-connected</em> layer, in which a collection of neurons produce a vector of outputs <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> (where each element <span class="math notranslate nohighlight">\(a_i\)</span> corresponds to a single neuron output) based on different linear combinations of the input features. Specifically, a layer of <span class="math notranslate nohighlight">\(m\)</span> neurons can be used to compute the function:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_m \end{bmatrix} = f(\mathbf{x}) = \begin{bmatrix} 
+\sigma\left(w_{1,0} + \sum_{i=1}^D w_{1,i}x_i\right) \\ 
+\sigma\left(w_{2,0} + \sum_{i=1}^D w_{2,i}x_i\right) \\
+\vdots \\
+\sigma\left(w_{m,0} + \sum_{i=1}^D w_{m,i}x_i\right)
+\end{bmatrix}\end{split}\]</div>
+<p>Above <span class="math notranslate nohighlight">\(w_{i,j}\)</span> (sometimes written <span class="math notranslate nohighlight">\(w_{ij}\)</span>) denotes weight of feature <span class="math notranslate nohighlight">\(j\)</span> in neuron <span class="math notranslate nohighlight">\(i\)</span>. In total, this layer of neurons has <span class="math notranslate nohighlight">\(m \times (D+1)\)</span> weights, which we can organize into a rectangular weight matrix <span class="math notranslate nohighlight">\(\mathbf{W}\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{W} = \begin{bmatrix}
+w_{10} &amp; w_{11} &amp; \dots &amp; w_{1D} \\
+w_{20} &amp; w_{12} &amp; \dots &amp; w_{2D} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+w_{m0} &amp; w_{m1} &amp; \dots  &amp; w_{mD}
+\end{bmatrix}\end{split}\]</div>
+<p>In terms of this weight matrix, we can write the layer’s function as a matrix-vector product, namely:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{a} = f(\mathbf{x}) = \sigma(\mathbf{W}\mathbf{x})\]</div>
+<p>(Note that when we write <span class="math notranslate nohighlight">\(\sigma(\mathbf{A})\)</span> where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a matrix or vector, it denotes that the activation function <span class="math notranslate nohighlight">\(\sigma\)</span> is applied element-wise; that is, to each entry of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> individually.)</p>
+<p>A <em>standard feed-forward neural network</em> is a simple kind of neural network that stacks two layers of neurons; the first layer computes a vector of features <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> from the data <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This layer is sometimes called a <em>hidden layer</em>. Next, a second layer computes the output vector <span class="math notranslate nohighlight">\(\hat{\mathbf{y}}\)</span>. (In the case where only a single output is desired, only one neuron is used in the output layer to output a scalar value <span class="math notranslate nohighlight">\(\hat{y}\)</span>.) Here, we will let <span class="math notranslate nohighlight">\(\mathbf{W}\)</span> denote the weight matrix of the hidden layer, and <span class="math notranslate nohighlight">\(\mathbf{V}\)</span> denote the weight matrix of the second layer. We can visualize this network and the connectedness between neuron layers as follows:</p>
+<p><img alt="FeedForward Neural Network" src="../_images/simple_nn.svg" /></p>
+<p>By composing the equations for the hidden layer inside the equation for the output layer, we obtain the final model equation for a standard feed-forward neural network:</p>
+<div class="math notranslate nohighlight">
+\[f(\mathbf{x}) = \sigma\left( \mathbf{V}\underline{\sigma\left(\mathbf{W}\underline{\mathbf{x}}\right)} \right)\]</div>
 </section>
 </section>
 
@@ -623,20 +598,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="basics.html"
+       href="neural_networks.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic Neural Networks</p>
+        <p class="prev-next-title">Neural Networks</p>
       </div>
     </a>
     <a class="right-next"
-       href="architectures.html"
+       href="training.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Types of Neural Network Models</p>
+        <p class="prev-next-title">Training Neural Networks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -658,13 +633,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Training Neural Networks</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-feed-forward-network-with-pytorch">Basic Feed-Forward Network with Pytorch</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feed-forward-neural-network">Feed-Forward neural network:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-single-neuron">A Single Neuron</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activation-functions">Activation Functions:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networks-of-neurons">Networks of Neurons</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
