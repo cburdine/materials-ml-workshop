@@ -100,7 +100,7 @@ The installation may take a bit of time. Once it finishes, if you do not see a r
 
 :::{admonition} Advanced Tip: Python Virtual Environments
 :class: tip, dropdown
-If you are comfortable working the the terminal on your system, you may find it helpful to set up a [virtual environment](https://realpython.com/python-virtual-environments-a-primer) for your Python projects. A virtual environment helps with organizing the dependencies on your system, and ensures that updates to Python packages elsewhere on your system will not override the version used by your project.
+If you are comfortable working the terminal on your system, you may find it helpful to set up a [virtual environment](https://realpython.com/python-virtual-environments-a-primer) for your Python projects. A virtual environment helps with organizing the dependencies on your system, and ensures that updates to Python packages elsewhere on your system will not override the version used by your project.
 
 If you have the [`venv` tool](https://docs.python.org/3/library/venv.html) installed on your system, you can create a virtual environment for your project by running the following command in your project work directory:
 

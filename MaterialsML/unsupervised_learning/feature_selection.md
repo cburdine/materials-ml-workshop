@@ -137,7 +137,7 @@ From examining the printout of the $\mathbf{D}$ matrix above, we see that $\math
 
 One of the most powerful aspects of _principal components analysis_ (often abbreviated _PCA_), is that we can project the normalized data onto the subset of principal components that are significant (i.e. have large $\lambda_i$), thereby reducing the dimensionality of the data while maximizing the amount of variance that is accounted for in the reduced data.
 
-To project a normalized feature vector $\mathbf{z}$ onto the first $k$ principal components, we write it as a linear combination of all the principal components \mathbf{p}^{(1)}, ..., \mathbf{p}^{(D)}$:
+To project a normalized feature vector $\mathbf{z}$ onto the first $k$ principal components, we write it as a linear combination of all the principal components $\mathbf{p}^{(1)}, ..., \mathbf{p}^{(D)}$:
 
 $$\mathbf{z} = u_1\mathbf{p}^{(1)} + u_2\mathbf{p}^{(2)} + ... u_D\mathbf{p}^{(D)}$$
 
