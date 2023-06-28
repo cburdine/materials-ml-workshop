@@ -49,6 +49,7 @@ chapters:
   - file: unsupervised_learning/unsupervised_applications
 - file: neural_networks/neural_networks
   sections:
+  - file: neural_networks/basics
   - file: neural_networks/training
   - file: neural_networks/architectures
 - file: applications/applications
