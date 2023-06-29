@@ -457,7 +457,7 @@ document.write(`
 <p>More generally, the output of a single neuron with weight vector <span class="math notranslate nohighlight">\(\mathbf{w} = \begin{bmatrix} w_0 &amp; w_1 &amp; \dots &amp;  w_D \end{bmatrix}^T\)</span> and activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> can be written as follows:</p>
 <div class="math notranslate nohighlight">
 \[f(\mathbf{x}) = \sigma(\mathbf{w}^T\underline{\mathbf{x}}) = \sigma\left( w_0 + \sum_{i=1}^D w_ix_i \right)\]</div>
-<p>(Recall that <span class="math notranslate nohighlight">\(\underline{\mathbf{x}}\)</span> is the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> prependend with <span class="math notranslate nohighlight">\(1\)</span>: <span class="math notranslate nohighlight">\(\underline{\mathbf{x}} = \begin{bmatrix} 1 &amp; x_1 &amp; x_2 &amp; \dots &amp; x_D \end{bmatrix}\)</span>)</p>
+<p>(Recall that <span class="math notranslate nohighlight">\(\underline{\mathbf{x}}\)</span> is the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> prepended with <span class="math notranslate nohighlight">\(1\)</span>: <span class="math notranslate nohighlight">\(\underline{\mathbf{x}} = \begin{bmatrix} 1 &amp; x_1 &amp; x_2 &amp; \dots &amp; x_D \end{bmatrix}\)</span>)</p>
 </section>
 <section id="activation-functions">
 <h2>Activation Functions:<a class="headerlink" href="#activation-functions" title="Permalink to this heading">#</a></h2>
@@ -530,18 +530,18 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/de54d00f79ae6bf9415a8cb6bb917c8d8999849941c7d69b0c20849420b0ae46.png" src="../_images/de54d00f79ae6bf9415a8cb6bb917c8d8999849941c7d69b0c20849420b0ae46.png" />
+<img alt="../_images/5c1930850c17fee7ec1933d90bc16d7234d01a447e047413b05e69e94cecc217.png" src="../_images/5c1930850c17fee7ec1933d90bc16d7234d01a447e047413b05e69e94cecc217.png" />
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When choosing an activation function for the last layer of a neural network, be sure that the range of the final activation function matches the range of data. For example, if your model is predicting probabilities (or probability distributions), then a sigmoid activation function may be the most approriate.</p>
+<p>When choosing an activation function for the last layer of a neural network, be sure that the range of the final activation function matches the range of data. For example, if your model is predicting probabilities (or probability distributions), then a sigmoid activation function may be the most appropriate.</p>
 <p>If a neural network model is performing regression and there is no bound on the range of predicted values, then an activation function is not applied to the last layer.</p>
 </div>
 </section>
 <section id="networks-of-neurons">
 <h2>Networks of Neurons<a class="headerlink" href="#networks-of-neurons" title="Permalink to this heading">#</a></h2>
-<p>By networks of individual neurons into layers and stacking these layers, we can produce some very powerfule non-linear models. Layered neural network models can be applied to almost any supervised learning task, even tasks where the there are multiple labels that need to be predicted (i.e. where <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is a vector, not just a scalar).</p>
+<p>By networks of individual neurons into layers and stacking these layers, we can produce some very powerful non-linear models. Layered neural network models can be applied to almost any supervised learning task, even tasks where the there are multiple labels that need to be predicted (i.e. where <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is a vector, not just a scalar).</p>
 <p>The simplest kind of neural network layer we can construct is a <em>fully-connected</em> layer, in which a collection of neurons produce a vector of outputs <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> (where each element <span class="math notranslate nohighlight">\(a_i\)</span> corresponds to a single neuron output) based on different linear combinations of the input features. Specifically, a layer of <span class="math notranslate nohighlight">\(m\)</span> neurons can be used to compute the function:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{a} = \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_m \end{bmatrix} = f(\mathbf{x}) = \begin{bmatrix} 

@@ -457,19 +457,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="application-bandgap-prediction">
 <h1>Application: Bandgap Prediction<a class="headerlink" href="#application-bandgap-prediction" title="Permalink to this heading">#</a></h1>
-<p>Let’s now try to tackle a more difficult regression problem: predicting material bandgaps. The bandgap of a material is an important property related to whether or not a material is a conductor: Materials with a zero bandgap are typically conductors, whereas materials with a positive bandgap are inusulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the bandgap by examining the largest gap between the energies of two states in the material’s <em>band structure</em>. For example, the bandgap of one crystalline phase of the insulator SiO<span class="math notranslate nohighlight">\(_2\)</span> <a class="reference external" href="https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2">(mp-546794)</a> is roughly 5.69 eV, which is the difference in band energy at the <span class="math notranslate nohighlight">\(\Gamma\)</span> point (shown in purple):</p>
+<p>Let's now try to tackle a more difficult regression problem: predicting material bandgaps. The bandgap of a material is an important property related to whether or not a material is a conductor: Materials with a zero bandgap are typically conductors, whereas materials with a positive bandgap are insulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the bandgap by examining the largest gap between the energies of two states in the material's <em>band structure</em>. For example, the bandgap of one crystalline phase of the insulator SiO<span class="math notranslate nohighlight">\(_2\)</span> <a class="reference external" href="https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2">(mp-546794)</a> is roughly 5.69 eV, which is the difference in band energy at the <span class="math notranslate nohighlight">\(\Gamma\)</span> point (shown in purple):</p>
 <p><img alt="SiO2 bandgap" src="../_images/SiO2_band.png" /></p>
 <section id="bandgap-dataset">
 <h2>Bandgap Dataset<a class="headerlink" href="#bandgap-dataset" title="Permalink to this heading">#</a></h2>
 <p>The band gap can be estimated through <em>ab initio</em> calculation methods, such as <em>density functional theory</em> (DFT). In this section, we will use band gap values estimated through DFT calculations as reported in the Materials Project Database.</p>
 <div class="important dropdown admonition">
 <p class="admonition-title">Notes about Bandgap Estimation and DFT</p>
-<p>For more information on how bandgaps are estimated in the Materials Project, see the <a class="reference external" href="https://docs.materialsproject.org/methodology/materials-methodology/electronic-structure">Electronic Structure</a> documentation page. Take particular note of the “Computed Gap” versus “Experimental Gap” plot, which reflects a mean absolute error of 0.6 eV:</p>
+<p>For more information on how bandgaps are estimated in the Materials Project, see the <a class="reference external" href="https://docs.materialsproject.org/methodology/materials-methodology/electronic-structure">Electronic Structure</a> documentation page. Take particular note of the &quot;Computed Gap&quot; versus &quot;Experimental Gap&quot; plot, which reflects a mean absolute error of 0.6 eV:</p>
 <p><img alt="bandgap errors" src="../_images/bandgap_errs.png" /></p>
 <p>(There are some methods in DFT that can correct for this, such as the <a class="reference external" href="https://pubs.aip.org/aip/jcp/article/110/13/6158/476177/Toward-reliable-density-functional-methods-without">PBE0 model</a> or the <a class="reference external" href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.139.A796">GW approach</a>, but neither of these appear to be used in the Materials Project).</p>
 <p>In short, this means that we must be very careful if we want to apply our models from this section to make predictions of real bandgaps measured through experiment, especially insulators with large bandgaps.</p>
 </div>
-<p>You can dowload the dataset for this section using the following Python code:</p>
+<p>You can download the dataset for this section using the following Python code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">CSV_URL</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/regression/bandgaps.csv&#39;</span>
@@ -483,7 +483,7 @@ document.write(`
 </section>
 <section id="loading-the-dataset">
 <h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h2>
-<p>To start, let’s load the dataset into a Pandas dataframe and view it:</p>
+<p>To start, let's load the dataset into a Pandas dataframe and view it:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -695,7 +695,7 @@ document.write(`
 <p>29195 rows × 11 columns</p>
 </div></div></div>
 </div>
-<p>There are several different features included in this dataset. Here’s a summary of the included features:</p>
+<p>There are several different features included in this dataset. Here's a summary of the included features:</p>
 <ul class="simple">
 <li><p><em>mp_id</em>: Materials Project ID of material</p></li>
 <li><p><em>formula</em>: Chemical formula</p></li>
@@ -709,7 +709,7 @@ document.write(`
 <li><p><em>bandgap</em>: Estimated bandgap of the material (eV)</p></li>
 <li><p><em>bandgap_direct</em>: Whether or not the estimated bandgap is direct.</p></li>
 </ul>
-<p>The most important features that uniquely identify each material in the dataset are the composition and crystal system of each material. If we want to include this as a feature in a supervised model, we must find a way to convert these feature to a numerical vector. Let’s start by listing all of the elements and crystal systems in the dataset:</p>
+<p>The most important features that uniquely identify each material in the dataset are the composition and crystal system of each material. If we want to include this as a feature in a supervised model, we must find a way to convert these feature to a numerical vector. Let's start by listing all of the elements and crystal systems in the dataset:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -740,7 +740,7 @@ Number of crystal systems: 7
 </div>
 </div>
 </div>
-<p>We see that there are 86 elements represented in the dataset and 7 different crystal systems. The simplest way of converging the composition of each material to a vector is by representing it as a “bag of atoms”, that is, by converting the composition to a vector with 86 entries (representing the 86 elements present in the data) where the entry of each vector represents the fraction of the unit cell occupied by the corresponding element.</p>
+<p>We see that there are 86 elements represented in the dataset and 7 different crystal systems. The simplest way of converging the composition of each material to a vector is by representing it as a &quot;bag of atoms&quot;, that is, by converting the composition to a vector with 86 entries (representing the 86 elements present in the data) where the entry of each vector represents the fraction of the unit cell occupied by the corresponding element.</p>
 <p>We can also represent the crystal system of each material as a vector with seven entries, where only the value corresponding to the crystal system is set to 1. The remaining entries of this vector are set to 0. Below, we write Python functions to vectorize the material composition and the crystal system:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -800,13 +800,13 @@ Example of a crystal system vector:
 </div>
 </div>
 </div>
-<p>Next, let’s write a function that extracts features from each row in the dataframe and constructs each material’s feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and label vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. The feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> will contain the following values combined into a single vector:</p>
+<p>Next, let's write a function that extracts features from each row in the dataframe and constructs each material's feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and label vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. The feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> will contain the following values combined into a single vector:</p>
 <ul class="simple">
-<li><p>The material’s “bag of atoms” composition vector</p></li>
-<li><p>The material’s crystal system vector</p></li>
-<li><p>The material’s unit cell volume</p></li>
-<li><p>The material’s density</p></li>
-<li><p>The material’s formation energy per atom</p></li>
+<li><p>The material's &quot;bag of atoms&quot; composition vector</p></li>
+<li><p>The material's crystal system vector</p></li>
+<li><p>The material's unit cell volume</p></li>
+<li><p>The material's density</p></li>
+<li><p>The material's formation energy per atom</p></li>
 </ul>
 <p>The label vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> for each material will contain two values: the band gap of the material (in eV) and a value of <span class="math notranslate nohighlight">\(\pm 1\)</span> indicating if the band gap is direct or indirect.</p>
 <div class="cell docutils container">
@@ -872,7 +872,7 @@ data_y shape: (29195, 2)
 </div>
 </div>
 </div>
-<p>Now that we have parsed features from the dataset, let’s write some functions that will automatically split data into training, validation, and test set. We may also find it useful to write a function that normalizes these sets as well:</p>
+<p>Now that we have parsed features from the dataset, let's write some functions that will automatically split data into training, validation, and test set. We may also find it useful to write a function that normalizes these sets as well:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
@@ -910,7 +910,7 @@ data_y shape: (29195, 2)
 </section>
 <section id="classifying-metals-and-non-metals">
 <h2>Classifying Metals and Non-Metals<a class="headerlink" href="#classifying-metals-and-non-metals" title="Permalink to this heading">#</a></h2>
-<p>The first supervised learning problem we will examine is discriminating between materials with a bangap that is zero (i.e. metals) and materials with a bandgap that is nonzero (i.e. insulators). We will start by creating a vector of <span class="math notranslate nohighlight">\(y\)</span> values with values of <span class="math notranslate nohighlight">\(\pm 1\)</span> indicating whether a material is a metal or nonmetal:</p>
+<p>The first supervised learning problem we will examine is discriminating between materials with a bandgap that is zero (i.e. metals) and materials with a bandgap that is nonzero (i.e. insulators). We will start by creating a vector of <span class="math notranslate nohighlight">\(y\)</span> values with values of <span class="math notranslate nohighlight">\(\pm 1\)</span> indicating whether a material is a metal or nonmetal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metals_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data_y</span><span class="p">])</span>
@@ -927,7 +927,7 @@ data_y shape: (29195, 2)
 </div>
 </div>
 </div>
-<p>It’s usually best to start by seeing how well a simple models such as a linear classifier fits the data. We could use a linear classifier (also known as a <em>Perceptron</em>) like we did in the last application section. Since we now know about how regularization can sometimes improve the validation accuracy of a linear model, let’s use a <em>ridge regression linear classifier</em> that is equipped with a regularization parameter <span class="math notranslate nohighlight">\(\lambda\)</span>. When <span class="math notranslate nohighlight">\(\lambda = 0\)</span>, (no regularization is applied) the model is identical to a linear classifier. Scikit-learn provides an implementation of this with <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeClassifier.html#sklearn.linear_model.RidgeClassifier"><code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.RidgeClassifier</span></code></a>. (Note that in sklearn, the regularization parameter <span class="math notranslate nohighlight">\(\lambda\)</span> is referred to as <span class="math notranslate nohighlight">\(\alpha\)</span>) After fitting the model, we can also use scikit-learn’s ConfusionMatrix class to visualize the kinds of classification errors made by our model on the validation set:</p>
+<p>It's usually best to start by seeing how well a simple models such as a linear classifier fits the data. We could use a linear classifier (also known as a <em>Perceptron</em>) like we did in the last application section. Since we now know about how regularization can sometimes improve the validation accuracy of a linear model, let's use a <em>ridge regression linear classifier</em> that is equipped with a regularization parameter <span class="math notranslate nohighlight">\(\lambda\)</span>. When <span class="math notranslate nohighlight">\(\lambda = 0\)</span>, (no regularization is applied) the model is identical to a linear classifier. Scikit-learn provides an implementation of this with <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeClassifier.html#sklearn.linear_model.RidgeClassifier"><code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.RidgeClassifier</span></code></a>. (Note that in sklearn, the regularization parameter <span class="math notranslate nohighlight">\(\lambda\)</span> is referred to as <span class="math notranslate nohighlight">\(\alpha\)</span>) After fitting the model, we can also use scikit-learn's ConfusionMatrix class to visualize the kinds of classification errors made by our model on the validation set:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -960,7 +960,7 @@ data_y shape: (29195, 2)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/808cbdedfd0192a91522bea5bcfce1b324314137470a1a110911213d3bbd3486.png" src="../_images/808cbdedfd0192a91522bea5bcfce1b324314137470a1a110911213d3bbd3486.png" />
+<img alt="../_images/c96529d2ce79ab77ff00d8a5912869e897d8a625106096ab49de0422239db9f8.png" src="../_images/c96529d2ce79ab77ff00d8a5912869e897d8a625106096ab49de0422239db9f8.png" />
 </div>
 </div>
 <p>From inspecting the confusion matrix, we see that a significant majority of the materials were classified correctly, with almost three times as many metals being predicted as non-metals than non-metals being predicted as metals. We can evaluate the overall validation set accuracy of the model from the confusion matrix as follows:</p>
@@ -972,7 +972,7 @@ data_y shape: (29195, 2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8689456737685826
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8697677604987326
 </pre></div>
 </div>
 </div>
@@ -980,7 +980,7 @@ data_y shape: (29195, 2)
 </section>
 <section id="estimating-the-bandgap-of-non-metals">
 <h2>Estimating the Bandgap of Non-Metals:<a class="headerlink" href="#estimating-the-bandgap-of-non-metals" title="Permalink to this heading">#</a></h2>
-<p>We have shown that we can classify materials as metals or non-metals with accuracy close to 90%. The next problem we will consider is estimating the bandgap of materials that are either known to be non-metals or are classified by the previous model as such. Let’s start by extracting all non-metallic materials with nonzero bandgaps:</p>
+<p>We have shown that we can classify materials as metals or non-metals with accuracy close to 90%. The next problem we will consider is estimating the bandgap of materials that are either known to be non-metals or are classified by the previous model as such. Let's start by extracting all non-metallic materials with nonzero bandgaps:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1053,15 +1053,15 @@ bandgap_y shape: (11464,)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8650259709904745
-training MSE: 0.4439442448391302
-validation MSE: 0.4555810306426305
-validation RMSE/stddev: 0.7802857393368027
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8635883395708936
+training MSE: 0.4426789231395536
+validation MSE: 0.44333428736124864
+validation RMSE/stddev: 0.771008011288592
 </pre></div>
 </div>
 </div>
 </div>
-<p>While a model root mean square error (RMSE) that is roughly half of the standard deviation is likely be a statistically significant improvement upon random guessing, it leaves much to be desired. Let’s try a more complex model: <em>Gradient Boosting Regression</em>. Since our dataset is quite large, it may also be more computationally efficient to use the <em>histogram</em> variant, which is implemented in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html#sklearn-ensemble-histgradientboostingregressor"><code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.HistGradientBoostingRegressor</span></code></a>:</p>
+<p>While a model root mean square error (RMSE) that is roughly half of the standard deviation is likely be a statistically significant improvement upon random guessing, it leaves much to be desired. Let's try a more complex model: <em>Gradient Boosting Regression</em>. Since our dataset is quite large, it may also be more computationally efficient to use the <em>histogram</em> variant, which is implemented in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html#sklearn-ensemble-histgradientboostingregressor"><code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.HistGradientBoostingRegressor</span></code></a>:</p>
 </section>
 <section id="gradient-boosting-regression">
 <h2>Gradient Boosting Regression<a class="headerlink" href="#gradient-boosting-regression" title="Permalink to this heading">#</a></h2>
@@ -1100,15 +1100,15 @@ validation RMSE/stddev: 0.7802857393368027
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8650259709904745
-training MSE: 0.0892010967784699
-validation MSE: 0.1307196271464194
-validation RMSE/stddev: 0.4179662874028382
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8635883395708936
+training MSE: 0.08834678054719446
+validation MSE: 0.12599669177586778
+validation RMSE/stddev: 0.41102931889855
 </pre></div>
 </div>
 </div>
 </div>
-<p>This is a significant improvement upon the Ridge regression model. Let’s also see how well a support vector regression (SVR) model works for bandgap estimation when we use the radial basis function (RBF) kernel. We will use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVR</span></code></a>. Take note that SVR models may take a few minutes to fit to large datasets:</p>
+<p>This is a significant improvement upon the Ridge regression model. Let's also see how well a support vector regression (SVR) model works for bandgap estimation when we use the radial basis function (RBF) kernel. We will use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVR</span></code></a>. Take note that SVR models may take a few minutes to fit to large datasets:</p>
 <section id="rbf-support-vector-regression">
 <h3>RBF Support Vector Regression<a class="headerlink" href="#rbf-support-vector-regression" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
@@ -1159,7 +1159,7 @@ Exercise 1: Classifying Direct vs. Indirect Bandgaps<div class="sd-summary-down 
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Let’s apply the same techniques we used to classify metalllic versus insulating materials to estimate whether a bandgapped material has a direct or indirect bandgap. We can exract the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> dataset for this task using the following code:</p>
+<p class="sd-card-text">Let's apply the same techniques we used to classify metallic versus insulating materials to estimate whether a bandgapped material has a direct or indirect bandgap. We can extract the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> dataset for this task using the following code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">direct_gap_x</span> <span class="o">=</span> <span class="n">data_x</span><span class="p">[</span><span class="n">data_y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">direct_gap_y</span> <span class="o">=</span> <span class="n">data_y</span><span class="p">[(</span><span class="n">data_y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span><span class="mi">1</span><span class="p">]</span>
 
@@ -1167,7 +1167,7 @@ Exercise 1: Classifying Direct vs. Indirect Bandgaps<div class="sd-summary-down 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;direct_gap_y shape:&#39;</span><span class="p">,</span> <span class="n">direct_gap_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sd-card-text">Split this data into training, validation, and test sets. Then, fit a ridge classifier (or another model you think may perform well on this task) to the training set. Visualize the fitted model’s accuracy on a validation set by plotting a confusion matrix. Once you have found a model with acceptable accuracy, evaluate the final accuracy of the model using the test set.</p>
+<p class="sd-card-text">Split this data into training, validation, and test sets. Then, fit a ridge classifier (or another model you think may perform well on this task) to the training set. Visualize the fitted model's accuracy on a validation set by plotting a confusion matrix. Once you have found a model with acceptable accuracy, evaluate the final accuracy of the model using the test set.</p>
 <hr class="docutils" />
 <p class="sd-card-text"><em>Hint</em>: Note that you can obtain the accuracy of a classification model in <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> using the <code class="docutils literal notranslate"><span class="pre">model.score(x,y)</span></code> function.</p>
 </div>
@@ -1229,9 +1229,9 @@ Exercise 1: Classifying Direct vs. Indirect Bandgaps<div class="sd-summary-down 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1a5c2c1e7d21af5e5e8e1f0d281cd17b09165981b6a586fbab6bc13d6a8b255e.png" src="../_images/1a5c2c1e7d21af5e5e8e1f0d281cd17b09165981b6a586fbab6bc13d6a8b255e.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7165038381018841
-test set accuracy: 0.7266224703419399
+<img alt="../_images/2a3c95cde499a908f8036dc443b7a34dd916e50e80d0bb015e2faa08ed890298.png" src="../_images/2a3c95cde499a908f8036dc443b7a34dd916e50e80d0bb015e2faa08ed890298.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7199930216329379
+test set accuracy: 0.7199930216329379
 </pre></div>
 </div>
 </div>
