@@ -231,7 +231,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="neural_networks.html">Neural Networks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="training.html">Training Neural Networks</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="architectures.html">Types of Neural Network Models</a></li>
 </ul>
 </li>
@@ -453,7 +452,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[f(\mathbf{x}) = \text{sign}\left( w_0 + \sum_{i=1}^D w_ix_i \right)\]</div>
 <p>where <span class="math notranslate nohighlight">\(\text{sign}(x) = \begin{cases} +1 &amp;  x &gt; 0\\ -1 &amp; x &lt;= 0 \end{cases}\)</span>.</p>
-<p>Originally, the perceptron model was inspired by the biological function of a <a class="reference external" href="https://en.wikipedia.org/wiki/Multipolar_neuron">multipolar neuron</a>, which produces an electrical response (the “output” of the neuron) if a weighted sum of electrical stimuli from neighboring neurons (the “inputs” of the neuron) exceed a given threshold. In this model of a neuron, the function that dictates the neuron’s response with respect to the sum of inputs is referred to as a <em>neuron activation function</em>, which we will denote here as <span class="math notranslate nohighlight">\(\sigma(x)\)</span>. This activation function is applied before the neuron outputs a response, as shown in the diagram below:</p>
+<p>Originally, the perceptron model was inspired by the biological function of a <a class="reference external" href="https://en.wikipedia.org/wiki/Multipolar_neuron">multipolar neuron</a>, which produces an electrical response (the &quot;output&quot; of the neuron) if a weighted sum of electrical stimuli from neighboring neurons (the &quot;inputs&quot; of the neuron) exceed a given threshold. In this model of a neuron, the function that dictates the neuron's response with respect to the sum of inputs is referred to as a <em>neuron activation function</em>, which we will denote here as <span class="math notranslate nohighlight">\(\sigma(x)\)</span>. This activation function is applied before the neuron outputs a response, as shown in the diagram below:</p>
 <p><img alt="neuron" src="../_images/neuron.svg" /></p>
 <p>More generally, the output of a single neuron with weight vector <span class="math notranslate nohighlight">\(\mathbf{w} = \begin{bmatrix} w_0 &amp; w_1 &amp; \dots &amp;  w_D \end{bmatrix}^T\)</span> and activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> can be written as follows:</p>
 <div class="math notranslate nohighlight">
@@ -462,7 +461,7 @@ document.write(`
 </section>
 <section id="activation-functions">
 <h2>Activation Functions:<a class="headerlink" href="#activation-functions" title="Permalink to this heading">#</a></h2>
-<p>In order for a network of neurons to “learn” from non-linear data, it is critical that the neuron activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> is non-linear. For example, in the perceptron model, the activation function is <span class="math notranslate nohighlight">\(\sigma(x) = \text{sign}(x)\)</span>, which fits this criterion. However, this function is not continuous, and its derivative is <span class="math notranslate nohighlight">\(0\)</span> almost everywhere. In order to fit a neural network to data though a method such as gradient descent, it is desirable that the activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> be both continuous and differentiable. Below, we give some alternative activation functions that are commonly used in neural networks:</p>
+<p>In order for a network of neurons to &quot;learn&quot; from non-linear data, it is critical that the neuron activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> is non-linear. For example, in the perceptron model, the activation function is <span class="math notranslate nohighlight">\(\sigma(x) = \text{sign}(x)\)</span>, which fits this criterion. However, this function is not continuous, and its derivative is <span class="math notranslate nohighlight">\(0\)</span> almost everywhere. In order to fit a neural network to data though a method such as gradient descent, it is desirable that the activation function <span class="math notranslate nohighlight">\(\sigma(x)\)</span> be both continuous and differentiable. Below, we give some alternative activation functions that are commonly used in neural networks:</p>
 <ul class="simple">
 <li><p><em>Sigmoid function</em>:</p></li>
 </ul>
@@ -472,7 +471,7 @@ document.write(`
 <li><p><em>Hyperbolic Tangent</em>:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\sigma(x) = \tanh(x)\]</div>
+\[\sigma(x) = \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}\]</div>
 <ul class="simple">
 <li><p><em>Rectified Linear Unit (ReLU)</em>:</p></li>
 </ul>
@@ -485,11 +484,11 @@ document.write(`
 \[\begin{split}\sigma(x) = \begin{cases} x &amp; x &gt; 0 \\ \alpha x &amp; x \le 0\end{cases}\end{split}\]</div>
 <p>(<span class="math notranslate nohighlight">\(\alpha\)</span> is chosen such that <span class="math notranslate nohighlight">\(0 &lt; \alpha \ll 1\)</span>. Typically, <span class="math notranslate nohighlight">\(\alpha = 10^{-3}\)</span>)</p>
 <ul class="simple">
-<li><p><em>Sigmoid Linear Unit (SiLU)</em>:</p></li>
+<li><p><em>Sigmoid Linear Unit (SiLU)</em> :</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\frac{x}{1 + e^{-x}}\]</div>
-<p>The activation function used is ofte chosen depending on the kind of outputs desired for each neuron and the kind of model being used. In most cases, the ReLU activation function is a good choice.</p>
+<p>The activation function used is chosen depending on the kind of outputs desired for each neuron and the kind of model being used. In most cases, the ReLU activation function is a good choice.</p>
 <p>Below, we write some Python code that visualizes each of these activation functions:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -531,8 +530,13 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/5c1930850c17fee7ec1933d90bc16d7234d01a447e047413b05e69e94cecc217.png" src="../_images/5c1930850c17fee7ec1933d90bc16d7234d01a447e047413b05e69e94cecc217.png" />
+<img alt="../_images/de54d00f79ae6bf9415a8cb6bb917c8d8999849941c7d69b0c20849420b0ae46.png" src="../_images/de54d00f79ae6bf9415a8cb6bb917c8d8999849941c7d69b0c20849420b0ae46.png" />
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When choosing an activation function for the last layer of a neural network, be sure that the range of the final activation function matches the range of data. For example, if your model is predicting probabilities (or probability distributions), then a sigmoid activation function may be the most approriate.</p>
+<p>If a neural network model is performing regression and there is no bound on the range of predicted values, then an activation function is not applied to the last layer.</p>
 </div>
 </section>
 <section id="networks-of-neurons">
@@ -554,7 +558,7 @@ w_{20} &amp; w_{12} &amp; \dots &amp; w_{2D} \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
 w_{m0} &amp; w_{m1} &amp; \dots  &amp; w_{mD}
 \end{bmatrix}\end{split}\]</div>
-<p>In terms of this weight matrix, we can write the layer’s function as a matrix-vector product, namely:</p>
+<p>In terms of this weight matrix, we can write the layer's function as a matrix-vector product, namely:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{a} = f(\mathbf{x}) = \sigma(\mathbf{W}\mathbf{x})\]</div>
 <p>(Note that when we write <span class="math notranslate nohighlight">\(\sigma(\mathbf{A})\)</span> where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a matrix or vector, it denotes that the activation function <span class="math notranslate nohighlight">\(\sigma\)</span> is applied element-wise; that is, to each entry of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> individually.)</p>

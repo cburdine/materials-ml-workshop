@@ -229,6 +229,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
 </ul>
@@ -480,7 +481,7 @@ document.write(`
 <p>The <em>expected value</em> of a random variable, sometimes called the <em>average</em> value or <em>mean</em> value, is the average of all possible outcomes weighted according to their likelihoods. The mean of a random variable is also often denoted by <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In physics and quantum chemistry, you might encounter <em>Dirac notation</em>, which uses the notation <span class="math notranslate nohighlight">\(\langle x \rangle\)</span> to denote the expected value of <span class="math notranslate nohighlight">\(x\)</span>. Often, this is referred to as the “expectation value”, instead of the “expected value”.</p>
+<p>In physics and quantum chemistry, you might encounter <em>Dirac notation</em>, which uses the notation <span class="math notranslate nohighlight">\(\langle x \rangle\)</span> to denote the expected value of <span class="math notranslate nohighlight">\(x\)</span>. Often, this is referred to as the &quot;expectation value&quot;, instead of the &quot;expected value&quot;.</p>
 </div>
 <p>The <em>variance</em> of a random variable <span class="math notranslate nohighlight">\(X\)</span> describes the degree to which the distribution deviates from the mean <span class="math notranslate nohighlight">\(\mu\)</span>. It is often denoted by <span class="math notranslate nohighlight">\(\sigma^2\)</span>, and is given by:</p>
 <div class="math notranslate nohighlight">
@@ -497,9 +498,9 @@ document.write(`
 \[p(x) = p^{x} (1-p)^{N-x} \binom{N}{x} = p^x (1-p)^{N-x} \left[ \frac{N!}{x!(N-x)!} \right]\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We emphasize that <span class="math notranslate nohighlight">\(p(x)\)</span> is not the same as <span class="math notranslate nohighlight">\(p\)</span>. <span class="math notranslate nohighlight">\(p\)</span> is the probability of success within any single, intedpendent trial (experiment), so that <span class="math notranslate nohighlight">\((1-p)\)</span> is the probability of failure in any trial. We interpret <span class="math notranslate nohighlight">\(p(x)\)</span> as the probability that in a set of <span class="math notranslate nohighlight">\(N\)</span> trials, exactly <span class="math notranslate nohighlight">\(x\)</span> trials are successful, and <span class="math notranslate nohighlight">\(N-x\)</span> trials are failures.</p>
+<p>We emphasize that <span class="math notranslate nohighlight">\(p(x)\)</span> is not the same as <span class="math notranslate nohighlight">\(p\)</span>. <span class="math notranslate nohighlight">\(p\)</span> is the probability of success within any single, independent trial (experiment), so that <span class="math notranslate nohighlight">\((1-p)\)</span> is the probability of failure in any trial. We interpret <span class="math notranslate nohighlight">\(p(x)\)</span> as the probability that in a set of <span class="math notranslate nohighlight">\(N\)</span> trials, exactly <span class="math notranslate nohighlight">\(x\)</span> trials are successful, and <span class="math notranslate nohighlight">\(N-x\)</span> trials are failures.</p>
 </div>
-<p>Let’s write some Python code to visualize a Binomial distribution. We can compute the probability distribution by hand, or we can use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.binom.pmf</span></code></a> function:</p>
+<p>Let's write some Python code to visualize a Binomial distribution. We can compute the probability distribution by hand, or we can use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.binom.pmf</span></code></a> function:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -530,7 +531,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/12de071679598628b5b293abf8b46a596ec13053842d228a4433d9c730895ab1.png" src="../_images/12de071679598628b5b293abf8b46a596ec13053842d228a4433d9c730895ab1.png" />
+<img alt="../_images/0dc3c626b7dfc2dd95ed853f854cc9ed2b70823dfb099fe1567f8f73e7e784eb.png" src="../_images/0dc3c626b7dfc2dd95ed853f854cc9ed2b70823dfb099fe1567f8f73e7e784eb.png" />
 </div>
 </div>
 <p>The mean and variance of this distribution are <span class="math notranslate nohighlight">\(\mu = Np\)</span> and <span class="math notranslate nohighlight">\(\sigma^2 = np(1-p)\)</span> respectively.</p>
@@ -540,7 +541,7 @@ document.write(`
 <p>The <em>normal distribution</em> (also called the <em>Gaussian distribution</em>) is perhaps the most important continuous distribution in statistics. This distribution is parameterized by its mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> and has support <span class="math notranslate nohighlight">\(\mathcal{X} = (-\infty, \infty)\)</span>. The distribution is:</p>
 <div class="math notranslate nohighlight">
 \[p(x) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left(-\frac{1}{2}\left[\frac{x - \mu}{\sigma}\right]^2\right)\]</div>
-<p>If we plot this distribution (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html#scipy-stats-norm"><code class="docutils literal notranslate"><span class="pre">scipy.stats.norm.pdf</span></code></a>), we obtain the familiar “bell curve” shape:</p>
+<p>If we plot this distribution (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.norm.html#scipy-stats-norm"><code class="docutils literal notranslate"><span class="pre">scipy.stats.norm.pdf</span></code></a>), we obtain the familiar &quot;bell curve&quot; shape:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -570,7 +571,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/5b114876734af2f85d4c22b06463ce1559855c92001d6b9415436045db6e5b6d.png" src="../_images/5b114876734af2f85d4c22b06463ce1559855c92001d6b9415436045db6e5b6d.png" />
+<img alt="../_images/d3aded7761eeb26b525c30cd1956f4b165f023de54e087dfdededc488a1fe83b.png" src="../_images/d3aded7761eeb26b525c30cd1956f4b165f023de54e087dfdededc488a1fe83b.png" />
 </div>
 </div>
 </section>
@@ -590,7 +591,7 @@ document.write(`
 <section id="hypothesis-testing">
 <h2>Hypothesis Testing<a class="headerlink" href="#hypothesis-testing" title="Permalink to this heading">#</a></h2>
 <p>An important part of doing science is the testing of hypotheses. The standard way of doing this is through the steps of the <em>scientific method</em>: Formulate a research question, propose a hypothesis, design an experiment, collect experimental data, analyze the results, and report conclusions. In the analysis of our data, how do we know if our hypothesis is correct? There are many different statistical methods we can apply to test a given hypothesis, each with different strengths and weaknesses. In machine learning, we often use hypothesis testing to determine (hopefully with a high degree of certainty) whether one model is more accurate than another. We can also use hypothesis testing to determine which data features are more significant than other data features when making predictions.</p>
-<p>Typically, hypothesis testing involves two competing hypotheses: the <em>null hypothesis</em> (denoted <span class="math notranslate nohighlight">\(H_0\)</span>) and the <em>alternative hypothesis</em> (denoted <span class="math notranslate nohighlight">\(H_1\)</span>). The null hypothesis often is a statement of the “status quo” or a statement of “statistical insignificance”. The alternative hypothesis is the statement of “statistical significance” we are often trying to prove is true. To better illustrate the process of hypothesis testing, we will use the following example:</p>
+<p>Typically, hypothesis testing involves two competing hypotheses: the <em>null hypothesis</em> (denoted <span class="math notranslate nohighlight">\(H_0\)</span>) and the <em>alternative hypothesis</em> (denoted <span class="math notranslate nohighlight">\(H_1\)</span>). The null hypothesis often is a statement of the &quot;status quo&quot; or a statement of &quot;statistical insignificance&quot;. The alternative hypothesis is the statement of &quot;statistical significance&quot; we are often trying to prove is true. To better illustrate the process of hypothesis testing, we will use the following example:</p>
 <section id="example-conductor-vs-insulator-classifier">
 <h3>Example: Conductor vs. Insulator Classifier<a class="headerlink" href="#example-conductor-vs-insulator-classifier" title="Permalink to this heading">#</a></h3>
 <p>Suppose we are developing a classifier model that predicts whether a material is a conductor or an insulator. For simplicity, we shall assume that roughly half of all materials are insulators and half are insulators. Our two competing hypotheses would then be:</p>
@@ -598,8 +599,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(H_0\)</span>: The accuracy of our classifier is the same as random guessing (accuracy = 0.5)</p></li>
 <li><p><span class="math notranslate nohighlight">\(H_1\)</span>: The accuracy of our classifier is better than than random guessing (accuracy &gt; 0.5)</p></li>
 </ul>
-<p>Suppose that in order to test our alternative hypothesis <span class="math notranslate nohighlight">\(H_1\)</span>, we compile a dataset of 40 materials (20 conductors and 20 insulators) and use these to evaluate our model. We find that the model has an accuracy of 0.6, meaning it correctly classifies <span class="math notranslate nohighlight">\(60\%\)</span> of the dataset. Since the accuracy is greater than 0.5, does this mean we immediately reject <span class="math notranslate nohighlight">\(H_0\)</span> in favor of <span class="math notranslate nohighlight">\(H_1\)</span>? Not necessarily; it could be the case that our model simply got lucky and “randomly guessed” the classification of more than <span class="math notranslate nohighlight">\(50\%\)</span> of the dataset.</p>
-<p>First, let’s consider the distribution of accuracies that could be attained by a random guessing strategy. If we treat each guess as one of <span class="math notranslate nohighlight">\(N = 40\)</span> trials with a probability <span class="math notranslate nohighlight">\(p = 0.5\)</span> of succeeding, we can model the distribution of random guessing strategies with a binomial distribution. Let’s write some Python code to visualize this distribution:</p>
+<p>Suppose that in order to test our alternative hypothesis <span class="math notranslate nohighlight">\(H_1\)</span>, we compile a dataset of 40 materials (20 conductors and 20 insulators) and use these to evaluate our model. We find that the model has an accuracy of 0.6, meaning it correctly classifies <span class="math notranslate nohighlight">\(60\%\)</span> of the dataset. Since the accuracy is greater than 0.5, does this mean we immediately reject <span class="math notranslate nohighlight">\(H_0\)</span> in favor of <span class="math notranslate nohighlight">\(H_1\)</span>? Not necessarily; it could be the case that our model simply got lucky and &quot;randomly guessed&quot; the classification of more than <span class="math notranslate nohighlight">\(50\%\)</span> of the dataset.</p>
+<p>First, let's consider the distribution of accuracies that could be attained by a random guessing strategy. If we treat each guess as one of <span class="math notranslate nohighlight">\(N = 40\)</span> trials with a probability <span class="math notranslate nohighlight">\(p = 0.5\)</span> of succeeding, we can model the distribution of random guessing strategies with a binomial distribution. Let's write some Python code to visualize this distribution:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -634,10 +635,10 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/91f90fe6ed817835ccb8c2db181279c85f1c7f9632c0bf0e6ed679416f0d1b77.png" src="../_images/91f90fe6ed817835ccb8c2db181279c85f1c7f9632c0bf0e6ed679416f0d1b77.png" />
+<img alt="../_images/9d2864447e75aaf53e3563d1ba750da9e3adc4a8a76ae39c6e1cca1d2e2641c5.png" src="../_images/9d2864447e75aaf53e3563d1ba750da9e3adc4a8a76ae39c6e1cca1d2e2641c5.png" />
 </div>
 </div>
-<p>In order to evaluate whether or not our result is statistically significant, we will compute the <a class="reference external" href="https://en.wikipedia.org/wiki/P-value"><em><span class="math notranslate nohighlight">\(p\)</span>-value</em></a> associated with our hypothesis testing. A <span class="math notranslate nohighlight">\(p\)</span>-value is a quantity between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> that describes the probability of obtaining a result at least as extreme as the experimentally observed value assuming that <span class="math notranslate nohighlight">\(H_0\)</span> is true. Roughly speaking, we can interpret a <span class="math notranslate nohighlight">\(p\)</span>-value as the probability of observing the experimental data “by coincidence” if <span class="math notranslate nohighlight">\(H_0\)</span> is in fact true. If a <span class="math notranslate nohighlight">\(p\)</span>-value is low, it means that the alternative hypothesis <span class="math notranslate nohighlight">\(H_1\)</span> is likely to be true. In most research settings, a p-value of at most <span class="math notranslate nohighlight">\(0.05\)</span> (<span class="math notranslate nohighlight">\(5\%\)</span> chance of coincidence) is considered sufficient to show that the alternative hypothesis <span class="math notranslate nohighlight">\(H_1\)</span> is true.</p>
+<p>In order to evaluate whether or not our result is statistically significant, we will compute the <a class="reference external" href="https://en.wikipedia.org/wiki/P-value"><em><span class="math notranslate nohighlight">\(p\)</span>-value</em></a> associated with our hypothesis testing. A <span class="math notranslate nohighlight">\(p\)</span>-value is a quantity between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> that describes the probability of obtaining a result at least as extreme as the experimentally observed value assuming that <span class="math notranslate nohighlight">\(H_0\)</span> is true. Roughly speaking, we can interpret a <span class="math notranslate nohighlight">\(p\)</span>-value as the probability of observing the experimental data &quot;by coincidence&quot; if <span class="math notranslate nohighlight">\(H_0\)</span> is in fact true. If a <span class="math notranslate nohighlight">\(p\)</span>-value is low, it means that the alternative hypothesis <span class="math notranslate nohighlight">\(H_1\)</span> is likely to be true. In most research settings, a p-value of at most <span class="math notranslate nohighlight">\(0.05\)</span> (<span class="math notranslate nohighlight">\(5\%\)</span> chance of coincidence) is considered sufficient to show that the alternative hypothesis <span class="math notranslate nohighlight">\(H_1\)</span> is true.</p>
 <p>From inspecting this plot we see that the accuracy distribution is approximately normal, having mean <span class="math notranslate nohighlight">\(\mu_X \approx p = 0.5\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2_X \approx p(1-p) = 0.25\)</span>. Per the Central Limit Theorem, we conclude that the estimated accuracy of random guessing is normally distributed with mean <span class="math notranslate nohighlight">\(\mu = \mu_X\)</span> and <span class="math notranslate nohighlight">\(\sigma = \sigma_X/\sqrt{40}\)</span>. The <span class="math notranslate nohighlight">\(p\)</span>-value corresponds to the area under this normal distribution curve corresponding to accuracies with <span class="math notranslate nohighlight">\(0.6\)</span> or greater. Using the values from the previous code cell, we can compute the <span class="math notranslate nohighlight">\(p\)</span>-value as follows:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -676,7 +677,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/8e7a01aa1ff650d4a42160878dfe2fe9e2df8975deafa4aba0f6ec218e85f155.png" src="../_images/8e7a01aa1ff650d4a42160878dfe2fe9e2df8975deafa4aba0f6ec218e85f155.png" />
+<img alt="../_images/71c3cf94a0044758982362d20a4b359571f5fec5c05f101fdfba98bc62237ed9.png" src="../_images/71c3cf94a0044758982362d20a4b359571f5fec5c05f101fdfba98bc62237ed9.png" />
 </div>
 </div>
 <p>Since the <span class="math notranslate nohighlight">\(p\)</span>-value is <span class="math notranslate nohighlight">\(0.006 \le 0.05\)</span>, we conclude that the <span class="math notranslate nohighlight">\(H_1\)</span> is true, meaning the accuracy of our model (<span class="math notranslate nohighlight">\(0.6\)</span>) being greater than random guessing (<span class="math notranslate nohighlight">\(0.5\)</span>) is statistically significant. This proves that the model is better than random guessing; however it is worth noting that a model with an accuracy of <span class="math notranslate nohighlight">\(0.6\)</span> may not be practically useful for distinguishing between insulators and metals.</p>
@@ -746,7 +747,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/dc78a8590f368cc2ed9dce90468b5f6801232c9889db1cdb8c26fb2c54e287c0.png" src="../_images/dc78a8590f368cc2ed9dce90468b5f6801232c9889db1cdb8c26fb2c54e287c0.png" />
+<img alt="../_images/c06c28f149589667821834eabaf08099530df91c0f29e1fcb9547d4344d7f31e.png" src="../_images/c06c28f149589667821834eabaf08099530df91c0f29e1fcb9547d4344d7f31e.png" />
 </div>
 </div>
 </section>
@@ -842,11 +843,11 @@ Exercise 2: Fitting a Multivariate Normal Distribution:<div class="sd-summary-do
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/040eba1932fb76cd5022f8de4b37e31f7c9c861102536fca7411429c7e6bdfa8.png" src="../_images/040eba1932fb76cd5022f8de4b37e31f7c9c861102536fca7411429c7e6bdfa8.png" />
+<img alt="../_images/26a66e56e91adea3e13180d63c167a2d70fc6c6d79cc4435195411e44ac705ed.png" src="../_images/26a66e56e91adea3e13180d63c167a2d70fc6c6d79cc4435195411e44ac705ed.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pvalue &gt; 0.05, so we reject H0
 </pre></div>
 </div>
-<img alt="../_images/220bebd834723025f63f5c1adafd579854a888b56d45881573f8ac1034270dfc.png" src="../_images/220bebd834723025f63f5c1adafd579854a888b56d45881573f8ac1034270dfc.png" />
+<img alt="../_images/aef4045ed187c3746986603917a24cd55f8bb83ae897a4b681cb6fba696d56e4.png" src="../_images/aef4045ed187c3746986603917a24cd55f8bb83ae897a4b681cb6fba696d56e4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pvalue &lt; 0.05, so we accept H0
 </pre></div>
 </div>
@@ -897,7 +898,7 @@ Exercise 2: Fitting a Multivariate Normal Distribution:<div class="sd-summary-do
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e161d0e47465552d1c248334eb3a8c28866d53cd138bf06654a7f1cf6985f237.png" src="../_images/e161d0e47465552d1c248334eb3a8c28866d53cd138bf06654a7f1cf6985f237.png" />
+<img alt="../_images/f3da26af9c0e57f7d28f1773f64a0167422753a2a28979c5e883399e6b8f1229.png" src="../_images/f3da26af9c0e57f7d28f1773f64a0167422753a2a28979c5e883399e6b8f1229.png" />
 </div>
 </details>
 </div>

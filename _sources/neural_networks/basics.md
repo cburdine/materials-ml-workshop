@@ -43,7 +43,7 @@ $$\sigma(x) = \frac{1}{1 + e^{-x}}$$
 
 * _Hyperbolic Tangent_: 
 
-$$\sigma(x) = \tanh(x)$$
+$$\sigma(x) = \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 * _Rectified Linear Unit (ReLU)_: 
 
@@ -55,11 +55,11 @@ $$\sigma(x) = \begin{cases} x & x > 0 \\ \alpha x & x \le 0\end{cases}$$
 
 ($\alpha$ is chosen such that $0 < \alpha \ll 1$. Typically, $\alpha = 10^{-3}$)
 
-* _Sigmoid Linear Unit (SiLU)_: 
+* _Sigmoid Linear Unit (SiLU)_ : 
 
 $$\frac{x}{1 + e^{-x}}$$
 
-The activation function used is ofte chosen depending on the kind of outputs desired for each neuron and the kind of model being used. In most cases, the ReLU activation function is a good choice.
+The activation function used is chosen depending on the kind of outputs desired for each neuron and the kind of model being used. In most cases, the ReLU activation function is a good choice.
 
 Below, we write some Python code that visualizes each of these activation functions:
 
@@ -94,6 +94,14 @@ for i, (name,sigma) in enumerate(activation_functions.items()):
 plt.tight_layout()
 plt.show()
 ```
+
+
+:::{note}
+When choosing an activation function for the last layer of a neural network, be sure that the range of the final activation function matches the range of data. For example, if your model is predicting probabilities (or probability distributions), then a sigmoid activation function may be the most approriate. 
+
+If a neural network model is performing regression and there is no bound on the range of predicted values, then an activation function is not applied to the last layer.
+:::
+
 ## Networks of Neurons
 
 By networks of individual neurons into layers and stacking these layers, we can produce some very powerfule non-linear models. Layered neural network models can be applied to almost any supervised learning task, even tasks where the there are multiple labels that need to be predicted (i.e. where $\mathbf{y}$ is a vector, not just a scalar).
