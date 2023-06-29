@@ -11,7 +11,7 @@ kernelspec:
 
 # Neural Networks
 
-So far, we have encountered supervised models such as linear regression, decision trees, kernel machines, etc. While these models have the benefit of being interpretable, some of them may fail to perform well on datasets that are exceptionally large or complex (i.e. having a significant degree of non-linearity). For these large or complex datasets, only models with a significant degree of flexibility may yield the kind of discrimative capability needed to obtain high accuracy. In this section we will learn about one of the most flexible kind of non-linear model: _neural networks_.
+So far, we have encountered supervised models such as linear regression, decision trees, kernel machines, etc. While these models have the benefit of being interpretable, some of them may fail to perform well on datasets that are exceptionally large or complex (i.e. having a significant degree of non-linearity). For these large or complex datasets, only models with a significant degree of flexibility may yield the kind of discriminative capability needed to obtain high accuracy. In this section we will learn about one of the most flexible kind of non-linear model: _neural networks_.
 
 ![Simple Neural Network](./simple_nn_overview.svg)
 

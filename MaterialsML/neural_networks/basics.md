@@ -31,7 +31,7 @@ More generally, the output of a single neuron with weight vector $\mathbf{w} = \
 
 $$f(\mathbf{x}) = \sigma(\mathbf{w}^T\underline{\mathbf{x}}) = \sigma\left( w_0 + \sum_{i=1}^D w_ix_i \right)$$
 
-(Recall that $\underline{\mathbf{x}}$ is the vector $\mathbf{x}$ prependend with $1$: $\underline{\mathbf{x}} = \begin{bmatrix} 1 & x_1 & x_2 & \dots & x_D \end{bmatrix}$)
+(Recall that $\underline{\mathbf{x}}$ is the vector $\mathbf{x}$ prepended with $1$: $\underline{\mathbf{x}} = \begin{bmatrix} 1 & x_1 & x_2 & \dots & x_D \end{bmatrix}$)
 
 ## Activation Functions:
 
@@ -43,7 +43,7 @@ $$\sigma(x) = \frac{1}{1 + e^{-x}}$$
 
 * _Hyperbolic Tangent_: 
 
-$$\sigma(x) = \tanh(x)$$
+$$\sigma(x) = \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$$
 
 * _Rectified Linear Unit (ReLU)_: 
 
@@ -55,11 +55,11 @@ $$\sigma(x) = \begin{cases} x & x > 0 \\ \alpha x & x \le 0\end{cases}$$
 
 ($\alpha$ is chosen such that $0 < \alpha \ll 1$. Typically, $\alpha = 10^{-3}$)
 
-* _Sigmoid Linear Unit (SiLU)_: 
+* _Sigmoid Linear Unit (SiLU)_ : 
 
 $$\frac{x}{1 + e^{-x}}$$
 
-The activation function used is ofte chosen depending on the kind of outputs desired for each neuron and the kind of model being used. In most cases, the ReLU activation function is a good choice.
+The activation function used is chosen depending on the kind of outputs desired for each neuron and the kind of model being used. In most cases, the ReLU activation function is a good choice.
 
 Below, we write some Python code that visualizes each of these activation functions:
 
@@ -94,9 +94,17 @@ for i, (name,sigma) in enumerate(activation_functions.items()):
 plt.tight_layout()
 plt.show()
 ```
+
+
+:::{note}
+When choosing an activation function for the last layer of a neural network, be sure that the range of the final activation function matches the range of data. For example, if your model is predicting probabilities (or probability distributions), then a sigmoid activation function may be the most appropriate. 
+
+If a neural network model is performing regression and there is no bound on the range of predicted values, then an activation function is not applied to the last layer.
+:::
+
 ## Networks of Neurons
 
-By networks of individual neurons into layers and stacking these layers, we can produce some very powerfule non-linear models. Layered neural network models can be applied to almost any supervised learning task, even tasks where the there are multiple labels that need to be predicted (i.e. where $\mathbf{y}$ is a vector, not just a scalar).
+By networks of individual neurons into layers and stacking these layers, we can produce some very powerful non-linear models. Layered neural network models can be applied to almost any supervised learning task, even tasks where the there are multiple labels that need to be predicted (i.e. where $\mathbf{y}$ is a vector, not just a scalar).
 
 The simplest kind of neural network layer we can construct is a _fully-connected_ layer, in which a collection of neurons produce a vector of outputs $\mathbf{a}$ (where each element $a_i$ corresponds to a single neuron output) based on different linear combinations of the input features. Specifically, a layer of $m$ neurons can be used to compute the function:
 

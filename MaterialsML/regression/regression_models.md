@@ -11,7 +11,7 @@ kernelspec:
 
 # Application: Bandgap Prediction
 
-Let's now try to tackle a more difficult regression problem: predicting material bandgaps. The bandgap of a material is an important property related to whether or not a material is a conductor: Materials with a zero bandgap are typically conductors, whereas materials with a positive bandgap are inusulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the bandgap by examining the largest gap between the energies of two states in the material's _band structure_. For example, the bandgap of one crystalline phase of the insulator SiO$_2$ [(mp-546794)](https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2) is roughly 5.69 eV, which is the difference in band energy at the $\Gamma$ point (shown in purple):
+Let's now try to tackle a more difficult regression problem: predicting material bandgaps. The bandgap of a material is an important property related to whether or not a material is a conductor: Materials with a zero bandgap are typically conductors, whereas materials with a positive bandgap are insulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the bandgap by examining the largest gap between the energies of two states in the material's _band structure_. For example, the bandgap of one crystalline phase of the insulator SiO$_2$ [(mp-546794)](https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2) is roughly 5.69 eV, which is the difference in band energy at the $\Gamma$ point (shown in purple):
 
 ![SiO2 bandgap](SiO2_band.png)
 
@@ -30,7 +30,7 @@ For more information on how bandgaps are estimated in the Materials Project, see
 In short, this means that we must be very careful if we want to apply our models from this section to make predictions of real bandgaps measured through experiment, especially insulators with large bandgaps.
 :::
 
-You can dowload the dataset for this section using the following Python code:
+You can download the dataset for this section using the following Python code:
 
 ```
 import requests
@@ -229,7 +229,7 @@ def normalize(train_x, val_x, test_x):
 ```
 ## Classifying Metals and Non-Metals
 
-The first supervised learning problem we will examine is discriminating between materials with a bangap that is zero (i.e. metals) and materials with a bandgap that is nonzero (i.e. insulators). We will start by creating a vector of $y$ values with values of $\pm 1$ indicating whether a material is a metal or nonmetal:
+The first supervised learning problem we will examine is discriminating between materials with a bandgap that is zero (i.e. metals) and materials with a bandgap that is nonzero (i.e. insulators). We will start by creating a vector of $y$ values with values of $\pm 1$ indicating whether a material is a metal or nonmetal:
 
 ```{code-cell}
 metals_y = np.array([ 1.0 if y[0] <= 0 else -1 for y in data_y])
@@ -408,7 +408,7 @@ test RMSE/stddev:  0.38525067990691425
 
 :::{dropdown} Exercise 1: Classifying Direct vs. Indirect Bandgaps
 
-Let's apply the same techniques we used to classify metalllic versus insulating materials to estimate whether a bandgapped material has a direct or indirect bandgap. We can exract the $\mathbf{x}$ and $y$ dataset for this task using the following code:
+Let's apply the same techniques we used to classify metallic versus insulating materials to estimate whether a bandgapped material has a direct or indirect bandgap. We can extract the $\mathbf{x}$ and $y$ dataset for this task using the following code:
 
 ```
 direct_gap_x = data_x[data_y[:,0] > 0]
