@@ -58,7 +58,7 @@ Here's a summary of the different features included in the dataset:
 * _Substrate_: Substrate the sample was deposited on (if any).
 * _DOI_: DOI of paper that data was extracted from.
 
-In this section, we will try to attempt to precict any superconductor properties; rather, we will aim to extract insight from this dataset by applying clustering and distribution estimation models.
+In this section, we will not attempt to predict any superconductor properties; instead, we will aim to extract insight from this dataset by applying clustering and distribution estimation models.
 
 ## Preprocessing Data
 
