@@ -53,6 +53,12 @@ You can access the slides for the workshop below:
 * Day 6: [Introduction to ML | Supervised Learning](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%206.slides.html)
 
 * Day 7: [Advanced Regression Models](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%207.slides.html)
+
+* Day 8: [Unsupervised Learning](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%208.slides.html)
+
+* Day 9: [Neural Networks](https://cburdine.github.io/materials-ml-workshop/slides_notebooks/Day%209.slides.html)
+
+
 ## Table of Contents
 
 ```{tableofcontents}
