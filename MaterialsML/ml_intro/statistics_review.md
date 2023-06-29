@@ -62,7 +62,7 @@ $$p(x) = p^{x} (1-p)^{N-x} \binom{N}{x} = p^x (1-p)^{N-x} \left[ \frac{N!}{x!(N-
 
 :::{Note}
 
-We emphasize that $p(x)$ is not the same as $p$. $p$ is the probability of success within any single, intedpendent trial (experiment), so that $(1-p)$ is the probability of failure in any trial. We interpret $p(x)$ as the probability that in a set of $N$ trials, exactly $x$ trials are successful, and $N-x$ trials are failures.
+We emphasize that $p(x)$ is not the same as $p$. $p$ is the probability of success within any single, independent trial (experiment), so that $(1-p)$ is the probability of failure in any trial. We interpret $p(x)$ as the probability that in a set of $N$ trials, exactly $x$ trials are successful, and $N-x$ trials are failures.
 :::
 
 Let's write some Python code to visualize a Binomial distribution. We can compute the probability distribution by hand, or we can use the [`scipy.stats.binom.pmf`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html) function:
