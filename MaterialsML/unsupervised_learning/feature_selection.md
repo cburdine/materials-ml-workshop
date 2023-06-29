@@ -96,7 +96,7 @@ Examining the correlation matrix, we see strong positive correlation between $x_
 In supervised learning (where the dataset contains $(\mathbf{x},y)$ pairs, not just $\mathbf{x}$ values) the correlation matrix and also be used to quantify the linear relationship between features and the output label $y$. This is done by 
 simply appending the corresponding $y$ to the end of each $\mathbf{x}$, normalizing this vector, and then computing the correlation matrix.
 
-The values in ths matrix that correspond to the correlation of $y$ with each feature in $\mathbf{x}$ can be used to reduce the dimensionality of the $\mathbf{x}$ data. Specifically, features with the weakest correlation with $y$ can be dropped, resuling in a much smaller feature vector. Since the dropped features had low correlation with $y$, it is likely that it will not cause a drop in model accuracy. In fact, this will sometimes result an increase in model accuracy.
+The values in this matrix that correspond to the correlation of $y$ with each feature in $\mathbf{x}$ can be used to reduce the dimensionality of the $\mathbf{x}$ data. Specifically, features with the weakest correlation with $y$ can be dropped, resulting in a much smaller feature vector. Since the dropped features had low correlation with $y$, it is likely that it will not cause a drop in model accuracy. In fact, this will sometimes result an increase in model accuracy.
 :::
 ## Principal Components Analysis
 
