@@ -138,3 +138,5 @@ A _standard feed-forward neural network_ is a simple kind of neural network that
 By composing the equations for the hidden layer inside the equation for the output layer, we obtain the final model equation for a standard feed-forward neural network:
 
 $$f(\mathbf{x}) = \sigma\left( \mathbf{V}\underline{\sigma\left(\mathbf{W}\underline{\mathbf{x}}\right)} \right)$$
+
+
