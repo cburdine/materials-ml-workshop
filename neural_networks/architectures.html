@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Types of Neural Network Models &#8212; Materials + Machine Learning</title>
+    <title>Neural Network Architectures &#8212; Materials + Machine Learning</title>
   
   
   
@@ -68,6 +68,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'neural_networks/architectures';</script>
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -229,7 +231,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="neural_networks.html">Neural Networks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="training.html">Training Neural Networks</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Types of Neural Network Models</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Neural Network Architectures</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
@@ -403,7 +405,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -414,11 +418,21 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Types of Neural Network Models</h1>
+    <h1>Neural Network Architectures</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-neural-networks">Convolutional Neural Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recurrent-neural-networks">Recurrent Neural Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">Autoencoders</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -428,8 +442,247 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="types-of-neural-network-models">
-<h1>Types of Neural Network Models<a class="headerlink" href="#types-of-neural-network-models" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="neural-network-architectures">
+<h1>Neural Network Architectures<a class="headerlink" href="#neural-network-architectures" title="Permalink to this heading">#</a></h1>
+<p>In neural networks, the layers of neurons can be arranged in many different ways in order to serve a particular purpose or to solve a particular kind of supervised (or even unsupervised) learning problem. These canonical designs for neural networks are called <em>neural network architectures</em>. In this section, we will briefly explore various neural network architectures. In the previous section, we build an example of a standard feed-forward neural network with two layers: a hidden layer (also called the <em>feature layer</em> because it extracts features from the data) followed by a densely connected layer that aggregates these features and produces an output. We can summarize this network architecture as follows:</p>
+<p><img alt="ffnn" src="../_images/ffnn.svg" /></p>
+<p>In this section, we will explore some additional neural network architectures that are useful for solving specific problems, such as making predictions from images, sequences of data, or for detecting anomalies.</p>
+<section id="convolutional-neural-networks">
+<h2>Convolutional Neural Networks<a class="headerlink" href="#convolutional-neural-networks" title="Permalink to this heading">#</a></h2>
+<p>Convolutional neural networks (CNNs) are the most popular neural network architecture in the area of <em>computer vision</em>, which deals with models that extract features and generate predictions from images. In materials science, CNNs have been applied successfully in the area of analyzing images of macroscopic surface defects, analyzing atomic force microscope images, and classifying molecular orbitals. CNNs can work with 1D images (i.e. sequences of fixed length), 2D images, and even 3D images.</p>
+<p>Recall that an image can be represented as matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> of grayscale values from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(1\)</span>, or even a matrix of RGB (red/blue/green) vectors for each pixel. In order to extract features from an image, a CNN learns a series of <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">convolution matrices</a> <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>, which are passed over the image in order to extract features from it. These convolution filters are used by the network to extract edges, shapes and other features from an image.</p>
+<p><img alt="CNN overview" src="../_images/cnn.svg" /></p>
+<p>Applying a convolution filter to an image involves treating the filter as a &quot;sliding window&quot; over the image, where the entries of the filter are multiplied by the corresponding values in the image and added together. After the convolution filter, a non-linear activation <span class="math notranslate nohighlight">\(\sigma(x)\)</span> is often applied to the resulting scalar value. The convolution matrix is moved and then applied along each row and column of the image with fixed step size. This step size is called the <em>stride</em>. Here, we will denote the row and column stride as <span class="math notranslate nohighlight">\(s_r\)</span> and <span class="math notranslate nohighlight">\(s_c\)</span> respectively. The results of each application of the convolution filter <span class="math notranslate nohighlight">\(|mathbf{k}\)</span> can then be combined into a smaller &quot;image of features&quot; <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the entries of which are given by:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{A}_{n,m} = \sigma\left(\sum_{i,j} \mathbf{K}_{i,j} \cdot \mathbf{X}_{(i+s_yn), (j+s_xm)}\right)\]</div>
+<p>Typically, <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has a slightly smaller size than the input image <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, since the stride is often set to be greater than <span class="math notranslate nohighlight">\(1\)</span>. Since the purpose of a convolutional neural network is to extract features, the image must be eventually reduced in size to a single vector of features. To further reduce the size of the image, it is customary to apply <em>Max Pooling</em> to each &quot;feature image&quot; <span class="math notranslate nohighlight">\(|mathbf{A}\)</span>. This is done by building a smaller &quot;feature image&quot; <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> from <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> where each element in <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is the maximum value in a small square region of elements in <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. Specifically, if <span class="math notranslate nohighlight">\(m\times n\)</span> max pooling is applied to <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, the resulting entries of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> are computed as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{B} = \text{Maxpool}_{(k\times k)}(\mathbf{A})\quad \Rightarrow\quad  \mathbf{B}_{n,m} = \max\limits_{\substack{(n-1)k~&lt;~i~\le~nk \\  (m-1)k~&lt;~j~\le~mk}} \left( \mathbf{A}_{ij} \right)\end{split}\]</div>
+<p>When building a CNN, one typically uses alternating layers of convolution (followed by an activation function) and max pooling. Below, we give one detailed example of the layers of a small CNN used to deistinguish between images of 10 classes:</p>
+<p><img alt="CNN example" src="../_images/cnn_example.svg" /></p>
+<p>We can implement this model using Pytorch as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+
+<span class="k">class</span> <span class="nc">Conv2DNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Conv2DNet</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Flatten the tensor to a 1D array</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we create an instance of this model an verify the output shape is correct:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage</span>
+<span class="n">input_channels</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># the number of channels is usually 3 in an R-G-B color image</span>
+<span class="n">input_height</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># the height of the input image (in pixels)</span>
+<span class="n">input_width</span> <span class="o">=</span> <span class="mi">20</span>   <span class="c1"># the width of the input imahe (in pixels)</span>
+<span class="n">num_classes</span> <span class="o">=</span> <span class="mi">10</span>   <span class="c1"># number of classes to predict from</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>    <span class="c1"># batch size of the model</span>
+
+<span class="c1"># Create a random input tensor</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">input_channels</span><span class="p">,</span> <span class="n">input_height</span><span class="p">,</span> <span class="n">input_width</span><span class="p">)</span>
+
+<span class="c1"># Create an instance of the 2D convolutional neural network</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Conv2DNet</span><span class="p">(</span><span class="n">num_classes</span><span class="p">)</span>
+
+<span class="c1"># Forward pass</span>
+<span class="n">output_tensor</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+
+<span class="c1"># Print the output tensor shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output shape:&#39;</span><span class="p">,</span> <span class="n">output_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output shape: torch.Size([32, 10])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recurrent-neural-networks">
+<h2>Recurrent Neural Networks<a class="headerlink" href="#recurrent-neural-networks" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Recurrent_neural_network"><em>Recurrent neural networks</em> (RNNs)</a> are a type of neural network architecture used for learning from sequences of data. These sequences may even be of a varying length. An RNN  has a special sequence of layers called the <em>recurrent unit</em>, which passes a hidden state vector from one element in the sequence to the next. RNNs usually output a vector of features corresponding the entire sequence, though they can also be used for tasks such as sequence-to-sequence mapping. RNNs are a popular choice for problems such as forecasting time-series data or translating and analyzing text. An RNN typically consists of three parts: layers for extracing featuers from data, the recurrent unit, and a sequence of dense layers used for computing an output. We can visualize an RNN architecture in one of two equivalent ways: the &quot;folded&quot; view and the &quot;unfolded&quot; view, as shown below:</p>
+<p><img alt="RNN overview" src="../_images/rnn_fold.svg" /></p>
+<p>There are a few different types of recurrent units using in RNNs, though the most popular are <a class="reference external" href="https://en.wikipedia.org/wiki/Long_short-term_memory"><em>long short-term memory</em> (LSTM)</a> units and <a class="reference external" href="https://en.wikipedia.org/wiki/Gated_recurrent_unit"><em>gated recurrent units</em> (GRUs)</a>. The LSTM recurrent unit contains many weights that are used to propagate features from one cell to the next. Specifically, it has both a <em>hidden state vector</em> <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> and a <em>cell state vector</em> <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> that is passed between cells in the &quot;unfolded&quot; view of the network:</p>
+<p><img alt="LSTM RMM" src="../_images/rnn_lstm.svg" /></p>
+<p>However, we note that it is more technically correct to say that the information is passed back into the recurrent unit itself, along with the features extracted from the next element in the sequence. This idea is captured in the equivalent &quot;folded&quot; view of the RNN. We will not dicuss the details of how RNNs, and specifically their recurrent units function, as they are quite complicated. Fortunately, this complexity is abstracted away in Pytorch's <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.RNN.html"><code class="docutils literal notranslate"><span class="pre">torch.nn.RNN</span></code></a> layer, which we can use to construct a basic recurrent neural network:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="n">num_layers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">h0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h0</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below, we give a basic example of how this model can be invoked:</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage</span>
+<span class="n">input_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">num_layers</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">output_size</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">sequence_length</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># Create a random input tensor</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span>
+
+<span class="c1"># Create an instance of the recurrent neural network</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+
+<span class="c1"># Forward pass</span>
+<span class="n">output_tensor</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+
+<span class="c1"># Print the output tensor shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output shape:&#39;</span><span class="p">,</span> <span class="n">output_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output shape: torch.Size([8, 5])
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="autoencoders">
+<h2>Autoencoders<a class="headerlink" href="#autoencoders" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Autoencoder</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">reduced_size</span><span class="p">,</span> <span class="n">encoding_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Autoencoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">relu</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">()</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">reduced_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">reduced_size</span><span class="p">,</span> <span class="n">encoding_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">encoding_size</span><span class="p">,</span> <span class="n">reduced_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decoder_2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">reduced_size</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">x_reduced</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoder_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">encoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">self</span><span class="o">.</span><span class="n">encoder_2</span><span class="p">(</span><span class="n">x_reduced</span><span class="p">)</span>
+        <span class="n">x_expanded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decoder_1</span><span class="p">(</span><span class="n">encoded</span><span class="p">))</span>
+        <span class="n">decoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_2</span><span class="p">(</span><span class="n">x_expanded</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">decoded</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example usage</span>
+<span class="n">input_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">reduced_size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">encoding_size</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="c1"># Create a random input tensor</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">input_size</span><span class="p">)</span>
+
+<span class="c1"># Create an instance of the autoencoder neural network</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Autoencoder</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">reduced_size</span><span class="p">,</span> <span class="n">encoding_size</span><span class="p">)</span>
+
+<span class="c1"># Forward pass</span>
+<span class="n">output_tensor</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+
+<span class="c1"># Print the output tensor shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Autoencoder</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">reduced_size</span><span class="p">,</span> <span class="n">encoding_size</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Forward pass</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">output_tensor</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># Print the output tensor shape</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1501,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1496</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1497</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1498</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1499</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1500</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1501</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1502</span> <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1503</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">Cell In[5], line 13,</span> in <span class="ni">Autoencoder.forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">x_reduced</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encoder_1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="ne">---&gt; </span><span class="mi">13</span>     <span class="n">encoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">self</span><span class="o">.</span><span class="n">encoder_2</span><span class="p">(</span><span class="n">x_reduced</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">x_expanded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decoder_1</span><span class="p">(</span><span class="n">encoded</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">decoded</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decoder_2</span><span class="p">(</span><span class="n">x_expanded</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1614,</span> in <span class="ni">Module.__getattr__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1612</span>     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1613</span>         <span class="k">return</span> <span class="n">modules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">1614</span> <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39; object has no attribute &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1615</span>     <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+
+<span class="ne">AttributeError</span>: &#39;Autoencoder&#39; object has no attribute &#39;self&#39;
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -490,6 +743,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutional-neural-networks">Convolutional Neural Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recurrent-neural-networks">Recurrent Neural Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoencoders">Autoencoders</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -1,0 +1,71 @@
+Traceback (most recent call last):
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Example usage
+input_size = 10
+reduced_size = 8
+encoding_size = 5
+batch_size = 32
+
+# Create a random input tensor
+input_tensor = torch.randn(batch_size, input_size)
+
+# Create an instance of the autoencoder neural network
+model = Autoencoder(input_size, reduced_size, encoding_size)
+
+# Forward pass
+output_tensor = model(input_tensor)
+
+# Print the output tensor shape
+print(output_tensor.shape)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [0;32mIn[6], line 14[0m
+[1;32m     11[0m model [38;5;241m=[39m Autoencoder(input_size, reduced_size, encoding_size)
+[1;32m     13[0m [38;5;66;03m# Forward pass[39;00m
+[0;32m---> 14[0m output_tensor [38;5;241m=[39m [43mmodel[49m[43m([49m[43minput_tensor[49m[43m)[49m
+[1;32m     16[0m [38;5;66;03m# Print the output tensor shape[39;00m
+[1;32m     17[0m [38;5;28mprint[39m(output_tensor[38;5;241m.[39mshape)
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1501[0m, in [0;36mModule._call_impl[0;34m(self, *args, **kwargs)[0m
+[1;32m   1496[0m [38;5;66;03m# If we don't have any hooks, we want to skip the rest of the logic in[39;00m
+[1;32m   1497[0m [38;5;66;03m# this function, and just call forward.[39;00m
+[1;32m   1498[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m ([38;5;28mself[39m[38;5;241m.[39m_backward_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m[38;5;241m.[39m_backward_pre_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m[38;5;241m.[39m_forward_hooks [38;5;129;01mor[39;00m [38;5;28mself[39m[38;5;241m.[39m_forward_pre_hooks
+[1;32m   1499[0m         [38;5;129;01mor[39;00m _global_backward_pre_hooks [38;5;129;01mor[39;00m _global_backward_hooks
+[1;32m   1500[0m         [38;5;129;01mor[39;00m _global_forward_hooks [38;5;129;01mor[39;00m _global_forward_pre_hooks):
+[0;32m-> 1501[0m     [38;5;28;01mreturn[39;00m [43mforward_call[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m   1502[0m [38;5;66;03m# Do not call functions when jit is used[39;00m
+[1;32m   1503[0m full_backward_hooks, non_full_backward_hooks [38;5;241m=[39m [], []
+
+Cell [0;32mIn[5], line 13[0m, in [0;36mAutoencoder.forward[0;34m(self, x)[0m
+[1;32m     11[0m [38;5;28;01mdef[39;00m [38;5;21mforward[39m([38;5;28mself[39m, x):
+[1;32m     12[0m     x_reduced [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mrelu([38;5;28mself[39m[38;5;241m.[39mencoder_1(x))
+[0;32m---> 13[0m     encoded [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mself[49m[38;5;241m.[39mencoder_2(x_reduced)
+[1;32m     14[0m     x_expanded [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mrelu([38;5;28mself[39m[38;5;241m.[39mdecoder_1(encoded))
+[1;32m     15[0m     decoded [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mdecoder_2(x_expanded)
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1614[0m, in [0;36mModule.__getattr__[0;34m(self, name)[0m
+[1;32m   1612[0m     [38;5;28;01mif[39;00m name [38;5;129;01min[39;00m modules:
+[1;32m   1613[0m         [38;5;28;01mreturn[39;00m modules[name]
+[0;32m-> 1614[0m [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m([38;5;124m"[39m[38;5;124m'[39m[38;5;132;01m{}[39;00m[38;5;124m'[39m[38;5;124m object has no attribute [39m[38;5;124m'[39m[38;5;132;01m{}[39;00m[38;5;124m'[39m[38;5;124m"[39m[38;5;241m.[39mformat(
+[1;32m   1615[0m     [38;5;28mtype[39m([38;5;28mself[39m)[38;5;241m.[39m[38;5;18m__name__[39m, name))
+
+[0;31mAttributeError[0m: 'Autoencoder' object has no attribute 'self'
+

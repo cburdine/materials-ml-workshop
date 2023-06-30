@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Neural Networks &#8212; Materials + Machine Learning</title>
+    <title>Application: Predicting Structure from X-ray Diffraction &#8212; Materials + Machine Learning</title>
   
   
   
@@ -68,12 +68,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'neural_networks/neural_networks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'neural_networks/conv_models';</script>
     <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic Neural Networks" href="basics.html" />
-    <link rel="prev" title="Application: Classifying Superconductors" href="../unsupervised_learning/unsupervised_applications.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,7 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -226,7 +224,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Neural Networks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="training.html">Training Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="architectures.html">Neural Network Architectures</a></li>
@@ -304,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/cburdine/materials-ml-workshop/issues/new?title=Issue%20on%20page%20%2Fneural_networks/neural_networks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cburdine/materials-ml-workshop/issues/new?title=Issue%20on%20page%20%2Fneural_networks/conv_models.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -334,7 +332,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/neural_networks/neural_networks.md" target="_blank"
+      <li><a href="../_sources/neural_networks/conv_models.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -403,9 +401,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -416,21 +412,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Neural Networks</h1>
+    <h1>Application: Predicting Structure from X-ray Diffraction</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-applications-of-neural-networks">General Applications of Neural Networks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-and-materials-science">Neural Networks and Materials Science:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges">Challenges</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -440,26 +426,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks">
-<h1>Neural Networks<a class="headerlink" href="#neural-networks" title="Permalink to this heading">#</a></h1>
-<p>So far, we have encountered supervised models such as linear regression, decision trees, kernel machines, etc. While these models have the benefit of being interpretable, some of them may fail to perform well on datasets that are exceptionally large or complex (i.e. having a significant degree of non-linearity). For these large or complex datasets, only models with a significant degree of flexibility may yield the kind of discriminative capability needed to obtain high accuracy. In this section we will learn about one of the most flexible kind of non-linear model: <em>neural networks</em>.</p>
-<p><img alt="Simple Neural Network" src="../_images/simple_nn_overview.svg" /></p>
-<p>Neural networks are a class of machine learning models inspired by the structure and functioning of neurons in the brains of living organisms. They are designed to recognize patterns and relationships within complex datasets and make predictions or decisions based on that information. At their core, neural networks consist of interconnected nodes (i.e. neurons), organized into sequential layers layers. The most common type of neural network is called a <em>feed-forward neural network</em>. It consists of an input layer, one or more hidden layers, and an output layer. Each neuron in a layer is connected to neurons in the subsequent layer, and these connections are associated with weights.</p>
-<section id="general-applications-of-neural-networks">
-<h2>General Applications of Neural Networks<a class="headerlink" href="#general-applications-of-neural-networks" title="Permalink to this heading">#</a></h2>
-<p>Neural networks are capable of learning complex representations and capturing intricate relationships in the data. They can handle a wide variety of tasks, including image and speech recognition, natural language processing, and time series analysis. The power of neural networks lies in their ability to automatically extract meaningful features from raw data, enabling them to generalize well to unseen examples.</p>
-<p>Over the years, neural network architectures have evolved to address specific challenges. Some notable network architectures include <em>convolutional neural networks</em> (CNNs) for image processing, <em>recurrent neural networks</em> (RNNs) for sequence data, and <em>graph neural networks</em> for making predictions based on <em>graphs</em>, which are networks of data points connected by labeled edges. These specialized architectures have significantly advanced the fields of computer vision and natural language processing and have also been used to solve difficult problems in  many scientific fields.</p>
-</section>
-<section id="neural-networks-and-materials-science">
-<h2>Neural Networks and Materials Science:<a class="headerlink" href="#neural-networks-and-materials-science" title="Permalink to this heading">#</a></h2>
-<p>In Materials Science, neural networks a becoming an important tool used for predicting material properties in the absence of a comprehensive theory that relates a material's atomic structure to the properties its exhibits. Currently, neural networks are being employed to design novel materials with desired properties, screen large materials databases, and to provide a high-throughput alternative to computationally inefficient methods used for computing material properties, such as Density Functional Theory (DFT).</p>
-</section>
-<section id="challenges">
-<h2>Challenges<a class="headerlink" href="#challenges" title="Permalink to this heading">#</a></h2>
-<p>Neural networks have gained immense popularity due to their remarkable performance in various domains. However, they also come with challenges such as the need for large labeled datasets, computational resources, and the potential for overfitting. Nonetheless, their versatility and ability to learn from data make them a fundamental tool in modern data-driven science, especially in fields such as materials science.</p>
-</section>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="application-predicting-structure-from-x-ray-diffraction">
+<h1>Application: Predicting Structure from X-ray Diffraction<a class="headerlink" href="#application-predicting-structure-from-x-ray-diffraction" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -493,24 +461,6 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../unsupervised_learning/unsupervised_applications.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Application: Classifying Superconductors</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="basics.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic Neural Networks</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
@@ -520,22 +470,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-applications-of-neural-networks">General Applications of Neural Networks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-and-materials-science">Neural Networks and Materials Science:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#challenges">Challenges</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
