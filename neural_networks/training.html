@@ -234,7 +234,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="architectures.html">Neural Network Architectures</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -449,10 +452,10 @@ document.write(`
 <p>Since both packages serve roughly the same purpose, you only need to become familiar with one or the other. <a class="reference external" href="https://pytorch.org/">Pytorch</a> is more commonly used in academic research, as it is easier to learn and integrates very well with the Python programming language. On the other hand, <a class="reference external" href="https://www.tensorflow.org/">Tensorflow</a> is more commonly used in industry due the fact that it integrates well across different platforms and programming languages. In this workshop, we will use Pytorch due to its popularity in the research community.</p>
 <section id="review-gradient-descent">
 <h2>Review: Gradient Descent<a class="headerlink" href="#review-gradient-descent" title="Permalink to this heading">#</a></h2>
-<p>The most effective way of fitting neural networks to data is via the method of <em>gradient descent</em>, which makes iterative adjustments to the weights of the model in order to decrease the model loss function <span class="math notranslate nohighlight">\(\mathcal{E}(f)\)</span>. As we learned in the <a class="reference internal" href="../supervised_learning/fitting_models.html"><span class="doc">Fitting Supervised Models</span></a> section, this is done by adjusting the weights in the direction of <span class="math notranslate nohighlight">\(-\nabla_w \mathcal{E}(f)\)</span>, which is a vector of weight adjustments that &quot;points&quot; in the direction of greatest decrease of <span class="math notranslate nohighlight">\(\mathcal{E}(f)\)</span>. Specifically, for a weight configuration at timestep <span class="math notranslate nohighlight">\(t\)</span>, the updated weight configuration in timestep <span class="math notranslate nohighlight">\(t+1\)</span> is computed according to</p>
+<p>The most effective way of fitting neural networks to data is via the method of <em>gradient descent</em>, which makes iterative adjustments to the weights of the model in order to decrease the model loss function <span class="math notranslate nohighlight">\(\mathcal{E}(f)\)</span>. As we learned in the <a class="reference internal" href="../supervised_learning/fitting_models.html"><span class="doc">Fitting Supervised Models</span></a> section, this is done by adjusting the weights in the direction of <span class="math notranslate nohighlight">\(-\nabla_w \mathcal{E}(f)\)</span>, which is a vector of weight adjustments that “points” in the direction of greatest decrease of <span class="math notranslate nohighlight">\(\mathcal{E}(f)\)</span>. Specifically, for a weight configuration at timestep <span class="math notranslate nohighlight">\(t\)</span>, the updated weight configuration in timestep <span class="math notranslate nohighlight">\(t+1\)</span> is computed according to</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{w}^{(t+1)} = \mathbf{w}^{(t)} + \eta \frac{-\nabla_w \mathcal{E}(f)}{\lVert{-\nabla_w \mathcal{E}(f)}\rVert},\]</div>
-<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is a constant called the <em>learning rate</em>. It determines the size of the weight adjustment during each timestep. Recall that if <span class="math notranslate nohighlight">\(\eta\)</span> is set too high, the model loss <span class="math notranslate nohighlight">\(\mathcal{E}(f)\)</span> may &quot;overstep&quot; a local minimum between timesteps; however, if <span class="math notranslate nohighlight">\(\eta\)</span> is set too small than the model may take a very long time to converge.</p>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is a constant called the <em>learning rate</em>. It determines the size of the weight adjustment during each timestep. Recall that if <span class="math notranslate nohighlight">\(\eta\)</span> is set too high, the model loss <span class="math notranslate nohighlight">\(\mathcal{E}(f)\)</span> may “overstep” a local minimum between timesteps; however, if <span class="math notranslate nohighlight">\(\eta\)</span> is set too small than the model may take a very long time to converge.</p>
 </section>
 <section id="backpropagation-and-neural-networks">
 <h2>Backpropagation and Neural Networks<a class="headerlink" href="#backpropagation-and-neural-networks" title="Permalink to this heading">#</a></h2>
@@ -464,8 +467,8 @@ document.write(`
 </section>
 <section id="batch-gradient-descent">
 <h2>Batch Gradient Descent<a class="headerlink" href="#batch-gradient-descent" title="Permalink to this heading">#</a></h2>
-<p>Sometimes, our dataset may be too large to compute <span class="math notranslate nohighlight">\(\nabla_w \mathcal{E}(f)\)</span> across all <span class="math notranslate nohighlight">\((\mathbf{x}_n, y_n)\)</span> pairs for each time step of gradient descent. One solution to this is to randomly split the dataset into &quot;chunks&quot; of a fixed size and perform gradient-based weight updates on each chunk of the dataset. These fixed-size chunks of data are usually referred to as <em>batches</em>, and their size is called the <em>batch size</em>.</p>
-<p>The number of steps that have elapsed while fitting a neural to network to a large dataset is often measured in <em>epochs</em>. During each epoch, the model iterates over each batch in the dataset, evaluates the loss on the batch, and updates the model weights. In other words, the number of epochs that have passed while training the model indicates how many times the model has &quot;seen&quot; each example in the dataset. This process of performing gradient descent on batches of data is called <em>batch gradient descent</em>. Below, we give a brief summary of this is typically done:</p>
+<p>Sometimes, our dataset may be too large to compute <span class="math notranslate nohighlight">\(\nabla_w \mathcal{E}(f)\)</span> across all <span class="math notranslate nohighlight">\((\mathbf{x}_n, y_n)\)</span> pairs for each time step of gradient descent. One solution to this is to randomly split the dataset into “chunks” of a fixed size and perform gradient-based weight updates on each chunk of the dataset. These fixed-size chunks of data are usually referred to as <em>batches</em>, and their size is called the <em>batch size</em>.</p>
+<p>The number of steps that have elapsed while fitting a neural to network to a large dataset is often measured in <em>epochs</em>. During each epoch, the model iterates over each batch in the dataset, evaluates the loss on the batch, and updates the model weights. In other words, the number of epochs that have passed while training the model indicates how many times the model has “seen” each example in the dataset. This process of performing gradient descent on batches of data is called <em>batch gradient descent</em>. Below, we give a brief summary of this is typically done:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li><p>Randomly shuffle the data and partition it into batches of a fixed size.</p></li>
@@ -478,11 +481,11 @@ document.write(`
 </section>
 <section id="basic-feed-forward-network-with-pytorch">
 <h2>Basic Feed-Forward Network with Pytorch<a class="headerlink" href="#basic-feed-forward-network-with-pytorch" title="Permalink to this heading">#</a></h2>
-<p>In the previous section, we learned about a standard feed-forward neural network, which consists of two layers of neurons: a hidden layer containing many neurons followed by an output layer containing the same number of neurons as the output vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> to be predicted. To give a basic example of how this neural network can be implemented in Pytorch, let's fit a neural  neural network <span class="math notranslate nohighlight">\(f(\mathbf{x}): \mathbb{R}^2 \rightarrow \mathbb{R}\)</span> to the following function:</p>
+<p>In the previous section, we learned about a standard feed-forward neural network, which consists of two layers of neurons: a hidden layer containing many neurons followed by an output layer containing the same number of neurons as the output vector <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> to be predicted. To give a basic example of how this neural network can be implemented in Pytorch, let’s fit a neural  neural network <span class="math notranslate nohighlight">\(f(\mathbf{x}): \mathbb{R}^2 \rightarrow \mathbb{R}\)</span> to the following function:</p>
 <div class="math notranslate nohighlight">
 \[y = g(\mathbf{x}) = \frac{\sin\left(\sqrt{x_1^2 + x_2^2}\right)}{\sqrt{x_1^2 + x_2^2}}\]</div>
 <p>(We plotted this function earlier in the <a class="reference internal" href="../data_vis/data_vis.html"><span class="doc">Data Visualization with Matplotlib</span></a> section.)</p>
-<p>To begin, let's import Pytorch and write a <code class="docutils literal notranslate"><span class="pre">FeedForwardNN</span></code> class that represents a standard feed-forward neural network. This class will inherit from <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html"><code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>, a class which represents a Pytorch-compatible model. Since the function <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> above has <span class="math notranslate nohighlight">\(y\)</span> bounded from <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(+1\)</span> we will use the <a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions#Exponential_definitions">hyperbolic tangent</a> activation function (<span class="math notranslate nohighlight">\(\sigma(x) = \tanh(x)\)</span>) for the hidden and output layers:</p>
+<p>To begin, let’s import Pytorch and write a <code class="docutils literal notranslate"><span class="pre">FeedForwardNN</span></code> class that represents a standard feed-forward neural network. This class will inherit from <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.Module.html"><code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code></a>, a class which represents a Pytorch-compatible model. Since the function <span class="math notranslate nohighlight">\(g(\mathbf{x})\)</span> above has <span class="math notranslate nohighlight">\(y\)</span> bounded from <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(+1\)</span> we will use the <a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions#Exponential_definitions">hyperbolic tangent</a> activation function (<span class="math notranslate nohighlight">\(\sigma(x) = \tanh(x)\)</span>) for the hidden and output layers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
@@ -679,7 +682,7 @@ data_y shape: (2500, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ab8fb928d1bba40b87cecf2714cdbbc727e0edc468221bb5ceb8ff6a7864d61f.png" src="../_images/ab8fb928d1bba40b87cecf2714cdbbc727e0edc468221bb5ceb8ff6a7864d61f.png" />
+<img alt="../_images/e2b3d80628580a86a1a0dd43b9fc7fb48f8cb15668949c56131ef3514f5e9dc1.png" src="../_images/e2b3d80628580a86a1a0dd43b9fc7fb48f8cb15668949c56131ef3514f5e9dc1.png" />
 </div>
 </div>
 <p>From inspecting the plot, we can see that the mean square error has converged to a value close to <span class="math notranslate nohighlight">\(0\)</span>. Using the following code, we can visualize how well the prediction surface of the neural network (<span class="math notranslate nohighlight">\(\hat{y}\)</span>) compares with the actual function is was fit to:</p>
@@ -721,7 +724,7 @@ data_y shape: (2500, 1)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/900ab1a9a87af775294e71f27def23811db44fe7c311bf5e4540ab59980864f6.png" src="../_images/900ab1a9a87af775294e71f27def23811db44fe7c311bf5e4540ab59980864f6.png" />
+<img alt="../_images/1f0b9a948eea2babd8328564aedfa046c36550b0745fdf866f4dcb2625e81068.png" src="../_images/1f0b9a948eea2babd8328564aedfa046c36550b0745fdf866f4dcb2625e81068.png" />
 </div>
 </div>
 </section>

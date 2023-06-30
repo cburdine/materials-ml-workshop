@@ -15,56 +15,19 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from mp_api.client import MPRester
-import os
-import pymatgen as pmg
-
-from ase.io import write
-
-MPID = 'mp-20674' # Materials Project ID number
-
-"""
-  The 'with ...' statement defines an MPRester code block. Subsequent
-  indented statements belong to the code block, and the object mpr
-  may be used within the code block.
-"""
 with MPRester(MP_API_KEY) as mpr:
-    # Get only the structure for YBa2Cu3O7
-    structure = mpr.get_structure_by_material_id(MPID)
+    docs = mpr.summary.search(elements=["Si", "O"],
+                              band_gap=(0.5, 0.75),
+                              fields=["material_id", "formula_pretty",
+                                      "band_gap"])
+
+example_doc = docs[0]
+# initial_structures = example_doc.initial_structures
 ------------------
 
------ stderr -----
-/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/mp_api/client/mprester.py:182: UserWarning: mpcontribs-client not installed. Install the package to query MPContribs data, or construct pourbaix diagrams: 'pip install mpcontribs-client'
-  warnings.warn(
-------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mgaierror[0m                                  Traceback (most recent call last)
-File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connection.py:200[0m, in [0;36mHTTPConnection._new_conn[0;34m(self)[0m
-[1;32m    199[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 200[0m     sock [38;5;241m=[39m [43mconnection[49m[38;5;241;43m.[39;49m[43mcreate_connection[49m[43m([49m
-[1;32m    201[0m [43m        [49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_dns_host[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mport[49m[43m)[49m[43m,[49m
-[1;32m    202[0m [43m        [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mtimeout[49m[43m,[49m
-[1;32m    203[0m [43m        [49m[43msource_address[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msource_address[49m[43m,[49m
-[1;32m    204[0m [43m        [49m[43msocket_options[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msocket_options[49m[43m,[49m
-[1;32m    205[0m [43m    [49m[43m)[49m
-[1;32m    206[0m [38;5;28;01mexcept[39;00m socket[38;5;241m.[39mgaierror [38;5;28;01mas[39;00m e:
-
-File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/util/connection.py:60[0m, in [0;36mcreate_connection[0;34m(address, timeout, source_address, socket_options)[0m
-[1;32m     58[0m     [38;5;28;01mraise[39;00m LocationParseError([38;5;124mf[39m[38;5;124m"[39m[38;5;124m'[39m[38;5;132;01m{[39;00mhost[38;5;132;01m}[39;00m[38;5;124m'[39m[38;5;124m, label empty or too long[39m[38;5;124m"[39m) [38;5;28;01mfrom[39;00m [38;5;28;01mNone[39;00m
-[0;32m---> 60[0m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [43msocket[49m[38;5;241;43m.[39;49m[43mgetaddrinfo[49m[43m([49m[43mhost[49m[43m,[49m[43m [49m[43mport[49m[43m,[49m[43m [49m[43mfamily[49m[43m,[49m[43m [49m[43msocket[49m[38;5;241;43m.[39;49m[43mSOCK_STREAM[49m[43m)[49m:
-[1;32m     61[0m     af, socktype, proto, canonname, sa [38;5;241m=[39m res
-
-File [0;32m/usr/lib/python3.10/socket.py:955[0m, in [0;36mgetaddrinfo[0;34m(host, port, family, type, proto, flags)[0m
-[1;32m    954[0m addrlist [38;5;241m=[39m []
-[0;32m--> 955[0m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [43m_socket[49m[38;5;241;43m.[39;49m[43mgetaddrinfo[49m[43m([49m[43mhost[49m[43m,[49m[43m [49m[43mport[49m[43m,[49m[43m [49m[43mfamily[49m[43m,[49m[43m [49m[38;5;28;43mtype[39;49m[43m,[49m[43m [49m[43mproto[49m[43m,[49m[43m [49m[43mflags[49m[43m)[49m:
-[1;32m    956[0m     af, socktype, proto, canonname, sa [38;5;241m=[39m res
-
-[0;31mgaierror[0m: [Errno -3] Temporary failure in name resolution
-
-The above exception was the direct cause of the following exception:
-
-[0;31mNameResolutionError[0m                       Traceback (most recent call last)
+[0;31mConnectionResetError[0m                      Traceback (most recent call last)
 File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connectionpool.py:790[0m, in [0;36mHTTPConnectionPool.urlopen[0;34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)[0m
 [1;32m    789[0m [38;5;66;03m# Make the request on the HTTPConnection object[39;00m
 [0;32m--> 790[0m response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_make_request[49m[43m([49m
@@ -99,21 +62,90 @@ File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.
 [0;32m-> 1092[0m     [43mconn[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
 [1;32m   1094[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m conn[38;5;241m.[39mis_verified:
 
-File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connection.py:604[0m, in [0;36mHTTPSConnection.connect[0;34m(self)[0m
-[1;32m    603[0m sock: socket[38;5;241m.[39msocket [38;5;241m|[39m ssl[38;5;241m.[39mSSLSocket
-[0;32m--> 604[0m [38;5;28mself[39m[38;5;241m.[39msock [38;5;241m=[39m sock [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_new_conn[49m[43m([49m[43m)[49m
-[1;32m    605[0m server_hostname: [38;5;28mstr[39m [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mhost
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connection.py:635[0m, in [0;36mHTTPSConnection.connect[0;34m(self)[0m
+[1;32m    627[0m     warnings[38;5;241m.[39mwarn(
+[1;32m    628[0m         (
+[1;32m    629[0m             [38;5;124mf[39m[38;5;124m"[39m[38;5;124mSystem time is way off (before [39m[38;5;132;01m{[39;00mRECENT_DATE[38;5;132;01m}[39;00m[38;5;124m). This will probably [39m[38;5;124m"[39m
+[0;32m   (...)[0m
+[1;32m    632[0m         SystemTimeWarning,
+[1;32m    633[0m     )
+[0;32m--> 635[0m sock_and_verified [38;5;241m=[39m [43m_ssl_wrap_socket_and_match_hostname[49m[43m([49m
+[1;32m    636[0m [43m    [49m[43msock[49m[38;5;241;43m=[39;49m[43msock[49m[43m,[49m
+[1;32m    637[0m [43m    [49m[43mcert_reqs[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcert_reqs[49m[43m,[49m
+[1;32m    638[0m [43m    [49m[43mssl_version[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mssl_version[49m[43m,[49m
+[1;32m    639[0m [43m    [49m[43mssl_minimum_version[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mssl_minimum_version[49m[43m,[49m
+[1;32m    640[0m [43m    [49m[43mssl_maximum_version[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mssl_maximum_version[49m[43m,[49m
+[1;32m    641[0m [43m    [49m[43mca_certs[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mca_certs[49m[43m,[49m
+[1;32m    642[0m [43m    [49m[43mca_cert_dir[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mca_cert_dir[49m[43m,[49m
+[1;32m    643[0m [43m    [49m[43mca_cert_data[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mca_cert_data[49m[43m,[49m
+[1;32m    644[0m [43m    [49m[43mcert_file[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcert_file[49m[43m,[49m
+[1;32m    645[0m [43m    [49m[43mkey_file[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mkey_file[49m[43m,[49m
+[1;32m    646[0m [43m    [49m[43mkey_password[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mkey_password[49m[43m,[49m
+[1;32m    647[0m [43m    [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m,[49m
+[1;32m    648[0m [43m    [49m[43mssl_context[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mssl_context[49m[43m,[49m
+[1;32m    649[0m [43m    [49m[43mtls_in_tls[49m[38;5;241;43m=[39;49m[43mtls_in_tls[49m[43m,[49m
+[1;32m    650[0m [43m    [49m[43massert_hostname[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43massert_hostname[49m[43m,[49m
+[1;32m    651[0m [43m    [49m[43massert_fingerprint[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43massert_fingerprint[49m[43m,[49m
+[1;32m    652[0m [43m[49m[43m)[49m
+[1;32m    653[0m [38;5;28mself[39m[38;5;241m.[39msock [38;5;241m=[39m sock_and_verified[38;5;241m.[39msocket
 
-File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connection.py:207[0m, in [0;36mHTTPConnection._new_conn[0;34m(self)[0m
-[1;32m    206[0m [38;5;28;01mexcept[39;00m socket[38;5;241m.[39mgaierror [38;5;28;01mas[39;00m e:
-[0;32m--> 207[0m     [38;5;28;01mraise[39;00m NameResolutionError([38;5;28mself[39m[38;5;241m.[39mhost, [38;5;28mself[39m, e) [38;5;28;01mfrom[39;00m [38;5;21;01me[39;00m
-[1;32m    208[0m [38;5;28;01mexcept[39;00m SocketTimeout [38;5;28;01mas[39;00m e:
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connection.py:774[0m, in [0;36m_ssl_wrap_socket_and_match_hostname[0;34m(sock, cert_reqs, ssl_version, ssl_minimum_version, ssl_maximum_version, cert_file, key_file, key_password, ca_certs, ca_cert_dir, ca_cert_data, assert_hostname, assert_fingerprint, server_hostname, ssl_context, tls_in_tls)[0m
+[1;32m    772[0m         server_hostname [38;5;241m=[39m normalized
+[0;32m--> 774[0m ssl_sock [38;5;241m=[39m [43mssl_wrap_socket[49m[43m([49m
+[1;32m    775[0m [43m    [49m[43msock[49m[38;5;241;43m=[39;49m[43msock[49m[43m,[49m
+[1;32m    776[0m [43m    [49m[43mkeyfile[49m[38;5;241;43m=[39;49m[43mkey_file[49m[43m,[49m
+[1;32m    777[0m [43m    [49m[43mcertfile[49m[38;5;241;43m=[39;49m[43mcert_file[49m[43m,[49m
+[1;32m    778[0m [43m    [49m[43mkey_password[49m[38;5;241;43m=[39;49m[43mkey_password[49m[43m,[49m
+[1;32m    779[0m [43m    [49m[43mca_certs[49m[38;5;241;43m=[39;49m[43mca_certs[49m[43m,[49m
+[1;32m    780[0m [43m    [49m[43mca_cert_dir[49m[38;5;241;43m=[39;49m[43mca_cert_dir[49m[43m,[49m
+[1;32m    781[0m [43m    [49m[43mca_cert_data[49m[38;5;241;43m=[39;49m[43mca_cert_data[49m[43m,[49m
+[1;32m    782[0m [43m    [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m,[49m
+[1;32m    783[0m [43m    [49m[43mssl_context[49m[38;5;241;43m=[39;49m[43mcontext[49m[43m,[49m
+[1;32m    784[0m [43m    [49m[43mtls_in_tls[49m[38;5;241;43m=[39;49m[43mtls_in_tls[49m[43m,[49m
+[1;32m    785[0m [43m[49m[43m)[49m
+[1;32m    787[0m [38;5;28;01mtry[39;00m:
 
-[0;31mNameResolutionError[0m: <urllib3.connection.HTTPSConnection object at 0x7f4f320218a0>: Failed to resolve 'api.materialsproject.org' ([Errno -3] Temporary failure in name resolution)
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/util/ssl_.py:459[0m, in [0;36mssl_wrap_socket[0;34m(sock, keyfile, certfile, cert_reqs, ca_certs, server_hostname, ssl_version, ciphers, ssl_context, ca_cert_dir, key_password, ca_cert_data, tls_in_tls)[0m
+[1;32m    457[0m     [38;5;28;01mpass[39;00m
+[0;32m--> 459[0m ssl_sock [38;5;241m=[39m [43m_ssl_wrap_socket_impl[49m[43m([49m[43msock[49m[43m,[49m[43m [49m[43mcontext[49m[43m,[49m[43m [49m[43mtls_in_tls[49m[43m,[49m[43m [49m[43mserver_hostname[49m[43m)[49m
+[1;32m    460[0m [38;5;28;01mreturn[39;00m ssl_sock
 
-The above exception was the direct cause of the following exception:
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/util/ssl_.py:503[0m, in [0;36m_ssl_wrap_socket_impl[0;34m(sock, ssl_context, tls_in_tls, server_hostname)[0m
+[1;32m    501[0m     [38;5;28;01mreturn[39;00m SSLTransport(sock, ssl_context, server_hostname)
+[0;32m--> 503[0m [38;5;28;01mreturn[39;00m [43mssl_context[49m[38;5;241;43m.[39;49m[43mwrap_socket[49m[43m([49m[43msock[49m[43m,[49m[43m [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m)[49m
 
-[0;31mMaxRetryError[0m                             Traceback (most recent call last)
+File [0;32m/usr/lib/python3.10/ssl.py:513[0m, in [0;36mSSLContext.wrap_socket[0;34m(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, session)[0m
+[1;32m    507[0m [38;5;28;01mdef[39;00m [38;5;21mwrap_socket[39m([38;5;28mself[39m, sock, server_side[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
+[1;32m    508[0m                 do_handshake_on_connect[38;5;241m=[39m[38;5;28;01mTrue[39;00m,
+[1;32m    509[0m                 suppress_ragged_eofs[38;5;241m=[39m[38;5;28;01mTrue[39;00m,
+[1;32m    510[0m                 server_hostname[38;5;241m=[39m[38;5;28;01mNone[39;00m, session[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m    511[0m     [38;5;66;03m# SSLSocket class handles server_hostname encoding before it calls[39;00m
+[1;32m    512[0m     [38;5;66;03m# ctx._wrap_socket()[39;00m
+[0;32m--> 513[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msslsocket_class[49m[38;5;241;43m.[39;49m[43m_create[49m[43m([49m
+[1;32m    514[0m [43m        [49m[43msock[49m[38;5;241;43m=[39;49m[43msock[49m[43m,[49m
+[1;32m    515[0m [43m        [49m[43mserver_side[49m[38;5;241;43m=[39;49m[43mserver_side[49m[43m,[49m
+[1;32m    516[0m [43m        [49m[43mdo_handshake_on_connect[49m[38;5;241;43m=[39;49m[43mdo_handshake_on_connect[49m[43m,[49m
+[1;32m    517[0m [43m        [49m[43msuppress_ragged_eofs[49m[38;5;241;43m=[39;49m[43msuppress_ragged_eofs[49m[43m,[49m
+[1;32m    518[0m [43m        [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m,[49m
+[1;32m    519[0m [43m        [49m[43mcontext[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m
+[1;32m    520[0m [43m        [49m[43msession[49m[38;5;241;43m=[39;49m[43msession[49m
+[1;32m    521[0m [43m    [49m[43m)[49m
+
+File [0;32m/usr/lib/python3.10/ssl.py:1071[0m, in [0;36mSSLSocket._create[0;34m(cls, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, context, session)[0m
+[1;32m   1070[0m             [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mdo_handshake_on_connect should not be specified for non-blocking sockets[39m[38;5;124m"[39m)
+[0;32m-> 1071[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdo_handshake[49m[43m([49m[43m)[49m
+[1;32m   1072[0m [38;5;28;01mexcept[39;00m ([38;5;167;01mOSError[39;00m, [38;5;167;01mValueError[39;00m):
+
+File [0;32m/usr/lib/python3.10/ssl.py:1342[0m, in [0;36mSSLSocket.do_handshake[0;34m(self, block)[0m
+[1;32m   1341[0m         [38;5;28mself[39m[38;5;241m.[39msettimeout([38;5;28;01mNone[39;00m)
+[0;32m-> 1342[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_sslobj[49m[38;5;241;43m.[39;49m[43mdo_handshake[49m[43m([49m[43m)[49m
+[1;32m   1343[0m [38;5;28;01mfinally[39;00m:
+
+[0;31mConnectionResetError[0m: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+[0;31mProtocolError[0m                             Traceback (most recent call last)
 File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/requests/adapters.py:486[0m, in [0;36mHTTPAdapter.send[0;34m(self, request, stream, timeout, verify, cert, proxies)[0m
 [1;32m    485[0m [38;5;28;01mtry[39;00m:
 [0;32m--> 486[0m     resp [38;5;241m=[39m [43mconn[49m[38;5;241;43m.[39;49m[43murlopen[49m[43m([49m
@@ -138,26 +170,141 @@ File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.
 [1;32m    846[0m [43m[49m[43m)[49m
 [1;32m    847[0m retries[38;5;241m.[39msleep()
 
-File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/util/retry.py:515[0m, in [0;36mRetry.increment[0;34m(self, method, url, response, error, _pool, _stacktrace)[0m
-[1;32m    514[0m     reason [38;5;241m=[39m error [38;5;129;01mor[39;00m ResponseError(cause)
-[0;32m--> 515[0m     [38;5;28;01mraise[39;00m MaxRetryError(_pool, url, reason) [38;5;28;01mfrom[39;00m [38;5;21;01mreason[39;00m  [38;5;66;03m# type: ignore[arg-type][39;00m
-[1;32m    517[0m log[38;5;241m.[39mdebug([38;5;124m"[39m[38;5;124mIncremented Retry for (url=[39m[38;5;124m'[39m[38;5;132;01m%s[39;00m[38;5;124m'[39m[38;5;124m): [39m[38;5;132;01m%r[39;00m[38;5;124m"[39m, url, new_retry)
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/util/retry.py:470[0m, in [0;36mRetry.increment[0;34m(self, method, url, response, error, _pool, _stacktrace)[0m
+[1;32m    469[0m [38;5;28;01mif[39;00m read [38;5;129;01mis[39;00m [38;5;28;01mFalse[39;00m [38;5;129;01mor[39;00m method [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m[38;5;241m.[39m_is_method_retryable(method):
+[0;32m--> 470[0m     [38;5;28;01mraise[39;00m [43mreraise[49m[43m([49m[38;5;28;43mtype[39;49m[43m([49m[43merror[49m[43m)[49m[43m,[49m[43m [49m[43merror[49m[43m,[49m[43m [49m[43m_stacktrace[49m[43m)[49m
+[1;32m    471[0m [38;5;28;01melif[39;00m read [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
 
-[0;31mMaxRetryError[0m: HTTPSConnectionPool(host='api.materialsproject.org', port=443): Max retries exceeded with url: /heartbeat (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f4f320218a0>: Failed to resolve 'api.materialsproject.org' ([Errno -3] Temporary failure in name resolution)"))
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/util/util.py:38[0m, in [0;36mreraise[0;34m(tp, value, tb)[0m
+[1;32m     37[0m [38;5;28;01mif[39;00m value[38;5;241m.[39m__traceback__ [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m tb:
+[0;32m---> 38[0m     [38;5;28;01mraise[39;00m value[38;5;241m.[39mwith_traceback(tb)
+[1;32m     39[0m [38;5;28;01mraise[39;00m value
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connectionpool.py:790[0m, in [0;36mHTTPConnectionPool.urlopen[0;34m(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)[0m
+[1;32m    789[0m [38;5;66;03m# Make the request on the HTTPConnection object[39;00m
+[0;32m--> 790[0m response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_make_request[49m[43m([49m
+[1;32m    791[0m [43m    [49m[43mconn[49m[43m,[49m
+[1;32m    792[0m [43m    [49m[43mmethod[49m[43m,[49m
+[1;32m    793[0m [43m    [49m[43murl[49m[43m,[49m
+[1;32m    794[0m [43m    [49m[43mtimeout[49m[38;5;241;43m=[39;49m[43mtimeout_obj[49m[43m,[49m
+[1;32m    795[0m [43m    [49m[43mbody[49m[38;5;241;43m=[39;49m[43mbody[49m[43m,[49m
+[1;32m    796[0m [43m    [49m[43mheaders[49m[38;5;241;43m=[39;49m[43mheaders[49m[43m,[49m
+[1;32m    797[0m [43m    [49m[43mchunked[49m[38;5;241;43m=[39;49m[43mchunked[49m[43m,[49m
+[1;32m    798[0m [43m    [49m[43mretries[49m[38;5;241;43m=[39;49m[43mretries[49m[43m,[49m
+[1;32m    799[0m [43m    [49m[43mresponse_conn[49m[38;5;241;43m=[39;49m[43mresponse_conn[49m[43m,[49m
+[1;32m    800[0m [43m    [49m[43mpreload_content[49m[38;5;241;43m=[39;49m[43mpreload_content[49m[43m,[49m
+[1;32m    801[0m [43m    [49m[43mdecode_content[49m[38;5;241;43m=[39;49m[43mdecode_content[49m[43m,[49m
+[1;32m    802[0m [43m    [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mresponse_kw[49m[43m,[49m
+[1;32m    803[0m [43m[49m[43m)[49m
+[1;32m    805[0m [38;5;66;03m# Everything went great![39;00m
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connectionpool.py:491[0m, in [0;36mHTTPConnectionPool._make_request[0;34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[0m
+[1;32m    490[0m         new_e [38;5;241m=[39m _wrap_proxy_error(new_e, conn[38;5;241m.[39mproxy[38;5;241m.[39mscheme)
+[0;32m--> 491[0m     [38;5;28;01mraise[39;00m new_e
+[1;32m    493[0m [38;5;66;03m# conn.request() calls http.client.*.request, not the method in[39;00m
+[1;32m    494[0m [38;5;66;03m# urllib3.request. It also calls makefile (recv) on the socket.[39;00m
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connectionpool.py:467[0m, in [0;36mHTTPConnectionPool._make_request[0;34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[0m
+[1;32m    466[0m [38;5;28;01mtry[39;00m:
+[0;32m--> 467[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_conn[49m[43m([49m[43mconn[49m[43m)[49m
+[1;32m    468[0m [38;5;28;01mexcept[39;00m (SocketTimeout, BaseSSLError) [38;5;28;01mas[39;00m e:
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connectionpool.py:1092[0m, in [0;36mHTTPSConnectionPool._validate_conn[0;34m(self, conn)[0m
+[1;32m   1091[0m [38;5;28;01mif[39;00m conn[38;5;241m.[39mis_closed:
+[0;32m-> 1092[0m     [43mconn[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m[43m)[49m
+[1;32m   1094[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m conn[38;5;241m.[39mis_verified:
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connection.py:635[0m, in [0;36mHTTPSConnection.connect[0;34m(self)[0m
+[1;32m    627[0m     warnings[38;5;241m.[39mwarn(
+[1;32m    628[0m         (
+[1;32m    629[0m             [38;5;124mf[39m[38;5;124m"[39m[38;5;124mSystem time is way off (before [39m[38;5;132;01m{[39;00mRECENT_DATE[38;5;132;01m}[39;00m[38;5;124m). This will probably [39m[38;5;124m"[39m
+[0;32m   (...)[0m
+[1;32m    632[0m         SystemTimeWarning,
+[1;32m    633[0m     )
+[0;32m--> 635[0m sock_and_verified [38;5;241m=[39m [43m_ssl_wrap_socket_and_match_hostname[49m[43m([49m
+[1;32m    636[0m [43m    [49m[43msock[49m[38;5;241;43m=[39;49m[43msock[49m[43m,[49m
+[1;32m    637[0m [43m    [49m[43mcert_reqs[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcert_reqs[49m[43m,[49m
+[1;32m    638[0m [43m    [49m[43mssl_version[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mssl_version[49m[43m,[49m
+[1;32m    639[0m [43m    [49m[43mssl_minimum_version[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mssl_minimum_version[49m[43m,[49m
+[1;32m    640[0m [43m    [49m[43mssl_maximum_version[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mssl_maximum_version[49m[43m,[49m
+[1;32m    641[0m [43m    [49m[43mca_certs[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mca_certs[49m[43m,[49m
+[1;32m    642[0m [43m    [49m[43mca_cert_dir[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mca_cert_dir[49m[43m,[49m
+[1;32m    643[0m [43m    [49m[43mca_cert_data[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mca_cert_data[49m[43m,[49m
+[1;32m    644[0m [43m    [49m[43mcert_file[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcert_file[49m[43m,[49m
+[1;32m    645[0m [43m    [49m[43mkey_file[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mkey_file[49m[43m,[49m
+[1;32m    646[0m [43m    [49m[43mkey_password[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mkey_password[49m[43m,[49m
+[1;32m    647[0m [43m    [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m,[49m
+[1;32m    648[0m [43m    [49m[43mssl_context[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mssl_context[49m[43m,[49m
+[1;32m    649[0m [43m    [49m[43mtls_in_tls[49m[38;5;241;43m=[39;49m[43mtls_in_tls[49m[43m,[49m
+[1;32m    650[0m [43m    [49m[43massert_hostname[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43massert_hostname[49m[43m,[49m
+[1;32m    651[0m [43m    [49m[43massert_fingerprint[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43massert_fingerprint[49m[43m,[49m
+[1;32m    652[0m [43m[49m[43m)[49m
+[1;32m    653[0m [38;5;28mself[39m[38;5;241m.[39msock [38;5;241m=[39m sock_and_verified[38;5;241m.[39msocket
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/connection.py:774[0m, in [0;36m_ssl_wrap_socket_and_match_hostname[0;34m(sock, cert_reqs, ssl_version, ssl_minimum_version, ssl_maximum_version, cert_file, key_file, key_password, ca_certs, ca_cert_dir, ca_cert_data, assert_hostname, assert_fingerprint, server_hostname, ssl_context, tls_in_tls)[0m
+[1;32m    772[0m         server_hostname [38;5;241m=[39m normalized
+[0;32m--> 774[0m ssl_sock [38;5;241m=[39m [43mssl_wrap_socket[49m[43m([49m
+[1;32m    775[0m [43m    [49m[43msock[49m[38;5;241;43m=[39;49m[43msock[49m[43m,[49m
+[1;32m    776[0m [43m    [49m[43mkeyfile[49m[38;5;241;43m=[39;49m[43mkey_file[49m[43m,[49m
+[1;32m    777[0m [43m    [49m[43mcertfile[49m[38;5;241;43m=[39;49m[43mcert_file[49m[43m,[49m
+[1;32m    778[0m [43m    [49m[43mkey_password[49m[38;5;241;43m=[39;49m[43mkey_password[49m[43m,[49m
+[1;32m    779[0m [43m    [49m[43mca_certs[49m[38;5;241;43m=[39;49m[43mca_certs[49m[43m,[49m
+[1;32m    780[0m [43m    [49m[43mca_cert_dir[49m[38;5;241;43m=[39;49m[43mca_cert_dir[49m[43m,[49m
+[1;32m    781[0m [43m    [49m[43mca_cert_data[49m[38;5;241;43m=[39;49m[43mca_cert_data[49m[43m,[49m
+[1;32m    782[0m [43m    [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m,[49m
+[1;32m    783[0m [43m    [49m[43mssl_context[49m[38;5;241;43m=[39;49m[43mcontext[49m[43m,[49m
+[1;32m    784[0m [43m    [49m[43mtls_in_tls[49m[38;5;241;43m=[39;49m[43mtls_in_tls[49m[43m,[49m
+[1;32m    785[0m [43m[49m[43m)[49m
+[1;32m    787[0m [38;5;28;01mtry[39;00m:
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/util/ssl_.py:459[0m, in [0;36mssl_wrap_socket[0;34m(sock, keyfile, certfile, cert_reqs, ca_certs, server_hostname, ssl_version, ciphers, ssl_context, ca_cert_dir, key_password, ca_cert_data, tls_in_tls)[0m
+[1;32m    457[0m     [38;5;28;01mpass[39;00m
+[0;32m--> 459[0m ssl_sock [38;5;241m=[39m [43m_ssl_wrap_socket_impl[49m[43m([49m[43msock[49m[43m,[49m[43m [49m[43mcontext[49m[43m,[49m[43m [49m[43mtls_in_tls[49m[43m,[49m[43m [49m[43mserver_hostname[49m[43m)[49m
+[1;32m    460[0m [38;5;28;01mreturn[39;00m ssl_sock
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/urllib3/util/ssl_.py:503[0m, in [0;36m_ssl_wrap_socket_impl[0;34m(sock, ssl_context, tls_in_tls, server_hostname)[0m
+[1;32m    501[0m     [38;5;28;01mreturn[39;00m SSLTransport(sock, ssl_context, server_hostname)
+[0;32m--> 503[0m [38;5;28;01mreturn[39;00m [43mssl_context[49m[38;5;241;43m.[39;49m[43mwrap_socket[49m[43m([49m[43msock[49m[43m,[49m[43m [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m)[49m
+
+File [0;32m/usr/lib/python3.10/ssl.py:513[0m, in [0;36mSSLContext.wrap_socket[0;34m(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, session)[0m
+[1;32m    507[0m [38;5;28;01mdef[39;00m [38;5;21mwrap_socket[39m([38;5;28mself[39m, sock, server_side[38;5;241m=[39m[38;5;28;01mFalse[39;00m,
+[1;32m    508[0m                 do_handshake_on_connect[38;5;241m=[39m[38;5;28;01mTrue[39;00m,
+[1;32m    509[0m                 suppress_ragged_eofs[38;5;241m=[39m[38;5;28;01mTrue[39;00m,
+[1;32m    510[0m                 server_hostname[38;5;241m=[39m[38;5;28;01mNone[39;00m, session[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[1;32m    511[0m     [38;5;66;03m# SSLSocket class handles server_hostname encoding before it calls[39;00m
+[1;32m    512[0m     [38;5;66;03m# ctx._wrap_socket()[39;00m
+[0;32m--> 513[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43msslsocket_class[49m[38;5;241;43m.[39;49m[43m_create[49m[43m([49m
+[1;32m    514[0m [43m        [49m[43msock[49m[38;5;241;43m=[39;49m[43msock[49m[43m,[49m
+[1;32m    515[0m [43m        [49m[43mserver_side[49m[38;5;241;43m=[39;49m[43mserver_side[49m[43m,[49m
+[1;32m    516[0m [43m        [49m[43mdo_handshake_on_connect[49m[38;5;241;43m=[39;49m[43mdo_handshake_on_connect[49m[43m,[49m
+[1;32m    517[0m [43m        [49m[43msuppress_ragged_eofs[49m[38;5;241;43m=[39;49m[43msuppress_ragged_eofs[49m[43m,[49m
+[1;32m    518[0m [43m        [49m[43mserver_hostname[49m[38;5;241;43m=[39;49m[43mserver_hostname[49m[43m,[49m
+[1;32m    519[0m [43m        [49m[43mcontext[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[43m,[49m
+[1;32m    520[0m [43m        [49m[43msession[49m[38;5;241;43m=[39;49m[43msession[49m
+[1;32m    521[0m [43m    [49m[43m)[49m
+
+File [0;32m/usr/lib/python3.10/ssl.py:1071[0m, in [0;36mSSLSocket._create[0;34m(cls, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, context, session)[0m
+[1;32m   1070[0m             [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mdo_handshake_on_connect should not be specified for non-blocking sockets[39m[38;5;124m"[39m)
+[0;32m-> 1071[0m         [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mdo_handshake[49m[43m([49m[43m)[49m
+[1;32m   1072[0m [38;5;28;01mexcept[39;00m ([38;5;167;01mOSError[39;00m, [38;5;167;01mValueError[39;00m):
+
+File [0;32m/usr/lib/python3.10/ssl.py:1342[0m, in [0;36mSSLSocket.do_handshake[0;34m(self, block)[0m
+[1;32m   1341[0m         [38;5;28mself[39m[38;5;241m.[39msettimeout([38;5;28;01mNone[39;00m)
+[0;32m-> 1342[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_sslobj[49m[38;5;241;43m.[39;49m[43mdo_handshake[49m[43m([49m[43m)[49m
+[1;32m   1343[0m [38;5;28;01mfinally[39;00m:
+
+[0;31mProtocolError[0m: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
 
 During handling of the above exception, another exception occurred:
 
 [0;31mConnectionError[0m                           Traceback (most recent call last)
-Cell [0;32mIn[3], line 14[0m
-[1;32m      7[0m MPID [38;5;241m=[39m [38;5;124m'[39m[38;5;124mmp-20674[39m[38;5;124m'[39m [38;5;66;03m# Materials Project ID number[39;00m
-[1;32m      9[0m [38;5;124;03m"""[39;00m
-[1;32m     10[0m [38;5;124;03m  The 'with ...' statement defines an MPRester code block. Subsequent[39;00m
-[1;32m     11[0m [38;5;124;03m  indented statements belong to the code block, and the object mpr[39;00m
-[1;32m     12[0m [38;5;124;03m  may be used within the code block.[39;00m
-[1;32m     13[0m [38;5;124;03m"""[39;00m
-[0;32m---> 14[0m [38;5;28;01mwith[39;00m [43mMPRester[49m[43m([49m[43mMP_API_KEY[49m[43m)[49m [38;5;28;01mas[39;00m mpr:
-[1;32m     15[0m     [38;5;66;03m# Get only the structure for YBa2Cu3O7[39;00m
-[1;32m     16[0m     structure [38;5;241m=[39m mpr[38;5;241m.[39mget_structure_by_material_id(MPID)
+Cell [0;32mIn[12], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mwith[39;00m [43mMPRester[49m[43m([49m[43mMP_API_KEY[49m[43m)[49m [38;5;28;01mas[39;00m mpr:
+[1;32m      2[0m     docs [38;5;241m=[39m mpr[38;5;241m.[39msummary[38;5;241m.[39msearch(elements[38;5;241m=[39m[[38;5;124m"[39m[38;5;124mSi[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mO[39m[38;5;124m"[39m],
+[1;32m      3[0m                               band_gap[38;5;241m=[39m([38;5;241m0.5[39m, [38;5;241m0.75[39m),
+[1;32m      4[0m                               fields[38;5;241m=[39m[[38;5;124m"[39m[38;5;124mmaterial_id[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124mformula_pretty[39m[38;5;124m"[39m,
+[1;32m      5[0m                                       [38;5;124m"[39m[38;5;124mband_gap[39m[38;5;124m"[39m])
+[1;32m      7[0m example_doc [38;5;241m=[39m docs[[38;5;241m0[39m]
 
 File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/mp_api/client/mprester.py:192[0m, in [0;36mMPRester.__init__[0;34m(self, api_key, endpoint, notify_db_version, include_user_agent, monty_decode, use_document_model, session, headers)[0m
 [1;32m    189[0m     warnings[38;5;241m.[39mwarn([38;5;124mf[39m[38;5;124m"[39m[38;5;124mProblem loading MPContribs client: [39m[38;5;132;01m{[39;00merror[38;5;132;01m}[39;00m[38;5;124m"[39m)
@@ -214,13 +361,18 @@ File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.
 [1;32m    703[0m [38;5;66;03m# Total elapsed time of the request (approximately)[39;00m
 [1;32m    704[0m elapsed [38;5;241m=[39m preferred_clock() [38;5;241m-[39m start
 
-File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/requests/adapters.py:519[0m, in [0;36mHTTPAdapter.send[0;34m(self, request, stream, timeout, verify, cert, proxies)[0m
-[1;32m    515[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e[38;5;241m.[39mreason, _SSLError):
-[1;32m    516[0m         [38;5;66;03m# This branch is for urllib3 v1.22 and later.[39;00m
-[1;32m    517[0m         [38;5;28;01mraise[39;00m SSLError(e, request[38;5;241m=[39mrequest)
-[0;32m--> 519[0m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(e, request[38;5;241m=[39mrequest)
-[1;32m    521[0m [38;5;28;01mexcept[39;00m ClosedPoolError [38;5;28;01mas[39;00m e:
-[1;32m    522[0m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(e, request[38;5;241m=[39mrequest)
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/requests/adapters.py:501[0m, in [0;36mHTTPAdapter.send[0;34m(self, request, stream, timeout, verify, cert, proxies)[0m
+[1;32m    486[0m     resp [38;5;241m=[39m conn[38;5;241m.[39murlopen(
+[1;32m    487[0m         method[38;5;241m=[39mrequest[38;5;241m.[39mmethod,
+[1;32m    488[0m         url[38;5;241m=[39murl,
+[0;32m   (...)[0m
+[1;32m    497[0m         chunked[38;5;241m=[39mchunked,
+[1;32m    498[0m     )
+[1;32m    500[0m [38;5;28;01mexcept[39;00m (ProtocolError, [38;5;167;01mOSError[39;00m) [38;5;28;01mas[39;00m err:
+[0;32m--> 501[0m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(err, request[38;5;241m=[39mrequest)
+[1;32m    503[0m [38;5;28;01mexcept[39;00m MaxRetryError [38;5;28;01mas[39;00m e:
+[1;32m    504[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e[38;5;241m.[39mreason, ConnectTimeoutError):
+[1;32m    505[0m         [38;5;66;03m# TODO: Remove this in 3.0.0: see #2811[39;00m
 
-[0;31mConnectionError[0m: HTTPSConnectionPool(host='api.materialsproject.org', port=443): Max retries exceeded with url: /heartbeat (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f4f320218a0>: Failed to resolve 'api.materialsproject.org' ([Errno -3] Temporary failure in name resolution)"))
+[0;31mConnectionError[0m: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
 

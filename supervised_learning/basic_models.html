@@ -231,10 +231,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -850,7 +853,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;-&#39;, &#39;rhombohedral&#39;, &#39;tetragonal&#39;, &#39;orthorhombic&#39;, &#39;cubic&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;tetragonal&#39;, &#39;-&#39;, &#39;cubic&#39;, &#39;orthorhombic&#39;, &#39;rhombohedral&#39;]
 </pre></div>
 </div>
 </div>
@@ -883,7 +886,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/4e182d04261863112defb755494844acf50be96b32de84fc3c1f9fd23ad39ef6.png" src="../_images/4e182d04261863112defb755494844acf50be96b32de84fc3c1f9fd23ad39ef6.png" />
+<img alt="../_images/af51e8aa40ef7106a3a751f4120843c295bf0f00d6eff46ff5333d5ba36da0b5.png" src="../_images/af51e8aa40ef7106a3a751f4120843c295bf0f00d6eff46ff5333d5ba36da0b5.png" />
 </div>
 </div>
 <p>As expected, a majority of the perovskites have the ideal cubic structure.</p>
@@ -1059,8 +1062,8 @@ Shape of z_test: (533, 3)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.6206896551724138
-validation set accuracy: 0.6060037523452158
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.6328876378137462
+validation set accuracy: 0.6135084427767354
 </pre></div>
 </div>
 </div>
@@ -1098,8 +1101,8 @@ validation set accuracy: 0.6060037523452158
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8238329814684494
-validation set accuracy: 0.7654784240150094
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8184377199155525
+validation set accuracy: 0.7729831144465291
 </pre></div>
 </div>
 </div>
@@ -1146,7 +1149,7 @@ validation set accuracy: 0.7654784240150094
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/88b18ca3ec61ba7c6abec43266bf994f917b4d0225ec19a21523bc61a8fe652e.png" src="../_images/88b18ca3ec61ba7c6abec43266bf994f917b4d0225ec19a21523bc61a8fe652e.png" />
+<img alt="../_images/f2006f9db730acab3e9fac56ba80624e5ec952a5ca0012ba4737636c4b7bad08.png" src="../_images/f2006f9db730acab3e9fac56ba80624e5ec952a5ca0012ba4737636c4b7bad08.png" />
 </div>
 </div>
 <p>Now that we have established a baseline accuracy using the nearest neighbor model, let’s try to exceed this baseline accuracy with a more complex model.</p>
@@ -1179,8 +1182,8 @@ validation set accuracy: 0.7654784240150094
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8747361013370866
-validation set accuracy: 0.7542213883677298
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8688716866056767
+validation set accuracy: 0.7842401500938087
 </pre></div>
 </div>
 </div>
@@ -1232,9 +1235,9 @@ Exercise 1: Histogram Gradient Boosting Machine<div class="sd-summary-down docut
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9671592775041051
-validation set accuracy: 0.8086303939962477
-test set accuracy: 0.801125703564728
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9659863945578231
+validation set accuracy: 0.801125703564728
+test set accuracy: 0.8180112570356473
 </pre></div>
 </div>
 </div>

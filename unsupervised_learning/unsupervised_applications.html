@@ -231,10 +231,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Types of Neural Network Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -462,7 +465,7 @@ document.write(`
 <p>Alternatively, you can download the CSV file directly <a class="reference external" href="https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/unsupervised_learning/matml_supercon_cleaned.csv">here</a>.</p>
 <section id="loading-the-dataset">
 <h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h2>
-<p>Let's begin by loading the dataset in to a Pandas dataframe so we can view the features:</p>
+<p>Let’s begin by loading the dataset in to a Pandas dataframe so we can view the features:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -644,7 +647,7 @@ document.write(`
 <p>19463 rows × 8 columns</p>
 </div></div></div>
 </div>
-<p>Here's a summary of the different features included in the dataset:</p>
+<p>Here’s a summary of the different features included in the dataset:</p>
 <ul class="simple">
 <li><p><em>Material</em>: The chemical formula of the superconducting material.</p></li>
 <li><p><em>Substitutions</em>: Python dictionary consisting of doping ratios.</p></li>
@@ -1018,7 +1021,7 @@ document.write(`
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<img alt="../_images/9d389468ffd4df9f7da70f65b213cf46dc90ad8b5a8fdddc01e12869db37fab3.png" src="../_images/9d389468ffd4df9f7da70f65b213cf46dc90ad8b5a8fdddc01e12869db37fab3.png" />
+<img alt="../_images/a5e5a097501eab76d7be97436bcc75199a004a40daa10b0fcbe87b14264228f3.png" src="../_images/a5e5a097501eab76d7be97436bcc75199a004a40daa10b0fcbe87b14264228f3.png" />
 </div>
 </details>
 </div>
@@ -1060,7 +1063,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/dcdacf7b7da90ee5af80834eff0592e88c8748c362c2d5dfa15d99820fdc8611.png" src="../_images/dcdacf7b7da90ee5af80834eff0592e88c8748c362c2d5dfa15d99820fdc8611.png" />
+<img alt="../_images/4dd52f348f7a1354c5ed2b308e415463c80235f51e45867788a7c07aa139ab8e.png" src="../_images/4dd52f348f7a1354c5ed2b308e415463c80235f51e45867788a7c07aa139ab8e.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1115,39 +1118,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>9057</th>
-      <td>Fe 2 As 2 Sr 4 Sc 2 O 6</td>
-      <td>56.0</td>
-      <td>0.00</td>
-      <td>10.1103/physrevb.81.174534</td>
+      <th>5143</th>
+      <td>Y Ba 2 Cu 4 O 8</td>
+      <td>80.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevlett.100.047003</td>
     </tr>
     <tr>
-      <th>7312</th>
-      <td>Y Ba 2 Cu 3 O 6.85</td>
-      <td>89.0</td>
-      <td>0.00</td>
-      <td>10.1080/00018730600645636</td>
+      <th>17201</th>
+      <td>La 1.885 Ba 0.115 Cu O 4</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>10.1126/science.aan3438</td>
     </tr>
     <tr>
-      <th>18024</th>
+      <th>20577</th>
+      <td>Bi 2 Sr 2 Ca Cu 2 O 8</td>
+      <td>33.5</td>
+      <td>0.0</td>
+      <td>10.1088/0953-8984/22/42/426004</td>
+    </tr>
+    <tr>
+      <th>10749</th>
       <td>Sr 2 Ru O 4</td>
-      <td>1.5</td>
-      <td>0.00</td>
-      <td>10.1103/physrevb.66.214514</td>
+      <td>1.4</td>
+      <td>0.0</td>
+      <td>10.1103/physrevlett.87.257601</td>
     </tr>
     <tr>
-      <th>18465</th>
-      <td>Bi 2 Sr 2 Cu O 6</td>
-      <td>36.0</td>
-      <td>0.00</td>
-      <td>10.1103/revmodphys.79.353</td>
-    </tr>
-    <tr>
-      <th>10960</th>
-      <td>La 1.875 Ba 0.125 Cu O 4</td>
-      <td>35.0</td>
-      <td>1.85</td>
-      <td>10.16966/2378-7090.236</td>
+      <th>3716</th>
+      <td>Mg H 6</td>
+      <td>271.0</td>
+      <td>300.0</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -1180,39 +1183,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>10894</th>
-      <td>Fe Se</td>
-      <td>8.0</td>
+      <th>5367</th>
+      <td>Ce Pt 3 Si</td>
+      <td>0.75</td>
       <td>0.0</td>
-      <td>10.1088/0953-8984/24/26/265701</td>
+      <td>10.1038/srep41853</td>
     </tr>
     <tr>
-      <th>9284</th>
-      <td>Fe Se</td>
-      <td>8.0</td>
+      <th>3459</th>
+      <td>Ce Pt 3 Si</td>
+      <td>0.50</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1088/1367-2630/11/5/055054</td>
     </tr>
     <tr>
-      <th>4188</th>
-      <td>Ba Pd 2 As 2</td>
-      <td>3.5</td>
+      <th>3900</th>
+      <td>Y Pt Bi</td>
+      <td>0.77</td>
       <td>0.0</td>
-      <td>10.7566/jpsj.86.063704</td>
+      <td>10.1088/0953-8984/27/27/275701</td>
     </tr>
     <tr>
-      <th>19413</th>
-      <td>La Fe As O 0.85</td>
-      <td>26.0</td>
+      <th>8238</th>
+      <td>Ce Co In 5</td>
+      <td>2.30</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.83.024505</td>
+      <td>10.1038/srep01446</td>
     </tr>
     <tr>
-      <th>1250</th>
-      <td>Ga 0.947 Mn 0.053 As</td>
-      <td>110.0</td>
+      <th>10002</th>
+      <td>Cs 3 C 60</td>
+      <td>40.00</td>
       <td>0.0</td>
-      <td>10.1088/0268-1242/17/4/310</td>
+      <td>10.1088/0953-8984/28/15/153001</td>
     </tr>
   </tbody>
 </table>
@@ -1245,39 +1248,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>23128</th>
-      <td>U 2 Pt C 2</td>
-      <td>1.45</td>
+      <th>8271</th>
+      <td>Mg B 2</td>
+      <td>39.00</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1088/0953-2048/17/5/001</td>
     </tr>
     <tr>
-      <th>14566</th>
-      <td>Ba Ti 2 Sb 2 O</td>
-      <td>1.20</td>
+      <th>18635</th>
+      <td>Mg 0.9 (Al Li) 0.1 B 2</td>
+      <td>1.00</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1016/j.physc.2007.04.111</td>
     </tr>
     <tr>
-      <th>22258</th>
-      <td>Ag Al O 2</td>
+      <th>14636</th>
+      <td>Zr B 12</td>
+      <td>5.82</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.69.212508</td>
+    </tr>
+    <tr>
+      <th>14385</th>
+      <td>Mg B 2</td>
       <td>40.00</td>
       <td>0.0</td>
-      <td>10.1016/j.ssc.2012.08.017</td>
+      <td>10.1007/s10948-006-0164-9</td>
     </tr>
     <tr>
-      <th>17917</th>
-      <td>U Te 2</td>
-      <td>1.55</td>
+      <th>784</th>
+      <td>Mg B 2</td>
+      <td>0.62</td>
       <td>0.0</td>
-      <td>10.1016/j.crhy.2005.11.006</td>
-    </tr>
-    <tr>
-      <th>11204</th>
-      <td>Nb Se 2</td>
-      <td>7.20</td>
-      <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1016/j.ssc.2009.12.007</td>
     </tr>
   </tbody>
 </table>
@@ -1310,39 +1313,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>21786</th>
-      <td>Pu Co Ga 4 Ge</td>
-      <td>7.0</td>
+      <th>11673</th>
+      <td>Li Fe As</td>
+      <td>17.0</td>
       <td>0.0</td>
-      <td>10.1016/j.jallcom.2018.02.116</td>
+      <td>10.1103/revmodphys.83.1589</td>
     </tr>
     <tr>
-      <th>322</th>
-      <td>Pu Co Ga 5</td>
-      <td>18.5</td>
+      <th>16583</th>
+      <td>Sm 0.95 La 0.05 Fe As O 0.85 F 0.15</td>
+      <td>52.0</td>
       <td>0.0</td>
-      <td>10.1143/jpsj.73.1285</td>
+      <td>10.1209/0295-5075/84/67014</td>
     </tr>
     <tr>
-      <th>22238</th>
-      <td>Pu Co Ga 5</td>
-      <td>18.5</td>
+      <th>3497</th>
+      <td>K 0.95 Ni 1.86 Se 2</td>
+      <td>0.3</td>
       <td>0.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>21788</th>
-      <td>Pu Co Ga 4 Ge</td>
+      <th>20433</th>
+      <td>Nb Se 2</td>
       <td>7.0</td>
       <td>0.0</td>
-      <td>10.1016/j.jallcom.2018.02.116</td>
+      <td>10.1038/nphys3583</td>
     </tr>
     <tr>
-      <th>11875</th>
-      <td>Pu Co Ga 5</td>
-      <td>18.5</td>
+      <th>12507</th>
+      <td>Fe Se</td>
+      <td>65.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevlett.108.017001</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -1375,39 +1378,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>4352</th>
-      <td>Ta B 2</td>
-      <td>0.37</td>
-      <td>0.0</td>
-      <td>10.1134/1.1387521</td>
-    </tr>
-    <tr>
-      <th>8841</th>
-      <td>Mg B 2</td>
-      <td>39.00</td>
+      <th>4605</th>
+      <td>Ho Ni 2 B 2 C</td>
+      <td>8.0</td>
       <td>0.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>11909</th>
-      <td>Mg B 2</td>
-      <td>38.00</td>
+      <th>10048</th>
+      <td>Ti</td>
+      <td>0.4</td>
       <td>0.0</td>
-      <td>10.1063/1.1433915</td>
+      <td>10.1134/s1063783418110173</td>
     </tr>
     <tr>
-      <th>3128</th>
-      <td>Y B 6</td>
-      <td>7.20</td>
+      <th>12554</th>
+      <td>Mo N</td>
+      <td>7.8</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.96.144501</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>8651</th>
-      <td>Mg B 2</td>
-      <td>39.00</td>
+      <th>13135</th>
+      <td>Nb</td>
+      <td>8.5</td>
       <td>0.0</td>
-      <td>10.1016/s0038-1098(02)00877-3</td>
+      <td>10.1103/physrevb.76.132502</td>
+    </tr>
+    <tr>
+      <th>4930</th>
+      <td>Ti N</td>
+      <td>4.5</td>
+      <td>0.0</td>
+      <td>10.1007/s10909-013-1078-0</td>
     </tr>
   </tbody>
 </table>
@@ -1440,39 +1443,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>17346</th>
-      <td>Y H 4</td>
-      <td>235.0</td>
-      <td>170.0</td>
-      <td>10.1103/physrevb.96.100502</td>
+      <th>22433</th>
+      <td>Pr Ru 4 Sb 12</td>
+      <td>1.04</td>
+      <td>0.0</td>
+      <td>10.1143/jpsj.73.1135</td>
     </tr>
     <tr>
-      <th>14260</th>
-      <td>H 3 S</td>
-      <td>181.0</td>
-      <td>170.0</td>
-      <td>10.1103/physrevb.93.094525</td>
+      <th>16770</th>
+      <td>Pd 0.88 Ni 0.12</td>
+      <td>9.00</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.93.174510</td>
     </tr>
     <tr>
-      <th>20126</th>
-      <td>Sn H 8</td>
-      <td>81.0</td>
-      <td>220.0</td>
-      <td>10.1038/srep22873</td>
+      <th>2083</th>
+      <td>U Rh Ge</td>
+      <td>0.25</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.67.054416</td>
     </tr>
     <tr>
-      <th>6345</th>
-      <td>La Sc H</td>
-      <td>52.0</td>
-      <td>150.0</td>
-      <td>10.1038/s41598-020-58065-9</td>
+      <th>11349</th>
+      <td>Al</td>
+      <td>1.30</td>
+      <td>0.0</td>
+      <td>10.1021/acs.nanolett.9b02369</td>
     </tr>
     <tr>
-      <th>17349</th>
-      <td>Y H 6</td>
-      <td>200.0</td>
-      <td>170.0</td>
-      <td>10.1103/physrevb.96.100502</td>
+      <th>10217</th>
+      <td>Tl Ni 2 Se S</td>
+      <td>1.30</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.90.201105</td>
     </tr>
   </tbody>
 </table>
