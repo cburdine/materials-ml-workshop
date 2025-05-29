@@ -27,7 +27,6 @@ If you have GNU make installed on your system, you can build the static site by 
 make
 ```
 
-
 inside this directory. if Make is not installed, you can run the command:
 
 ```
@@ -36,7 +35,13 @@ jupyter-book build MaterialsML/
 
 Either of these commands will build the site using data cached from previous builds, if available. To completely rebuild the site from scratch, you can run `make fullbuild`.
 
-Once you build the site, you can view it locally by opening `MaterialsML/_build/html/index.html` with your web browser.
+Once you build the site, you can start a local web server by running the command:
+```
+python3 -m http.server --directory ./MaterialsML/_build/html/
+```
+This will start up a server you can access in your web browser at [http://localhost:8000/](http://localhost:8000).
+
+Alternatively, you can view the HTML source files locally by opening `MaterialsML/_build/html/index.html` with your web browser.
 
 ### Checking Markdown Files
 
