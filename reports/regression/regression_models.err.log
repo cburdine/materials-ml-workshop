@@ -1,76 +1,88 @@
 Traceback (most recent call last):
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-from sklearn.linear_model import RidgeClassifier
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
-# get direct bandgap data for materials with nonzero gaps:
-direct_gap_x = data_x[data_y[:,0] > 0]
-direct_gap_y = data_y[(data_y[:,0] > 0),1]
+def train_val_test_split(data_x, data_y, split=(0.8,0.1,0.1)):
+    """ splits data into train, validation, and test sets. """
+    
+    # split train and nontrain data:
+    train_x, nontrain_x, train_y, nontrain_y = \
+        train_test_split(
+            data_x, data_y, train_size=split[0]/sum(split))
+    
+    # split validation and test data:
+    val_x, test_x, val_y, test_y = \
+        train_test_split(
+            data_x, data_y, 
+            test_size=split[2]/(split[1]+split[2]))
+    
+    return (train_x, val_x, test_x), \
+           (train_y, val_y, test_y)
+    
+def normalize(train_x, val_x, test_x):
+    """ normalizes a dataset. """
+    
+    scaler = StandardScaler()
+    train_z = scaler.fit_transform(train_x)
+    val_z = scaler.transform(val_x)
+    test_z = scaler.transform(test_x)
+    return scaler, train_z, val_z, test_z
 
-# split data in train/test/validation sets:
-direct_subsets_x, direct_subsets_y = \
-    train_val_test_split(direct_gap_x, direct_gap_y)
-train_x, val_x, test_x = direct_subsets_x
-train_y, val_y, test_y = direct_subsets_y
-
-# normalize data:
-scaler, train_z, val_z, test_z = \
-    normalize(train_x, val_x, test_x)
-
-# fit a ridge classifier to the data:
-direct_ridge_model = RidgeClassifier(alpha=20)
-direct_ridge_model.fit(train_z, train_y)
-
-# make predictions on the validation & test sets:
-val_yhat = direct_ridge_model.predict(val_z)
-test_yhat = direct_ridge_model.predict(test_z)
-
-print(set(direct_gap_y))
-
-# compute accuracy:
-cm = confusion_matrix(val_y, val_yhat)
-accuracy = np.sum(np.diag(cm)) / np.sum(cm)
-
-# display validation set confusion matrix:
-disp = ConfusionMatrixDisplay(confusion_matrix=cm,
-                              display_labels=model.classes_)
-disp.plot()
-plt.gca().set_yticklabels(['Direct', 'Indirect'])
-plt.gca().set_xticklabels(['Direct', 'Indirect'])
-plt.show()
-
-test_acc = svc_model.score(test_x, test_y)
-print('test set accuracy:', test_acc)
 ------------------
 
------ stdout -----
-{1.0, -1.0}
-------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[15], line 42[0m
-[1;32m     39[0m plt[38;5;241m.[39mgca()[38;5;241m.[39mset_xticklabels([[38;5;124m'[39m[38;5;124mDirect[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mIndirect[39m[38;5;124m'[39m])
-[1;32m     40[0m plt[38;5;241m.[39mshow()
-[0;32m---> 42[0m test_acc [38;5;241m=[39m [43msvc_model[49m[38;5;241m.[39mscore(test_x, test_y)
-[1;32m     43[0m [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mtest set accuracy:[39m[38;5;124m'[39m, test_acc)
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[7], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m StandardScaler
+[1;32m      2[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmodel_selection[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m train_test_split
+[1;32m      4[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mtrain_val_test_split[39m(data_x, data_y, split[38;5;241m=[39m([38;5;241m0.8[39m,[38;5;241m0.1[39m,[38;5;241m0.1[39m)):
 
-[0;31mNameError[0m: name 'svc_model' is not defined
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/__init__.py:82[0m
+[1;32m     80[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _distributor_init  [38;5;66;03m# noqa: F401[39;00m
+[1;32m     81[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __check_build  [38;5;66;03m# noqa: F401[39;00m
+[0;32m---> 82[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mbase[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m clone
+[1;32m     83[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_show_versions[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m show_versions
+[1;32m     85[0m __all__ [38;5;241m=[39m [
+[1;32m     86[0m     [38;5;124m"[39m[38;5;124mcalibration[39m[38;5;124m"[39m,
+[1;32m     87[0m     [38;5;124m"[39m[38;5;124mcluster[39m[38;5;124m"[39m,
+[0;32m   (...)[0m
+[1;32m    128[0m     [38;5;124m"[39m[38;5;124mshow_versions[39m[38;5;124m"[39m,
+[1;32m    129[0m ]
+
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/base.py:17[0m
+[1;32m     15[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __version__
+[1;32m     16[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01m_config[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m get_config
+[0;32m---> 17[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _IS_32BIT
+[1;32m     18[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_set_output[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _SetOutputMixin
+[1;32m     19[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_tags[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[1;32m     20[0m     _DEFAULT_TAGS,
+[1;32m     21[0m )
+
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/utils/__init__.py:19[0m
+[1;32m     16[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
+[1;32m     17[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01msparse[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m issparse
+[0;32m---> 19[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mmurmurhash[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m murmurhash3_32
+[1;32m     20[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mclass_weight[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m compute_class_weight, compute_sample_weight
+[1;32m     21[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _joblib
+
+File [0;32msklearn/utils/murmurhash.pyx:1[0m, in [0;36minit sklearn.utils.murmurhash[0;34m()[0m
+
+[0;31mValueError[0m: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
 

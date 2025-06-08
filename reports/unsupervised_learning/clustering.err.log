@@ -1,24 +1,28 @@
 Traceback (most recent call last):
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from scipy.stats import gaussian_kde
+from sklearn.mixture import GaussianMixture
 
-# fit a kde model to the data:
-kde = gaussian_kde(data_x.T)
+# Fit a k=3 Gaussian mixture model to data:
+gmm = GaussianMixture(n_components=3)
+gmm.fit(data_x)
+
+# assign points to clusters:
+assignments = gmm.predict(data_x)
 
 # define 2D mesh grid:
 x1_pts = np.linspace(-3.5,6.5,100)
@@ -26,29 +30,58 @@ x2_pts = np.linspace(-6.5,6.5,100)
 x1_mesh, x2_mesh = np.meshgrid(x1_pts, x2_pts)
 x_mesh = np.vstack([x1_mesh.flatten(), x2_mesh.flatten()]).T
 
-# evaluate kde probability density on mesh points:
-prob_mesh = kde(x12_mesh.T).reshape(x1_mesh.shape)
+# evaluate gmm probability density on mesh points:
+probs_mesh = gmm.score_samples(x_mesh).reshape(x1_mesh.shape)
 
 # plot distribution:
 plt.figure()
-plt.contourf(x1_mesh, x2_mesh, prob_mesh, levels=10, cmap='Greys')
+plt.contourf(x1_mesh, x2_mesh, np.exp(probs_mesh), levels=10, cmap='Greys')
 plt.colorbar(label='p(x)')
-plt.scatter(data_x[:,0], data_x[:,1], label=f'Dataset', alpha=0.3)
+for i in range(len(gmm.means_)):
+    idx = (assignments == i)
+    plt.scatter(data_x[idx,0], data_x[idx,1], label=f'Cluster {i+1}', alpha=0.3)
 plt.xlabel(r'$x_1$')
 plt.ylabel(r'$x_2$')
 plt.show()
-
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[5], line 13[0m
-[1;32m     10[0m x_mesh [38;5;241m=[39m np[38;5;241m.[39mvstack([x1_mesh[38;5;241m.[39mflatten(), x2_mesh[38;5;241m.[39mflatten()])[38;5;241m.[39mT
-[1;32m     12[0m [38;5;66;03m# evaluate kde probability density on mesh points:[39;00m
-[0;32m---> 13[0m prob_mesh [38;5;241m=[39m kde([43mx12_mesh[49m[38;5;241m.[39mT)[38;5;241m.[39mreshape(x1_mesh[38;5;241m.[39mshape)
-[1;32m     15[0m [38;5;66;03m# plot distribution:[39;00m
-[1;32m     16[0m plt[38;5;241m.[39mfigure()
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[5], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmixture[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m GaussianMixture
+[1;32m      3[0m [38;5;66;03m# Fit a k=3 Gaussian mixture model to data:[39;00m
+[1;32m      4[0m gmm [38;5;241m=[39m GaussianMixture(n_components[38;5;241m=[39m[38;5;241m3[39m)
 
-[0;31mNameError[0m: name 'x12_mesh' is not defined
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/__init__.py:82[0m
+[1;32m     80[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _distributor_init  [38;5;66;03m# noqa: F401[39;00m
+[1;32m     81[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __check_build  [38;5;66;03m# noqa: F401[39;00m
+[0;32m---> 82[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mbase[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m clone
+[1;32m     83[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_show_versions[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m show_versions
+[1;32m     85[0m __all__ [38;5;241m=[39m [
+[1;32m     86[0m     [38;5;124m"[39m[38;5;124mcalibration[39m[38;5;124m"[39m,
+[1;32m     87[0m     [38;5;124m"[39m[38;5;124mcluster[39m[38;5;124m"[39m,
+[0;32m   (...)[0m
+[1;32m    128[0m     [38;5;124m"[39m[38;5;124mshow_versions[39m[38;5;124m"[39m,
+[1;32m    129[0m ]
+
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/base.py:17[0m
+[1;32m     15[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __version__
+[1;32m     16[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01m_config[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m get_config
+[0;32m---> 17[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _IS_32BIT
+[1;32m     18[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_set_output[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _SetOutputMixin
+[1;32m     19[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_tags[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[1;32m     20[0m     _DEFAULT_TAGS,
+[1;32m     21[0m )
+
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/utils/__init__.py:19[0m
+[1;32m     16[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
+[1;32m     17[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01msparse[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m issparse
+[0;32m---> 19[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mmurmurhash[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m murmurhash3_32
+[1;32m     20[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mclass_weight[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m compute_class_weight, compute_sample_weight
+[1;32m     21[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _joblib
+
+File [0;32msklearn/utils/murmurhash.pyx:1[0m, in [0;36minit sklearn.utils.murmurhash[0;34m()[0m
+
+[0;31mValueError[0m: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
 

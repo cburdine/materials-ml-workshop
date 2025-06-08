@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ALIGNN Tutorial &#8212; Materials + Machine Learning</title>
   
@@ -15,46 +14,45 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -62,20 +60,20 @@
                 gtag('js', new Date());
                 gtag('config', 'G-MBS9YS5YW0');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script type="application/vnd.jupyter.widget-state+json">{"state": {"e9e6d8f87da74322b4d2307b6855fd84": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "af2d66b3083b4d2eb17b61251d87727a": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "3ac211f017204b31861e4ca40675e264": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_e9e6d8f87da74322b4d2307b6855fd84", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_af2d66b3083b4d2eb17b61251d87727a", "tabbable": null, "tooltip": null, "value": 1.0}}, "6d68fdbce17343feb7eabfaa85d98d3a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a7e807be126647f9bacdfa09bd2cd9e8": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "3d6cdb66af9e4cfe9c917287fe8e4662": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_6d68fdbce17343feb7eabfaa85d98d3a", "placeholder": "\u200b", "style": "IPY_MODEL_a7e807be126647f9bacdfa09bd2cd9e8", "tabbable": null, "tooltip": null, "value": "Retrieving MaterialsDoc documents: 100%"}}, "d186e7e89217427991b3b8f0ec2efaa6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "2820a72f84e24b05b3d860ccff52eb0f": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "c953d015a0d84fbbaa8d8c182fb096ce": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_d186e7e89217427991b3b8f0ec2efaa6", "placeholder": "\u200b", "style": "IPY_MODEL_2820a72f84e24b05b3d860ccff52eb0f", "tabbable": null, "tooltip": null, "value": " 1/1 [00:00&lt;00:00, 68.41it/s]"}}, "1133b22bf2e3429a9e6145eb31acd90f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "29cd63cf27904ad483fe2385d581bec5": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_3d6cdb66af9e4cfe9c917287fe8e4662", "IPY_MODEL_3ac211f017204b31861e4ca40675e264", "IPY_MODEL_c953d015a0d84fbbaa8d8c182fb096ce"], "layout": "IPY_MODEL_1133b22bf2e3429a9e6145eb31acd90f", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'applications/ALIGNN_Tutorial';</script>
-    <link rel="shortcut icon" href="../_static/logo_small.png"/>
+    <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Applications of ML to Materials Science" href="applications.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -85,19 +83,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -119,12 +121,22 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -139,9 +151,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -151,12 +167,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Materials + Machine Learning - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Materials + Machine Learning - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -166,78 +193,52 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Notebook</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python/python_basics.html">Python Basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/python_logic.html">Logic and Flow Control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/loops.html">Loops</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data_types/sets_and_dicts.html">Sets and Dictionaries</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions/classes.html">Classes and Object-Oriented Programming</a></li>
 
 
 
 
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../scicomp/numpy.html">The Numpy Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../scicomp/scipy.html">The Scipy Package</a></li>
 
 
 
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data_vis/data_handling.html">Data Handling and Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_vis/data_handling.html">Data Analysis and Visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="applications.html">Applications of ML to Materials Science</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">ALIGNN Tutorial</a></li>
-</ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -253,7 +254,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -262,14 +263,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -391,20 +392,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -431,17 +434,17 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="alignn-tutorial">
-<h1>ALIGNN Tutorial<a class="headerlink" href="#alignn-tutorial" title="Permalink to this heading">#</a></h1>
+<h1>ALIGNN Tutorial<a class="headerlink" href="#alignn-tutorial" title="Link to this heading">#</a></h1>
 <p>Install ALIGNN:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">alignn</span>
 </pre></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">alignn.ff.ff</span> <span class="kn">import</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">,</span><span class="n">default_path</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">alignn.ff.ff</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">,</span><span class="n">default_path</span>
 
 <span class="n">model_path</span> <span class="o">=</span> <span class="n">default_path</span><span class="p">()</span>
 <span class="n">calc</span> <span class="o">=</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
@@ -449,20 +452,27 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model_path /media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/ff/alignnff_wt10
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">alignn.ff.ff</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">,</span><span class="n">default_path</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">model_path</span> <span class="o">=</span> <span class="n">default_path</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">calc</span> <span class="o">=</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;alignn&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atoms</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ase</span><span class="w"> </span><span class="kn">import</span> <span class="n">Atom</span><span class="p">,</span> <span class="n">Atoms</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">lattice_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">make_fcc_copper</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mf">3.6</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_fcc_copper</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mf">3.6</span><span class="p">):</span>
     <span class="n">cu_atoms</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">([</span><span class="n">Atom</span><span class="p">(</span><span class="s1">&#39;Cu&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))],</span>
                   <span class="n">cell</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> \
                   <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
@@ -490,7 +500,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Potential of FCC Copper vs Lattice Constant&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
@@ -502,13 +512,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/59854bbacf332bc3793dde85381adc20b9c3329d46437dc084d8b9271de782cb.png" src="../_images/59854bbacf332bc3793dde85381adc20b9c3329d46437dc084d8b9271de782cb.png" />
+<img alt="../_images/aea49acd1b4fd83079b46143548f6e32118b6362897691962bd2e585d3546f50.png" src="../_images/aea49acd1b4fd83079b46143548f6e32118b6362897691962bd2e585d3546f50.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mp_api.client</span> <span class="kn">import</span> <span class="n">MPRester</span>
-<span class="kn">from</span> <span class="nn">pymatgen.io.ase</span> <span class="kn">import</span> <span class="n">AseAtomsAdaptor</span> <span class="k">as</span> <span class="n">aaa</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mp_api.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPRester</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.io.ase</span><span class="w"> </span><span class="kn">import</span> <span class="n">AseAtomsAdaptor</span> <span class="k">as</span> <span class="n">aaa</span>
 
 <span class="n">MPID</span> <span class="o">=</span> <span class="s1">&#39;mp-20674&#39;</span> <span class="c1"># Materials Project ID number for YBCO-123</span>
 
@@ -520,15 +530,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/mp_api/client/mprester.py:182: UserWarning: mpcontribs-client not installed. Install the package to query MPContribs data, or construct pourbaix diagrams: &#39;pip install mpcontribs-client&#39;
-  warnings.warn(
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "29cd63cf27904ad483fe2385d581bec5"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a0b25089852148709aa6f24f390f2d84", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ase.visualize</span> <span class="kn">import</span> <span class="n">view</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ase.visualize</span><span class="w"> </span><span class="kn">import</span> <span class="n">view</span>
 
 <span class="n">view</span><span class="p">(</span><span class="n">raw_atoms</span><span class="p">,</span> <span class="n">viewer</span><span class="o">=</span><span class="s1">&#39;x3d&#39;</span><span class="p">)</span>
 </pre></div>
@@ -833,12 +839,12 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">alignn.ff.ff</span> <span class="kn">import</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">,</span> <span class="n">default_path</span>
-<span class="kn">from</span> <span class="nn">ase.optimize</span> <span class="kn">import</span> <span class="n">BFGS</span><span class="p">,</span> <span class="n">BFGSLineSearch</span>
-<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">alignn.ff.ff</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">,</span> <span class="n">default_path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">BFGS</span><span class="p">,</span> <span class="n">BFGSLineSearch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="k">def</span> <span class="nf">alignn_ff_relax</span><span class="p">(</span><span class="n">raw_atoms</span><span class="p">,</span> <span class="n">nsteps</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">alignn_ff_relax</span><span class="p">(</span><span class="n">raw_atoms</span><span class="p">,</span> <span class="n">nsteps</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
                     <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;alignn_ff&#39;</span><span class="p">,</span>
                     <span class="n">workdir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
     <span class="n">atoms</span> <span class="o">=</span> <span class="n">raw_atoms</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -863,30 +869,228 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model_path /media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/ff/alignnff_wt10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model_path /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/alignn/ff
+      Step     Time          Energy         fmax
+BFGS:    0 14:30:29      -50.884412        0.0114
+BFGS:    1 14:30:30      -50.220586        0.0127
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      Step     Time          Energy         fmax
-BFGS:    0 14:32:54      -50.884412        0.1479
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    1 14:32:55      -50.386111        0.1312
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    2 14:32:57      -50.416880        0.1225
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    3 14:32:59      -50.249380        0.1620
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    4 14:33:00      -50.293788        0.1730
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BFGS:    5 14:33:02      -50.314567        0.1827
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E_init = -50.88441181182861
-E_final = -50.31456708908081
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">33</span><span class="p">],</span> <span class="n">line</span> <span class="mi">26</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E_final = </span><span class="si">{</span><span class="n">final_energy</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="k">return</span> <span class="n">atoms</span>
+<span class="ne">---&gt; </span><span class="mi">26</span> <span class="n">relaxed_atoms</span> <span class="o">=</span> <span class="n">alignn_ff_relax</span><span class="p">(</span><span class="n">raw_atoms</span><span class="p">)</span>
+
+<span class="nn">Cell In [33], line 18,</span> in <span class="ni">alignn_ff_relax</span><span class="nt">(raw_atoms, nsteps, filename, workdir)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">init_energy</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">dyn</span> <span class="o">=</span> <span class="n">BFGS</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>            <span class="n">trajectory</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workdir</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">.traj&#39;</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>            <span class="n">restart</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workdir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">.pckl&#39;</span><span class="p">))</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="n">dyn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">fmax</span><span class="o">=</span><span class="mf">0.0065</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">nsteps</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">final_energy</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get_potential_energy</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E_init = </span><span class="si">{</span><span class="n">init_energy</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/ase/optimize/optimize.py:269,</span> in <span class="ni">Optimizer.run</span><span class="nt">(self, fmax, steps)</span>
+<span class="g g-Whitespace">    </span><span class="mi">267</span> <span class="k">if</span> <span class="n">steps</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span>     <span class="bp">self</span><span class="o">.</span><span class="n">max_steps</span> <span class="o">=</span> <span class="n">steps</span>
+<span class="ne">--&gt; </span><span class="mi">269</span> <span class="k">return</span> <span class="n">Dynamics</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/ase/optimize/optimize.py:156,</span> in <span class="ni">Dynamics.run</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span> <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Run dynamics algorithm.</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span><span class="sd">     This method will return when the forces on all individual</span>
+<span class="g g-Whitespace">    </span><span class="mi">153</span><span class="sd">     atoms are less than *fmax* or when the number of steps exceeds</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span><span class="sd">     *steps*.&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">156</span>     <span class="k">for</span> <span class="n">converged</span> <span class="ow">in</span> <span class="n">Dynamics</span><span class="o">.</span><span class="n">irun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span>         <span class="k">pass</span>
+<span class="g g-Whitespace">    </span><span class="mi">158</span>     <span class="k">return</span> <span class="n">converged</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/ase/optimize/optimize.py:132,</span> in <span class="ni">Dynamics.irun</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span>     <span class="bp">self</span><span class="o">.</span><span class="n">call_observers</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span> <span class="c1"># run the algorithm until converged or max_steps reached</span>
+<span class="ne">--&gt; </span><span class="mi">132</span> <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">converged</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">nsteps</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_steps</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span> 
+<span class="g g-Whitespace">    </span><span class="mi">134</span>     <span class="c1"># compute the next step</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="bp">self</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="bp">self</span><span class="o">.</span><span class="n">nsteps</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/ase/optimize/optimize.py:274,</span> in <span class="ni">Optimizer.converged</span><span class="nt">(self, forces)</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Did the optimization converge?&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="k">if</span> <span class="n">forces</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">274</span>     <span class="n">forces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">get_forces</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">,</span> <span class="s2">&quot;get_curvature&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>     <span class="k">return</span> <span class="p">(</span><span class="n">forces</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span>         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">fmax</span> <span class="o">**</span> <span class="mi">2</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">get_curvature</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.0</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/ase/atoms.py:788,</span> in <span class="ni">Atoms.get_forces</span><span class="nt">(self, apply_constraint, md)</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">787</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Atoms object has no calculator.&#39;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">788</span> <span class="n">forces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc</span><span class="o">.</span><span class="n">get_forces</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">790</span> <span class="k">if</span> <span class="n">apply_constraint</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">791</span>     <span class="c1"># We need a special md flag here because for MD we want</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="c1"># to skip real constraints but include special &quot;constraints&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span>     <span class="c1"># Like Hookean.</span>
+<span class="g g-Whitespace">    </span><span class="mi">794</span>     <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraints</span><span class="p">:</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/ase/calculators/abc.py:23,</span> in <span class="ni">GetPropertiesMixin.get_forces</span><span class="nt">(self, atoms)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_forces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">23</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s1">&#39;forces&#39;</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/ase/calculators/calculator.py:737,</span> in <span class="ni">Calculator.get_property</span><span class="nt">(self, name, atoms, allow_calculation)</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">allow_calculation</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">736</span>         <span class="k">return</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">737</span>     <span class="bp">self</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">system_changes</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span>     <span class="c1"># For some reason the calculator was not able to do what we want,</span>
+<span class="g g-Whitespace">    </span><span class="mi">741</span>     <span class="c1"># and that is OK.</span>
+<span class="g g-Whitespace">    </span><span class="mi">742</span>     <span class="k">raise</span> <span class="n">PropertyNotImplementedError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> not present in this &#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span>                                       <span class="s1">&#39;calculation&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/alignn/ff/ff.py:165,</span> in <span class="ni">AlignnAtomwiseCalculator.calculate</span><span class="nt">(self, atoms, properties, system_changes)</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="n">num_atoms</span> <span class="o">=</span> <span class="n">j_atoms</span><span class="o">.</span><span class="n">num_atoms</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="n">g</span><span class="p">,</span> <span class="n">lg</span> <span class="o">=</span> <span class="n">Graph</span><span class="o">.</span><span class="n">atom_dgl_multigraph</span><span class="p">(</span><span class="n">j_atoms</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">165</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="p">((</span><span class="n">g</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="n">lg</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)))</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span> <span class="c1"># print (&#39;stress&#39;,result[&quot;stress&quot;].detach().numpy())</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="s2">&quot;energy&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;out&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="o">*</span> <span class="n">num_atoms</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="s2">&quot;forces&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;grad&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="s2">&quot;magmoms&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">atoms</span><span class="p">)),</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span> <span class="p">}</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1130,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1126</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1127</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1128</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1129</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1130</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1131</span> <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1132</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/alignn/models/alignn_atomwise.py:311,</span> in <span class="ni">ALIGNNAtomWise.forward</span><span class="nt">(self, g)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span> <span class="c1"># ALIGNN updates: update node, edge, triplet features</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span> <span class="k">for</span> <span class="n">alignn_layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">alignn_layers</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>     <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">alignn_layer</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">lg</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span> <span class="c1"># gated GCN updates: update node, edge features</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span> <span class="k">for</span> <span class="n">gcn_layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gcn_layers</span><span class="p">:</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1130,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1126</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1127</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1128</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1129</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1130</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1131</span> <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1132</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/alignn/models/alignn_atomwise.py:171,</span> in <span class="ni">ALIGNNConv.forward</span><span class="nt">(self, g, lg, x, y, z)</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_update</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="c1"># Edge-gated graph convolution update on crystal graph</span>
+<span class="ne">--&gt; </span><span class="mi">171</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_update</span><span class="p">(</span><span class="n">lg</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span> <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/torch/nn/modules/module.py:1130,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1126</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1127</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1128</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1129</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1130</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1131</span> <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1132</span> <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/alignn/models/alignn_atomwise.py:111,</span> in <span class="ni">EdgeGatedGraphConv.forward</span><span class="nt">(self, g, node_feats, edge_feats)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span> <span class="n">g</span><span class="o">.</span><span class="n">edata</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="n">g</span><span class="o">.</span><span class="n">ndata</span><span class="p">[</span><span class="s2">&quot;Bh&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dst_update</span><span class="p">(</span><span class="n">node_feats</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">111</span> <span class="n">g</span><span class="o">.</span><span class="n">update_all</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="n">fn</span><span class="o">.</span><span class="n">u_mul_e</span><span class="p">(</span><span class="s2">&quot;Bh&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span> <span class="n">fn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;sum_sigma_h&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="n">g</span><span class="o">.</span><span class="n">update_all</span><span class="p">(</span><span class="n">fn</span><span class="o">.</span><span class="n">copy_e</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">),</span> <span class="n">fn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;sum_sigma&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="n">g</span><span class="o">.</span><span class="n">ndata</span><span class="p">[</span><span class="s2">&quot;h&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">ndata</span><span class="p">[</span><span class="s2">&quot;sum_sigma_h&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">ndata</span><span class="p">[</span><span class="s2">&quot;sum_sigma&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-6</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/dgl/heterograph.py:4895,</span> in <span class="ni">DGLHeteroGraph.update_all</span><span class="nt">(self, message_func, reduce_func, apply_node_func, etype)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4893</span> <span class="n">_</span><span class="p">,</span> <span class="n">dtid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_graph</span><span class="o">.</span><span class="n">metagraph</span><span class="o">.</span><span class="n">find_edge</span><span class="p">(</span><span class="n">etid</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4894</span> <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="n">etype</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="p">[</span><span class="n">etype</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">4895</span> <span class="n">ndata</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">message_passing</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">message_func</span><span class="p">,</span> <span class="n">reduce_func</span><span class="p">,</span> <span class="n">apply_node_func</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4896</span> <span class="k">if</span> <span class="n">core</span><span class="o">.</span><span class="n">is_builtin</span><span class="p">(</span><span class="n">reduce_func</span><span class="p">)</span> <span class="ow">and</span> <span class="n">reduce_func</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">ndata</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4897</span>     <span class="c1"># Replace infinity with zero for isolated nodes</span>
+<span class="g g-Whitespace">   </span><span class="mi">4898</span>     <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ndata</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/dgl/core.py:357,</span> in <span class="ni">message_passing</span><span class="nt">(g, mfunc, rfunc, afunc)</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Invoke message passing computation on the whole graph.</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">338</span><span class="sd"> Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span><span class="sd">     Results from the message passing computation.</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">354</span> <span class="k">if</span> <span class="p">(</span><span class="n">is_builtin</span><span class="p">(</span><span class="n">mfunc</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_builtin</span><span class="p">(</span><span class="n">rfunc</span><span class="p">)</span> <span class="ow">and</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span>         <span class="nb">getattr</span><span class="p">(</span><span class="n">ops</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mfunc</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">rfunc</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span>     <span class="c1"># invoke fused message passing</span>
+<span class="ne">--&gt; </span><span class="mi">357</span>     <span class="n">ndata</span> <span class="o">=</span> <span class="n">invoke_gspmm</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">mfunc</span><span class="p">,</span> <span class="n">rfunc</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="c1"># invoke message passing in two separate steps</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span>     <span class="c1"># message phase</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>     <span class="k">if</span> <span class="n">is_builtin</span><span class="p">(</span><span class="n">mfunc</span><span class="p">):</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/dgl/core.py:323,</span> in <span class="ni">invoke_gspmm</span><span class="nt">(graph, mfunc, rfunc, srcdata, dstdata, edata)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">x</span> <span class="o">=</span> <span class="n">data_dict_to_list</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mfunc</span><span class="p">,</span> <span class="n">lhs_target</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="n">y</span> <span class="o">=</span> <span class="n">data_dict_to_list</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">mfunc</span><span class="p">,</span> <span class="n">rhs_target</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">323</span>     <span class="n">z</span> <span class="o">=</span> <span class="n">op</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">alldata</span><span class="p">[</span><span class="n">mfunc</span><span class="o">.</span><span class="n">target</span><span class="p">][</span><span class="n">mfunc</span><span class="o">.</span><span class="n">in_field</span><span class="p">]</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/dgl/ops/spmm.py:147,</span> in <span class="ni">_gen_spmm_func.&lt;locals&gt;.func</span><span class="nt">(g, x, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">147</span>     <span class="k">return</span> <span class="n">gspmm</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">binary_op</span><span class="p">,</span> <span class="n">reduce_op</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/dgl/ops/spmm.py:75,</span> in <span class="ni">gspmm</span><span class="nt">(g, op, reduce_op, lhs_data, rhs_data)</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span>         <span class="n">lhs_data</span><span class="p">,</span> <span class="n">rhs_data</span> <span class="o">=</span> <span class="n">reshape_lhs_rhs</span><span class="p">(</span><span class="n">lhs_data</span><span class="p">,</span> <span class="n">rhs_data</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="c1"># With max and min reducers infinity will be returned for zero degree nodes</span>
+<span class="ne">---&gt; </span><span class="mi">75</span>     <span class="n">ret</span> <span class="o">=</span> <span class="n">gspmm_internal</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">_graph</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span>                          <span class="s1">&#39;sum&#39;</span> <span class="k">if</span> <span class="n">reduce_op</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span> <span class="k">else</span> <span class="n">reduce_op</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>                          <span class="n">lhs_data</span><span class="p">,</span> <span class="n">rhs_data</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="c1"># lhs_data or rhs_data is None only in unary functions like ``copy-u`` or ``copy_e``</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="n">lhs_data</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">g</span><span class="o">.</span><span class="n">_graph</span><span class="o">.</span><span class="n">number_of_ntypes</span><span class="p">()</span> <span class="k">if</span> <span class="n">lhs_data</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">lhs_data</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py:724,</span> in <span class="ni">gspmm</span><span class="nt">(gidx, op, reduce_op, lhs_data, rhs_data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">722</span>     <span class="n">op</span> <span class="o">=</span> <span class="s1">&#39;mul&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span>     <span class="n">rhs_data</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">rhs_data</span>
+<span class="ne">--&gt; </span><span class="mi">724</span> <span class="k">return</span> <span class="n">GSpMM</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">gidx</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">reduce_op</span><span class="p">,</span> <span class="n">lhs_data</span><span class="p">,</span> <span class="n">rhs_data</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/torch/cuda/amp/autocast_mode.py:118,</span> in <span class="ni">custom_fwd.&lt;locals&gt;.decorate_fwd</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>         <span class="k">return</span> <span class="n">fwd</span><span class="p">(</span><span class="o">*</span><span class="n">_cast</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">cast_inputs</span><span class="p">),</span> <span class="o">**</span><span class="n">_cast</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">cast_inputs</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">118</span>     <span class="k">return</span> <span class="n">fwd</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/dgl/backend/pytorch/sparse.py:106,</span> in <span class="ni">GSpMM.forward</span><span class="nt">(ctx, gidx, op, reduce_op, X, Y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="nd">@staticmethod</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="nd">@custom_fwd</span><span class="p">(</span><span class="n">cast_inputs</span><span class="o">=</span><span class="n">th</span><span class="o">.</span><span class="n">float16</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">gidx</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">reduce_op</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">106</span>     <span class="n">out</span><span class="p">,</span> <span class="p">(</span><span class="n">argX</span><span class="p">,</span> <span class="n">argY</span><span class="p">)</span> <span class="o">=</span> <span class="n">_gspmm</span><span class="p">(</span><span class="n">gidx</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">reduce_op</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span>     <span class="n">reduce_last</span> <span class="o">=</span> <span class="n">_need_reduce_last_dim</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span>     <span class="n">X_shape</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span> <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="nn">File /media/colin/Shared/colin/git/materials-ml/env/lib/python3.10/site-packages/dgl/sparse.py:228,</span> in <span class="ni">_gspmm</span><span class="nt">(gidx, op, reduce_op, u, e)</span>
+<span class="g g-Whitespace">    </span><span class="mi">226</span> <span class="n">arg_e_nd</span> <span class="o">=</span> <span class="n">to_dgl_nd_for_write</span><span class="p">(</span><span class="n">arg_e</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">227</span> <span class="k">if</span> <span class="n">gidx</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">228</span>     <span class="n">_CAPI_DGLKernelSpMM</span><span class="p">(</span><span class="n">gidx</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">reduce_op</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">229</span>                         <span class="n">to_dgl_nd</span><span class="p">(</span><span class="n">u</span> <span class="k">if</span> <span class="n">use_u</span> <span class="k">else</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>                         <span class="n">to_dgl_nd</span><span class="p">(</span><span class="n">e</span> <span class="k">if</span> <span class="n">use_e</span> <span class="k">else</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>                         <span class="n">to_dgl_nd_for_write</span><span class="p">(</span><span class="n">v</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span>                         <span class="n">arg_u_nd</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>                         <span class="n">arg_e_nd</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span> <span class="c1"># NOTE(zihao): actually we can avoid the following step, because arg_*_nd</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span> <span class="c1"># refers to the data that stores arg_*. After we call _CAPI_DGLKernelSpMM,</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span> <span class="c1"># arg_* should have already been changed. But we found this doesn&#39;t work</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span> <span class="c1"># The workaround is proposed by Jinjing, and we still need to investigate</span>
+<span class="g g-Whitespace">    </span><span class="mi">240</span> <span class="c1"># where the problem is.</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span> <span class="n">arg_u</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">arg_u</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">F</span><span class="o">.</span><span class="n">zerocopy_from_dgl_ndarray</span><span class="p">(</span><span class="n">arg_u_nd</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -918,25 +1122,12 @@ E_final = -50.31456708908081
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="applications.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Applications of ML to Materials Science</p>
-      </div>
-    </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -959,9 +1150,10 @@ By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -985,8 +1177,8 @@ By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

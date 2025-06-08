@@ -33,7 +33,7 @@ Now, take a moment to consider the converse of the previous statement:
 
 > If a model $f : \mathcal{X} \rightarrow \mathcal{Y}$ fits the data, then it is valid.
 
-Is this statement also true? At first glance, you might be tempted into thinking it might be, but it is in general not true. In fact, sometimes a model that fits the data better than another model may actually be less valid. An an illustration of this, consider the following regression problem, where we have proposed two different fits:
+Is this statement also true? At first glance, you might be tempted into thinking it might be, but it is in general not true. In fact, sometimes a model that fits the data better than another model may actually be less valid. To illustrate this point, consider the following regression problem, where we have proposed two different fits:
 
 ```{code-cell}
 :tags: [hide-input]
@@ -101,11 +101,11 @@ plt.show()
 
 From this exercise, we see that some models are not valid, even though they may perfectly fit the data. So if we have a model that does seem to fit the data set well, how can we be sure that the model is also valid? Unfortunately, we can never know the degree to which a model is valid unless our dataset contains every possible input in $\mathcal{X}$ and its associated label. However, there are some general tactics we can employ to maximize the validity of our model. These are the three most important guidelines to keep in mind when working with supervised models:
 
-* **Be cautious in how the data is obtained.**
+* **Be mindful of how the data is obtained.**
 
 Is the data accurate? Are sources of noise identified and accounted for? Does the dataset adequately span the set of relevant input features $\mathcal{X}$ and labels $\mathcal{Y}$? You can _never_ have too much data, but you _can_ have too much data of a particular kind.
 
-* **Be cautious in how the data is handled.**
+* **Be mindful of how the data is handled.**
 
 How is the data handled to fit the model? Are training, validation, and test sets being used, and are they kept independent of one another? Are you avoiding selection bias? If you are enriching the dataset with additional features, are those features necessary and accurate?
 

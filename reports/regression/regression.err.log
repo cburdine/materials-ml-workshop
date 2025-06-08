@@ -1,17 +1,17 @@
 Traceback (most recent call last):
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-  File "/usr/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -20,21 +20,23 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import Ridge 
 
 def generate_X(n_data):
+    np.random.seed(0)
     return np.array([
-        np.random.uniform(0,10,n_data)*(10**(-n))
+        np.random.uniform(0,10,n_data)*(10**(-n/4))
         for n in range(40)
     ]).T
 
 def generate_y(X, noise=0.5):
+    np.random.seed(0)
     return np.array([
-        np.sum([ 2e-4*(10**n)*x_n for n,x_n in enumerate(x) ]) + \
-            10*np.random.normal(0,noise)
+        np.sum([ 2e-6*(10**(n/4))*x_n for n,x_n in enumerate(x) ]) + \
+            np.random.normal(0,noise)
         for x in X
     ])
 
 # generate training set:
-X_train = generate_X(42)
-y_train = generate_y(X_train, noise=0.5)
+X_train = generate_X(45)
+y_train = generate_y(X_train, noise=5.0)
 
 
 # generate validation set:
@@ -47,7 +49,7 @@ scaler.fit(X_train)
 Z_train = scaler.transform(X_train)
 Z_validation = scaler.transform(X_validation)
 
-lambda_values = np.linspace(0,1.0, 100)
+lambda_values = np.linspace(0,10.0, 100)
 
 train_mse_values = []
 validation_mse_values = []
@@ -71,7 +73,7 @@ for lambda_reg in lambda_values:
 
 # plot ridge regression results:
 plt.figure()
-plt.plot(lambda_values, train_mse_values, label='Training Set)
+plt.plot(lambda_values, train_mse_values, label='Training Set')
 plt.plot(lambda_values, validation_mse_values, label='Validation Set')
 plt.ylabel('Mean Square Error (MSE)')
 plt.xlabel(r'Regularization ($\lambda$)')
@@ -80,9 +82,43 @@ plt.show()
 ------------------
 
 
-[0;36m  Cell [0;32mIn[4], line 57[0;36m[0m
-[0;31m    plt.plot(lambda_values, train_mse_values, label='Training Set)[0m
-[0m                                                    ^[0m
-[0;31mSyntaxError[0m[0;31m:[0m unterminated string literal (detected at line 57)
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[4], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m StandardScaler
+[1;32m      3[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mlinear_model[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Ridge 
+[1;32m      5[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mgenerate_X[39m(n_data):
 
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/__init__.py:82[0m
+[1;32m     80[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _distributor_init  [38;5;66;03m# noqa: F401[39;00m
+[1;32m     81[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __check_build  [38;5;66;03m# noqa: F401[39;00m
+[0;32m---> 82[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mbase[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m clone
+[1;32m     83[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_show_versions[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m show_versions
+[1;32m     85[0m __all__ [38;5;241m=[39m [
+[1;32m     86[0m     [38;5;124m"[39m[38;5;124mcalibration[39m[38;5;124m"[39m,
+[1;32m     87[0m     [38;5;124m"[39m[38;5;124mcluster[39m[38;5;124m"[39m,
+[0;32m   (...)[0m
+[1;32m    128[0m     [38;5;124m"[39m[38;5;124mshow_versions[39m[38;5;124m"[39m,
+[1;32m    129[0m ]
+
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/base.py:17[0m
+[1;32m     15[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __version__
+[1;32m     16[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01m_config[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m get_config
+[0;32m---> 17[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _IS_32BIT
+[1;32m     18[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_set_output[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _SetOutputMixin
+[1;32m     19[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_tags[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[1;32m     20[0m     _DEFAULT_TAGS,
+[1;32m     21[0m )
+
+File [0;32m~/.local/lib/python3.10/site-packages/sklearn/utils/__init__.py:19[0m
+[1;32m     16[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
+[1;32m     17[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01msparse[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m issparse
+[0;32m---> 19[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mmurmurhash[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m murmurhash3_32
+[1;32m     20[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mclass_weight[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m compute_class_weight, compute_sample_weight
+[1;32m     21[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _joblib
+
+File [0;32msklearn/utils/murmurhash.pyx:1[0m, in [0;36minit sklearn.utils.murmurhash[0;34m()[0m
+
+[0;31mValueError[0m: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
 

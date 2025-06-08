@@ -63,4 +63,4 @@ ax.scatter(x,y,z, alpha=0.5)
 plt.title('Swiss Roll Manifold')
 plt.show()
 ```
-In other words, if have a large dataset embedded in a high-dimensional space with many features, we can use dimensionality reduction techniques determine the dimensionality of the data, and ultimately "unroll" the dataset into a lower dimensional space. In the next section, we will discuss some techniques that can be applied to find these lower-dimensional representations of data.
+In other words, if we have a large dataset embedded in a high-dimensional space with many features, we can use dimensionality reduction techniques determine the dimensionality of the data, and ultimately "unroll" the dataset into a lower dimensional space. In the next section, we will discuss some techniques that can be applied to find these lower-dimensional representations of data.

@@ -11,6 +11,8 @@ kernelspec:
 
 # Application: Classifying Superconductors
 
+Now that we have a strong understanding of unsupervised learning, let's apply what we have learned to study a class of materials known as _superconductors_. Superconductors are materials that 
+
 You can download the dataset for this section using the following Python code:
 
 ```
