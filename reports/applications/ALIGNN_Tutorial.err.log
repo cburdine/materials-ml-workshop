@@ -1,24 +1,17 @@
 Traceback (most recent call last):
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env2/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
-    asyncio.get_running_loop()
-RuntimeError: no running event loop
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env2/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env2/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env2/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
     return loop.run_until_complete(inner)
   File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env2/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env2/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/media/colin/Shared/colin/git/materials-ml-workshop/env2/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -28,13 +21,103 @@ model_path = default_path()
 calc = AlignnAtomwiseCalculator(path=model_path)
 ------------------
 
+----- stderr -----
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel_launcher.py", line 17, in <module>
+    app.launch_new_instance()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/traitlets/config/application.py", line 1043, in launch_instance
+    app.start()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelapp.py", line 725, in start
+    self.io_loop.start()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/tornado/platform/asyncio.py", line 195, in start
+    self.asyncio_loop.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelbase.py", line 513, in dispatch_queue
+    await self.process_one()
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelbase.py", line 502, in process_one
+    await dispatch(*args)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelbase.py", line 409, in dispatch_shell
+    await result
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelbase.py", line 729, in execute_request
+    reply_content = await reply_content
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/ipkernel.py", line 422, in do_execute
+    res = shell.run_cell(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/zmqshell.py", line 540, in run_cell
+    return super().run_cell(*args, **kwargs)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py", line 3009, in run_cell
+    result = self._run_cell(
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py", line 3064, in _run_cell
+    result = runner(coro)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/async_helpers.py", line 129, in _pseudo_sync_runner
+    coro.send(None)
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py", line 3269, in run_cell_async
+    has_raised = await self.run_ast_nodes(code_ast.body, cell_name,
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py", line 3448, in run_ast_nodes
+    if await self.run_code(code, result, async_=asy):
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py", line 3508, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "/tmp/ipykernel_13805/1719054429.py", line 1, in <module>
+    from alignn.ff.ff import AlignnAtomwiseCalculator,default_path
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/ff/ff.py", line 33, in <module>
+    from alignn.graphs import Graph
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/graphs.py", line 19, in <module>
+    import dgl
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/__init__.py", line 18, in <module>
+    from . import (
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/dataloading/__init__.py", line 4, in <module>
+    from .base import *
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/dataloading/base.py", line 7, in <module>
+    from ..convert import heterograph
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/convert.py", line 11, in <module>
+    from .heterograph import combine_frames, DGLBlock, DGLGraph
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/heterograph.py", line 40, in <module>
+    class DGLGraph(object):
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/heterograph.py", line 3837, in DGLGraph
+    self, transpose=False, ctx=F.cpu(), scipy_fmt=None, etype=None
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/backend/pytorch/tensor.py", line 34, in cpu
+    return th.device("cpu")
+/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/backend/pytorch/tensor.py:34: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:84.)
+  return th.device("cpu")
+------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;31mImportError[0m                               Traceback (most recent call last)
 Cell [0;32mIn[1], line 1[0m
 [0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01malignn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mff[39;00m[38;5;21;01m.[39;00m[38;5;21;01mff[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AlignnAtomwiseCalculator,default_path
 [1;32m      3[0m model_path [38;5;241m=[39m default_path()
 [1;32m      4[0m calc [38;5;241m=[39m AlignnAtomwiseCalculator(path[38;5;241m=[39mmodel_path)
 
-[0;31mModuleNotFoundError[0m: No module named 'alignn'
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/ff/ff.py:34[0m
+[1;32m     32[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mjarvis[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdb[39;00m[38;5;21;01m.[39;00m[38;5;21;01mjsonutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m loadjson
+[1;32m     33[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01malignn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mgraphs[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Graph
+[0;32m---> 34[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01malignn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmodels[39;00m[38;5;21;01m.[39;00m[38;5;21;01malignn_atomwise[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m ALIGNNAtomWise, ALIGNNAtomWiseConfig
+[1;32m     35[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mjarvis[39;00m[38;5;21;01m.[39;00m[38;5;21;01manalysis[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdefects[39;00m[38;5;21;01m.[39;00m[38;5;21;01mvacancy[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Vacancy
+[1;32m     36[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
+
+File [0;32m/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/models/alignn_atomwise.py:14[0m
+[1;32m     11[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mtorch[39;00m
+[1;32m     13[0m [38;5;66;03m# from dgl.nn.functional import edge_softmax[39;00m
+[0;32m---> 14[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mpydantic[39;00m[38;5;21;01m.[39;00m[38;5;21;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Literal
+[1;32m     15[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mtorch[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m nn
+[1;32m     16[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mtorch[39;00m[38;5;21;01m.[39;00m[38;5;21;01mnn[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m functional [38;5;28;01mas[39;00m F
+
+[0;31mImportError[0m: cannot import name 'Literal' from 'pydantic.typing' (/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/pydantic/typing.py)
 

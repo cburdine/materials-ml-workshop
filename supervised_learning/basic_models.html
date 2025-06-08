@@ -76,6 +76,8 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced Regression Models" href="../regression/regression.html" />
+    <link rel="prev" title="Fitting Supervised Models" href="fitting_models.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -138,8 +140,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -239,6 +239,32 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="supervised_learning.html">Supervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -859,7 +885,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;rhombohedral&#39;, &#39;orthorhombic&#39;, &#39;-&#39;, &#39;tetragonal&#39;, &#39;cubic&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;tetragonal&#39;, &#39;cubic&#39;, &#39;orthorhombic&#39;, &#39;-&#39;, &#39;rhombohedral&#39;]
 </pre></div>
 </div>
 </div>
@@ -892,7 +918,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/2fea99425eaefba3195bd99cb248c3b5f99530191e147dd65f0072395f8fa9eb.png" src="../_images/2fea99425eaefba3195bd99cb248c3b5f99530191e147dd65f0072395f8fa9eb.png" />
+<img alt="../_images/238f89e789f621286166995e2fb2dce2813174b2a7053cc2defb04e761d23185.png" src="../_images/238f89e789f621286166995e2fb2dce2813174b2a7053cc2defb04e761d23185.png" />
 </div>
 </div>
 <p>As expected, a majority of the perovskites have the ideal cubic structure.</p>
@@ -1068,8 +1094,8 @@ Shape of z_test: (533, 3)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.6230354210649777
-validation set accuracy: 0.6078799249530957
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.46117757447806706
+validation set accuracy: 0.474671669793621
 </pre></div>
 </div>
 </div>
@@ -1107,8 +1133,8 @@ validation set accuracy: 0.6078799249530957
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8257095941825006
-validation set accuracy: 0.7711069418386491
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8144499178981938
+validation set accuracy: 0.7936210131332082
 </pre></div>
 </div>
 </div>
@@ -1155,7 +1181,7 @@ validation set accuracy: 0.7711069418386491
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/3743900e71fd5b5ec9fb1e3c4216768606a51d3082144511db1e8b30645ceb19.png" src="../_images/3743900e71fd5b5ec9fb1e3c4216768606a51d3082144511db1e8b30645ceb19.png" />
+<img alt="../_images/56230c30d0f1c1aeff02f9eba63c779797f681dab8b7887deb7d44b4a63e4a04.png" src="../_images/56230c30d0f1c1aeff02f9eba63c779797f681dab8b7887deb7d44b4a63e4a04.png" />
 </div>
 </div>
 <p>Now that we have established a baseline accuracy using the nearest neighbor model, let’s try to exceed this baseline accuracy with a more complex model.</p>
@@ -1188,8 +1214,8 @@ validation set accuracy: 0.7711069418386491
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8608960825709594
-validation set accuracy: 0.7879924953095685
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8634764250527798
+validation set accuracy: 0.7786116322701688
 </pre></div>
 </div>
 </div>
@@ -1237,9 +1263,9 @@ validation set accuracy: 0.7879924953095685
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9610602861834389
-validation set accuracy: 0.8086303939962477
-test set accuracy: 0.8086303939962477
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.965282664790054
+validation set accuracy: 0.799249530956848
+test set accuracy: 0.8030018761726079
 </pre></div>
 </div>
 </div>
@@ -1280,6 +1306,24 @@ test set accuracy: 0.8086303939962477
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="fitting_models.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fitting Supervised Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../regression/regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Advanced Regression Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

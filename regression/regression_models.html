@@ -76,6 +76,8 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Unsupervised Learning" href="../unsupervised_learning/unsupervised_learning.html" />
+    <link rel="prev" title="Kernel Machines" href="kernel_machines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -138,8 +140,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -239,6 +239,32 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="regression.html">Advanced Regression Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -968,7 +994,7 @@ data_y shape: (29195, 2)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/2fca63fbd9005ed224b462913175105a167d4a88846748cd8554458c3e3aa00f.png" src="../_images/2fca63fbd9005ed224b462913175105a167d4a88846748cd8554458c3e3aa00f.png" />
+<img alt="../_images/08e30f1196315ea8ba21fdf1a7af7789b5438bc7e682e831a5d66a1d5311c499.png" src="../_images/08e30f1196315ea8ba21fdf1a7af7789b5438bc7e682e831a5d66a1d5311c499.png" />
 </div>
 </div>
 <p>From inspecting the confusion matrix, we see that a significant majority of the materials were classified correctly, with almost three times as many metals being predicted as non-metals than non-metals being predicted as metals. We can evaluate the overall validation set accuracy of the model from the confusion matrix as follows:</p>
@@ -980,7 +1006,7 @@ data_y shape: (29195, 2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8700417894087826
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8711379050489827
 </pre></div>
 </div>
 </div>
@@ -1061,10 +1087,10 @@ bandgap_y shape: (11464,)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8646509086648911
-training MSE: 0.4475875172240217
-validation MSE: 0.4447602471220874
-validation RMSE/stddev: 0.7712979538128881
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8612120410749723
+training MSE: 0.44151057824272366
+validation MSE: 0.44190547582655537
+validation RMSE/stddev: 0.7718885490951135
 </pre></div>
 </div>
 </div>
@@ -1108,10 +1134,10 @@ validation RMSE/stddev: 0.7712979538128881
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8646509086648911
-training MSE: 0.08986900395703674
-validation MSE: 0.1272098152617559
-validation RMSE/stddev: 0.41249577890517863
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8612120410749723
+training MSE: 0.09098553528580908
+validation MSE: 0.12569463984572915
+validation RMSE/stddev: 0.41166911488502406
 </pre></div>
 </div>
 </div>
@@ -1233,9 +1259,9 @@ validation RMSE/stddev: 0.41249577890517863
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9765add25ae7a610300bd4ca2f3ff17245abd74dad4c7eee3d2a42a35c445bb2.png" src="../_images/9765add25ae7a610300bd4ca2f3ff17245abd74dad4c7eee3d2a42a35c445bb2.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7107466852756456
-test set accuracy: 0.728890439637125
+<img alt="../_images/4902f29e629e5c687ab9d6398f67ffcf261149574acd84e2c833ebb7802b9478.png" src="../_images/4902f29e629e5c687ab9d6398f67ffcf261149574acd84e2c833ebb7802b9478.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7255757152826239
+test set accuracy: 0.7152826238660154
 </pre></div>
 </div>
 </div>
@@ -1276,6 +1302,24 @@ test set accuracy: 0.728890439637125
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="kernel_machines.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Kernel Machines</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../unsupervised_learning/unsupervised_learning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Unsupervised Learning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

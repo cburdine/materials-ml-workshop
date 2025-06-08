@@ -76,6 +76,8 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Fitting Supervised Models" href="fitting_models.html" />
+    <link rel="prev" title="Mathematics Review" href="../ml_intro/math_review.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -138,8 +140,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -239,6 +239,32 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Supervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -524,7 +550,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/1199e35489bbaabfb770e7876e2fec166cfaf9be334bb3fd3c554e18f5feb9b7.png" src="../_images/1199e35489bbaabfb770e7876e2fec166cfaf9be334bb3fd3c554e18f5feb9b7.png" />
+<img alt="../_images/3da5206ffc3e844f8589b1a0c0cbcd444370791e62d6b32ab8f1e6a63a7e78fc.png" src="../_images/3da5206ffc3e844f8589b1a0c0cbcd444370791e62d6b32ab8f1e6a63a7e78fc.png" />
 </div>
 </div>
 <div class="admonition important">
@@ -563,7 +589,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/119da7953b1ad7b09f6620c1c44f2493d92b32858e4c07c8de92efa030d76006.png" src="../_images/119da7953b1ad7b09f6620c1c44f2493d92b32858e4c07c8de92efa030d76006.png" />
+<img alt="../_images/d37c9e940c338d2690eec6e1c00394ab18b67837cd4e8a7b000e5cd708049ffa.png" src="../_images/d37c9e940c338d2690eec6e1c00394ab18b67837cd4e8a7b000e5cd708049ffa.png" />
 </div>
 </div>
 <p>From this exercise, we see that some models are not valid, even though they may perfectly fit the data. So if we have a model that does seem to fit the data set well, how can we be sure that the model is also valid? Unfortunately, we can never know the degree to which a model is valid unless our dataset contains every possible input in <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and its associated label. However, there are some general tactics we can employ to maximize the validity of our model. These are the three most important guidelines to keep in mind when working with supervised models:</p>
@@ -724,8 +750,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/97c298f13c40f3e7e0b7477b0596561898b2d064408cb4445d2836cd03ea0be5.png" src="../_images/97c298f13c40f3e7e0b7477b0596561898b2d064408cb4445d2836cd03ea0be5.png" />
-<img alt="../_images/94a4253f02b91a938bdfa236c650b4629cf65d21a9359273eaedb75aa859fc23.png" src="../_images/94a4253f02b91a938bdfa236c650b4629cf65d21a9359273eaedb75aa859fc23.png" />
+<img alt="../_images/013a474356c1d12c1e11c41bb5fddf57693d27a803ad93e0409fae55fe71bc96.png" src="../_images/013a474356c1d12c1e11c41bb5fddf57693d27a803ad93e0409fae55fe71bc96.png" />
+<img alt="../_images/8cf844f908df7d09be6afbd81a6b2021ebb88032be86550bf01a3feda3f01db2.png" src="../_images/8cf844f908df7d09be6afbd81a6b2021ebb88032be86550bf01a3feda3f01db2.png" />
 </div>
 </details>
 </div>
@@ -783,14 +809,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b8bfd5bf4ea7c72642d85d7a1480f09e2ea2c831233b1881e7ffa9068e97b1ec.png" src="../_images/b8bfd5bf4ea7c72642d85d7a1480f09e2ea2c831233b1881e7ffa9068e97b1ec.png" />
-<img alt="../_images/42e80a38f4bc122a5b33d2af1071e1558485600a3c3b21de2dd3680581dd6f59.png" src="../_images/42e80a38f4bc122a5b33d2af1071e1558485600a3c3b21de2dd3680581dd6f59.png" />
+<img alt="../_images/61166803067d752a9afd238eafbb3c4a8abf308bbb96cd78b36f1f2234f0642d.png" src="../_images/61166803067d752a9afd238eafbb3c4a8abf308bbb96cd78b36f1f2234f0642d.png" />
+<img alt="../_images/baed72e9bda62871b520902bcf05da0176df3a695d3be2d89a29739d978f4c74.png" src="../_images/baed72e9bda62871b520902bcf05da0176df3a695d3be2d89a29739d978f4c74.png" />
 </div>
 </details>
 </div>
 </section>
 </section>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -823,6 +851,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../ml_intro/math_review.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mathematics Review</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="fitting_models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fitting Supervised Models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

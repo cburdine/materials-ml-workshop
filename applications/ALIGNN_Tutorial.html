@@ -74,6 +74,7 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Applications of ML to Materials Science" href="applications.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -136,8 +137,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -193,7 +192,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -237,6 +236,32 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="applications.html">Applications of ML to Materials Science</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -452,14 +477,103 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with &#39;pybind11&gt;=2.12&#39;.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to &#39;numpy&lt;2&#39; or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File &quot;/usr/lib/python3.10/runpy.py&quot;, line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File &quot;/usr/lib/python3.10/runpy.py&quot;, line 86, in _run_code
+    exec(code, run_globals)
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel_launcher.py&quot;, line 17, in &lt;module&gt;
+    app.launch_new_instance()
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/traitlets/config/application.py&quot;, line 1043, in launch_instance
+    app.start()
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelapp.py&quot;, line 725, in start
+    self.io_loop.start()
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/tornado/platform/asyncio.py&quot;, line 195, in start
+    self.asyncio_loop.run_forever()
+  File &quot;/usr/lib/python3.10/asyncio/base_events.py&quot;, line 603, in run_forever
+    self._run_once()
+  File &quot;/usr/lib/python3.10/asyncio/base_events.py&quot;, line 1909, in _run_once
+    handle._run()
+  File &quot;/usr/lib/python3.10/asyncio/events.py&quot;, line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelbase.py&quot;, line 513, in dispatch_queue
+    await self.process_one()
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelbase.py&quot;, line 502, in process_one
+    await dispatch(*args)
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelbase.py&quot;, line 409, in dispatch_shell
+    await result
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/kernelbase.py&quot;, line 729, in execute_request
+    reply_content = await reply_content
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/ipkernel.py&quot;, line 422, in do_execute
+    res = shell.run_cell(
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/ipykernel/zmqshell.py&quot;, line 540, in run_cell
+    return super().run_cell(*args, **kwargs)
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3009, in run_cell
+    result = self._run_cell(
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3064, in _run_cell
+    result = runner(coro)
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/async_helpers.py&quot;, line 129, in _pseudo_sync_runner
+    coro.send(None)
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3269, in run_cell_async
+    has_raised = await self.run_ast_nodes(code_ast.body, cell_name,
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3448, in run_ast_nodes
+    if await self.run_code(code, result, async_=asy):
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3508, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File &quot;/tmp/ipykernel_13805/1719054429.py&quot;, line 1, in &lt;module&gt;
+    from alignn.ff.ff import AlignnAtomwiseCalculator,default_path
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/ff/ff.py&quot;, line 33, in &lt;module&gt;
+    from alignn.graphs import Graph
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/graphs.py&quot;, line 19, in &lt;module&gt;
+    import dgl
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/__init__.py&quot;, line 18, in &lt;module&gt;
+    from . import (
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/dataloading/__init__.py&quot;, line 4, in &lt;module&gt;
+    from .base import *
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/dataloading/base.py&quot;, line 7, in &lt;module&gt;
+    from ..convert import heterograph
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/convert.py&quot;, line 11, in &lt;module&gt;
+    from .heterograph import combine_frames, DGLBlock, DGLGraph
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/heterograph.py&quot;, line 40, in &lt;module&gt;
+    class DGLGraph(object):
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/heterograph.py&quot;, line 3837, in DGLGraph
+    self, transpose=False, ctx=F.cpu(), scipy_fmt=None, etype=None
+  File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/backend/pytorch/tensor.py&quot;, line 34, in cpu
+    return th.device(&quot;cpu&quot;)
+/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/dgl/backend/pytorch/tensor.py:34: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:84.)
+  return th.device(&quot;cpu&quot;)
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">alignn.ff.ff</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">,</span><span class="n">default_path</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">model_path</span> <span class="o">=</span> <span class="n">default_path</span><span class="p">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">calc</span> <span class="o">=</span> <span class="n">AlignnAtomwiseCalculator</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">model_path</span><span class="p">)</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;alignn&#39;
+<span class="n">File</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">colin</span><span class="o">/</span><span class="n">Shared</span><span class="o">/</span><span class="n">colin</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">materials</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">workshop</span><span class="o">/</span><span class="n">env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">alignn</span><span class="o">/</span><span class="n">ff</span><span class="o">/</span><span class="n">ff</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">34</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="kn">from</span><span class="w"> </span><span class="nn">jarvis.db.jsonutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">loadjson</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="kn">from</span><span class="w"> </span><span class="nn">alignn.graphs</span><span class="w"> </span><span class="kn">import</span> <span class="n">Graph</span>
+<span class="ne">---&gt; </span><span class="mi">34</span> <span class="kn">from</span><span class="w"> </span><span class="nn">alignn.models.alignn_atomwise</span><span class="w"> </span><span class="kn">import</span> <span class="n">ALIGNNAtomWise</span><span class="p">,</span> <span class="n">ALIGNNAtomWiseConfig</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="kn">from</span><span class="w"> </span><span class="nn">jarvis.analysis.defects.vacancy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vacancy</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">File</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">colin</span><span class="o">/</span><span class="n">Shared</span><span class="o">/</span><span class="n">colin</span><span class="o">/</span><span class="n">git</span><span class="o">/</span><span class="n">materials</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">workshop</span><span class="o">/</span><span class="n">env</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">alignn</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">alignn_atomwise</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># from dgl.nn.functional import edge_softmax</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
+
+<span class="ne">ImportError</span>: cannot import name &#39;Literal&#39; from &#39;pydantic.typing&#39; (/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/pydantic/typing.py)
 </pre></div>
 </div>
 </div>
@@ -1127,6 +1241,15 @@ BFGS:    1 14:30:30      -50.220586        0.0127
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="applications.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Applications of ML to Materials Science</p>
+      </div>
+    </a>
 </div>
                 </footer>
               

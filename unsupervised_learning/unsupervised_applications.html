@@ -76,6 +76,8 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Neural Networks" href="../neural_networks/neural_networks.html" />
+    <link rel="prev" title="Clustering and Distribution Estimation" href="clustering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -138,8 +140,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -239,6 +239,32 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -795,7 +821,7 @@ document.write(`
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_9227/880033895.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_14505/880033895.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
   Tc_density /= np.trapz(Tc_density, Tc_eval_pts)
 </pre></div>
 </div>
@@ -1076,7 +1102,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/fd66169cc36bfd69caacc6a47cb2e12825cda1bf5368bff21f6a0d06eead74c6.png" src="../_images/fd66169cc36bfd69caacc6a47cb2e12825cda1bf5368bff21f6a0d06eead74c6.png" />
+<img alt="../_images/b9c280f16fed2fda2aecbc53c3e5dfca1354115a11f741f8d475057d9979c0db.png" src="../_images/b9c280f16fed2fda2aecbc53c3e5dfca1354115a11f741f8d475057d9979c0db.png" />
 </div>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1131,39 +1157,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>6793</th>
-      <td>Nb Se 2</td>
-      <td>6.40</td>
+      <th>4072</th>
+      <td>Mg B 2</td>
+      <td>5.000</td>
       <td>0.0</td>
-      <td>10.1038/ncomms10616</td>
+      <td>10.1103/physrevlett.86.4366</td>
     </tr>
     <tr>
-      <th>4204</th>
-      <td>Fe Se 0.88</td>
-      <td>8.00</td>
+      <th>6351</th>
+      <td>Ta B 2</td>
+      <td>5.500</td>
       <td>0.0</td>
-      <td>10.1143/jpsj.78.093703</td>
+      <td>10.1134/1.1514768</td>
     </tr>
     <tr>
-      <th>5475</th>
-      <td>Sb 2 Te 3</td>
-      <td>3.00</td>
-      <td>4.0</td>
-      <td>10.1002/qute.201800112</td>
+      <th>4856</th>
+      <td>Mg B 2</td>
+      <td>39.000</td>
+      <td>0.0</td>
+      <td>10.1088/0953-2048/22/12/125023</td>
     </tr>
     <tr>
-      <th>7725</th>
-      <td>Pd Te 2</td>
-      <td>2.15</td>
+      <th>5120</th>
+      <td>Mg B 2</td>
+      <td>0.059</td>
       <td>0.0</td>
-      <td>10.1103/physrevmaterials.3.114202</td>
+      <td>10.1103/physrevb.97.094509</td>
     </tr>
     <tr>
-      <th>21062</th>
-      <td>Fe Se</td>
-      <td>48.00</td>
+      <th>23674</th>
+      <td>Ta B 2</td>
+      <td>9.500</td>
       <td>0.0</td>
-      <td>10.1021/acs.nanolett.6b01163</td>
+      <td>10.1016/s0921-4534(02)01996-2</td>
     </tr>
   </tbody>
 </table>
@@ -1196,39 +1222,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>2253</th>
-      <td>Ca C 6</td>
-      <td>11.5</td>
+      <th>1643</th>
+      <td>Ca 3 Rh 4 Sn 13</td>
+      <td>4.6</td>
       <td>0.0</td>
-      <td>10.1007/s10948-011-1358-3</td>
+      <td>10.1103/physrevb.93.245126</td>
     </tr>
     <tr>
-      <th>5711</th>
-      <td>Ni</td>
-      <td>1.8</td>
+      <th>15067</th>
+      <td>U Te 2</td>
+      <td>20.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.91.184503</td>
+      <td>10.7566/jpsj.88.113703</td>
     </tr>
     <tr>
-      <th>9848</th>
-      <td>Sn O</td>
-      <td>1.4</td>
-      <td>9.0</td>
-      <td>10.1088/0953-2048/25/8/084018</td>
+      <th>7627</th>
+      <td>Zn N</td>
+      <td>8.8</td>
+      <td>0.0</td>
+      <td>10.1142/s0217984901001707</td>
     </tr>
     <tr>
-      <th>17712</th>
-      <td>La O</td>
-      <td>5.0</td>
+      <th>6111</th>
+      <td>K Os 2 O 6</td>
+      <td>9.6</td>
       <td>0.0</td>
-      <td>10.1021/acsami.7b11853</td>
+      <td>10.1103/physrevlett.96.247004</td>
     </tr>
     <tr>
-      <th>14446</th>
-      <td>La Pt 2 Si 2</td>
-      <td>1.6</td>
-      <td>0.0</td>
-      <td>10.1103/physrevb.97.184509</td>
+      <th>20481</th>
+      <td>Ce In 3</td>
+      <td>200.0</td>
+      <td>2.5</td>
+      <td>10.1103/physrevb.77.064508</td>
     </tr>
   </tbody>
 </table>
@@ -1261,39 +1287,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>6013</th>
-      <td>Mg B 2</td>
-      <td>39.0</td>
-      <td>0.0</td>
-      <td>10.1038/nature14964</td>
-    </tr>
-    <tr>
-      <th>4628</th>
-      <td>Zr B 12</td>
+      <th>2176</th>
+      <td>Ga</td>
       <td>6.0</td>
       <td>0.0</td>
-      <td>10.1134/1.2010666</td>
-    </tr>
-    <tr>
-      <th>11267</th>
-      <td>Mg B 2</td>
-      <td>40.0</td>
-      <td>0.0</td>
-      <td>10.1063/1.2805650</td>
-    </tr>
-    <tr>
-      <th>2559</th>
-      <td>Mg B 2</td>
-      <td>37.0</td>
-      <td>0.0</td>
-      <td>10.1063/1.1420771</td>
-    </tr>
-    <tr>
-      <th>20632</th>
-      <td>Zr B 2</td>
-      <td>5.5</td>
-      <td>0.0</td>
       <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14671</th>
+      <td>Pu Rh Ga 5</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>10.1088/0034-4885/72/2/026502</td>
+    </tr>
+    <tr>
+      <th>7517</th>
+      <td>Pu Co Ga 5</td>
+      <td>140.0</td>
+      <td>0.0</td>
+      <td>10.1007/s10948-010-1052-x</td>
+    </tr>
+    <tr>
+      <th>15611</th>
+      <td>Pu Co Ga 5</td>
+      <td>18.7</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.95.094517</td>
+    </tr>
+    <tr>
+      <th>20665</th>
+      <td>Pu Co Ga 5</td>
+      <td>18.5</td>
+      <td>0.0</td>
+      <td>10.1016/j.jallcom.2013.06.127</td>
     </tr>
   </tbody>
 </table>
@@ -1326,39 +1352,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>7863</th>
-      <td>P H 2</td>
-      <td>30.0</td>
-      <td>83.0</td>
-      <td>10.1021/jacs.5b10180</td>
+      <th>2394</th>
+      <td>Bi 2 Sr 2 Ca Cu 2 O 8</td>
+      <td>75.00</td>
+      <td>0.0</td>
+      <td>10.1209/epl/i2000-00123-2</td>
     </tr>
     <tr>
-      <th>14690</th>
-      <td>H 2 S</td>
-      <td>80.0</td>
-      <td>160.0</td>
+      <th>4614</th>
+      <td>Bi 2 Sr 2 Ca Cu 2 O 8</td>
+      <td>90.00</td>
+      <td>0.0</td>
+      <td>10.1103/physrevlett.115.137003</td>
+    </tr>
+    <tr>
+      <th>13269</th>
+      <td>La 1.8 Sr 0.2 Cu O 4</td>
+      <td>38.00</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.101.100504</td>
+    </tr>
+    <tr>
+      <th>12959</th>
+      <td>Bi 2 Sr 2 Ca Cu 2 O 8</td>
+      <td>90.00</td>
+      <td>0.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>6015</th>
-      <td>H 2 S</td>
-      <td>80.0</td>
-      <td>100.0</td>
-      <td>10.1038/nature14964</td>
-    </tr>
-    <tr>
-      <th>17398</th>
-      <td>H 3 S</td>
-      <td>200.0</td>
-      <td>170.0</td>
-      <td>10.1016/j.ssc.2016.05.019</td>
-    </tr>
-    <tr>
-      <th>2806</th>
-      <td>H 2 S</td>
-      <td>190.0</td>
-      <td>170.0</td>
-      <td>10.1209/0295-5075/108/47007</td>
+      <th>22648</th>
+      <td>Tb 2 Cu 3</td>
+      <td>0.81</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.68.184405</td>
     </tr>
   </tbody>
 </table>
@@ -1391,39 +1417,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>4749</th>
-      <td>(Ca Pr) Fe 2 As 2</td>
-      <td>40.0</td>
+      <th>20325</th>
+      <td>Sr Os 4 As 12</td>
+      <td>4.8</td>
       <td>0.0</td>
-      <td>10.1016/j.physc.2014.06.014</td>
+      <td>10.1103/physrevb.100.054516</td>
     </tr>
     <tr>
-      <th>3164</th>
-      <td>Ba Co x Fe 2-x As 2</td>
-      <td>22.0</td>
+      <th>9093</th>
+      <td>Ba Fe 2 (As 0.8 P 0.2) 2</td>
+      <td>10.0</td>
       <td>0.0</td>
-      <td>10.1209/0295-5075/92/57012</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>9694</th>
-      <td>Sr Fe 2 As 2</td>
-      <td>55.0</td>
+      <th>11773</th>
+      <td>K Fe 2 As 2</td>
+      <td>4.0</td>
       <td>0.0</td>
-      <td>10.1063/1.3435472</td>
+      <td>10.1103/revmodphys.83.1589</td>
     </tr>
     <tr>
-      <th>15103</th>
-      <td>Nd Fe As O 0.9 F 0.1</td>
-      <td>53.0</td>
+      <th>16002</th>
+      <td>Ba Fe 1.85 Co 0.15 As 2</td>
+      <td>26.0</td>
       <td>0.0</td>
-      <td>10.1209/0295-5075/122/47001</td>
+      <td>10.1103/revmodphys.84.1383</td>
     </tr>
     <tr>
-      <th>7843</th>
-      <td>Sm 0.65 Th 0.35 Fe As O</td>
-      <td>53.0</td>
+      <th>18964</th>
+      <td>Sm Fe 0.92 Co 0.08 As O</td>
+      <td>18.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.82.064517</td>
+      <td>10.1038/srep18273</td>
     </tr>
   </tbody>
 </table>
@@ -1456,39 +1482,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>23069</th>
-      <td>Pr Os 4 Sb 12</td>
-      <td>1.85</td>
+      <th>14688</th>
+      <td>Y H 6</td>
+      <td>40.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.70.054507</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>15230</th>
-      <td>K Os 2 O 6</td>
-      <td>10.00</td>
-      <td>0.0</td>
-      <td>10.1103/physrevlett.95.037001</td>
+      <th>13436</th>
+      <td>C 6 H 6</td>
+      <td>13.7</td>
+      <td>190.0</td>
+      <td>10.1088/1361-648x/aac3ff</td>
     </tr>
     <tr>
-      <th>23744</th>
-      <td>V 3 Si</td>
-      <td>17.00</td>
-      <td>0.0</td>
-      <td>10.1088/0953-2048/26/11/115011</td>
+      <th>14694</th>
+      <td>La H 10</td>
+      <td>260.0</td>
+      <td>190.0</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>12897</th>
-      <td>Zr 5 Sb 2.4 Ru 0.6</td>
-      <td>5.00</td>
-      <td>0.0</td>
-      <td>10.1039/c5tc01818h</td>
+      <th>13160</th>
+      <td>H 3 S</td>
+      <td>203.0</td>
+      <td>170.0</td>
+      <td>10.1209/0295-5075/118/37003</td>
     </tr>
     <tr>
-      <th>22155</th>
-      <td>Rb Os 2 O 6</td>
-      <td>8.80</td>
-      <td>0.0</td>
-      <td>10.1143/jpsj.77.043704</td>
+      <th>15599</th>
+      <td>Si H 4</td>
+      <td>166.0</td>
+      <td>202.0</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -1528,6 +1554,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="clustering.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clustering and Distribution Estimation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../neural_networks/neural_networks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Neural Networks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

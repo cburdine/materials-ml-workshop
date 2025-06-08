@@ -1,85 +1,57 @@
 Traceback (most recent call last):
-  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 1319, in execute
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/home/colin/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
     return loop.run_until_complete(inner)
   File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
     return future.result()
-  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/home/colin/.local/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+  File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from sklearn.preprocessing import StandardScaler
-import numpy as np
+import matplotlib.pyplot as plt
 
-def sinc_function(x1,x2):
-    """ the function g(x) the network will be fit to """
-    r = np.sqrt(x1**2 + x2**2)
-    return np.sin(r) / r
+eval_pts = np.linspace(-10, 10, 100)
+eval_X1, eval_X2 = np.meshgrid(eval_pts, eval_pts)
 
-# construct x_data:
-grid_pts = np.linspace(-10, 10, 50)
-X1, X2 = np.meshgrid(grid_pts, grid_pts)
-data_x = np.array([
-    X1.flatten(),
-    X2.flatten()
-]).T
+eval_x = np.array([ eval_X1.flatten(), eval_X2.flatten() ]).T
+eval_z = scaler.transform(eval_x)
+eval_z_tensor = torch.tensor(eval_z, dtype=torch.float32)
+eval_z = np.array(model(eval_z_tensor).detach().numpy())
+model_yhat = eval_z.reshape(eval_X1.shape)
 
-# construct y_data:
-data_y = sinc_function(data_x[:,0], data_x[:,1])
-data_y = data_y.reshape(-1,1)
+plt.figure(figsize=(10,4))
+plt.subplot(1,3,1)
+plt.scatter(data_x[:,0], data_x[:,1], c=data_y, s=0.5)
+plt.title('Training Data')
 
-# normalize_data:
-scaler = StandardScaler()
-data_z = scaler.fit_transform(data_x)
+plt.subplot(1,3,2)
+plt.contourf(eval_X1, eval_X2, sinc_function(eval_X1,eval_X2), levels=100)
+plt.title(r'Actual Function ($y$)')
 
-print('data_z shape:', data_z.shape)
-print('data_y shape:', data_y.shape)
+plt.subplot(1,3,3)
+plt.title('Neural Network ($\hat{y}$)')
+plt.contourf(eval_X1, eval_X2, model_yhat, levels=100)
+
+plt.tight_layout()
+plt.show()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn[2], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m StandardScaler
-[1;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
-[1;32m      4[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21msinc_function[39m(x1,x2):
+[0;31mRuntimeError[0m                              Traceback (most recent call last)
+Cell [0;32mIn[9], line 9[0m
+[1;32m      7[0m eval_z [38;5;241m=[39m scaler[38;5;241m.[39mtransform(eval_x)
+[1;32m      8[0m eval_z_tensor [38;5;241m=[39m torch[38;5;241m.[39mtensor(eval_z, dtype[38;5;241m=[39mtorch[38;5;241m.[39mfloat32)
+[0;32m----> 9[0m eval_z [38;5;241m=[39m np[38;5;241m.[39marray([43mmodel[49m[43m([49m[43meval_z_tensor[49m[43m)[49m[38;5;241;43m.[39;49m[43mdetach[49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mnumpy[49m[43m([49m[43m)[49m)
+[1;32m     10[0m model_yhat [38;5;241m=[39m eval_z[38;5;241m.[39mreshape(eval_X1[38;5;241m.[39mshape)
+[1;32m     12[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m10[39m,[38;5;241m4[39m))
 
-File [0;32m~/.local/lib/python3.10/site-packages/sklearn/__init__.py:82[0m
-[1;32m     80[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _distributor_init  [38;5;66;03m# noqa: F401[39;00m
-[1;32m     81[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __check_build  [38;5;66;03m# noqa: F401[39;00m
-[0;32m---> 82[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mbase[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m clone
-[1;32m     83[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_show_versions[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m show_versions
-[1;32m     85[0m __all__ [38;5;241m=[39m [
-[1;32m     86[0m     [38;5;124m"[39m[38;5;124mcalibration[39m[38;5;124m"[39m,
-[1;32m     87[0m     [38;5;124m"[39m[38;5;124mcluster[39m[38;5;124m"[39m,
-[0;32m   (...)[0m
-[1;32m    128[0m     [38;5;124m"[39m[38;5;124mshow_versions[39m[38;5;124m"[39m,
-[1;32m    129[0m ]
-
-File [0;32m~/.local/lib/python3.10/site-packages/sklearn/base.py:17[0m
-[1;32m     15[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __version__
-[1;32m     16[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01m_config[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m get_config
-[0;32m---> 17[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _IS_32BIT
-[1;32m     18[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_set_output[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _SetOutputMixin
-[1;32m     19[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01m_tags[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
-[1;32m     20[0m     _DEFAULT_TAGS,
-[1;32m     21[0m )
-
-File [0;32m~/.local/lib/python3.10/site-packages/sklearn/utils/__init__.py:19[0m
-[1;32m     16[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
-[1;32m     17[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01msparse[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m issparse
-[0;32m---> 19[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mmurmurhash[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m murmurhash3_32
-[1;32m     20[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;21;01mclass_weight[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m compute_class_weight, compute_sample_weight
-[1;32m     21[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _joblib
-
-File [0;32msklearn/utils/murmurhash.pyx:1[0m, in [0;36minit sklearn.utils.murmurhash[0;34m()[0m
-
-[0;31mValueError[0m: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+[0;31mRuntimeError[0m: Numpy is not available
 
