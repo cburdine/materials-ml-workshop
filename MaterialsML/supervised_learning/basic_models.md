@@ -205,7 +205,7 @@ plt.show()
 
 ```
 
-We see that a majority of the cubic structures are distributed within the range of $t_G = 0.7$ to $t_G = 0.9$. According to the literature, perovskites with $t_G$ in the range of $0.9$ to $1.0$ are generally predicted to be in the cubic phase, which appears to be inconsistent with our data. Taking note of this discrepancy, we will proceed with preparing our data. First, we will split the data into training, validation, and test sets. This can be done with the [`sklearn.model_selection.train_test_split`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) function. We will also normalize our data using [`sklearn.preprocessing.StandardScaler`](https://scikit-learn.org/stable/modules/preprocessing.html):
+We see that a majority of the cubic structures are distributed within the range of $t_G = 0.7$ to $t_G = 0.9$. According to the literature, perovskites with $t_G$ in the range of $0.9$ to $1.0$ are generally predicted to be in the cubic phase, which appears to be inconsistent with our data. Taking note of this discrepancy, we will proceed with preparing our data. First, we will split the data into training, validation, and test sets. This can be done with the [`sklearn.model_selection.train_test_split`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html) function. We will also standardize our data using [`sklearn.preprocessing.StandardScaler`](https://scikit-learn.org/stable/modules/preprocessing.html):
 
 ```{code-cell}
 :tags: [hide-input]
@@ -220,11 +220,11 @@ x_train, x_nontrain, y_train, y_nontrain = train_test_split(
 x_val, x_test, y_val, y_test = train_test_split(
             x_nontrain, y_nontrain, test_size=0.5)
 
-# Determine the normalizing transformation:
+# Determine the standardizing transformation:
 x_scaler = StandardScaler()
 x_scaler.fit(x_train)
 
-# transform x -> z (normalize x data):
+# transform x -> z (standardize x data):
 z_train = x_scaler.transform(x_train)
 z_val = x_scaler.transform(x_val)
 z_test = x_scaler.transform(x_test)
@@ -236,7 +236,7 @@ print('Shape of z_test:',z_test.shape)
 
 ## The Perceptron (Linear Classification) Model
 
-One of the simplest two-class classification models is a _linear classifier_ model, historically referred to as a [_Perceptron_](https://en.wikipedia.org/wiki/Perceptron) model. For a normalized feature vector $\mathbf{z}$ with $N$ features, a linear classifier model $f(\mathbf{z})$ makes "1" and "-1" class predictions according to the equation:
+One of the simplest two-class classification models is a _linear classifier_ model, historically referred to as a [_Perceptron_](https://en.wikipedia.org/wiki/Perceptron) model. For a standardized feature vector $\mathbf{z}$ with $N$ features, a linear classifier model $f(\mathbf{z})$ makes "1" and "-1" class predictions according to the equation:
 
 $$f(\mathbf{z}) = \begin{cases}
 1, & w_0 + \sum_{i=1}^N w_iz_i > 0 \\
@@ -267,7 +267,7 @@ From our visualization of the cubic vs. non-cubic perovskites, we saw that the s
 
 ## The Nearest Neighbor Model
 
-Before trying other models, it may help to see what kind of accuracy can be attained by a _nearest neighbor classification model_. As the name suggests, a nearest neighbor classification model predicts the class of an unseen normalized data point $\mathbf{z}$ to be the majority class in the set of $k$ normalized data points in the training set that are nearest to $\mathbf{z}$. By "nearest", we refer to the point with the smallest Euclidean distance:
+Before trying other models, it may help to see what kind of accuracy can be attained by a _nearest neighbor classification model_. As the name suggests, a nearest neighbor classification model predicts the class of an unseen standardized data point $\mathbf{z}$ to be the majority class in the set of $k$ standardized data points in the training set that are nearest to $\mathbf{z}$. By "nearest", we refer to the point with the smallest Euclidean distance:
 
 $$d(\mathbf{z},\mathbf{z}') = \lVert \mathbf{z} - \mathbf{z}' \rVert$$
 

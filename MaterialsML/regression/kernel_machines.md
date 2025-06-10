@@ -96,7 +96,7 @@ $$K(\mathbf{x}, \mathbf{x}') = \sum_{i=1}^{D_{emb}} \phi_i(\mathbf{x})\phi_i(\ma
 While the kernel function $K(\mathbf{x},\mathbf{x}')$ can be concretely interpreted as the inner product of $\mathbf{x}$ and $\mathbf{x}'$ in the embedding space, we can abstractly think of $K$ as a measure of "similarity" between two points $\mathbf{x}$ and $\mathbf{x}'$. The higher the value of $K(\mathbf{x},\mathbf{x}')$, the more similar $\mathbf{x}$ is to $\mathbf{x}'$.
 
 :::{important}
-In most software packages, the $y_1,y_2, ..., y_N$ values are normalized prior to solving the dual problem to ensure that $w_0 = 0$ (this ensures that the regularization parameter $C$ does not bound the bias weight $w_0$). Because $w_0 = 0$, the leading column of $1$s in the embedding matrix $\mathbf{\Phi}(\mathbf{X})$ is unnecessary, and is thus removed. This results in a Gram matrix $\mathbf{G}$ with entries:
+In most software packages, the $y_1,y_2, ..., y_N$ values are standardized prior to solving the dual problem to ensure that $w_0 = 0$ (this ensures that the regularization parameter $C$ does not bound the bias weight $w_0$). Because $w_0 = 0$, the leading column of $1$s in the embedding matrix $\mathbf{\Phi}(\mathbf{X})$ is unnecessary, and is thus removed. This results in a Gram matrix $\mathbf{G}$ with entries:
 
 $$\mathbf{G}_{mn} = \sum_{i=1}^{D_{emb}} \phi_i(\mathbf{x}_m)\phi_i(\mathbf{x}_n) = K(\mathbf{x}_m, \mathbf{x}_n)$$
 :::
@@ -229,9 +229,9 @@ def plot_model_predictions(data_x, model, x_scaler=None, title=None):
 
         Args:
             data_x: the 2D data (numpy array with shape (N,2))
-            model: an sklearn model (fit to normalized `data_x`)
+            model: an sklearn model (fit to standardized `data_x`)
             x_scaler: an sklearn.preprocessing.StandardScaler
-                      for normalizing the `data_x` data array
+                      for standardizing the `data_x` data array
                       (optional)
             title: title of plot (optional)
     """
@@ -318,9 +318,9 @@ def plot_model_predictions(data_x, model, x_scaler=None, title=None):
 
         Args:
             data_x: the 2D data (numpy array with shape (N,2))
-            model: an sklearn model (fit to normalized `data_x`) 
+            model: an sklearn model (fit to standardized `data_x`) 
             x_scaler: an sklearn.preprocessing.StandardScaler
-                      for normalizing the `data_x` data array
+                      for standardizing the `data_x` data array
                       (optional)
             title: title of plot (optional)
     """
@@ -347,7 +347,7 @@ def plot_model_predictions(data_x, model, x_scaler=None, title=None):
 scaler = StandardScaler()
 scaler.fit(data_x)
 
-# normalize x_data:
+# standardize x_data:
 data_z = scaler.transform(data_x)
 
 # These are the regression models we are trying:
@@ -360,7 +360,7 @@ svr_models = [
 # fit each model and plot the prediction surface:
 for svr_model in svr_models:
     
-    # fit model to normalized data:
+    # fit model to standardize data:
     svr_model.fit(data_z, data_y)
     
     # plot predictions made by kernel SVR model
@@ -405,7 +405,7 @@ plt.show()
 scaler = StandardScaler()
 scaler.fit(data_x)
 
-# normalize x_data:
+# standardize x_data:
 data_z = scaler.transform(data_x)
 
 # These are the classifier models we are trying:
@@ -418,7 +418,7 @@ svc_models = [
 # fit each model and plot the prediction surface:
 for svc_model in svc_models:
     
-    # fit model to normalized data:
+    # fit model to standardized data:
     svc_model.fit(data_z, data_y)
     
     # plot predictions made by kernel SVR model

@@ -69,7 +69,7 @@ You can also combine multiple math operations together and enclose expressions i
 
 To avoid ambiguity, it is usually a good idea to use parentheses to make your arithmetic easier to read. For example, to evaluate the expression
 
-$$ 3 \cdot \left( \frac{20}{5}\right)^{3} - (0.125) \cdot \sqrt[4]{64} $$
+$$ 3 \cdot \left( \frac{20}{5}\right)^{3} - 0.125 \cdot \sqrt[4]{64} $$
 
 we would write:
 
@@ -205,7 +205,7 @@ all abide by good Pythonic conventions. There are some exceptions to this conven
 
 ```
 PLANCK_CONSTANT = 6.626 * 10**(-34) # Planck constant (h) in J/Hz
-MEANING_OF_LIFE = 42                # The meaning of Life, the universe, and everything.
+MEANING_OF_LIFE = 42                # The meaning of life, the universe, and everything.
 ```
 
 :::{seealso}

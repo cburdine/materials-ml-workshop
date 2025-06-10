@@ -165,7 +165,7 @@ def gradient_descent(data_x, data_y, w,
     return w, loss_history
 ```
 
-To see how well our algorithm works, let's see how well the model fits some 1D linear data. We will generate this data such that is is already approximately normalized  ($\mu_x \approx 0, \sigma_x \approx 1$). Using the following code, we compare the weights learned though gradient descent with the theoretically optimal weights:
+To see how well our algorithm works, let's see how well the model fits some 1D linear data. We will generate this data such that is is already approximately standardized  ($\mu_x \approx 0, \sigma_x \approx 1$). Using the following code, we compare the weights learned though gradient descent with the theoretically optimal weights:
 
 ```{code-cell}
 :tags: [hide-input]
@@ -216,7 +216,7 @@ plt.legend()
 plt.show()
 ```
 :::{important}
-In this exercise, we did not apply normalization to the $\mathbf{x}$ data, since the data was approximately normalized to begin with. Generally, it is a good idea to normalize data (transform $\mathbf{x} \rightarrow \mathbf{z}$) and then apply gradient descent to the normalized data. This ensures that the model is not too sensitive to any particular feature, resulting in a better fit.
+In this exercise, we did not apply standardization to the $\mathbf{x}$ data, since the data was approximately standardized to begin with. Generally, it is a good idea to standardize data (transform $\mathbf{x} \rightarrow \mathbf{z}$) and then apply gradient descent to the standardize data. This ensures that the model is not too sensitive to any particular feature, resulting in a better fit.
 :::
 
 ## Classification Loss Functions
@@ -286,7 +286,7 @@ data_x = np.linspace(-2,2,100)
 data_y = np.cos(x_data*np.pi)
 ```
 Plot both the data and your fitted degree-6 polynomial.
-Don't worry about normalization or splitting into train/validation/test sets here. 
+Don't worry about standardization or splitting into train/validation/test sets here. 
 :::
 
 ### Solutions

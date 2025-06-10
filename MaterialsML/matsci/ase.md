@@ -12,184 +12,156 @@ kernelspec:
 
 # ASE - The Atomic Simulation Environment
 
-![](ase256.png)
+The [Atomic Simulation Environment (ASE)](https://wiki.fysik.dtu.dk/ase/) is a versatile, open-source Python toolkit designed to simplify the full lifecycle of atomistic simulations. With ASE, you can easily construct and edit representations of molecules, crystals, and low-dimensional materials. It provides interfaces to a wide range of simulation engines, enabling you to perform calculations at various levels—from quantum mechanical density functional theory to classical molecular dynamics. ASE also streamlines tasks like launching simulations, parsing results, and visualizing structures and trajectories, making it a solid framework for materials modeling and exploratory research.
 
-The [Atomic Simulation Environment (ASE)](https://wiki.fysik.dtu.dk/ase/) is an open-source set of tools and Python modules for setting up, manipulating, running, visualizing and analyzing atomistic simulations. ASE can help you molecules and crystals, and then simulate them at different levels of theory (density functional theory, molecular dynamics, etc.). ASE can interface with a variety of simulation software platforms including [VASP](https://www.vasp.at), [Quantum ESPRESSO](https://www.quantum-espresso.org), [Q-Chem](https://www.q-chem.com), [Gaussian](https://gaussian.com), and others (see the [full list](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html#supported-calculators)) through tools called calculators. ASE can create input files, launch simulations, and parse the output.
-
-`ase` has a vast set of modules and functions, giving it vast and powerful functionality. We will only scratch the surface in this brief introduction to `ase`.
+ASE can interface with a variety of simulation software platforms including [VASP](https://www.vasp.at), [Quantum ESPRESSO](https://www.quantum-espresso.org), [Q-Chem](https://www.q-chem.com), [Gaussian](https://gaussian.com), and others (see the [full list](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html#supported-calculators)) through tools called calculators. ASE can create input files, launch simulations, and parse the output. ASE has a vast set of modules and functions, giving it vast and powerful functionality. We will only scratch the surface in this brief tutorial.
 
 ## Installation
-To use ASE, you must first install the `ase` Python module. You may use a command such as `pip3 install ase` to do this.
+To get started with ASE, you first need to install the Python package. If you installed all of the required dependencies at the beginning of this book, you should have the `ase` package already installed. Otherwise, you can install it with the command:
+```
+pip install ase
+```
 
 ## Usage
 
-To simulate a material or molecule in ASE, the workflow is typically as follows:
-1. Build an ASE `Atoms` object to represent your molecule or material
-2. Use an ASE `calculator` object to perform a simulation and parse/visualize the results.
+ASE is designed to simplify atomistic modeling by separating the creation of structures from the actual simulations. A typical ASE workflow involves two main steps:
+1. *Creating an `Atoms` object*: This represents your molecule or material.
+2. *Attaching a calculator*: This defines the simulation backend to compute energies, forces, or other properties.
+
 
 :::{Note}
 
-Performing atomistic simulations are beyond the scope of this discussion. We will show you how to create an `Atoms` object. More information about performing simulations using `Atoms` objects and `calculator` objects may be found on the ASE documentation page [Atoms and Calculators](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut01_molecule/molecule.html).
+Performing atomistic simulations are beyond the scope of this workshop. Here, we will show you the basics, such as how to create and manipulate an `Atoms` object. More information about performing simulations using `Atoms` and `calculator` objects may be found on the ASE documentation page [Atoms and Calculators](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut01_molecule/molecule.html).
 :::
 
-## `ase.Atoms` Objects
-In `ase`, we use an `Atoms` object for an atomistic description of a material system. An `Atoms` object is actually a collection of `Atom` objects, each of which describes an atom, with member data such as `symbol` (string), `position` (a 3-element tuple of Cartesian coordinates, in Angstroms). Other atomic properties could be specified, such as `mass`, `charge`, etc.
+## Making `Atoms` Objects
+The `Atoms` object in ASE is the core structure used to represent physical systems. It consists of one or more `Atom` objects, with attributes such as `symbol` (string), and `position` (a 3-element tuple of Cartesian coordinates, in Angstroms). Other atomic properties can be specified, such as `mass`, `charge`, etc.
 
 ## Building Simple Molecules
 
-Python code that uses `ase` must include an `import` statement that imports the `ase` tools (functions or classes) you want to use. Here, we will:
-* use the `ase.build.molecule()` function to construct a water molecule, and
-* make a representation of the molecule using the `ase.visualize.view()`
-
+Let's start by importing the ase package and building a simple molecule. To build simple molecules, ASE provides a convenient `molecule()` function. It allows you to quickly generate common molecules by specifying their chemical formula as a string. The resulting Atoms object can be visualized in 3D, offering an intuitive understanding of molecular geometry.
 ```{code-cell}
 
 from ase.build import molecule
 from ase.visualize import view
 
-"""
-   Build an ase.Atoms object to represent a water molecule.
-   We use the molecule() function to do this, and we specify
-   the chemical formula for water.
-"""
+# build an ase.Atoms object to represent a water molecule
 water = molecule('H2O')
 
-# The view() function provides an interactive, 3D visualization
+# make an interactive, 3D visualization of the molecule
 view(water, viewer='x3d')
 ```
 
 The `molecule()` function is provided as a simple way to build an `Atoms` object. Here, a molecule is specified using a Python string containing a chemical formula, and only a very limited set of molecules are supported. The list of available molecules is found in the `ase.collections.g2.names` list:
-```{code-cell}
 
+```{code-cell}
 from ase.collections import g2
 
 # print the ase.collections.g2.names list
 print(g2.names)
 ```
 
-Let's do this again for a formic acid molecule. Additionally, we will also  print the x, y, and z coordinates of each atom.
+Additionally, by iterating over the atoms in the structure, you can extract and print coordinates, giving a clearer view of the atomic configuration, which is useful for custom analysis or manual editing.
 
-
+Let's build a [formic acid molecule](https://en.wikipedia.org/wiki/Formic_acid) and print the x, y, and z coordinates of each atom:
 ```{code-cell}
-
 # construct a formic acid molecule
 atoms = molecule('HCOOH')
 
-"""
-   Let's also print the symbol and coordinates of each atom.
-"""
+# print the symbol and coordinates of each atom.
 print('Show atomic coordinates:\n')
-for X in atoms:
-    x, y, z = X.position
-    print('{0}\n  x: {1} Ang.\n  y: {2} Ang.\n  z: {3} Ang.'.format(X.symbol,
-                                                                    x, y, z)
-                                                                    )
+for atom in atoms:
+    x, y, z = atom.position
+    print(atom.symbol)
+    print(f'  x: {x} Å')
+    print(f'  y: {y} Å')
+    print(f'  z: {z} Å')
 ```
 
-We can still make an interactive, 3D visualization:
+We can still make an interactive 3D visualization:
 
 ```{code-cell}
 
-"""
-   The view() function should occur last for an interactive result.
-"""
 # 3D visualization
 view(atoms, viewer='x3d')
-
 ```
 
 Having constructed an `ase.Atoms` object to represent water molecule, we could create a `calculator` object to run a simulation.
 
-## Building Complex molecules
+## Building Complex Molecules
 
-If you want to go beyond the simple molecules ASE can create using the `moleucles()` function, you may use other strategies:
+For more complex molecular systems, ASE supports importing atomic structures from external sources. You can:
 * Construct a molecule from a structure file (`*.cif`, `*.xyz`, etc.)
 * Read the structure from simulation output
 * Obtain a structure from a molecular database
 
-To read a structure from a file, use the `read()` function from the `ase.io` module. This module allows ASE to read from and write to files containing information about materials ([documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)).
+Use the `ase.io.read()` function to load structures into an Atoms object. This approach is especially powerful when dealing with large, experimentally-derived or computationally-relaxed molecules. You can also export structures to one of many different file formats using the `ase.io.write()` function. For more information take a look at the [`ase.io` documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html).
 
 ## Building Simple Crystals - Bulk Silicon
 
-We will start with a simple (bulk) silicon crystal using the `bulk()` function in the `ase.build` module.
+ASE includes tools to create bulk crystals using known crystal structures and lattice parameters. The `bulk()` function allows you to specify an element and lattice type (e.g., `'fcc'`, `'bcc'`, `'diamond'`). This returns an `Atoms` object with a unit cell that can be visualized or expanded into supercells. Visualizations can be saved as static images using `ase.io.write()`, or viewed interactively in 3D. These tools are great for exploring crystal symmetry and preparing inputs for electronic structure calculations.
 
+Now let's build a periodic Silicon crystal. Silicon crystalizes in a diamond structure, which we can make with the `bulk()` function:
 ```{code-cell}
 
 from ase.build import bulk
-from ase.io import write   # helps us save an image
+from ase.io import write
 
-atoms = bulk('Si')
+# construct bulk silicon
+atoms = bulk('Si', 'diamond')
 
-"""
-   This is a easy way to make a simple (static) visualization.
-"""
+# export visualization as a static PNG image
 write('silicon_basis.png', atoms, show_unit_cell=2)
 
 ```
 
-The static image of the silicon crystal (the two-atom basis for the FCC crystal) is given below.
+This renders structure as a simple PNG image:
 
-![](silicon_basis.png)
+```{image} silicon_basis.png
+:alt: silicon_basis.png
+:width: 100px
+:align: center
+```
 
-We can also make an interactive 3D image:
+We can also make an interactive 3D viewer:
 
 ```{code-cell}
 
 view(atoms, viewer='x3d')
-
 ```
 
 ## Building a 2D System - a MXene
 
 The `ase.build` module provides functions for building 2D structures. For example:
 * `graphene_nanoribbon()` may be used to make graphene nanoribbons and graphene sheets.
-* `mx2()` may be used to build MXene and [transition metal dichalcogenide](https://www.sciencedirect.com/topics/materials-science/transition-metal-dichalcogenides#:~:text=TMD%20monolayers%20are%20structurally%20of,octahedral%20or%20trigonal%20prismatic%20coordination.) (TMD) monolayers.
+* `mx2()` may be used to build [MXene](https://en.wikipedia.org/wiki/MXenes) and [transition metal dichalcogenide](https://www.sciencedirect.com/topics/materials-science/transition-metal-dichalcogenides#:~:text=TMD%20monolayers%20are%20structurally%20of,octahedral%20or%20trigonal%20prismatic%20coordination.) (TMD) monolayers.
 
-Here, we will make a MXene.
+These functions generate primitive unit cells with proper vacuum spacing to simulate surface effects. For simulations using periodic boundary conditions, a vacuum gap in the z-direction avoids artificial interactions between layers. You can also tile these unit cells to form supercells by multiplying the structure in the desired directions, enabling simulations of extended sheets.
+
+Let's write some code to build the MXene Ti$_2$C. Since a structure like this would likely be used in a DFT calculation, and DFT calculations often have periodic boundary conditions, the unit cell features a large air gap to keep separate the main sheet from its images in the z direction. A vacuum of 15 Angstroms should be sufficient:
 
 ```{code-cell}
-
 from ase.build import mx2
 from ase.io import write
 from ase.visualize import view # 3D interactive image
 
 # This forms a primitive unit cell
-Ti2C = mx2('CTi2', vacuum = 15) # unit cell
-
-"""
-   We can also build a sheet. We form a supercell by repeating the unit cell
-   3x in the x and y directions, and only one time in the z direction.
-"""
-
-# Static image of the unit cell
-rotation = '0z,-60x'
-write('Ti2C_unit_cell.png', Ti2C, show_unit_cell=2, rotation=rotation)
-
+Ti2C = mx2('CTi2', vacuum = 15)
 ```
 
-As static image of the unit cell is given below. Since a structure like this would likely be used in a DFT calculation, and DFT calculations often have periodic boundary conditions, the unit cell features a large air gap to keep separate the main sheet from its images in the z direction.
-
-![](Ti2C_unit_cell.png)
-
-Now, we form a supercell by repeating the unit cell in space. To repeat the primitive cell, described by the `Ti2C` object, we simply multiply `Ti2C` by a 3-element tuple. The three integers `(nx, ny, nz)` repeat the unit cell in the x, y, and z directions, respectively.
+We can also expand the unit cell to a supercell by repeating the unit cell in space. To repeat the primitive cell described by the `Ti2C` object, we simply multiply `Ti2C` by a 3-element tuple. The three integers `(nx, ny, nz)` repeat the unit cell along the x, y, and z cell vectors, respectively.
 ```{code-cell}
 
-sheet = Ti2C*(3,3,1) #
+# build sheet supercell
+sheet = Ti2C * (3,3,1)
 
-# Static image of the sheet
-write('Ti2C_sheet.png', sheet, show_unit_cell=2, rotation=rotation)
-
-# I've suppressed the interactive 3D view
-# view(Ti2C, viewer='x3d', repeat=(4,4,1))
-
+# view the sheet supercell
+view(sheet, viewer='x3d', repeat=(4,4,1))
 ```
-
-Additionally, the static image of the sheet is given below:
-
-![](Ti2C_sheet.png)
 
 ## Building a 1D System - a Carbon Nanotube
 
-A next example will be a carbon nanotube. ASE has functionality to build such structures in the `nanotube()` function.
+ASE makes it easy to construct one-dimensional systems such as carbon nanotubes. The `nanotube()` function accepts chiral indices `(n, m)` and a desired length to build the corresponding structure. These nanotubes can be visualized and analyzed using the same tools applied to molecules and crystals. ASE handles periodicity in the tube axis direction, allowing realistic modeling of extended nanowires or tubes.
 
 ```{code-cell}
 
@@ -197,37 +169,31 @@ from ase.build import nanotube
 from ase.io import write # helps us save an image
 from ase.visualize import view # 3D interactive image
 
-atoms = nanotube(6, 0, length=4)
+# Build a carbon nanotube
+atoms = nanotube(n=6, m=0, length=4)
 
-"""
-   This is a easy way to make a simple (static) visualization.
-"""
+# Save a static image of the nanotube
 orientation='12y,-15z'
 write('nanotube.png', atoms, show_unit_cell=2, rotation=orientation)
 ```
 
 The static image of the nanotube is given below.
 
-![](nanotube.png)
+```{image} nanotube.png
+:alt: nanotube.png
+:width: 100px
+:align: center
+```
 
 An interactive 3D image of the carbon nanotube is shown below.
-
 ```{code-cell}
 
-# Interactive 3D visualization
 view(atoms, viewer='x3d')
-
 ```
 
 ## Building Complex Crystals
 
-The structures the `ase.build` module allows you to construct are fairly basic. For more advanced structures, we may follow the same strategies as for the complex molecules:
-* Construct a crystal structure from a structure file (`*.cif`, `*.xyz`, etc.)
-* Read the structure from simulation output
-* Obtain a structure from a materials database
-
-To read a structure from a file, use the `read()` function from the `ase.io` module. This module allows ASE to read from and write to files containing information about materials ([documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)).
-
+For materials that can’t be easily built using ASE’s built-in functions, the same file-based approach used for complex molecules applies. Use `.cif` files or simulation outputs to represent experimental or computational structures. These files can be imported using `ase.io.read()`, and edited further if needed. This method supports the exploration of non-standard or large-scale structures and is critical for realistic simulations in materials research.
 
 ## Exercises
 

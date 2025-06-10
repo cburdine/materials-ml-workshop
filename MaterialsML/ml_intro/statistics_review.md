@@ -40,10 +40,6 @@ $$\mathbb{E}[p(x)] = \begin{cases} \sum_{x} p(x)x &   [\text{for discrete } p(x)
 
 The _expected value_ of a random variable, sometimes called the _average_ value or _mean_ value, is the average of all possible outcomes weighted according to their likelihoods. The mean of a random variable is also often denoted by $\mu$.
 
-:::{note}
-In physics and quantum chemistry, you might encounter _Dirac notation_, which uses the notation $\langle x \rangle$ to denote the expected value of $x$. Often, this is referred to as the "expectation value", instead of the "expected value".
-:::
-
 The _variance_ of a random variable $X$ describes the degree to which the distribution deviates from the mean $\mu$. It is often denoted by $\sigma^2$, and is given by:
 
 $$\sigma^2 = \mathbb{E}[ (X - \mu)^2 ] = \sum_{x} (x - \mu)^2 = \int_\mathcal{X} (x - \mu)^2\ dx$$

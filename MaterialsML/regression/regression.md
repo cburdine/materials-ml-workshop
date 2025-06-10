@@ -245,7 +245,7 @@ Compute the weight matrix $\mathbf{w} = \mathbf{X}^+\mathbf{y}$ for a standard m
 
 $$\mathbf{X}^+ = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^T$$
 
-Compare the weights $\mathbf{w}$ computed from each method and verify they are roughly the same. Compute the mean square error (MSE) of the linear regression model $f(x) = \mathbf{w}^{T}\underline{x}$. Do not worry about normalizing the data in $\mathbf{x}$.
+Compare the weights $\mathbf{w}$ computed from each method and verify they are roughly the same. Compute the mean square error (MSE) of the linear regression model $f(x) = \mathbf{w}^{T}\underline{x}$. Do not worry about standardizing the data in $\mathbf{x}$.
 :::
 
 :::{dropdown} Exercise 2: Regularized Polynomials
@@ -279,11 +279,11 @@ X_validation = generate_X(20)
 y_validation = generate_y(X_validation, noise=0.0)
 ```
 
-First, normalize the data and then fit a Ridge regression model to the training data using [`sklearn.linear_model.Ridge`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html). Plot the training set and validation set mean square error versus the regularization parameter $\lambda$ as $\lambda$ is varied from $0$ to $10$ (Note: $\lambda$ is the argument `alpha` in the `Ridge` object). You should see that the model overfits the training set for $\lambda = 0$ (no regularization), but as $\lambda$ increases the validation set error should decrease.
+First, standardize the data and then fit a Ridge regression model to the training data using [`sklearn.linear_model.Ridge`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html). Plot the training set and validation set mean square error versus the regularization parameter $\lambda$ as $\lambda$ is varied from $0$ to $10$ (Note: $\lambda$ is the argument `alpha` in the `Ridge` object). You should see that the model overfits the training set for $\lambda = 0$ (no regularization), but as $\lambda$ increases the validation set error should decrease.
 
 ---
 
-_Hint:_ To fit a Ridge regression model to a normalized data matrix `Z_train` and labels `y_train`, and make predictions on a validation dataset `Z_valdation`, you can use the following code: 
+_Hint:_ To fit a Ridge regression model to a standardized data matrix `Z_train` and labels `y_train`, and make predictions on a validation dataset `Z_valdation`, you can use the following code: 
 ```
 from sklearn.linear_model import Ridge
 
@@ -365,7 +365,7 @@ y_train = generate_y(X_train, noise=5.0)
 X_validation = generate_X(20)
 y_validation = generate_y(X_validation, noise=0.0)
 
-# normalize training and validation sets:
+# standardize training and validation sets:
 scaler = StandardScaler()
 scaler.fit(X_train)
 Z_train = scaler.transform(X_train)
