@@ -194,7 +194,7 @@ print('data_x shape:', data_x.shape)
 print('data_y shape:', data_y.shape)
 ```
 
-Now that we have parsed features from the dataset, let's write some functions that will automatically split data into training, validation, and test set. We may also find it useful to write a function that normalizes these sets as well:
+Now that we have parsed features from the dataset, let's write some functions that will automatically split data into training, validation, and test set. We may also find it useful to write a function that standardizes these sets as well:
 
 ```{code-cell}
 from sklearn.preprocessing import StandardScaler
@@ -217,8 +217,8 @@ def train_val_test_split(data_x, data_y, split=(0.8,0.1,0.1)):
     return (train_x, val_x, test_x), \
            (train_y, val_y, test_y)
     
-def normalize(train_x, val_x, test_x):
-    """ normalizes a dataset. """
+def standardize(train_x, val_x, test_x):
+    """ standardizes a dataset. """
     
     scaler = StandardScaler()
     train_z = scaler.fit_transform(train_x)
@@ -241,7 +241,7 @@ train_x, val_x, test_x = metal_subsets_x
 train_y, val_y, test_y = metal_subsets_y
 
 scaler, train_z, val_z, test_z = \
-    normalize(train_x, val_x, test_x)
+    standardize(train_x, val_x, test_x)
 ```
 
 It's usually best to start by seeing how well a simple models such as a linear classifier fits the data. We could use a linear classifier (also known as a _Perceptron_) like we did in the last application section. Since we now know about how regularization can sometimes improve the validation accuracy of a linear model, let's use a _ridge regression linear classifier_ that is equipped with a regularization parameter $\lambda$. When $\lambda = 0$, (no regularization is applied) the model is identical to a linear classifier. Scikit-learn provides an implementation of this with [`sklearn.linear_model.RidgeClassifier`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RidgeClassifier.html#sklearn.linear_model.RidgeClassifier). (Note that in sklearn, the regularization parameter $\lambda$ is referred to as $\alpha$) After fitting the model, we can also use scikit-learn's ConfusionMatrix class to visualize the kinds of classification errors made by our model on the validation set:
@@ -291,7 +291,7 @@ print('bandgap_x shape:', bandgap_x.shape)
 print('bandgap_y shape:', bandgap_y.shape)
 ```
 
-We can normalize this data with the following code:
+We standardize this data with the following code:
 
 ```{code-cell}
 bandgap_subsets_x, bandgap_subsets_y = \
@@ -301,7 +301,7 @@ train_x, val_x, test_x = bandgap_subsets_x
 train_y, val_y, test_y = bandgap_subsets_y
 
 scaler, train_z, val_z, test_z = \
-    normalize(train_x, val_x, test_x)
+    standardize(train_x, val_x, test_x)
 ```
 
 ## Ridge Regression Model:
@@ -447,9 +447,9 @@ direct_subsets_x, direct_subsets_y = \
 train_x, val_x, test_x = direct_subsets_x
 train_y, val_y, test_y = direct_subsets_y
 
-# normalize data:
+# standardize data:
 scaler, train_z, val_z, test_z = \
-    normalize(train_x, val_x, test_x)
+    standardize(train_x, val_x, test_x)
 
 # fit a ridge classifier to the data:
 direct_ridge_model = RidgeClassifier(alpha=20)

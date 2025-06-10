@@ -18,9 +18,21 @@ Python is a general-purpose programming language originally developed by [Guido 
 
 Python is a versatile language that is easy to learn and use, making it an ideal choice for both beginners and experts. It is also a popular language in industry, with many companies relying on Python for a variety of tasks. Python also has a large and supportive community, with many resources available online to help individuals learn and improve their skills. Python’s popularity and flexibility make it a valuable skill to have in today’s job market, with many job postings and research positions requiring or preferring candidates with Python experience. Finally, Python’s extensive library of packages for scientific computing and data analysis, such as NumPy, SciPy, and Matplotlib, make it a powerful tool for tackling complex problems in fields such as physics, chemistry, and engineering.
 
-![Popularity of scientific programming languages. (source: [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=c%2B%2B%2Cpython%2Cr%2Cjulia%2Cmatlab%2Cfortran))](scientific-language-popularity.svg)
+```{image} python_growth.webp
+:alt: Growth of Python in 2024
+:width: 400px
+:align: center
+```
 
 Unlike other scientific languages like [MATLAB](https://www.mathworks.com/products/matlab.html) or the [Wolfram Language](https://www.wolfram.com/language/) (Used in [Mathematica](https://www.wolfram.com/mathematica/?source=nav)), Python and its core packages are are _Free and Open-Source_ software. This means that you do not need to purchase specialized software or a license to run Python programs. This also means that as a Python programmer, you are free to view, modify, and extend the source code of these packages to suit your research goals.
+
+```{image} python_popularity.png
+:alt: Popularity of Python in 2024
+:width: 400px
+:align: center
+```
+
+Since around 2015, Python has been the dominant language for machine learning and AI applications, especially in science and research. Its clear and easy-to-read syntax has made it accessible to people from a wide range of backgrounds, not just computer science. Its recently growing popularity reflects how important AI has become across many areas of science and technology.
 
 ## Python Packages
 
@@ -38,7 +50,7 @@ So, how can we use these powerful packages? The Python language comes with an ea
 
 ### Installing Packages
 
-First, let's try to install the latest version of the `numpy` package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program "Command Prompt" (Windows) or "Terminal" (MacOS, Linux). After running the program, you should see a prompt where you can type in commands.
+First, let's try to install the latest version of the `numpy` package. To start, open up a terminal on your system. On most systems can be done by hitting the Start key and searching for the program "Command Prompt" (Windows) or "Terminal" (MacOS, Linux). If you installed Python and Jupyter Lab through Anaconda, you will need to instead open up "Anaconda Prompt" instead of your sysyem's regular command prompt. After running the program, you should see a prompt where you can type in commands.
 
 Type the following command into the terminal and hit Enter:
 
@@ -53,14 +65,14 @@ After the installation finishes, you should see no error messages (usually appea
 On some systems, such as Linux and Mac OS, you may need to instead use the command  `python -m pip install <package>` or `pip3 install <package>`. where `<package>` is the name of the package you want to install. If you are using Anaconda and installing the package with pip does not work, you can try installing it with `conda install <package>`.
 :::
 
-Note that if you are using Google Colab, several of the most commonly used packages (such as `numpy`) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter notebooks also, but it should only be used as a last resort. See the block below for more details:
+Note that if you are using Google Colab, several of the most commonly used packages (such as `numpy`) come pre-installed. However, if you are trying to install a package that does not come pre-installed, you will need to install it by invoking these commands inside the notebook. This works inside Jupyter Lab notebooks also, but it should only be used as a last resort. See the block below for more details:
 
 :::{admonition} Installing packages inside Google Colab
 :class: important, dropdown
 
 If you are using Google Colab, many packages will already be installed for you.
 
-To see if a package is already installed in Google Colab (or in a Jupyter Notebook), try to import it in a Python code cell and see if it imports successfully. You can do this by executing the line:
+To see if a package is already installed in Google Colab (or in a Jupyter Lab notebook), try to import it in a Python code cell and see if it imports successfully. You can do this by executing the line:
 ```
 import <package>
 ```
@@ -84,7 +96,7 @@ Now that you we installed numpy, let's try to install some other important packa
 
 <script src="https://gist.github.com/cburdine/cae13221fb0e1d134d88a25f01498c67.js"></script>
 
-Note that this is just a text file listing each Python dependency, one per line. Many Python projects will contain `requirements.txt` file in order to list all of the project dependencies. If you were to download this file into your working directory, you could install all dependencies using the `pip` command:
+Note that this is just a text file listing each Python dependency, one per line. Many Python projects will contain a `requirements.txt` file in order to list all of the project dependencies. If you were to download this file into your working directory, you could install all dependencies using the `pip` command:
 
 ```
 pip install -r requirements.txt
@@ -123,29 +135,29 @@ deactivate
 
 ## Using your Python Notebook
 
-To get started running code in your Python Notebook, you will need to start up your Jupyter Notebook environment. Directions are given below for various Operating Systems, or Google Colab, if you are unable to install Jupyter on your device.
+To get started running code in your Python Notebook, you will need to start up your Jupyter Lab environment. Directions are given below for various Operating Systems, or Google Colab, if you are unable to install Jupyter on your device.
 ::::{tab-set}
 :::{tab-item} Windows
 
-The process for starting up you Jupyter notebook will be different, depending on whether Jupyter Notebook was installed with pip or Anaconda:
+The process for starting up Jupyter Lab will be different, depending on whether Jupyter Lab was installed with pip or Anaconda:
 
 **If Jupyter was installed with pip:**
 
-Using your File Explorer, create a new folder to store your Jupyter notebooks. Then do the following steps:
+Using your File Explorer, create a new folder to store your Jupyter Lab notebooks. Then do the following steps:
 * Inside the empty folder, right click (on some systems: Shift + right click), and click on "Open in Windows Terminal".
-* This will open a terminal window inside your folder. Inside the folder, run the command `jupyter notebook` to start the server from inside the folder.
+* This will open a terminal window inside your folder. Inside the folder, run the command `jupyter lab` to start the server from inside the folder.
 
 **If Jupyter was installed with Anaconda:**
 
-When launching Jupyter Notebook from Anaconda, notebooks will be saved to the default folder of Anaconda Powershell Prompt. To save the notebooks to a different folder, follow these steps:
+When launching Jupyter Lab from Anaconda, notebooks will be saved to the default folder of Anaconda Powershell Prompt. To save the notebooks to a different folder, follow these steps:
 * Launch Anaconda Powershell Prompt
 * Type  ```mkdir my_jupyter_notebooks ```  to create a folder called `my_jupyter_notebooks` (or a name of your choice) to hold your notebook files and Python code.
 * Type ```cd my_jupyter_notebooks``` to enter the folder you just created.
-* Type  ```jupyter notebook```  and it will start the server from inside the folder
+* Type  ```jupyter lab```  and it will start the server from inside the folder
 
 **Stopping the Server**
 
-Once your Jupyter Notebook server is started, your default web browser should open to the to the Jupyter Notebook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
+Once your Jupyter Lab server is started, your default web browser should open to the to the Jupyter Lab landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
 
 ```{note}
 The address `localhost` tells your browser that the server is running on your computer, while `8888` is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. `8889`). The port number should be printed in the terminal when the server is started.
@@ -156,32 +168,32 @@ To stop the server, hit the keys `Ctrl + C` in the command prompt window where t
 
 :::{tab-item} Mac OS
 
-If you have Python3 and Jupyter Notebook installed on your system, create a work directory for your jupyter notebooks and make it the current directory (navigate into the new directory). In the terminal, you can do this with the command:
+If you have Python3 and Jupyter Lab installed on your system, create a work directory for your Jupyter lab notebooks and make it the current directory (navigate into the new directory). In the terminal, you can do this with the command:
 
 ```
 mkdir my_jupyter_notebooks && cd my_jupyter_notebooks
 ```
 
-Once inside your jupyter notebook work directory, you can start the notebook in the terminal using the command:
+Once inside your Jupyter lab work directory, you can start Jupyter lab in the terminal using the command:
 ```
-jupyter-notebook .
+jupyter lab .
 ```
 
-This should start a notebook server, and open your default web browser (typically, Safari) to the Jupyter Notebook landing page.
+This should start a notebook server, and open your default web browser (typically, Safari) to the Jupyter Lab landing page.
 
 If this does not happen, do not worry: you can find the URL you need. Return to the terminal and examine the text at the bottom of the window. Look for text like this:
 ```
-[I 20:50:20.174 NotebookApp] Jupyter Notebook 6.5.2 is running at:
-[I 20:50:20.174 NotebookApp] http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
-[I 20:50:20.174 NotebookApp]  or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
-[I 20:50:20.174 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-[C 20:50:20.200 NotebookApp]
-
-    To access the notebook, open this file in a browser:
+[C 2025-06-01 14:50:05.866 ServerApp] 
+    
+    To access the server, open this file in a browser:
         file:///Users/your_account_name/Library/Jupyter/runtime/nbserver-42755-open.html
     Or copy and paste one of these URLs:
         http://localhost:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
-     or http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+        http://127.0.0.1:8888/?token=e83f9d018eebb7f7d20282104a2710781c84be7227f7fc01
+Opening in existing browser session.
+[I 2025-06-01 14:50:06.551 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[W 2025-06-01 14:50:08.276 LabApp] Could not determine jupyterlab build status without nodejs
+
 ```
 You'll find here useful information, such as instructions on how to stop the Jupyter server, as well as three URLs, any of which you could paste into your browser's address bar:
 * `file:///Users/your_account_name/Library/Jupyter/runtime/nbserver-42755-open.html`
@@ -199,18 +211,18 @@ To stop the server, hit the keys `Ctrl + C` in the terminal where the server is 
 
 :::{tab-item} Linux
 
-If you have Python3 and Jupyter Notebook installed on your system, create a work directory for your jupyter notebooks and navigate inside of it. In the terminal, you can do this with the command:
+If you have Python3 and Jupyter Lab installed on your system, create a work directory for your jupyter lab notebooks and navigate inside of it. In the terminal, you can do this with the command:
 
 ```
 mkdir my_jupyter_notebooks && cd my_jupyter_notebooks
 ```
 
-Once inside your jupyter notebook work directory, you can start the notebook in the terminal using the command:
+Once inside your Jupyter Lab work directory, you can start the notebook in the terminal using the command:
 ```
-jupyter-notebook .
+jupyter lab
 ```
 
-This should start a notebook server, and open your default web browser to the Jupyter Notebook landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
+This should start a notebook server, and open your default web browser to the Jupyter Lab landing page. If it does not open your browser automatically, open your browser and type `localhost:8888` in the address bar.
 
 ```{note}
 The address `localhost` tells your browser that the server is running on your computer, while `8888` is the port number of your server. If you are running multiple notebook servers simultaneously, the port number of the second server may be different (i.e. `8889`). The port number should be printed in the terminal when the server is started.
@@ -233,13 +245,13 @@ By default, your notebook is called "Untitled.ipynb", or something similar. If y
 
 ![](colab_notebook.png)
 
-A Google Colab Notebook functions almost identically to a Jupyter Notebook; however, there are a few minor differences in appearance, keyboard shortcuts, etc. These are the most important differences to keep in mind:
+A Google Colab Notebook functions almost identically to a Jupyter Lab notebook; however, there are a few minor differences in appearance, keyboard shortcuts, etc. These are the most important differences to keep in mind:
 
-* Instead of saving to your computer's local storage, Google Colab will save your notebooks to your Google Drive. If you want to download a notebook to open in Jupyter, click on `File > Download > Download .ipynb`. If you want to upload a Jupyter notebook to Colab, click on `File > Upload Notebook`.
+* Instead of saving to your computer's local storage, Google Colab will save your notebooks to your Google Drive. If you want to download a notebook to open in Jupyter, click on `File > Download > Download .ipynb`. If you want to upload a Jupyter Lab notebook to Colab, click on `File > Upload Notebook`.
 
 * The code in a Google Colab notebook is executed remotely on Google's servers, not your computer. This means that you must have an internet connection to be able to run your code.
 
-* You can also run a Google Colab Notebook on Google's GPU (Graphics Processing Unit) and TPU (Tensor Processing Unit) hardware. You can run your code for free on [NVIDIA Tesla T4](https://www.nvidia.com/en-us/data-center/tesla-t4/) hardware or Google's Proprietary [TPU Hardware](https://cloud.google.com/tpu/docs/intro-to-tpu). Higher-end hardware is also available for a fee. In this workshop, we will probably not need to use any hardware acceleration.
+* You can also run a Google Colab Notebook on Google's GPU (Graphics Processing Unit) and TPU (Tensor Processing Unit) hardware. You can run your code for free on GPU hardware or even Google's Proprietary [TPU Hardware](https://cloud.google.com/tpu/docs/intro-to-tpu). Higher-end hardware is also available for a fee. In this workshop, we will probably not need to use any specialized hardware.
 
 :::
 ::::

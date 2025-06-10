@@ -18,4 +18,4 @@ There are several packages that may be useful in studying materials science. We'
 
 In the following pages, we will focus on ASE and MPRester. ASE will be used to create/visualize simple atomic structures. MPRester will be used to obtain data from the Materials Project database, and pymatgen will be used to convert data obtained using MPRester into ASE structures, or to plot data obtained using MPRester.
 
-Both ASE and pymatgen may be used to run atomistic calculations (density functional theory, molecular dynamics, etc.), but this is beyond the scope of this workshop.
+Both ASE and pymatgen may be used to run and prepare input files to atomistic calculations (density functional theory, molecular dynamics, etc.), but this is beyond the scope of this workshop.

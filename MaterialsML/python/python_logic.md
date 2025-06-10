@@ -184,7 +184,7 @@ We can also chain multiple mutually exclusive conditions into `if`/`elif`/`else`
 # initialize a numeric value:
 value = 100.0
 
-# print out the sign of x:
+# print out the sign of the value:
 if value < 0:
     print('Value is negative.')
 elif value == 0:
@@ -220,6 +220,8 @@ Write a program that uses conditional statements to classify chemical compounds 
 3. If a compound contains neither carbon nor hydrogen in its chemical formula, it is inorganic.
 
 The program should take a compound's formula string (i.e. `'CH3COOH'`, `'NH3'`, or `'SiC'`) that is stored in a variable `formula` and print out the classification of the compound. Try to make your logic and conditional statements as concise as possible.
+
+To keep things simple, we will assume that only the elements H (Hyrdogen) through S (Sulfur) are present in the formula string, so there is no need to worry about any other elements like Cl (Chlorine), which also begin with `'C'`.
 
 ---
 _Hint_: To test if a string contains a character or another string as a substring, you can use the `in` operator. For example:

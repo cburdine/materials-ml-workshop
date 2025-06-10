@@ -11,6 +11,8 @@ kernelspec:
 
 # Application: Classifying Superconductors
 
+Now that we have a strong understanding of unsupervised learning, let's apply what we have learned to study a class of materials known as _superconductors_. Superconductors are materials that 
+
 You can download the dataset for this section using the following Python code:
 
 ```
@@ -113,7 +115,7 @@ data_x = np.array([
 
 print(data_x.shape)
 
-# normalize data:
+# standardize data:
 scaler = StandardScaler()
 data_z = scaler.fit_transform(data_x)
 
@@ -136,7 +138,7 @@ import matplotlib.pyplot as plt
 # generate points to evaluate the KDE model:
 Tc_eval_pts = np.linspace(0, np.max(Tc_data), 1000)
 
-# determine the normalized density of the distribution:
+# determine the standardized density of the distribution:
 Tc_density = np.exp(Tc_kde.score_samples(
                         Tc_eval_pts.reshape(-1,1)))
 Tc_density /= np.trapz(Tc_density, Tc_eval_pts)

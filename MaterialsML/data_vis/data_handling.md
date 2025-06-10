@@ -12,9 +12,9 @@ kernelspec:
   name: python3
 ---
 
-# Data Handling and Visualization
+# Data Analysis and Visualization
 
-Now that we have learned about the Numpy and Scipy packages, let's take a look at some packages that can help us with visualizing and handling data. Although there are several Python packages that can assist with these tasks, we will focus on the two most popular packages: _Pandas_ and _Matplotlib_. Pandas (`pandas`) is a package that provides an interface for working with large heterogeneous datasets using array-like structures called DataFrames. Matplotlib (`matplotlib`) is the most popular data visualization tool in Python, with an interface inspired by the plotting functionality in MATLAB. In this section, we will discuss how to handle data with the `pandas` package, and discuss how to plot and visualize data with `matplotlib` in the next section.
+Now that we have learned about the Numpy and Scipy packages, let's take a look at some packages that can help us with analyzing and visualizing data. Although there are several Python packages that can assist with these tasks, we will focus on the two most popular packages: _Pandas_ and _Matplotlib_. Pandas (`pandas`) is a package that provides an interface for working with large heterogeneous datasets using array-like structures called DataFrames. Matplotlib (`matplotlib`) is the most popular data visualization tool in Python, with an interface inspired by the plotting functionality in MATLAB. In this section, we will discuss how to analyze data with the `pandas` package, and discuss how to plot and visualize data with `matplotlib` in the next section.
 
 ## The Pandas Package
 
