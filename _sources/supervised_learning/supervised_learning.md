@@ -11,15 +11,15 @@ kernelspec:
 
 # Supervised Learning
 
-Now that we have reviewed some of the necessary background material, we will will begin examining the most common type of machine learning problem: _supervised learning_. Supervised learning is applied to problems where the available data contains many different labeled examples, and the problem involves finding a model that maps a set of features (inputs) to labels (outputs).
+Now that we have reviewed some of the necessary background material, we will begin examining the most common type of machine learning problem: _supervised learning_. Supervised learning is applied to problems where the available data contains many different labeled examples, and the problem involves finding a model that maps a set of features (inputs) to labels (outputs).
 
-Although data can take many different forms (i.e. numbers, vectors, images, text, 3D structures, etc.), we can think of a dataset as a collection of of $(\mathbf{x}, y)$ pairs, where $\mathbf{x}$ is a set of features, and $y$ is the label to be predicted. For now, we will consider the simplest case where $\mathbf{x}$ is a vector of floating-point numbers and $y$ is either (a) one of a finite number of mutually classes, or (b) a scalar quantity. In case (a), the supervised learning problem is a _classification problem_, where we must learn a model that makes prediction $\hat{y}$ of the class $y$ associated with the set of features $\mathbf{x}$. In case (b), the supervised learning problem is a _regression problem_, where we must learn a model that produces an estimate $\hat{y}$ of $y$ based on $\mathbf{x}$.
+Although data can take many different forms (i.e. numbers, vectors, images, text, 3D structures, etc.), we can think of a dataset as a collection of $(\mathbf{x}, y)$ pairs, where $\mathbf{x}$ is a set of features, and $y$ is the label to be predicted. For now, we will consider the simplest case where $\mathbf{x}$ is a vector of floating-point numbers and $y$ is either (a) one of a finite number of mutually exclusive classes, or (b) a scalar quantity. In case (a), the supervised learning problem is a _classification problem_, where we must learn a model that makes prediction $\hat{y}$ of the class $y$ associated with the set of features $\mathbf{x}$. In case (b), the supervised learning problem is a _regression problem_, where we must learn a model that produces an estimate $\hat{y}$ of $y$ based on $\mathbf{x}$.
 
 For both classification and regression problems, we can think of a model as a function $f: \mathcal{X} \rightarrow \mathcal{Y}$ that maps the space of possible features $\mathcal{X}$ into the space of possible labels $\mathcal{Y}$.
 
 ![Illustration of a Supervised Model](supervised_model.svg)
 
-Ideally, we would like the function $f$ to be a _valid_ model, meaning it maps every possible set of features in $\mathcal{X}$ to the correct output label; however, finding such a function may be impossible for a number of reasons. First, it is possible that $\mathcal{X}$ might be an infinite set, meaning it is impossible to verify that $f$ is valid for all sets of features $\mathbf{x}$. In some situations, we may not even know what the correct labels are for every single $\mathbf{x}$. For these reasons, it might appear that _learning_ a valid model $f: \mathcal{X} \rightarrow \mathcal{Y}$ is an impossible challenge.  
+Ideally, we would like the function $f$ to be a _valid_ model. We define a model to be valid if it correctly predicts labels across the entire domain $\mathcal{X}$. In practice, this means generalizing well to both seen and unseen data; however, finding such a function may be difficult for a number of reasons. First, it is possible that $\mathcal{X}$ might be an infinite set, meaning it is impossible to verify that $f$ is valid for all sets of features $\mathbf{x}$. In some situations, we may not even know what the correct labels are for every single $\mathbf{x}$. For these reasons, it might appear that _learning_ a valid model $f: \mathcal{X} \rightarrow \mathcal{Y}$ is an impossible challenge.  
 
 Fortunately, we have a powerful tool that we can use to tackle this seemingly insurmountable task: _data_. Using the data we have gathered, we can estimate the validity of a model by determining how well it _fits_ the data. Quantitatively speaking, we say that a model $f$ fits a dataset of $(\mathbf{x}_i,y_i)$ pairs if $f(\mathbf{x}_i) \approx y_i$ for each $i$.
 
@@ -33,7 +33,7 @@ Now, take a moment to consider the converse of the previous statement:
 
 > If a model $f : \mathcal{X} \rightarrow \mathcal{Y}$ fits the data, then it is valid.
 
-Is this statement also true? At first glance, you might be tempted into thinking it might be, but it is in general not true. In fact, sometimes a model that fits the data better than another model may actually be less valid. To illustrate this point, consider the following regression problem, where we have proposed two different fits:
+The converse statement is not generally true. In fact, sometimes a model that fits the data better than another model may actually be less valid. For example, a model could be matching noise in the data without capturing the underlying pattern. To illustrate this point, consider the following regression problem, where we have proposed two different fits:
 
 ```{code-cell}
 :tags: [hide-input]
@@ -73,7 +73,7 @@ plt.show()
 Since the data above is randomly generated, notebook output may vary.
 :::
 
-Above, we have randomly generated data and proposed two models: a _linear fit_ of the form $f(x) = mx + b$ and a degree 11 polynomial fit of the form $f(x) = \sum_{n=0}^{11} a_n x^n$. Since a degree $N-1$ polynomial can perfectly fit $N$ data points, the polynomial fit exactly matches the data, whereas the linear fit does not. Nonetheless, it is likely that a linear fit is the more valid model, especially when we consider that the polynomial fit extrapolates very poorly outside of the interval $[0,10]$ that contained the dataset.
+Above, we have randomly generated data and proposed two models: a _linear fit_ of the form $f(x) = mx + b$ and a degree 11 polynomial fit of the form $f(x) = \sum_{n=0}^{11} a_n x^n$. Since a polynomial of degree $N-1$ can perfectly fit $N$ data points, the fit exactly matches the data, whereas the linear fit does not. Nonetheless, it is likely that a linear fit is the more valid model, especially when we consider that the polynomial fit extrapolates very poorly outside of the interval $[0,10]$ that contained the dataset.
 
 ```{code-cell}
 :tags: [hide-input]
@@ -103,7 +103,7 @@ From this exercise, we see that some models are not valid, even though they may 
 
 * **Be mindful of how the data is obtained.**
 
-Is the data accurate? Are sources of noise identified and accounted for? Does the dataset adequately span the set of relevant input features $\mathcal{X}$ and labels $\mathcal{Y}$? You can _never_ have too much data, but you _can_ have too much data of a particular kind.
+Is the data accurate? Are sources of noise identified and accounted for? Does the dataset adequately span the set of relevant input features $\mathcal{X}$ and labels $\mathcal{Y}$? You can _never_ have too much data, but you _can_ have too much redundant or unbalanced data.
 
 * **Be mindful of how the data is handled.**
 
@@ -155,15 +155,15 @@ The validation set is used to evaluate the accuracy of multiple configurations o
 
 Since the validation set is used to evaluate and select the best of many different models with different parameters, it is possible that the process of selecting the best model can introduce [selection bias](https://en.wikipedia.org/wiki/Selection_bias) into the estimate that the validation set provides of the overall model's performance. Selection bias can become increasingly problematic as the number of models evaluated on the same validation set increases. This is why we set aside a third subset of the data: the test set. The test set is used to provide a final unbiased evaluation of the model. It should never be used as a basis for comparing multiple models.
 
-### Normalizing Data
+### Standardizing Data
 
-When working with datasets containing many different features, the differences in the numerical scale of each feature can cause the model to be more sensitive to some features and less sensitive to others. Sometimes, even changing the units of the features can significantly affect the accuracy of a model. To avoid this problem and ensure that the accuracy of the model is invariant under how the data is scaled, we use a technique called _data normalization_.
+When working with datasets containing many different features, the differences in the numerical scale of each feature can cause the model to be more sensitive to some features and less sensitive to others. Sometimes, even changing the units of the features can significantly affect the accuracy of a model. To avoid this problem and ensure that the accuracy of the model is invariant under how the data is scaled, we use a technique called _data standardization_.
 
-Data normalization works as follows: instead of fitting a model to a training set consisting of $(\mathbf{x}, y)$ pairs, we fit the model to a transformed dataset, consisting of pairs $(\mathbf{z}, y)$, where the $i$th entry of $\mathbf{z}$ is given by:
+Data standardization works as follows: instead of fitting a model to a training set consisting of $(\mathbf{x}, y)$ pairs, we fit the model to a transformed dataset, consisting of pairs $(\mathbf{z}, y)$, where the $i$th entry of $\mathbf{z}$ is given by:
 
 $$\mathbf{z}_i = \frac{\mathbf{x}_i - \mu_i}{\sigma_i}.$$
 
-Above, $\mu_i, \sigma_i$ are the mean and standard deviation of the $i$th component of the training set features. After normalization, all features will have values roughly on the interval $[-2, 2]$. This ensures that each feature makes an equally-weighted contribution to any predictions made.
+Above, $\mu_i, \sigma_i$ are the mean and standard deviation of the $i$th component of the training set features. After standardization, all features will have values roughly on the interval $[-2, 2]$. This ensures that each feature makes an equally-weighted contribution to any predictions made.
 
 
 ## Model Selection
@@ -193,25 +193,25 @@ To prepare this dataset for use with a model, do the following:
 
 1. Plot the data. What kind of model might produce a good fit?
 2. Split the dataset into training, validation and test sets with the standard 80%-10%-10% split. There are a few ways to do this. One way is by shuffling the data using Python's [`random.shuffle`](https://docs.python.org/3/library/random.html#random.shuffle) and selecting subsets of the data by their indices. Another (easier) way is to use [`sklearn.model_selection.train_test_split`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html). This function can only split the data into two subsets, so you will need to use it twice: once to split off the training set and once more to split the remaining data into the validation and test sets.
-3. Normalize the training, validation, and test sets (transform $x \rightarrow z$). You can do this by computing $\mu_x$ and $\sigma_x$ with [`np.mean`](https://numpy.org/doc/stable/reference/generated/numpy.mean.html) and [`np.std`](https://numpy.org/doc/stable/reference/generated/numpy.std.html) respectively, or by using [`sklearn.preprocessing.StandardScaler`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler).
-4. Plot the normalized training, validation, and test sets on the same axes. Use a different color for each set.
+3. Standardize the training, validation, and test sets (transform $x \rightarrow z$). You can do this by computing $\mu_x$ and $\sigma_x$ with [`np.mean`](https://numpy.org/doc/stable/reference/generated/numpy.mean.html) and [`np.std`](https://numpy.org/doc/stable/reference/generated/numpy.std.html) respectively, or by using [`sklearn.preprocessing.StandardScaler`](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler).
+4. Plot the standardized training, validation, and test sets on the same axes. Use a different color for each set.
 :::
 
 :::{dropdown} Exercise 2: Polynomial Models
-Using the normalized training, validation, and test sets from Exercise 1, generate three different fits using polynomials of degree 1, 2, and 3.
+Using the standardized training, validation, and test sets from Exercise 1, generate three different fits using polynomials of degree 1, 2, and 3.
 
-Visually inspect the fit of these three models by plotting the validation set and each fit on the same axes. (Plot the non-normalized $(x,y)$ data, not the normalized $(z,y)$ data.)
+Visually inspect the fit of these three models by plotting the validation set and each fit on the same axes. (Plot the non-standardized $(x,y)$ data, not the standardized $(z,y)$ data.)
 
-Finally, select the best fit and plot it on the same axes as the test set. When plotting your fit curves, be sure to normalize the inputs to your model before. (In the next section, we will discuss functions that can be used to quantitatively measure goodness of fit. For now, we will measure goodness of fit qualitatively with our eyeballs.)
+Finally, select the best fit and plot it on the same axes as the test set. When plotting your fit curves, be sure to standardize the inputs to your model before. (In the next section, we will discuss functions that can be used to quantitatively measure goodness of fit. For now, we will measure goodness of fit qualitatively with our eyeballs.)
 
 ---
 
-_Hint:_ As shown in the example code above, you can fit a polynomial of degree `n` to normalized data using [`np.polyfit`](https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html):
+_Hint:_ As shown in the example code above, you can fit a polynomial of degree `n` to standardized data using [`np.polyfit`](https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html):
 ```
-# fit polynomial model to normalized data:
+# fit polynomial model to standardized data:
 poly_model = np.poly1d(np.polyfit(z_data, y_data, deg=n))
 
-# evaluate polynomial model at (normalized) point z:
+# evaluate polynomial model at (standardized) point z:
 yhat = poly_model(z)
 ```
 :::
@@ -227,7 +227,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
-# This the dataset we are given:
+# This is the dataset we are given:
 x_data = np.random.uniform(-30, 30, size=100)
 y_data = 10 - 0.01*x_data**2 + np.random.normal(0,2,size=100)
 
@@ -247,7 +247,7 @@ x_train, x_nontrain, y_train, y_nontrain = train_test_split(x_data, y_data, trai
 # Further split non-training data into validation and test data:
 x_validation, x_test, y_validation, y_test = train_test_split(x_nontrain, y_nontrain, test_size=0.5)
 
-# (3) Normalize the train/validation/test sets.
+# (3) standardize the train/validation/test sets.
 # Estimate mu and sigma for training set:
 mu_x = np.mean(x_train)
 sigma_x = np.std(x_train)
@@ -257,11 +257,11 @@ z_train = (x_train - mu_x)/sigma_x
 z_validation = (x_validation - mu_x)/sigma_x
 z_test = (x_test - mu_x)/sigma_x
 
-# normalize y data:
+# standardize y data:
 mu_y = np.mean(y_train)
 sigma_y = np.mean(y_train)
 
-# (4) Plot the normalized train/validation/test sets:
+# (4) Plot the standardized train/validation/test sets:
 plt.figure()
 plt.grid()
 plt.scatter(z_train, y_train, label='Training Set')
@@ -277,12 +277,12 @@ plt.show()
 
 ```{code-cell}
 :tags: [hide-cell]
-# fit polynomials of degrees 1,2, and 3 to normalized data:
+# fit polynomials of degrees 1,2, and 3 to standardized data:
 poly_1 = np.poly1d(np.polyfit(z_train, y_train, deg=1))
 poly_2 = np.poly1d(np.polyfit(z_train, y_train, deg=2))
 poly_3 = np.poly1d(np.polyfit(z_train, y_train, deg=3))
 
-# generate normalized points for evaluating the model:
+# generate standardized points for evaluating the model:
 x_eval = np.linspace(np.min(x_data), np.max(x_data), 1000)
 z_eval = (x_eval - mu_x)/sigma_x
 

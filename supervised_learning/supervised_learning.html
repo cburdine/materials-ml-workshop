@@ -441,7 +441,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-training-set">The Training Set</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-validation-set">The Validation Set</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-test-set">The Test Set</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizing-data">Normalizing Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardizing-data">Standardizing Data</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection">Model Selection</a></li>
@@ -466,11 +466,11 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="supervised-learning">
 <h1>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Link to this heading">#</a></h1>
-<p>Now that we have reviewed some of the necessary background material, we will will begin examining the most common type of machine learning problem: <em>supervised learning</em>. Supervised learning is applied to problems where the available data contains many different labeled examples, and the problem involves finding a model that maps a set of features (inputs) to labels (outputs).</p>
-<p>Although data can take many different forms (i.e. numbers, vectors, images, text, 3D structures, etc.), we can think of a dataset as a collection of of <span class="math notranslate nohighlight">\((\mathbf{x}, y)\)</span> pairs, where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a set of features, and <span class="math notranslate nohighlight">\(y\)</span> is the label to be predicted. For now, we will consider the simplest case where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a vector of floating-point numbers and <span class="math notranslate nohighlight">\(y\)</span> is either (a) one of a finite number of mutually classes, or (b) a scalar quantity. In case (a), the supervised learning problem is a <em>classification problem</em>, where we must learn a model that makes prediction <span class="math notranslate nohighlight">\(\hat{y}\)</span> of the class <span class="math notranslate nohighlight">\(y\)</span> associated with the set of features <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. In case (b), the supervised learning problem is a <em>regression problem</em>, where we must learn a model that produces an estimate <span class="math notranslate nohighlight">\(\hat{y}\)</span> of <span class="math notranslate nohighlight">\(y\)</span> based on <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
+<p>Now that we have reviewed some of the necessary background material, we will begin examining the most common type of machine learning problem: <em>supervised learning</em>. Supervised learning is applied to problems where the available data contains many different labeled examples, and the problem involves finding a model that maps a set of features (inputs) to labels (outputs).</p>
+<p>Although data can take many different forms (i.e. numbers, vectors, images, text, 3D structures, etc.), we can think of a dataset as a collection of <span class="math notranslate nohighlight">\((\mathbf{x}, y)\)</span> pairs, where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a set of features, and <span class="math notranslate nohighlight">\(y\)</span> is the label to be predicted. For now, we will consider the simplest case where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a vector of floating-point numbers and <span class="math notranslate nohighlight">\(y\)</span> is either (a) one of a finite number of mutually exclusive classes, or (b) a scalar quantity. In case (a), the supervised learning problem is a <em>classification problem</em>, where we must learn a model that makes prediction <span class="math notranslate nohighlight">\(\hat{y}\)</span> of the class <span class="math notranslate nohighlight">\(y\)</span> associated with the set of features <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. In case (b), the supervised learning problem is a <em>regression problem</em>, where we must learn a model that produces an estimate <span class="math notranslate nohighlight">\(\hat{y}\)</span> of <span class="math notranslate nohighlight">\(y\)</span> based on <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p>
 <p>For both classification and regression problems, we can think of a model as a function <span class="math notranslate nohighlight">\(f: \mathcal{X} \rightarrow \mathcal{Y}\)</span> that maps the space of possible features <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> into the space of possible labels <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span>.</p>
 <p><img alt="Illustration of a Supervised Model" src="../_images/supervised_model.svg" /></p>
-<p>Ideally, we would like the function <span class="math notranslate nohighlight">\(f\)</span> to be a <em>valid</em> model, meaning it maps every possible set of features in <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> to the correct output label; however, finding such a function may be impossible for a number of reasons. First, it is possible that <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> might be an infinite set, meaning it is impossible to verify that <span class="math notranslate nohighlight">\(f\)</span> is valid for all sets of features <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. In some situations, we may not even know what the correct labels are for every single <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. For these reasons, it might appear that <em>learning</em> a valid model <span class="math notranslate nohighlight">\(f: \mathcal{X} \rightarrow \mathcal{Y}\)</span> is an impossible challenge.</p>
+<p>Ideally, we would like the function <span class="math notranslate nohighlight">\(f\)</span> to be a <em>valid</em> model. We define a model to be valid if it correctly predicts labels across the entire domain <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. In practice, this means generalizing well to both seen and unseen data; however, finding such a function may be difficult for a number of reasons. First, it is possible that <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> might be an infinite set, meaning it is impossible to verify that <span class="math notranslate nohighlight">\(f\)</span> is valid for all sets of features <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. In some situations, we may not even know what the correct labels are for every single <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. For these reasons, it might appear that <em>learning</em> a valid model <span class="math notranslate nohighlight">\(f: \mathcal{X} \rightarrow \mathcal{Y}\)</span> is an impossible challenge.</p>
 <p>Fortunately, we have a powerful tool that we can use to tackle this seemingly insurmountable task: <em>data</em>. Using the data we have gathered, we can estimate the validity of a model by determining how well it <em>fits</em> the data. Quantitatively speaking, we say that a model <span class="math notranslate nohighlight">\(f\)</span> fits a dataset of <span class="math notranslate nohighlight">\((\mathbf{x}_i,y_i)\)</span> pairs if <span class="math notranslate nohighlight">\(f(\mathbf{x}_i) \approx y_i\)</span> for each <span class="math notranslate nohighlight">\(i\)</span>.</p>
 <p>We also know that following statement is generally true with regards to our data and any potential model <span class="math notranslate nohighlight">\(f\)</span>:</p>
 <blockquote>
@@ -481,7 +481,7 @@ document.write(`
 <blockquote>
 <div><p>If a model <span class="math notranslate nohighlight">\(f : \mathcal{X} \rightarrow \mathcal{Y}\)</span> fits the data, then it is valid.</p>
 </div></blockquote>
-<p>Is this statement also true? At first glance, you might be tempted into thinking it might be, but it is in general not true. In fact, sometimes a model that fits the data better than another model may actually be less valid. To illustrate this point, consider the following regression problem, where we have proposed two different fits:</p>
+<p>The converse statement is not generally true. In fact, sometimes a model that fits the data better than another model may actually be less valid. For example, a model could be matching noise in the data without capturing the underlying pattern. To illustrate this point, consider the following regression problem, where we have proposed two different fits:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -524,14 +524,14 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/0918bb9f300808518a570c3f0498460788520e6a147384ca8bd9e9e2ec3b00a0.png" src="../_images/0918bb9f300808518a570c3f0498460788520e6a147384ca8bd9e9e2ec3b00a0.png" />
+<img alt="../_images/db0cd4b21bb1dbeec39e3756b10303f94265301339eea848da9ad6792178fe17.png" src="../_images/db0cd4b21bb1dbeec39e3756b10303f94265301339eea848da9ad6792178fe17.png" />
 </div>
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Since the data above is randomly generated, notebook output may vary.</p>
 </div>
-<p>Above, we have randomly generated data and proposed two models: a <em>linear fit</em> of the form <span class="math notranslate nohighlight">\(f(x) = mx + b\)</span> and a degree 11 polynomial fit of the form <span class="math notranslate nohighlight">\(f(x) = \sum_{n=0}^{11} a_n x^n\)</span>. Since a degree <span class="math notranslate nohighlight">\(N-1\)</span> polynomial can perfectly fit <span class="math notranslate nohighlight">\(N\)</span> data points, the polynomial fit exactly matches the data, whereas the linear fit does not. Nonetheless, it is likely that a linear fit is the more valid model, especially when we consider that the polynomial fit extrapolates very poorly outside of the interval <span class="math notranslate nohighlight">\([0,10]\)</span> that contained the dataset.</p>
+<p>Above, we have randomly generated data and proposed two models: a <em>linear fit</em> of the form <span class="math notranslate nohighlight">\(f(x) = mx + b\)</span> and a degree 11 polynomial fit of the form <span class="math notranslate nohighlight">\(f(x) = \sum_{n=0}^{11} a_n x^n\)</span>. Since a polynomial of degree <span class="math notranslate nohighlight">\(N-1\)</span> can perfectly fit <span class="math notranslate nohighlight">\(N\)</span> data points, the fit exactly matches the data, whereas the linear fit does not. Nonetheless, it is likely that a linear fit is the more valid model, especially when we consider that the polynomial fit extrapolates very poorly outside of the interval <span class="math notranslate nohighlight">\([0,10]\)</span> that contained the dataset.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -563,14 +563,14 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/00294b79ac8e0d85d28f35f16d4f15d74eda69795ee016ff5a19d0b1f0642d75.png" src="../_images/00294b79ac8e0d85d28f35f16d4f15d74eda69795ee016ff5a19d0b1f0642d75.png" />
+<img alt="../_images/4c2ec61b0825880f5aee50fa740305d551ee3dd27d45371827905013bfdeb209.png" src="../_images/4c2ec61b0825880f5aee50fa740305d551ee3dd27d45371827905013bfdeb209.png" />
 </div>
 </div>
 <p>From this exercise, we see that some models are not valid, even though they may perfectly fit the data. So if we have a model that does seem to fit the data set well, how can we be sure that the model is also valid? Unfortunately, we can never know the degree to which a model is valid unless our dataset contains every possible input in <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and its associated label. However, there are some general tactics we can employ to maximize the validity of our model. These are the three most important guidelines to keep in mind when working with supervised models:</p>
 <ul class="simple">
 <li><p><strong>Be mindful of how the data is obtained.</strong></p></li>
 </ul>
-<p>Is the data accurate? Are sources of noise identified and accounted for? Does the dataset adequately span the set of relevant input features <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and labels <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span>? You can <em>never</em> have too much data, but you <em>can</em> have too much data of a particular kind.</p>
+<p>Is the data accurate? Are sources of noise identified and accounted for? Does the dataset adequately span the set of relevant input features <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and labels <span class="math notranslate nohighlight">\(\mathcal{Y}\)</span>? You can <em>never</em> have too much data, but you <em>can</em> have too much redundant or unbalanced data.</p>
 <ul class="simple">
 <li><p><strong>Be mindful of how the data is handled.</strong></p></li>
 </ul>
@@ -609,13 +609,13 @@ document.write(`
 <h3>The Test Set<a class="headerlink" href="#the-test-set" title="Link to this heading">#</a></h3>
 <p>Since the validation set is used to evaluate and select the best of many different models with different parameters, it is possible that the process of selecting the best model can introduce <a class="reference external" href="https://en.wikipedia.org/wiki/Selection_bias">selection bias</a> into the estimate that the validation set provides of the overall model’s performance. Selection bias can become increasingly problematic as the number of models evaluated on the same validation set increases. This is why we set aside a third subset of the data: the test set. The test set is used to provide a final unbiased evaluation of the model. It should never be used as a basis for comparing multiple models.</p>
 </section>
-<section id="normalizing-data">
-<h3>Normalizing Data<a class="headerlink" href="#normalizing-data" title="Link to this heading">#</a></h3>
-<p>When working with datasets containing many different features, the differences in the numerical scale of each feature can cause the model to be more sensitive to some features and less sensitive to others. Sometimes, even changing the units of the features can significantly affect the accuracy of a model. To avoid this problem and ensure that the accuracy of the model is invariant under how the data is scaled, we use a technique called <em>data normalization</em>.</p>
-<p>Data normalization works as follows: instead of fitting a model to a training set consisting of <span class="math notranslate nohighlight">\((\mathbf{x}, y)\)</span> pairs, we fit the model to a transformed dataset, consisting of pairs <span class="math notranslate nohighlight">\((\mathbf{z}, y)\)</span>, where the <span class="math notranslate nohighlight">\(i\)</span>th entry of <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> is given by:</p>
+<section id="standardizing-data">
+<h3>Standardizing Data<a class="headerlink" href="#standardizing-data" title="Link to this heading">#</a></h3>
+<p>When working with datasets containing many different features, the differences in the numerical scale of each feature can cause the model to be more sensitive to some features and less sensitive to others. Sometimes, even changing the units of the features can significantly affect the accuracy of a model. To avoid this problem and ensure that the accuracy of the model is invariant under how the data is scaled, we use a technique called <em>data standardization</em>.</p>
+<p>Data standardization works as follows: instead of fitting a model to a training set consisting of <span class="math notranslate nohighlight">\((\mathbf{x}, y)\)</span> pairs, we fit the model to a transformed dataset, consisting of pairs <span class="math notranslate nohighlight">\((\mathbf{z}, y)\)</span>, where the <span class="math notranslate nohighlight">\(i\)</span>th entry of <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{z}_i = \frac{\mathbf{x}_i - \mu_i}{\sigma_i}.\]</div>
-<p>Above, <span class="math notranslate nohighlight">\(\mu_i, \sigma_i\)</span> are the mean and standard deviation of the <span class="math notranslate nohighlight">\(i\)</span>th component of the training set features. After normalization, all features will have values roughly on the interval <span class="math notranslate nohighlight">\([-2, 2]\)</span>. This ensures that each feature makes an equally-weighted contribution to any predictions made.</p>
+<p>Above, <span class="math notranslate nohighlight">\(\mu_i, \sigma_i\)</span> are the mean and standard deviation of the <span class="math notranslate nohighlight">\(i\)</span>th component of the training set features. After standardization, all features will have values roughly on the interval <span class="math notranslate nohighlight">\([-2, 2]\)</span>. This ensures that each feature makes an equally-weighted contribution to any predictions made.</p>
 </section>
 </section>
 <section id="model-selection">
@@ -641,22 +641,22 @@ document.write(`
 <ol class="arabic simple">
 <li><p class="sd-card-text">Plot the data. What kind of model might produce a good fit?</p></li>
 <li><p class="sd-card-text">Split the dataset into training, validation and test sets with the standard 80%-10%-10% split. There are a few ways to do this. One way is by shuffling the data using Python’s <a class="reference external" href="https://docs.python.org/3/library/random.html#random.shuffle"><code class="docutils literal notranslate"><span class="pre">random.shuffle</span></code></a> and selecting subsets of the data by their indices. Another (easier) way is to use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split</span></code></a>. This function can only split the data into two subsets, so you will need to use it twice: once to split off the training set and once more to split the remaining data into the validation and test sets.</p></li>
-<li><p class="sd-card-text">Normalize the training, validation, and test sets (transform <span class="math notranslate nohighlight">\(x \rightarrow z\)</span>). You can do this by computing <span class="math notranslate nohighlight">\(\mu_x\)</span> and <span class="math notranslate nohighlight">\(\sigma_x\)</span> with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html"><code class="docutils literal notranslate"><span class="pre">np.mean</span></code></a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.std.html"><code class="docutils literal notranslate"><span class="pre">np.std</span></code></a> respectively, or by using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code></a>.</p></li>
-<li><p class="sd-card-text">Plot the normalized training, validation, and test sets on the same axes. Use a different color for each set.</p></li>
+<li><p class="sd-card-text">Standardize the training, validation, and test sets (transform <span class="math notranslate nohighlight">\(x \rightarrow z\)</span>). You can do this by computing <span class="math notranslate nohighlight">\(\mu_x\)</span> and <span class="math notranslate nohighlight">\(\sigma_x\)</span> with <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.mean.html"><code class="docutils literal notranslate"><span class="pre">np.mean</span></code></a> and <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.std.html"><code class="docutils literal notranslate"><span class="pre">np.std</span></code></a> respectively, or by using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html#sklearn.preprocessing.StandardScaler"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code></a>.</p></li>
+<li><p class="sd-card-text">Plot the standardized training, validation, and test sets on the same axes. Use a different color for each set.</p></li>
 </ol>
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Exercise 2: Polynomial Models</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Using the normalized training, validation, and test sets from Exercise 1, generate three different fits using polynomials of degree 1, 2, and 3.</p>
-<p class="sd-card-text">Visually inspect the fit of these three models by plotting the validation set and each fit on the same axes. (Plot the non-normalized <span class="math notranslate nohighlight">\((x,y)\)</span> data, not the normalized <span class="math notranslate nohighlight">\((z,y)\)</span> data.)</p>
-<p class="sd-card-text">Finally, select the best fit and plot it on the same axes as the test set. When plotting your fit curves, be sure to normalize the inputs to your model before. (In the next section, we will discuss functions that can be used to quantitatively measure goodness of fit. For now, we will measure goodness of fit qualitatively with our eyeballs.)</p>
+<p class="sd-card-text">Using the standardized training, validation, and test sets from Exercise 1, generate three different fits using polynomials of degree 1, 2, and 3.</p>
+<p class="sd-card-text">Visually inspect the fit of these three models by plotting the validation set and each fit on the same axes. (Plot the non-standardized <span class="math notranslate nohighlight">\((x,y)\)</span> data, not the standardized <span class="math notranslate nohighlight">\((z,y)\)</span> data.)</p>
+<p class="sd-card-text">Finally, select the best fit and plot it on the same axes as the test set. When plotting your fit curves, be sure to standardize the inputs to your model before. (In the next section, we will discuss functions that can be used to quantitatively measure goodness of fit. For now, we will measure goodness of fit qualitatively with our eyeballs.)</p>
 <hr class="docutils" />
-<p class="sd-card-text"><em>Hint:</em> As shown in the example code above, you can fit a polynomial of degree <code class="docutils literal notranslate"><span class="pre">n</span></code> to normalized data using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html"><code class="docutils literal notranslate"><span class="pre">np.polyfit</span></code></a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit polynomial model to normalized data:</span>
+<p class="sd-card-text"><em>Hint:</em> As shown in the example code above, you can fit a polynomial of degree <code class="docutils literal notranslate"><span class="pre">n</span></code> to standardized data using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html"><code class="docutils literal notranslate"><span class="pre">np.polyfit</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit polynomial model to standardized data:</span>
 <span class="n">poly_model</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">z_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="n">n</span><span class="p">))</span>
 
-<span class="c1"># evaluate polynomial model at (normalized) point z:</span>
+<span class="c1"># evaluate polynomial model at (standardized) point z:</span>
 <span class="n">yhat</span> <span class="o">=</span> <span class="n">poly_model</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -676,7 +676,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
 
-<span class="c1"># This the dataset we are given:</span>
+<span class="c1"># This is the dataset we are given:</span>
 <span class="n">x_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">y_data</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="mf">0.01</span><span class="o">*</span><span class="n">x_data</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
@@ -696,7 +696,7 @@ document.write(`
 <span class="c1"># Further split non-training data into validation and test data:</span>
 <span class="n">x_validation</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_validation</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x_nontrain</span><span class="p">,</span> <span class="n">y_nontrain</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="c1"># (3) Normalize the train/validation/test sets.</span>
+<span class="c1"># (3) standardize the train/validation/test sets.</span>
 <span class="c1"># Estimate mu and sigma for training set:</span>
 <span class="n">mu_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
 <span class="n">sigma_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
@@ -706,11 +706,11 @@ document.write(`
 <span class="n">z_validation</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_validation</span> <span class="o">-</span> <span class="n">mu_x</span><span class="p">)</span><span class="o">/</span><span class="n">sigma_x</span>
 <span class="n">z_test</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_test</span> <span class="o">-</span> <span class="n">mu_x</span><span class="p">)</span><span class="o">/</span><span class="n">sigma_x</span>
 
-<span class="c1"># normalize y data:</span>
+<span class="c1"># standardize y data:</span>
 <span class="n">mu_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
 <span class="n">sigma_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
 
-<span class="c1"># (4) Plot the normalized train/validation/test sets:</span>
+<span class="c1"># (4) Plot the standardized train/validation/test sets:</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Set&#39;</span><span class="p">)</span>
@@ -724,8 +724,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e3fd6af8cea8dc076c172cddc92da28902f469536d222910dfddea807cbc8e30.png" src="../_images/e3fd6af8cea8dc076c172cddc92da28902f469536d222910dfddea807cbc8e30.png" />
-<img alt="../_images/5d23cc165c771a99064c1a8df25352abbdefaeb247cb262a0a6aa6de5d1be3c3.png" src="../_images/5d23cc165c771a99064c1a8df25352abbdefaeb247cb262a0a6aa6de5d1be3c3.png" />
+<img alt="../_images/fd64d1a604b3d4d58db4162486c2e3417b4317ed5202855fdc0de0c248471f7a.png" src="../_images/fd64d1a604b3d4d58db4162486c2e3417b4317ed5202855fdc0de0c248471f7a.png" />
+<img alt="../_images/44f2e0326e1927d778e916313b15513335eb13f17615d802826c522a14042a44.png" src="../_images/44f2e0326e1927d778e916313b15513335eb13f17615d802826c522a14042a44.png" />
 </div>
 </details>
 </div>
@@ -739,12 +739,12 @@ document.write(`
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit polynomials of degrees 1,2, and 3 to normalized data:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fit polynomials of degrees 1,2, and 3 to standardized data:</span>
 <span class="n">poly_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">poly_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">poly_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">deg</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
 
-<span class="c1"># generate normalized points for evaluating the model:</span>
+<span class="c1"># generate standardized points for evaluating the model:</span>
 <span class="n">x_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x_data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x_data</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">z_eval</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_eval</span> <span class="o">-</span> <span class="n">mu_x</span><span class="p">)</span><span class="o">/</span><span class="n">sigma_x</span>
 
@@ -783,8 +783,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/43de5680976aaa553407199b0863c8f32e3aa35aac3c3aef74877efa7512cdcc.png" src="../_images/43de5680976aaa553407199b0863c8f32e3aa35aac3c3aef74877efa7512cdcc.png" />
-<img alt="../_images/57dac33e9361429cb81c466ffb2a8c1fccd4346f997d4fd7e2e2c476f588836e.png" src="../_images/57dac33e9361429cb81c466ffb2a8c1fccd4346f997d4fd7e2e2c476f588836e.png" />
+<img alt="../_images/cfb8629256ab261247050d45913b762aba07c145b01dc8fd1c8a26f4f9b48997.png" src="../_images/cfb8629256ab261247050d45913b762aba07c145b01dc8fd1c8a26f4f9b48997.png" />
+<img alt="../_images/e148d7a439861475821d30e8c065855d26c6982471652dc82feec4350c633fd3.png" src="../_images/e148d7a439861475821d30e8c065855d26c6982471652dc82feec4350c633fd3.png" />
 </div>
 </details>
 </div>
@@ -844,7 +844,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-training-set">The Training Set</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-validation-set">The Validation Set</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-test-set">The Test Set</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizing-data">Normalizing Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standardizing-data">Standardizing Data</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection">Model Selection</a></li>

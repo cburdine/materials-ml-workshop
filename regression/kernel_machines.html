@@ -532,7 +532,7 @@ document.write(`
 <p>While the kernel function <span class="math notranslate nohighlight">\(K(\mathbf{x},\mathbf{x}')\)</span> can be concretely interpreted as the inner product of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}'\)</span> in the embedding space, we can abstractly think of <span class="math notranslate nohighlight">\(K\)</span> as a measure of “similarity” between two points <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}'\)</span>. The higher the value of <span class="math notranslate nohighlight">\(K(\mathbf{x},\mathbf{x}')\)</span>, the more similar <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is to <span class="math notranslate nohighlight">\(\mathbf{x}'\)</span>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>In most software packages, the <span class="math notranslate nohighlight">\(y_1,y_2, ..., y_N\)</span> values are normalized prior to solving the dual problem to ensure that <span class="math notranslate nohighlight">\(w_0 = 0\)</span> (this ensures that the regularization parameter <span class="math notranslate nohighlight">\(C\)</span> does not bound the bias weight <span class="math notranslate nohighlight">\(w_0\)</span>). Because <span class="math notranslate nohighlight">\(w_0 = 0\)</span>, the leading column of <span class="math notranslate nohighlight">\(1\)</span>s in the embedding matrix <span class="math notranslate nohighlight">\(\mathbf{\Phi}(\mathbf{X})\)</span> is unnecessary, and is thus removed. This results in a Gram matrix <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> with entries:</p>
+<p>In most software packages, the <span class="math notranslate nohighlight">\(y_1,y_2, ..., y_N\)</span> values are standardized prior to solving the dual problem to ensure that <span class="math notranslate nohighlight">\(w_0 = 0\)</span> (this ensures that the regularization parameter <span class="math notranslate nohighlight">\(C\)</span> does not bound the bias weight <span class="math notranslate nohighlight">\(w_0\)</span>). Because <span class="math notranslate nohighlight">\(w_0 = 0\)</span>, the leading column of <span class="math notranslate nohighlight">\(1\)</span>s in the embedding matrix <span class="math notranslate nohighlight">\(\mathbf{\Phi}(\mathbf{X})\)</span> is unnecessary, and is thus removed. This results in a Gram matrix <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> with entries:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{G}_{mn} = \sum_{i=1}^{D_{emb}} \phi_i(\mathbf{x}_m)\phi_i(\mathbf{x}_n) = K(\mathbf{x}_m, \mathbf{x}_n)\]</div>
 </div>
@@ -668,9 +668,9 @@ simply by swapping out kernels.</p>
 
 <span class="sd">        Args:</span>
 <span class="sd">            data_x: the 2D data (numpy array with shape (N,2))</span>
-<span class="sd">            model: an sklearn model (fit to normalized `data_x`)</span>
+<span class="sd">            model: an sklearn model (fit to standardized `data_x`)</span>
 <span class="sd">            x_scaler: an sklearn.preprocessing.StandardScaler</span>
-<span class="sd">                      for normalizing the `data_x` data array</span>
+<span class="sd">                      for standardizing the `data_x` data array</span>
 <span class="sd">                      (optional)</span>
 <span class="sd">            title: title of plot (optional)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -757,9 +757,9 @@ simply by swapping out kernels.</p>
 
 <span class="sd">        Args:</span>
 <span class="sd">            data_x: the 2D data (numpy array with shape (N,2))</span>
-<span class="sd">            model: an sklearn model (fit to normalized `data_x`) </span>
+<span class="sd">            model: an sklearn model (fit to standardized `data_x`) </span>
 <span class="sd">            x_scaler: an sklearn.preprocessing.StandardScaler</span>
-<span class="sd">                      for normalizing the `data_x` data array</span>
+<span class="sd">                      for standardizing the `data_x` data array</span>
 <span class="sd">                      (optional)</span>
 <span class="sd">            title: title of plot (optional)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -786,7 +786,7 @@ simply by swapping out kernels.</p>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
 
-<span class="c1"># normalize x_data:</span>
+<span class="c1"># standardize x_data:</span>
 <span class="n">data_z</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
 
 <span class="c1"># These are the regression models we are trying:</span>
@@ -799,7 +799,7 @@ simply by swapping out kernels.</p>
 <span class="c1"># fit each model and plot the prediction surface:</span>
 <span class="k">for</span> <span class="n">svr_model</span> <span class="ow">in</span> <span class="n">svr_models</span><span class="p">:</span>
     
-    <span class="c1"># fit model to normalized data:</span>
+    <span class="c1"># fit model to standardize data:</span>
     <span class="n">svr_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_z</span><span class="p">,</span> <span class="n">data_y</span><span class="p">)</span>
     
     <span class="c1"># plot predictions made by kernel SVR model</span>
@@ -813,10 +813,10 @@ simply by swapping out kernels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cb20d0657612fa7e962ca1e7488376fd590974cd81664773ee087551beb0a4d1.png" src="../_images/cb20d0657612fa7e962ca1e7488376fd590974cd81664773ee087551beb0a4d1.png" />
-<img alt="../_images/40d555dea5c9a42321d9177fa3f272592aa8249902fb1860cac660e8f5e694fe.png" src="../_images/40d555dea5c9a42321d9177fa3f272592aa8249902fb1860cac660e8f5e694fe.png" />
-<img alt="../_images/c5ee766ccf0ae9a6450574b6c5fea930ba1262913c29fbb11af048baf48cd159.png" src="../_images/c5ee766ccf0ae9a6450574b6c5fea930ba1262913c29fbb11af048baf48cd159.png" />
-<img alt="../_images/fe449baab3fee3edf809e10f27337eeedae23b55a4dcabc9a0befd031b2a5062.png" src="../_images/fe449baab3fee3edf809e10f27337eeedae23b55a4dcabc9a0befd031b2a5062.png" />
+<img alt="../_images/45998e74a7080950bf9a91854d566935bac538e5e3dda5cf4da781eca57e6b20.png" src="../_images/45998e74a7080950bf9a91854d566935bac538e5e3dda5cf4da781eca57e6b20.png" />
+<img alt="../_images/75e4478527fc33ae962977fdde3c0b75639686c18d588c13acabb0caa924fbeb.png" src="../_images/75e4478527fc33ae962977fdde3c0b75639686c18d588c13acabb0caa924fbeb.png" />
+<img alt="../_images/158fd1f3547b2c290d09ed86aee5311fa412d0e71598ae8ed0ea4e6926eed832.png" src="../_images/158fd1f3547b2c290d09ed86aee5311fa412d0e71598ae8ed0ea4e6926eed832.png" />
+<img alt="../_images/cc357549e5a0fa042a62ddb5d8c7b26d490061b78172898b3e3ec0dfa11751c5.png" src="../_images/cc357549e5a0fa042a62ddb5d8c7b26d490061b78172898b3e3ec0dfa11751c5.png" />
 </div>
 </details>
 </div>
@@ -859,7 +859,7 @@ simply by swapping out kernels.</p>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
 
-<span class="c1"># normalize x_data:</span>
+<span class="c1"># standardize x_data:</span>
 <span class="n">data_z</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
 
 <span class="c1"># These are the classifier models we are trying:</span>
@@ -872,7 +872,7 @@ simply by swapping out kernels.</p>
 <span class="c1"># fit each model and plot the prediction surface:</span>
 <span class="k">for</span> <span class="n">svc_model</span> <span class="ow">in</span> <span class="n">svc_models</span><span class="p">:</span>
     
-    <span class="c1"># fit model to normalized data:</span>
+    <span class="c1"># fit model to standardized data:</span>
     <span class="n">svc_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_z</span><span class="p">,</span> <span class="n">data_y</span><span class="p">)</span>
     
     <span class="c1"># plot predictions made by kernel SVR model</span>
@@ -884,10 +884,10 @@ simply by swapping out kernels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9b360e7b339231d7fa28364088935dd4c57ce359b1752e4ae3b9b5960b56d09a.png" src="../_images/9b360e7b339231d7fa28364088935dd4c57ce359b1752e4ae3b9b5960b56d09a.png" />
-<img alt="../_images/349e1e9e0555b78bccf1740c62337d7e43ff5b89e339d626927121514ebd942d.png" src="../_images/349e1e9e0555b78bccf1740c62337d7e43ff5b89e339d626927121514ebd942d.png" />
-<img alt="../_images/3d4cbc96ffa5f1ef6d141bdba97b9cfd38c5b8860aa61d86b53e4aedd0cf9f24.png" src="../_images/3d4cbc96ffa5f1ef6d141bdba97b9cfd38c5b8860aa61d86b53e4aedd0cf9f24.png" />
-<img alt="../_images/c39d969e869ef7592468c641acaa68c4e96ea236b56de4dd7b3319e69a151ae1.png" src="../_images/c39d969e869ef7592468c641acaa68c4e96ea236b56de4dd7b3319e69a151ae1.png" />
+<img alt="../_images/7d04f0b2038b6a2fb50ecc8c2f1d636d2e4be7cf02601deada0026b22667b4a9.png" src="../_images/7d04f0b2038b6a2fb50ecc8c2f1d636d2e4be7cf02601deada0026b22667b4a9.png" />
+<img alt="../_images/cd5aa143a0310554cd5f927303372583724c6007859d4ab6a693e617eb2cb3da.png" src="../_images/cd5aa143a0310554cd5f927303372583724c6007859d4ab6a693e617eb2cb3da.png" />
+<img alt="../_images/130ffe0a2937dff3d0315f661bbca408d72145b5b07bc9f69fcedc6e54e7ec38.png" src="../_images/130ffe0a2937dff3d0315f661bbca408d72145b5b07bc9f69fcedc6e54e7ec38.png" />
+<img alt="../_images/869b94ba9f5eff27af0c76715fb99cfe2f26db1872aeddd822fe0367d17b0198.png" src="../_images/869b94ba9f5eff27af0c76715fb99cfe2f26db1872aeddd822fe0367d17b0198.png" />
 </div>
 </details>
 </div>

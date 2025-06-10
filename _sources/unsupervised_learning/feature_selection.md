@@ -15,11 +15,11 @@ Sometimes when we are working with large datasets with many features, it can be 
 
 ## The Correlation Matrix
 
-In order to identify and extract meaningful features from data, we must first understand how the data is distributed. If the data is normalized (i.e. the transformation $\mathbf{x} \rightarrow \mathbf{z}$ is applied), then every feature has mean $\mu = 0$ and standard deviation $\sigma = 1$; however, significant correlations may still exist between features, making the inclusion of some features redundant. We can see the degree to which any pair of normalized features are correlated by examining the entries of the correlation matrix $\bar{\Sigma}$, given by:
+In order to identify and extract meaningful features from data, we must first understand how the data is distributed. If the data is standardized (i.e. the transformation $\mathbf{x} \rightarrow \mathbf{z}$ is applied), then every feature has mean $\mu = 0$ and standard deviation $\sigma = 1$; however, significant correlations may still exist between features, making the inclusion of some features redundant. We can see the degree to which any pair of standardized features are correlated by examining the entries of the correlation matrix $\bar{\Sigma}$, given by:
 
 $$ \bar{\Sigma} = \frac{1}{N} \sum_{n=1}^N \mathbf{z}_n\mathbf{z}_n^T $$
 
-where $\mathbf{z}_1, \mathbf{z}_2, .., \mathbf{z}_N$ is the normalized dataset.
+where $\mathbf{z}_1, \mathbf{z}_2, .., \mathbf{z}_N$ is the standardized dataset.
 
 As a motivating example, let's examine the correlation matrix of random 3D points that are approximately confined to the plane defined by the equation $x_3 = 3x_1 -2x_2$. We can generate this dataset using the following Python code:
 
@@ -60,18 +60,18 @@ plt.show()
 
 ```
 
-Next, we normalize the dataset and compute $\bar{\Sigma}$ using [`np.cov`](https://numpy.org/doc/stable/reference/generated/numpy.cov.html):
+Next, we standardize the dataset and compute $\bar{\Sigma}$ using [`np.cov`](https://numpy.org/doc/stable/reference/generated/numpy.cov.html):
 ```{code-cell}
 :tags: [hide-input]
 from sklearn.preprocessing import StandardScaler
 
-# normalize data:
+# standardize data:
 scaler = StandardScaler()
-normalized_data = scaler.fit_transform(planar_data)
+standardized_data = scaler.fit_transform(planar_data)
 
-# compute the covariance matrix of the normalized data,
+# compute the covariance matrix of the standardized data,
 # which is called the correlation matrix:
-cor_mat = np.cov(normalized_data.T)
+cor_mat = np.cov(standardized_data.T)
 
 # visualize covariance matrix:
 max_cor = np.max(np.abs(cor_mat))
@@ -94,7 +94,7 @@ Examining the correlation matrix, we see strong positive correlation between $x_
 :class: dropdown, tip
 
 In supervised learning (where the dataset contains $(\mathbf{x},y)$ pairs, not just $\mathbf{x}$ values) the correlation matrix and also be used to quantify the linear relationship between features and the output label $y$. This is done by 
-simply appending the corresponding $y$ to the end of each $\mathbf{x}$, normalizing this vector, and then computing the correlation matrix.
+simply appending the corresponding $y$ to the end of each $\mathbf{x}$, standardizing this vector, and then computing the correlation matrix.
 
 The values in this matrix that correspond to the correlation of $y$ with each feature in $\mathbf{x}$ can be used to reduce the dimensionality of the $\mathbf{x}$ data. Specifically, features with the weakest correlation with $y$ can be dropped, resulting in a much smaller feature vector. Since the dropped features had low correlation with $y$, it is likely that it will not cause a drop in model accuracy. In fact, this will sometimes result an increase in model accuracy.
 :::
@@ -135,9 +135,9 @@ Each principal component $\mathbf{p}_i$ (the $i$th column of $\mathbf{P}$) has a
 
 From examining the printout of the $\mathbf{D}$ matrix above, we see that $\mathbf{p}^{(1)} = \mathbf{p}_3$ (the first principal component is the third column of $\mathbf{P}$) and $\mathbf{p}^{(2)} = \mathbf{p}_2$ (the second principal component is the second column of $\mathbf{P}$). The corresponding eigenvalues are $\lambda^{(1)} = 2.033$ and $\lambda^{(2)} = 0.97$. However, we observe that $\lambda^{(3)} = 0.024 \ll \lambda^{(1)}, \lambda^{(2)}$, which suggests that the third principal component accounts for very little variance in the data. This is due to the fact that the data is approximately confined to a 2D plane embedded in a larger 3D space.
 
-One of the most powerful aspects of _principal components analysis_ (often abbreviated _PCA_), is that we can project the normalized data onto the subset of principal components that are significant (i.e. have large $\lambda_i$), thereby reducing the dimensionality of the data while maximizing the amount of variance that is accounted for in the reduced data.
+One of the most powerful aspects of _principal components analysis_ (often abbreviated _PCA_), is that we can project the standardized data onto the subset of principal components that are significant (i.e. have large $\lambda_i$), thereby reducing the dimensionality of the data while maximizing the amount of variance that is accounted for in the reduced data.
 
-To project a normalized feature vector $\mathbf{z}$ onto the first $k$ principal components, we write it as a linear combination of all the principal components $\mathbf{p}^{(1)}, ..., \mathbf{p}^{(D)}$:
+To project a standardized feature vector $\mathbf{z}$ onto the first $k$ principal components, we write it as a linear combination of all the principal components $\mathbf{p}^{(1)}, ..., \mathbf{p}^{(D)}$:
 
 $$\mathbf{z} = u_1\mathbf{p}^{(1)} + u_2\mathbf{p}^{(2)} + ... u_D\mathbf{p}^{(D)}$$
 
@@ -156,11 +156,11 @@ The `sklearn` Python package has functionality that makes PCA dimensionality red
 
 from sklearn.decomposition import PCA
 
-# project normalized data onto the 
+# project standardized data onto the 
 # first two principal components:
 pca = PCA(n_components=2)
-pca.fit(normalized_data)
-pc_data = pca.transform(normalized_data)
+pca.fit(standardized_data)
+pc_data = pca.transform(standardized_data)
 
 # plot projected data:
 plt.figure()
@@ -187,7 +187,7 @@ mu = np.random.uniform(0,100, size=30)
 data_x = multivariate_normal.rvs(mean=mu,cov=(U @ D @ U.T), size=4000)
 ```
 
-To start, let's try to determine the approximate dimensionality of the data. First, let's take a look at all 30 principal components. Normalize the data and fit an instance of [`sklearn.decomposition.pca`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA) to it with `n_components=30`. Then take a look at the fitted `PCA` object's `explained_variance_` variable. 
+To start, let's try to determine the approximate dimensionality of the data. First, let's take a look at all 30 principal components. Standardize the data and fit an instance of [`sklearn.decomposition.pca`](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA) to it with `n_components=30`. Then take a look at the fitted `PCA` object's `explained_variance_` variable. 
 
 ```
 # fit a full PCA to data to determine explained variances:
@@ -200,7 +200,7 @@ variances = full_pca.explained_variance_
 
 This is an array containing the eigenvalues of $\bar{\Sigma}$ corresponding to each principal component (i.e. the diagonal of $\mathbf{D}$ in sorted in descending order). Plot these values and try to determine the underlying dimensionality of the data (you should see a significant drop in explained variance at the number of underlying dimensions).
 
-Once you determine the underlying number of dimensions, use a another `PCA` object with that number of components to reduce the dimensionality of the data. Plot the projections of the normalized data onto first and last of these principal components (i.e. $u_1$ vs. $u_k$, where $k$ is the estimated dimensionality of the data).
+Once you determine the underlying number of dimensions, use a another `PCA` object with that number of components to reduce the dimensionality of the data. Plot the projections of the standardized data onto first and last of these principal components (i.e. $u_1$ vs. $u_k$, where $k$ is the estimated dimensionality of the data).
 
 ::::
 
@@ -220,7 +220,7 @@ U = ortho_group.rvs(D.shape[0])
 mu = np.random.uniform(0,100, size=30)
 data_x = multivariate_normal.rvs(mean=mu,cov=(U @ D @ U.T), size=4000)
 
-# normalize dataset:
+# standardize dataset:
 scaler = StandardScaler()
 scaler.fit(data_x)
 data_z = scaler.transform(data_x)

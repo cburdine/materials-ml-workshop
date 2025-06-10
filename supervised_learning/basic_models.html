@@ -859,7 +859,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;cubic&#39;, &#39;orthorhombic&#39;, &#39;-&#39;, &#39;rhombohedral&#39;, &#39;tetragonal&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;orthorhombic&#39;, &#39;cubic&#39;, &#39;tetragonal&#39;, &#39;-&#39;, &#39;rhombohedral&#39;]
 </pre></div>
 </div>
 </div>
@@ -892,7 +892,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/879d07ef3d6d03077c6d6e5140b64549eae9d0fc76e0a6f50910eb4665a2a333.png" src="../_images/879d07ef3d6d03077c6d6e5140b64549eae9d0fc76e0a6f50910eb4665a2a333.png" />
+<img alt="../_images/50997cd09b8e959ffad0182a68ee6a9580968f2e6a808df0702a19d4da402e03.png" src="../_images/50997cd09b8e959ffad0182a68ee6a9580968f2e6a808df0702a19d4da402e03.png" />
 </div>
 </div>
 <p>As expected, a majority of the perovskites have the ideal cubic structure.</p>
@@ -990,7 +990,7 @@ Binary classifier labels shape: (5329,)
 <img alt="../_images/4dc2b64b42220432d73a13033b5a3874edd75d184a352e927995adcee6029a78.png" src="../_images/4dc2b64b42220432d73a13033b5a3874edd75d184a352e927995adcee6029a78.png" />
 </div>
 </div>
-<p>We see that a majority of the cubic structures are distributed within the range of <span class="math notranslate nohighlight">\(t_G = 0.7\)</span> to <span class="math notranslate nohighlight">\(t_G = 0.9\)</span>. According to the literature, perovskites with <span class="math notranslate nohighlight">\(t_G\)</span> in the range of <span class="math notranslate nohighlight">\(0.9\)</span> to <span class="math notranslate nohighlight">\(1.0\)</span> are generally predicted to be in the cubic phase, which appears to be inconsistent with our data. Taking note of this discrepancy, we will proceed with preparing our data. First, we will split the data into training, validation, and test sets. This can be done with the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split</span></code></a> function. We will also normalize our data using <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code></a>:</p>
+<p>We see that a majority of the cubic structures are distributed within the range of <span class="math notranslate nohighlight">\(t_G = 0.7\)</span> to <span class="math notranslate nohighlight">\(t_G = 0.9\)</span>. According to the literature, perovskites with <span class="math notranslate nohighlight">\(t_G\)</span> in the range of <span class="math notranslate nohighlight">\(0.9\)</span> to <span class="math notranslate nohighlight">\(1.0\)</span> are generally predicted to be in the cubic phase, which appears to be inconsistent with our data. Taking note of this discrepancy, we will proceed with preparing our data. First, we will split the data into training, validation, and test sets. This can be done with the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"><code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.train_test_split</span></code></a> function. We will also standardize our data using <a class="reference external" href="https://scikit-learn.org/stable/modules/preprocessing.html"><code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code></a>:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1009,11 +1009,11 @@ Binary classifier labels shape: (5329,)
 <span class="n">x_val</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
             <span class="n">x_nontrain</span><span class="p">,</span> <span class="n">y_nontrain</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="c1"># Determine the normalizing transformation:</span>
+<span class="c1"># Determine the standardizing transformation:</span>
 <span class="n">x_scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">x_scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
 
-<span class="c1"># transform x -&gt; z (normalize x data):</span>
+<span class="c1"># transform x -&gt; z (standardize x data):</span>
 <span class="n">z_train</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
 <span class="n">z_val</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_val</span><span class="p">)</span>
 <span class="n">z_test</span> <span class="o">=</span> <span class="n">x_scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
@@ -1036,7 +1036,7 @@ Shape of z_test: (533, 3)
 </section>
 <section id="the-perceptron-linear-classification-model">
 <h2>The Perceptron (Linear Classification) Model<a class="headerlink" href="#the-perceptron-linear-classification-model" title="Link to this heading">#</a></h2>
-<p>One of the simplest two-class classification models is a <em>linear classifier</em> model, historically referred to as a <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron"><em>Perceptron</em></a> model. For a normalized feature vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> with <span class="math notranslate nohighlight">\(N\)</span> features, a linear classifier model <span class="math notranslate nohighlight">\(f(\mathbf{z})\)</span> makes “1” and “-1” class predictions according to the equation:</p>
+<p>One of the simplest two-class classification models is a <em>linear classifier</em> model, historically referred to as a <a class="reference external" href="https://en.wikipedia.org/wiki/Perceptron"><em>Perceptron</em></a> model. For a standardized feature vector <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> with <span class="math notranslate nohighlight">\(N\)</span> features, a linear classifier model <span class="math notranslate nohighlight">\(f(\mathbf{z})\)</span> makes “1” and “-1” class predictions according to the equation:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}f(\mathbf{z}) = \begin{cases}
 1, &amp; w_0 + \sum_{i=1}^N w_iz_i &gt; 0 \\
@@ -1068,8 +1068,8 @@ Shape of z_test: (533, 3)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.5193525686136523
-validation set accuracy: 0.4971857410881801
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.5801079052310579
+validation set accuracy: 0.5928705440900562
 </pre></div>
 </div>
 </div>
@@ -1078,7 +1078,7 @@ validation set accuracy: 0.4971857410881801
 </section>
 <section id="the-nearest-neighbor-model">
 <h2>The Nearest Neighbor Model<a class="headerlink" href="#the-nearest-neighbor-model" title="Link to this heading">#</a></h2>
-<p>Before trying other models, it may help to see what kind of accuracy can be attained by a <em>nearest neighbor classification model</em>. As the name suggests, a nearest neighbor classification model predicts the class of an unseen normalized data point <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> to be the majority class in the set of <span class="math notranslate nohighlight">\(k\)</span> normalized data points in the training set that are nearest to <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>. By “nearest”, we refer to the point with the smallest Euclidean distance:</p>
+<p>Before trying other models, it may help to see what kind of accuracy can be attained by a <em>nearest neighbor classification model</em>. As the name suggests, a nearest neighbor classification model predicts the class of an unseen standardized data point <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> to be the majority class in the set of <span class="math notranslate nohighlight">\(k\)</span> standardized data points in the training set that are nearest to <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>. By “nearest”, we refer to the point with the smallest Euclidean distance:</p>
 <div class="math notranslate nohighlight">
 \[d(\mathbf{z},\mathbf{z}') = \lVert \mathbf{z} - \mathbf{z}' \rVert\]</div>
 <p>Typically, an odd number of neighbors <span class="math notranslate nohighlight">\(k\)</span> is used. While <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbor models tend to give good results, they may not be suitable for large datasets or datasets with many features, as searching for the nearest neighbors in a dataset may be computationally expensive.</p>
@@ -1107,8 +1107,8 @@ validation set accuracy: 0.4971857410881801
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8203143326296035
-validation set accuracy: 0.7692307692307693
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8240675580577058
+validation set accuracy: 0.7579737335834896
 </pre></div>
 </div>
 </div>
@@ -1155,7 +1155,7 @@ validation set accuracy: 0.7692307692307693
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/c5e9bd8e2e5508e1252287cda738a1e5ab6f9fbb271f8d09b9a31ef83295c85f.png" src="../_images/c5e9bd8e2e5508e1252287cda738a1e5ab6f9fbb271f8d09b9a31ef83295c85f.png" />
+<img alt="../_images/2b3732d78672f88cbd31046b9a47e6bfa4619c0b49eba22b26e081660560e0c8.png" src="../_images/2b3732d78672f88cbd31046b9a47e6bfa4619c0b49eba22b26e081660560e0c8.png" />
 </div>
 </div>
 <p>Now that we have established a baseline accuracy using the nearest neighbor model, let’s try to exceed this baseline accuracy with a more complex model.</p>
@@ -1188,8 +1188,8 @@ validation set accuracy: 0.7692307692307693
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8627726952850105
-validation set accuracy: 0.7729831144465291
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8545625146610368
+validation set accuracy: 0.7504690431519699
 </pre></div>
 </div>
 </div>
@@ -1237,9 +1237,9 @@ validation set accuracy: 0.7729831144465291
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9657518179685667
-validation set accuracy: 0.8123827392120075
-test set accuracy: 0.8180112570356473
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9638752052545156
+validation set accuracy: 0.7917448405253283
+test set accuracy: 0.7692307692307693
 </pre></div>
 </div>
 </div>

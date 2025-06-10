@@ -93,7 +93,7 @@ class FeedForwardNN(nn.Module):
         return out
 ```
 
-Next, we will generate a dataset of points sampled from $g(x)$. In this example, we will not be concerned with splitting the data into train, validation, and test sets, but we will normalize the data.
+Next, we will generate a dataset of points sampled from $g(x)$. In this example, we will not be concerned with splitting the data into train, validation, and test sets, but we will standardize the data.
 
 ```{code-cell}
 :tags: [hide-input]
@@ -117,7 +117,7 @@ data_x = np.array([
 data_y = sinc_function(data_x[:,0], data_x[:,1])
 data_y = data_y.reshape(-1,1)
 
-# normalize_data:
+# standardize data:
 scaler = StandardScaler()
 data_z = scaler.fit_transform(data_x)
 

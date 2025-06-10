@@ -880,7 +880,7 @@ data_y shape: (29195, 2)
 </div>
 </div>
 </div>
-<p>Now that we have parsed features from the dataset, let’s write some functions that will automatically split data into training, validation, and test set. We may also find it useful to write a function that normalizes these sets as well:</p>
+<p>Now that we have parsed features from the dataset, let’s write some functions that will automatically split data into training, validation, and test set. We may also find it useful to write a function that standardizes these sets as well:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
@@ -903,8 +903,8 @@ data_y shape: (29195, 2)
     <span class="k">return</span> <span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">),</span> \
            <span class="p">(</span><span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">,</span> <span class="n">test_y</span><span class="p">)</span>
     
-<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; normalizes a dataset. &quot;&quot;&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">standardize</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; standardizes a dataset. &quot;&quot;&quot;</span>
     
     <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
     <span class="n">train_z</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_x</span><span class="p">)</span>
@@ -930,7 +930,7 @@ data_y shape: (29195, 2)
 <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">metal_subsets_y</span>
 
 <span class="n">scaler</span><span class="p">,</span> <span class="n">train_z</span><span class="p">,</span> <span class="n">val_z</span><span class="p">,</span> <span class="n">test_z</span> <span class="o">=</span> \
-    <span class="n">normalize</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">)</span>
+    <span class="n">standardize</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -968,7 +968,7 @@ data_y shape: (29195, 2)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/c0c7a6409211e1c254df14293b6a26d233d351d715781c3d3d92226b55cce34f.png" src="../_images/c0c7a6409211e1c254df14293b6a26d233d351d715781c3d3d92226b55cce34f.png" />
+<img alt="../_images/719c2c295ac837b03066b8600e16fac5ec0679ddf5c224780cc4652b0d9689a9.png" src="../_images/719c2c295ac837b03066b8600e16fac5ec0679ddf5c224780cc4652b0d9689a9.png" />
 </div>
 </div>
 <p>From inspecting the confusion matrix, we see that a significant majority of the materials were classified correctly, with almost three times as many metals being predicted as non-metals than non-metals being predicted as metals. We can evaluate the overall validation set accuracy of the model from the confusion matrix as follows:</p>
@@ -980,7 +980,7 @@ data_y shape: (29195, 2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8727820785092827
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8721655134616703
 </pre></div>
 </div>
 </div>
@@ -1012,7 +1012,7 @@ bandgap_y shape: (11464,)
 </div>
 </div>
 </div>
-<p>We can normalize this data with the following code:</p>
+<p>We standardize this data with the following code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bandgap_subsets_x</span><span class="p">,</span> <span class="n">bandgap_subsets_y</span> <span class="o">=</span> \
@@ -1022,7 +1022,7 @@ bandgap_y shape: (11464,)
 <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">bandgap_subsets_y</span>
 
 <span class="n">scaler</span><span class="p">,</span> <span class="n">train_z</span><span class="p">,</span> <span class="n">val_z</span><span class="p">,</span> <span class="n">test_z</span> <span class="o">=</span> \
-    <span class="n">normalize</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">)</span>
+    <span class="n">standardize</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1061,10 +1061,10 @@ bandgap_y shape: (11464,)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8657754374869036
-training MSE: 0.44499592285853673
-validation MSE: 0.4451467237353484
-validation RMSE/stddev: 0.7706307425036109
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8688535978720107
+training MSE: 0.44795037814650407
+validation MSE: 0.4551265124325406
+validation RMSE/stddev: 0.7764606724887864
 </pre></div>
 </div>
 </div>
@@ -1108,10 +1108,10 @@ validation RMSE/stddev: 0.7706307425036109
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8657754374869036
-training MSE: 0.0872642084951492
-validation MSE: 0.12346791366934559
-validation RMSE/stddev: 0.40585583509953915
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8688535978720107
+training MSE: 0.08874044882385948
+validation MSE: 0.12914139690153711
+validation RMSE/stddev: 0.413605338869217
 </pre></div>
 </div>
 </div>
@@ -1201,9 +1201,9 @@ validation RMSE/stddev: 0.40585583509953915
 <span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span> <span class="o">=</span> <span class="n">direct_subsets_x</span>
 <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">direct_subsets_y</span>
 
-<span class="c1"># normalize data:</span>
+<span class="c1"># standardize data:</span>
 <span class="n">scaler</span><span class="p">,</span> <span class="n">train_z</span><span class="p">,</span> <span class="n">val_z</span><span class="p">,</span> <span class="n">test_z</span> <span class="o">=</span> \
-    <span class="n">normalize</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">)</span>
+    <span class="n">standardize</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">)</span>
 
 <span class="c1"># fit a ridge classifier to the data:</span>
 <span class="n">direct_ridge_model</span> <span class="o">=</span> <span class="n">RidgeClassifier</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -1233,9 +1233,9 @@ validation RMSE/stddev: 0.40585583509953915
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4eb433c0d6018da244e033ee9e039e85515836786c9258d29a63d7e9402cff49.png" src="../_images/4eb433c0d6018da244e033ee9e039e85515836786c9258d29a63d7e9402cff49.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7222609909281228
-test set accuracy: 0.7185973482205164
+<img alt="../_images/99450fb0e1cbf21762f51885e0faee567437d46fab663111a57927daa90292a1.png" src="../_images/99450fb0e1cbf21762f51885e0faee567437d46fab663111a57927daa90292a1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7203419399860432
+test set accuracy: 0.7215631542219121
 </pre></div>
 </div>
 </div>

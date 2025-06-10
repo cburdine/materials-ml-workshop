@@ -600,7 +600,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>To see how well our algorithm works, let’s see how well the model fits some 1D linear data. We will generate this data such that is is already approximately normalized  (<span class="math notranslate nohighlight">\(\mu_x \approx 0, \sigma_x \approx 1\)</span>). Using the following code, we compare the weights learned though gradient descent with the theoretically optimal weights:</p>
+<p>To see how well our algorithm works, let’s see how well the model fits some 1D linear data. We will generate this data such that is is already approximately standardized  (<span class="math notranslate nohighlight">\(\mu_x \approx 0, \sigma_x \approx 1\)</span>). Using the following code, we compare the weights learned though gradient descent with the theoretically optimal weights:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -684,7 +684,7 @@ Gradient Descent Weights: [2.49977044 0.10000066]
 </div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>In this exercise, we did not apply normalization to the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> data, since the data was approximately normalized to begin with. Generally, it is a good idea to normalize data (transform <span class="math notranslate nohighlight">\(\mathbf{x} \rightarrow \mathbf{z}\)</span>) and then apply gradient descent to the normalized data. This ensures that the model is not too sensitive to any particular feature, resulting in a better fit.</p>
+<p>In this exercise, we did not apply standardization to the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> data, since the data was approximately standardized to begin with. Generally, it is a good idea to standardize data (transform <span class="math notranslate nohighlight">\(\mathbf{x} \rightarrow \mathbf{z}\)</span>) and then apply gradient descent to the standardize data. This ensures that the model is not too sensitive to any particular feature, resulting in a better fit.</p>
 </div>
 </section>
 <section id="classification-loss-functions">
@@ -743,7 +743,7 @@ Gradient Descent Weights: [2.49977044 0.10000066]
 </pre></div>
 </div>
 <p class="sd-card-text">Plot both the data and your fitted degree-6 polynomial.
-Don’t worry about normalization or splitting into train/validation/test sets here.</p>
+Don’t worry about standardization or splitting into train/validation/test sets here.</p>
 </div>
 </details><section id="solutions">
 <h3>Solutions<a class="headerlink" href="#solutions" title="Link to this heading">#</a></h3>

@@ -531,7 +531,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Next, we will generate a dataset of points sampled from <span class="math notranslate nohighlight">\(g(x)\)</span>. In this example, we will not be concerned with splitting the data into train, validation, and test sets, but we will normalize the data.</p>
+<p>Next, we will generate a dataset of points sampled from <span class="math notranslate nohighlight">\(g(x)\)</span>. In this example, we will not be concerned with splitting the data into train, validation, and test sets, but we will standardize the data.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -559,7 +559,7 @@ document.write(`
 <span class="n">data_y</span> <span class="o">=</span> <span class="n">sinc_function</span><span class="p">(</span><span class="n">data_x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">data_y</span> <span class="o">=</span> <span class="n">data_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># normalize_data:</span>
+<span class="c1"># standardize data:</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">data_z</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
 
@@ -682,9 +682,9 @@ Traceback (most recent call last):  File &quot;/usr/lib/python3.10/runpy.py&quot
     if await self.run_code(code, result, async_=asy):
   File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3508, in run_code
     exec(code_obj, self.user_global_ns, self.user_ns)
-  File &quot;/tmp/ipykernel_22595/2139149456.py&quot;, line 6, in &lt;module&gt;
+  File &quot;/tmp/ipykernel_25273/2139149456.py&quot;, line 6, in &lt;module&gt;
     model = FeedForwardNN(input_size, hidden_size, output_size)
-  File &quot;/tmp/ipykernel_22595/1506684066.py&quot;, line 16, in __init__
+  File &quot;/tmp/ipykernel_25273/1506684066.py&quot;, line 16, in __init__
     self.hidden_layer = nn.Linear(input_size, hidden_size)
   File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/torch/nn/modules/linear.py&quot;, line 96, in __init__
     self.weight = Parameter(torch.empty((out_features, in_features), **factory_kwargs))
@@ -750,7 +750,7 @@ Traceback (most recent call last):  File &quot;/usr/lib/python3.10/runpy.py&quot
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1ff7de62e360fbab29cd18e96e79ddc0a4b80bd98f50bb2c4ee46ad5b1b43323.png" src="../_images/1ff7de62e360fbab29cd18e96e79ddc0a4b80bd98f50bb2c4ee46ad5b1b43323.png" />
+<img alt="../_images/87c4122bdb5a75e0c4a66c61cbbf5192a2fc774befe1ecb42b2daae9b76c7fe2.png" src="../_images/87c4122bdb5a75e0c4a66c61cbbf5192a2fc774befe1ecb42b2daae9b76c7fe2.png" />
 </div>
 </div>
 <p>From inspecting the plot, we can see that the mean square error has converged to a value close to <span class="math notranslate nohighlight">\(0\)</span>. Using the following code, we can visualize how well the prediction surface of the neural network (<span class="math notranslate nohighlight">\(\hat{y}\)</span>) compares with the actual function is was fit to:</p>
