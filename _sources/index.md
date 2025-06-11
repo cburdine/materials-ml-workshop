@@ -34,9 +34,9 @@ You can reach the corresponding author of this workshop at:
 
 You can access the slides from the workshop as they become available here:
 
-* Day 1: Introduction | Python Data Types
+* Day 1: <a href="./slides_notebooks/Day 1 2025.slides.html">Introduction | Python Data Types</a>
 
-* Day 2: Python Functions and Classes
+* Day 2: <a href="./slides_notebooks/Day 2 2025.slides.html">Python Functions and Classes</a>
 
 * Day 3: Scientific Computing with Numpy and Scipy
 

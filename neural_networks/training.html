@@ -682,9 +682,9 @@ Traceback (most recent call last):  File &quot;/usr/lib/python3.10/runpy.py&quot
     if await self.run_code(code, result, async_=asy):
   File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py&quot;, line 3508, in run_code
     exec(code_obj, self.user_global_ns, self.user_ns)
-  File &quot;/tmp/ipykernel_25273/2139149456.py&quot;, line 6, in &lt;module&gt;
+  File &quot;/tmp/ipykernel_42682/2139149456.py&quot;, line 6, in &lt;module&gt;
     model = FeedForwardNN(input_size, hidden_size, output_size)
-  File &quot;/tmp/ipykernel_25273/1506684066.py&quot;, line 16, in __init__
+  File &quot;/tmp/ipykernel_42682/1506684066.py&quot;, line 16, in __init__
     self.hidden_layer = nn.Linear(input_size, hidden_size)
   File &quot;/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/torch/nn/modules/linear.py&quot;, line 96, in __init__
     self.weight = Parameter(torch.empty((out_features, in_features), **factory_kwargs))
@@ -750,7 +750,7 @@ Traceback (most recent call last):  File &quot;/usr/lib/python3.10/runpy.py&quot
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/87c4122bdb5a75e0c4a66c61cbbf5192a2fc774befe1ecb42b2daae9b76c7fe2.png" src="../_images/87c4122bdb5a75e0c4a66c61cbbf5192a2fc774befe1ecb42b2daae9b76c7fe2.png" />
+<img alt="../_images/fe10e68243956a6215681fd4cc183e6a8eabd8d3e5815df4ea28ae151eb7b57d.png" src="../_images/fe10e68243956a6215681fd4cc183e6a8eabd8d3e5815df4ea28ae151eb7b57d.png" />
 </div>
 </div>
 <p>From inspecting the plot, we can see that the mean square error has converged to a value close to <span class="math notranslate nohighlight">\(0\)</span>. Using the following code, we can visualize how well the prediction surface of the neural network (<span class="math notranslate nohighlight">\(\hat{y}\)</span>) compares with the actual function is was fit to:</p>

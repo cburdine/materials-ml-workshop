@@ -74,7 +74,7 @@ Traceback (most recent call last):  File "/usr/lib/python3.10/runpy.py", line 19
     if await self.run_code(code, result, async_=asy):
   File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/IPython/core/interactiveshell.py", line 3508, in run_code
     exec(code_obj, self.user_global_ns, self.user_ns)
-  File "/tmp/ipykernel_24659/1719054429.py", line 1, in <module>
+  File "/tmp/ipykernel_41939/1719054429.py", line 1, in <module>
     from alignn.ff.ff import AlignnAtomwiseCalculator,default_path
   File "/media/colin/Shared/colin/git/materials-ml-workshop/env/lib/python3.10/site-packages/alignn/ff/ff.py", line 33, in <module>
     from alignn.graphs import Graph
