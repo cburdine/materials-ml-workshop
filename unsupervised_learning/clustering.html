@@ -76,6 +76,8 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application: Classifying Superconductors" href="unsupervised_applications.html" />
+    <link rel="prev" title="Feature Selection and Dimensionality Reduction" href="feature_selection.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -138,8 +140,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -239,6 +239,32 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -556,7 +582,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/1a68079c45542d42c1ab99e1c2c57d6d08b1a5dca69e5b01d0b192a027bb548b.png" src="../_images/1a68079c45542d42c1ab99e1c2c57d6d08b1a5dca69e5b01d0b192a027bb548b.png" />
+<img alt="../_images/90da184a6659cbaf32fe8d68c889a4056d7f2ce02334242fe137771b0938ce21.png" src="../_images/90da184a6659cbaf32fe8d68c889a4056d7f2ce02334242fe137771b0938ce21.png" />
 </div>
 </div>
 </section>
@@ -604,7 +630,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/5e538b413b196862a57fbb0d2ace906d47508f4c185baa7ccbb2c8c9fb8efa95.png" src="../_images/5e538b413b196862a57fbb0d2ace906d47508f4c185baa7ccbb2c8c9fb8efa95.png" />
+<img alt="../_images/737631d9670d2801565997104271e857abe8480352b28eba3554381f756b836e.png" src="../_images/737631d9670d2801565997104271e857abe8480352b28eba3554381f756b836e.png" />
 </div>
 </div>
 </section>
@@ -652,7 +678,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/93d0c3aaf40445f03e9e80a8000722ebbc2bcbf72a140abafdd12e9ddae28b94.png" src="../_images/93d0c3aaf40445f03e9e80a8000722ebbc2bcbf72a140abafdd12e9ddae28b94.png" />
+<img alt="../_images/de93827f88683a4de789fa6fc2b843f3d90328e34e75f6a09c6e71340e30f3b0.png" src="../_images/de93827f88683a4de789fa6fc2b843f3d90328e34e75f6a09c6e71340e30f3b0.png" />
 </div>
 </div>
 </section>
@@ -765,6 +791,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="feature_selection.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Feature Selection and Dimensionality Reduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="unsupervised_applications.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Application: Classifying Superconductors</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

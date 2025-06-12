@@ -76,6 +76,8 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Neural Networks" href="../neural_networks/neural_networks.html" />
+    <link rel="prev" title="Clustering and Distribution Estimation" href="clustering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -138,8 +140,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -239,6 +239,32 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -457,7 +483,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="application-classifying-superconductors">
 <h1>Application: Classifying Superconductors<a class="headerlink" href="#application-classifying-superconductors" title="Link to this heading">#</a></h1>
-<p>Now that we have a strong understanding of unsupervised learning, let’s apply what we have learned to study a class of materials known as <em>superconductors</em>. Superconductors are materials that</p>
+<p>Now that we have a strong understanding of unsupervised learning, let’s apply what we have learned to study a class of materials known as <em>superconductors</em>. Superconductors are materials that exhibit zero electrical resistance below a critical temperature <span class="math notranslate nohighlight">\(T_c\)</span>. Understanding patterns in their compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-<span class="math notranslate nohighlight">\(T_c\)</span> behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions to raise the <span class="math notranslate nohighlight">\(T_c\)</span> of known superconductors.</p>
 <p>You can download the dataset for this section using the following Python code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
@@ -471,7 +497,8 @@ document.write(`
 <p>Alternatively, you can download the CSV file directly <a class="reference external" href="https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/unsupervised_learning/matml_supercon_cleaned.csv">here</a>.</p>
 <section id="loading-the-dataset">
 <h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h2>
-<p>Let’s begin by loading the dataset in to a Pandas dataframe so we can view the features:</p>
+<p>Let’s begin by loading the dataset in to a Pandas dataframe and then perform some basic data cleaning.
+Specifically, we will remove entries with missing compositions and those with anomalously high <span class="math notranslate nohighlight">\(T_c\)</span> values (likely errors or non-physical outliers). We then display the dataset to view the data features:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -668,6 +695,9 @@ document.write(`
 </section>
 <section id="preprocessing-data">
 <h2>Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
+<p>Machine learning models require numerical inputs, so we will need to convert the materials’ compositions (stored as Python dictionaries in string form) into fixed-length feature vectors. First, we will normalize the elemental compositions to account for different formula unit sizes. We will also append the applied pressure and <span class="math notranslate nohighlight">\(T_c\)</span> to each feature vector. Finally, we will standardize the data to have zero mean and unit variance—a common preprocessing step for most ML algorithms.</p>
+<p>To simplify the data conversion process, we will create a set <code class="docutils literal notranslate"><span class="pre">ELEMENTS</span></code> that contains all elements
+appearing in the dataset. We will also create a function called <code class="docutils literal notranslate"><span class="pre">vectorize_composition()</span></code> that will convert each chemical composition dictionary into a minimal feature vector:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -703,6 +733,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Now that we can convert the checmical composition of each material into a feature vector, we will write another function that parses each row in the DataFrame:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parse_data_vector</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
@@ -723,6 +754,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Finally, we parse each row of the DataFrame with <code class="docutils literal notranslate"><span class="pre">parse_data_row()</span></code> and standardize the data with <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
@@ -752,6 +784,7 @@ document.write(`
 </section>
 <section id="estimate-the-empirical-distribution-of-t-c">
 <h2>Estimate the Empirical Distribution of <span class="math notranslate nohighlight">\(T_c\)</span><a class="headerlink" href="#estimate-the-empirical-distribution-of-t-c" title="Link to this heading">#</a></h2>
+<p>To understand how <span class="math notranslate nohighlight">\(T_c\)</span> values are distributed among the known superconductors in our dataset, we will use kernel density estimation (KDE). This non-parametric method lets us estimate a smooth probability density function with respect to <span class="math notranslate nohighlight">\(T_c\)</span>. Instead of using the basic KDE module in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, we will use the more advanced module that is available in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html"><code class="docutils literal notranslate"><span class="pre">sklearn.neighbors.KernelDensity</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KernelDensity</span>
@@ -762,6 +795,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Let’s visualize the distribution, and inspect how the <span class="math notranslate nohighlight">\(T_c\)</span> values are distributed. Since 40 K is believed to be the limit of <a class="reference external" href="https://en.wikipedia.org/wiki/BCS_theory">low-temperature conventional superconductivity</a>, let’s see how the data is distributed around this point:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -795,7 +829,7 @@ document.write(`
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_43682/1067493337.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_61654/1067493337.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
   Tc_density /= np.trapz(Tc_density, Tc_eval_pts)
 </pre></div>
 </div>
@@ -805,6 +839,8 @@ document.write(`
 </div>
 <section id="identifying-outliers-in-the-distribution">
 <h3>Identifying Outliers in the Distribution:<a class="headerlink" href="#identifying-outliers-in-the-distribution" title="Link to this heading">#</a></h3>
+<p>Materials with exremely high or low <span class="math notranslate nohighlight">\(T_c\)</span> values may represent outliers or materials that exhibit unique physical properties. Let’s take a look at any outlying data points by identifying the least probable data points (i.e., the lowest log-likelihood under the KDE model). These can be studied further to see if they reveal special physics or data issues.</p>
+<p>To score the log-likelihood of each datapoint, we use the <code class="docutils literal notranslate"><span class="pre">score_samples()</span></code> function and select the <span class="math notranslate nohighlight">\(N = 10\)</span> points that have the least likelihood:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_outliers</span> <span class="o">=</span> <span class="mi">10</span>
@@ -921,6 +957,8 @@ document.write(`
 </section>
 <section id="correlations-of-composition-with-t-c">
 <h2>Correlations of Composition with <span class="math notranslate nohighlight">\(T_c\)</span><a class="headerlink" href="#correlations-of-composition-with-t-c" title="Link to this heading">#</a></h2>
+<p>To explore which elements are most strongly associated with superconductivity, we will compute the covariance between each compositional feature and the standardized <span class="math notranslate nohighlight">\(T_c\)</span>. A heatmap on the periodic table then visually shows which elements are associated with increases or decreases in the critical temperature when they are added to a material.</p>
+<p>First, we compute the coveriance matrix of the data and extract the column corresponding to the <span class="math notranslate nohighlight">\(T_c\)</span> of each material:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="n">data_z</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
@@ -929,6 +967,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Next, we visualize the results using the <a class="reference external" href="https://pymatgen.org/pymatgen.util.html#pymatgen.util.plotting.periodic_table_heatmap"><code class="docutils literal notranslate"><span class="pre">periodic_table_heatmap()</span></code></a> function from Pymatgen.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.util.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">periodic_table_heatmap</span>
@@ -971,6 +1010,7 @@ document.write(`
 </section>
 <section id="identifying-clusters-in-the-data">
 <h2>Identifying Clusters in the Data<a class="headerlink" href="#identifying-clusters-in-the-data" title="Link to this heading">#</a></h2>
+<p>As we have learned in the previous section, dimensionality reduction techniques like PCA allow us to summarize high-dimensional data using a smaller number of principal components. We project the data into this reduced space and then use k-means clustering to group similar superconductors together. These clusters may reflect different material families or classes of superconductors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
@@ -1076,9 +1116,10 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/01a9d41601ecf5137a69a066a22ed114495bb8f4e9891b745bee8be95c145eb9.png" src="../_images/01a9d41601ecf5137a69a066a22ed114495bb8f4e9891b745bee8be95c145eb9.png" />
+<img alt="../_images/d3a1884a9694bb2b44c9659c12f2059a1ae4a2037dd5b91f0219a91ea55a6c6a.png" src="../_images/d3a1884a9694bb2b44c9659c12f2059a1ae4a2037dd5b91f0219a91ea55a6c6a.png" />
 </div>
 </div>
+<p>To interpret the clusters, we display representative samples from each. You might notice that some clusters are enriched in certain elements or tend to have higher or lower <span class="math notranslate nohighlight">\(T_c\)</span>. These clusters could guide targeted exploration in materials discovery:</p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1131,39 +1172,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>3892</th>
-      <td>Sr 2 V O 3 Fe As</td>
-      <td>37.00</td>
+      <th>18043</th>
+      <td>Sr 2 Ru O 4</td>
+      <td>1.44</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1103/physrevb.70.060508</td>
     </tr>
     <tr>
-      <th>19955</th>
-      <td>La 1.9 Sr 0.1 Cu O 4</td>
-      <td>25.00</td>
+      <th>5753</th>
+      <td>La 2 Cu O 4</td>
+      <td>45.00</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1209/0295-5075/86/67007</td>
     </tr>
     <tr>
-      <th>12447</th>
-      <td>La Sr Cu O</td>
-      <td>9.20</td>
+      <th>9089</th>
+      <td>Sr 2 Sc 0.4 Ti 0.6 Fe As O 3</td>
+      <td>7.00</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1088/0953-2048/22/7/072001</td>
     </tr>
     <tr>
-      <th>9248</th>
-      <td>Y Pt Bi</td>
-      <td>0.77</td>
+      <th>18005</th>
+      <td>Y Ba 2 Cu 3 O 6.5</td>
+      <td>52.00</td>
       <td>0.0</td>
-      <td>10.1016/j.ssc.2013.12.010</td>
+      <td>10.1103/physrevb.56.r11439</td>
     </tr>
     <tr>
-      <th>4392</th>
-      <td>Bi 2 Sr 2 Ca Cu 2 O 8</td>
-      <td>10.00</td>
+      <th>4689</th>
+      <td>O 6.6</td>
+      <td>62.70</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1016/s0921-4526(97)00633-9</td>
     </tr>
   </tbody>
 </table>
@@ -1196,39 +1237,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>1202</th>
-      <td>Pb Ta Se 2</td>
-      <td>3.70</td>
+      <th>4696</th>
+      <td>Co</td>
+      <td>5.4</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1088/1361-6528/aab0e9</td>
     </tr>
     <tr>
-      <th>4914</th>
-      <td>Fe Se</td>
-      <td>40.00</td>
+      <th>9856</th>
+      <td>Ce Co In 5</td>
+      <td>2.3</td>
       <td>0.0</td>
-      <td>10.1088/0256-307x/34/7/077401</td>
+      <td>10.1143/jpsj.75.023705</td>
     </tr>
     <tr>
-      <th>23080</th>
-      <td>Rh 3 Bi 14</td>
-      <td>2.91</td>
+      <th>16206</th>
+      <td>Ce In 3</td>
+      <td>0.2</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.86.054502</td>
+      <td>10.1143/jpsj.72.2449</td>
     </tr>
     <tr>
-      <th>3606</th>
-      <td>K 0.95 Ni 1.86 Se 2</td>
-      <td>2.70</td>
+      <th>4091</th>
+      <td>Ce Ir In 5</td>
+      <td>0.4</td>
       <td>0.0</td>
-      <td>10.1088/0953-2048/29/4/045008</td>
+      <td>10.1016/s0168-1273(04)34002-x</td>
     </tr>
     <tr>
-      <th>18698</th>
-      <td>Bi</td>
-      <td>80.00</td>
+      <th>15397</th>
+      <td>Ce Ir 3</td>
+      <td>3.1</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1103/physrevb.96.144502</td>
     </tr>
   </tbody>
 </table>
@@ -1261,39 +1302,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>20923</th>
-      <td>Mg B 2</td>
-      <td>40.0</td>
+      <th>18125</th>
+      <td>Ga As</td>
+      <td>71.0</td>
       <td>0.0</td>
-      <td>NaN</td>
+      <td>10.1016/j.apsusc.2006.03.025</td>
     </tr>
     <tr>
-      <th>4991</th>
-      <td>Mg B 2</td>
-      <td>40.0</td>
+      <th>8918</th>
+      <td>Sm O 0.8 F 0.2 Fe As</td>
+      <td>47.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.95.094505</td>
+      <td>10.1103/physrevb.83.214505</td>
     </tr>
     <tr>
-      <th>16836</th>
-      <td>Mg B 2</td>
-      <td>40.0</td>
+      <th>12848</th>
+      <td>La Fe As O</td>
+      <td>26.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.66.172501</td>
+      <td>10.1209/0295-5075/93/57003</td>
     </tr>
     <tr>
-      <th>22937</th>
-      <td>Mg B 2</td>
-      <td>39.0</td>
+      <th>15819</th>
+      <td>Pr Fe As O 0.85 F 0.15</td>
+      <td>52.0</td>
       <td>0.0</td>
-      <td>10.1063/1.2173635</td>
+      <td>10.1103/physrevb.78.132504</td>
     </tr>
     <tr>
-      <th>20751</th>
-      <td>Mg B 2</td>
-      <td>39.0</td>
+      <th>16237</th>
+      <td>Nd Cr Sb 3</td>
+      <td>105.0</td>
       <td>0.0</td>
-      <td>10.1016/s0921-4534(01)00398-7</td>
+      <td>10.1103/physrevlett.89.107204</td>
     </tr>
   </tbody>
 </table>
@@ -1326,39 +1367,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>6113</th>
-      <td>Ce Rh In 5</td>
-      <td>2.10</td>
+      <th>13842</th>
+      <td>Nb 2 Pd S 5</td>
+      <td>6.30</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.66.054521</td>
+      <td>10.1103/physrevb.88.104507</td>
     </tr>
     <tr>
-      <th>13036</th>
-      <td>Ce Pt 3 Si</td>
-      <td>0.75</td>
+      <th>5700</th>
+      <td>Mg B 2</td>
+      <td>39.00</td>
       <td>0.0</td>
-      <td>10.7566/jpsj.83.093706</td>
+      <td>10.1016/j.ssc.2004.09.035</td>
     </tr>
     <tr>
-      <th>21114</th>
-      <td>Ce Co In 5</td>
-      <td>2.30</td>
+      <th>7818</th>
+      <td>Nb 2 Pd 0.963 S 4.967</td>
+      <td>7.43</td>
       <td>0.0</td>
-      <td>10.1016/s0304-8853(00)01079-9</td>
+      <td>10.1021/ja4062079</td>
     </tr>
     <tr>
-      <th>21579</th>
-      <td>Ce Co In 5</td>
-      <td>2.30</td>
+      <th>7924</th>
+      <td>Nb N</td>
+      <td>7.20</td>
       <td>0.0</td>
-      <td>10.1143/jpsj.74.186</td>
+      <td>10.1088/1361-6668/ab6179</td>
     </tr>
     <tr>
-      <th>5978</th>
-      <td>Ce O 0.88 F 0.12 Fe As</td>
-      <td>41.00</td>
+      <th>21005</th>
+      <td>Mg</td>
+      <td>50.00</td>
       <td>0.0</td>
-      <td>10.1007/s10948-013-2264-7</td>
+      <td>10.1016/j.physc.2012.05.003</td>
     </tr>
   </tbody>
 </table>
@@ -1391,39 +1432,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>7926</th>
-      <td>Zn</td>
-      <td>0.87</td>
-      <td>0.0</td>
-      <td>10.1063/1.4794999</td>
-    </tr>
-    <tr>
-      <th>23549</th>
-      <td>Nb N</td>
-      <td>10.00</td>
-      <td>0.0</td>
+      <th>7643</th>
+      <td>H 2 S</td>
+      <td>205.0</td>
+      <td>170.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>4941</th>
-      <td>Ca 1.9 Na 0.1 Cu O 2 Cl 2</td>
-      <td>13.00</td>
-      <td>0.0</td>
-      <td>10.1143/jpsj.72.1018</td>
+      <th>15598</th>
+      <td>Si H 4</td>
+      <td>50.0</td>
+      <td>125.0</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>9653</th>
-      <td>Nb Sn 2</td>
-      <td>2.68</td>
-      <td>0.0</td>
-      <td>10.1103/physrevb.82.024507</td>
+      <th>21470</th>
+      <td>H 3 S</td>
+      <td>89.0</td>
+      <td>192.0</td>
+      <td>10.1088/1361-648x/aa80d0</td>
     </tr>
     <tr>
-      <th>9197</th>
-      <td>Nb</td>
-      <td>4.20</td>
-      <td>0.0</td>
-      <td>10.1143/jpsj.70.228</td>
+      <th>16636</th>
+      <td>H 2 S</td>
+      <td>2.2</td>
+      <td>160.0</td>
+      <td>10.1038/s41598-018-30391-z</td>
+    </tr>
+    <tr>
+      <th>19457</th>
+      <td>Ca H 6</td>
+      <td>235.0</td>
+      <td>150.0</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -1456,39 +1497,39 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>23278</th>
-      <td>Rb Gd 2 Fe 4 As 4 O 2</td>
-      <td>35.0</td>
-      <td>0.0</td>
-      <td>10.1016/j.physc.2018.02.002</td>
+      <th>20584</th>
+      <td>Fe Se</td>
+      <td>44.0</td>
+      <td>0.00</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>11371</th>
-      <td>Gd Co As O</td>
-      <td>75.0</td>
-      <td>0.0</td>
-      <td>10.1103/physrevb.87.075148</td>
+      <th>4203</th>
+      <td>Fe Se</td>
+      <td>11.0</td>
+      <td>1.18</td>
+      <td>10.1143/jpsj.78.093703</td>
     </tr>
     <tr>
-      <th>5844</th>
-      <td>Sm Fe As O 0.9 F 0.1</td>
-      <td>55.0</td>
-      <td>0.0</td>
-      <td>10.1088/0953-2048/21/10/105018</td>
+      <th>23047</th>
+      <td>Fe Se</td>
+      <td>65.0</td>
+      <td>0.00</td>
+      <td>10.1103/physrevb.87.144517</td>
     </tr>
     <tr>
-      <th>5366</th>
-      <td>Pr Pt 4 Ge 12</td>
-      <td>7.9</td>
-      <td>0.0</td>
-      <td>10.1038/srep41853</td>
+      <th>18874</th>
+      <td>Fe Se</td>
+      <td>60.0</td>
+      <td>0.00</td>
+      <td>10.1088/1361-648x/aa5f26</td>
     </tr>
     <tr>
-      <th>4235</th>
-      <td>Mn P</td>
-      <td>1.0</td>
-      <td>8.0</td>
-      <td>10.1088/1361-648x/aa7023</td>
+      <th>14574</th>
+      <td>Sn 0.8 In 0.2 Te</td>
+      <td>2.7</td>
+      <td>0.00</td>
+      <td>10.1103/physrevb.91.054522</td>
     </tr>
   </tbody>
 </table>
@@ -1528,6 +1569,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="clustering.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clustering and Distribution Estimation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../neural_networks/neural_networks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Neural Networks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
