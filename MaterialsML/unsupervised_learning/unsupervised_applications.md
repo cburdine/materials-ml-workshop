@@ -11,7 +11,7 @@ kernelspec:
 
 # Application: Classifying Superconductors
 
-Now that we have a strong understanding of unsupervised learning, let's apply what we have learned to study a class of materials known as _superconductors_. Superconductors are materials that 
+Now that we have a strong understanding of unsupervised learning, let's apply what we have learned to study a class of materials known as _superconductors_. Superconductors are materials that exhibit zero electrical resistance below a critical temperature $T_c$. Understanding patterns in their compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-$T_c$ behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions to raise the $T_c$ of known superconductors.
 
 You can download the dataset for this section using the following Python code:
 
@@ -29,7 +29,8 @@ Alternatively, you can download the CSV file directly [here](https://raw.githubu
 
 ## Loading the Dataset
 
-Let's begin by loading the dataset in to a Pandas dataframe so we can view the features:
+Let's begin by loading the dataset in to a Pandas dataframe and then perform some basic data cleaning.
+Specifically, we will remove entries with missing compositions and those with anomalously high $T_c$ values (likely errors or non-physical outliers). We then display the dataset to view the data features:
 
 ```{code-cell}
 :tags: [hide-input]
@@ -64,6 +65,12 @@ In this section, we will not attempt to predict any superconductor properties; i
 
 ## Preprocessing Data
 
+Machine learning models require numerical inputs, so we will need to convert the materials' compositions (stored as Python dictionaries in string form) into fixed-length feature vectors. First, we will normalize the elemental compositions to account for different formula unit sizes. We will also append the applied pressure and $T_c$ to each feature vector. Finally, we will standardize the data to have zero mean and unit variance—a common preprocessing step for most ML algorithms.
+
+
+To simplify the data conversion process, we will create a set `ELEMENTS` that contains all elements
+appearing in the dataset. We will also create a function called `vectorize_composition()` that will convert each chemical composition dictionary into a minimal feature vector:
+
 ```{code-cell}
 :tags: [hide-input]
 import numpy as np
@@ -85,7 +92,7 @@ def vectorize_composition(composition, elements):
 
 print('Number of elements:', len(ELEMENTS))
 ```
-
+Now that we can convert the checmical composition of each material into a feature vector, we will write another function that parses each row in the DataFrame:
 ```{code-cell}
 
 def parse_data_vector(row):
@@ -105,6 +112,8 @@ def parse_data_vector(row):
 
 ```
 
+Finally, we parse each row of the DataFrame with `parse_data_row()` and standardize the data with `StandardScaler`:
+
 ```{code-cell}
 from sklearn.preprocessing import StandardScaler
 
@@ -122,7 +131,10 @@ data_z = scaler.fit_transform(data_x)
 # extract a matrix of only compositions:
 composition_z = data_z[:,:-2]
 ```
+
 ## Estimate the Empirical Distribution of $T_c$
+
+To understand how $T_c$ values are distributed among the known superconductors in our dataset, we will use kernel density estimation (KDE). This non-parametric method lets us estimate a smooth probability density function with respect to $T_c$. Instead of using the basic KDE module in `scipy.stats`, we will use the more advanced module that is available in [`sklearn.neighbors.KernelDensity`](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html):
 
 ```{code-cell}
 from sklearn.neighbors import KernelDensity
@@ -130,6 +142,8 @@ from sklearn.neighbors import KernelDensity
 Tc_data = data_x[:,-1]
 Tc_kde = KernelDensity(kernel='gaussian').fit(Tc_data.reshape(-1,1))
 ```
+
+Let's visualize the distribution, and inspect how the $T_c$ values are distributed. Since 40 K is believed to be the limit of [low-temperature conventional superconductivity](https://en.wikipedia.org/wiki/BCS_theory), let's see how the data is distributed around this point:
 
 ```{code-cell}
 :tags: [hide-output]
@@ -159,6 +173,10 @@ plt.show()
 
 ### Identifying Outliers in the Distribution:
 
+Materials with exremely high or low $T_c$ values may represent outliers or materials that exhibit unique physical properties. Let's take a look at any outlying data points by identifying the least probable data points (i.e., the lowest log-likelihood under the KDE model). These can be studied further to see if they reveal special physics or data issues.
+
+To score the log-likelihood of each datapoint, we use the `score_samples()` function and select the $N = 10$ points that have the least likelihood:
+
 ```{code-cell}
 N_outliers = 10
 
@@ -171,12 +189,17 @@ display(outlier_df[['Material','Tc (K)','Pressure (GPa)','DOI']])
 
 ## Correlations of Composition with $T_c$
 
+To explore which elements are most strongly associated with superconductivity, we will compute the covariance between each compositional feature and the standardized $T_c$. A heatmap on the periodic table then visually shows which elements are associated with increases or decreases in the critical temperature when they are added to a material.
+
+First, we compute the coveriance matrix of the data and extract the column corresponding to the $T_c$ of each material:
+
 ```{code-cell}
 cov_matrix = np.cov(data_z.T)
 Tc_covs = cov_matrix[:-2,-1]
 
 ```
 
+Next, we visualize the results using the [`periodic_table_heatmap()`](https://pymatgen.org/pymatgen.util.html#pymatgen.util.plotting.periodic_table_heatmap) function from Pymatgen.
 ```{code-cell}
 :tags: [hide-output]
 
@@ -204,6 +227,8 @@ plt.show()
 ```
 
 ## Identifying Clusters in the Data
+
+As we have learned in the previous section, dimensionality reduction techniques like PCA allow us to summarize high-dimensional data using a smaller number of principal components. We project the data into this reduced space and then use k-means clustering to group similar superconductors together. These clusters may reflect different material families or classes of superconductors.
 
 ```{code-cell}
 from sklearn.decomposition import PCA
@@ -269,6 +294,8 @@ plt.title('Principal Component Clusters')
 plt.legend()
 plt.show()
 ```
+
+To interpret the clusters, we display representative samples from each. You might notice that some clusters are enriched in certain elements or tend to have higher or lower $T_c$. These clusters could guide targeted exploration in materials discovery:
 
 ```{code-cell}
 :tags: [hide-cell]
