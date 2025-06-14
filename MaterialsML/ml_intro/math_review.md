@@ -186,7 +186,7 @@ $$\mathbf{A}\mathbf{B} = \mathbf{A}\begin{bmatrix}
 | & | & & | \\
 \end{bmatrix}$$
 
-This product can only be computed if the number of columns of $\mathbf{A}$ equals the number of rows of $\mathbf{B}$. Specifically, if $\mathbf{A}$ has $L$ rows and $M$ columns (i.e. $\mathbf{A}$ is an $L \times M$ matrix) and $\mathbf{B}$ has $M$ rows and $N$ columns (i.e. $\mathbf{B}$ is an $M \times N$ matrix$), the resulting matrix $\mathbf{AB}$ is $L \times N$.
+This product can only be computed if the number of columns of $\mathbf{A}$ equals the number of rows of $\mathbf{B}$. Specifically, if $\mathbf{A}$ has $L$ rows and $M$ columns (i.e. $\mathbf{A}$ is an $L \times M$ matrix) and $\mathbf{B}$ has $M$ rows and $N$ columns (i.e. $\mathbf{B}$ is an $M \times N$ matrix), the resulting matrix $\mathbf{AB}$ is $L \times N$.
 
 If we expand $\mathbf{A}$ in terms of its rows $\mathbf{a_1}^T, \mathbf{a_2}^T, ..., \mathbf{a_L}^T$ we see that the entries of the matrix resulting from the product $\mathbf{AB}$ consist of inner products of the rows of $\mathbf{A}$ and the columns of $\mathbf{B}$:
 
