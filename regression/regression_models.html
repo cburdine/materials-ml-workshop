@@ -76,8 +76,6 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Unsupervised Learning" href="../unsupervised_learning/unsupervised_learning.html" />
-    <link rel="prev" title="Kernel Machines" href="kernel_machines.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -140,6 +138,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -244,27 +244,6 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="regression.html">Advanced Regression Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Bandgap Prediction</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -994,7 +973,7 @@ data_y shape: (29195, 2)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/283b7e0ed135acdf94e49fb3a9df37eb2a241406c372c768b2cc651be4b58b2d.png" src="../_images/283b7e0ed135acdf94e49fb3a9df37eb2a241406c372c768b2cc651be4b58b2d.png" />
+<img alt="../_images/952c8bf7ab78ed0f4bafb11bd3f3cb59e3ca90e8a358c371faf3120510260a7a.png" src="../_images/952c8bf7ab78ed0f4bafb11bd3f3cb59e3ca90e8a358c371faf3120510260a7a.png" />
 </div>
 </div>
 <p>From inspecting the confusion matrix, we see that a significant majority of the materials were classified correctly, with almost three times as many metals being predicted as non-metals than non-metals being predicted as metals. We can evaluate the overall validation set accuracy of the model from the confusion matrix as follows:</p>
@@ -1006,7 +985,7 @@ data_y shape: (29195, 2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8685346304035075
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8664794135781325
 </pre></div>
 </div>
 </div>
@@ -1087,10 +1066,10 @@ bandgap_y shape: (11464,)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8635723149709876
-training MSE: 0.44051430208076925
-validation MSE: 0.4424172551463754
-validation RMSE/stddev: 0.7702244797605597
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8668917249288912
+training MSE: 0.4480736581986273
+validation MSE: 0.4457420378844176
+validation RMSE/stddev: 0.7701528729034318
 </pre></div>
 </div>
 </div>
@@ -1134,10 +1113,10 @@ validation RMSE/stddev: 0.7702244797605597
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8635723149709876
-training MSE: 0.08542570149559628
-validation MSE: 0.12381189098355065
-validation RMSE/stddev: 0.4074576418258756
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8668917249288912
+training MSE: 0.08763204346964679
+validation MSE: 0.1334777576294427
+validation RMSE/stddev: 0.4214437267679655
 </pre></div>
 </div>
 </div>
@@ -1259,9 +1238,9 @@ validation RMSE/stddev: 0.4074576418258756
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2eecdf7515f9cb27be279cbb37117e574196ebc0853cf9c0e565188c13819c28.png" src="../_images/2eecdf7515f9cb27be279cbb37117e574196ebc0853cf9c0e565188c13819c28.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7259246336357292
-test set accuracy: 0.7135380321004885
+<img alt="../_images/375afe36fbd2b259b895c40ba78ce48e274b269c10a95fa448e88b1d5f80a6a2.png" src="../_images/375afe36fbd2b259b895c40ba78ce48e274b269c10a95fa448e88b1d5f80a6a2.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7273203070481508
+test set accuracy: 0.7130146545708305
 </pre></div>
 </div>
 </div>
@@ -1302,24 +1281,6 @@ test set accuracy: 0.7135380321004885
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="kernel_machines.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Kernel Machines</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../unsupervised_learning/unsupervised_learning.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Unsupervised Learning</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               

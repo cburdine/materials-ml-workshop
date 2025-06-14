@@ -246,27 +246,6 @@
 <li class="toctree-l2"><a class="reference internal" href="basic_models.html">Application: Classifying Perovskites</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
-</ul>
-</details></li>
 </ul>
 
     </div>
@@ -518,6 +497,9 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
+<span class="c1"># seed random number generator</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
 <span class="c1"># define data distribution:</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">y_distribution</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 	<span class="k">return</span> <span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.9</span> <span class="o">+</span> \
@@ -550,12 +532,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/9a52aa4198030194e1b4ecb2a779be955d3b959745100fd11944a612ffd82d58.png" src="../_images/9a52aa4198030194e1b4ecb2a779be955d3b959745100fd11944a612ffd82d58.png" />
+<img alt="../_images/0005d8176284ae3a86e5254fe8764d064149762fee4f3e6c3af85157b3f91df7.png" src="../_images/0005d8176284ae3a86e5254fe8764d064149762fee4f3e6c3af85157b3f91df7.png" />
 </div>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Since the data above is randomly generated, notebook output may vary.</p>
 </div>
 <p>Above, we have randomly generated data and proposed two models: a <em>linear fit</em> of the form <span class="math notranslate nohighlight">\(f(x) = mx + b\)</span> and a degree 11 polynomial fit of the form <span class="math notranslate nohighlight">\(f(x) = \sum_{n=0}^{11} a_n x^n\)</span>. Since a polynomial of degree <span class="math notranslate nohighlight">\(N-1\)</span> can perfectly fit <span class="math notranslate nohighlight">\(N\)</span> data points, the fit exactly matches the data, whereas the linear fit does not. Nonetheless, it is likely that a linear fit is the more valid model, especially when we consider that the polynomial fit extrapolates very poorly outside of the interval <span class="math notranslate nohighlight">\([0,10]\)</span> that contained the dataset.</p>
 <div class="cell tag_hide-input docutils container">
@@ -589,7 +567,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/56be6ace06ce807b8381badc09d17f2f4ab025d1b133a43455bfedd66c7b6bb2.png" src="../_images/56be6ace06ce807b8381badc09d17f2f4ab025d1b133a43455bfedd66c7b6bb2.png" />
+<img alt="../_images/108903c48f52b941212b951b57ebf521c01993f0690ad843723003d740ba3974.png" src="../_images/108903c48f52b941212b951b57ebf521c01993f0690ad843723003d740ba3974.png" />
 </div>
 </div>
 <p>From this exercise, we see that some models are not valid, even though they may perfectly fit the data. So if we have a model that does seem to fit the data set well, how can we be sure that the model is also valid? Unfortunately, we can never know the degree to which a model is valid unless our dataset contains every possible input in <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and its associated label. However, there are some general tactics we can employ to maximize the validity of our model. These are the three most important guidelines to keep in mind when working with supervised models:</p>
@@ -750,8 +728,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e98fcaead2a2ccc7aaba34c7ea3b0fb1960b51303a8f8702e5882ff86847f7e6.png" src="../_images/e98fcaead2a2ccc7aaba34c7ea3b0fb1960b51303a8f8702e5882ff86847f7e6.png" />
-<img alt="../_images/68bade100704485d489340c06ab041083125f0bd966e758fad2c5130bdc622e9.png" src="../_images/68bade100704485d489340c06ab041083125f0bd966e758fad2c5130bdc622e9.png" />
+<img alt="../_images/ca19ed747e0fd4d6bc3e68bee4e88a7405330a4adae832e4da6010d7255b7913.png" src="../_images/ca19ed747e0fd4d6bc3e68bee4e88a7405330a4adae832e4da6010d7255b7913.png" />
+<img alt="../_images/67ab099aba062a53f662f995557db9529c8508709bac96e42cbd0911a2d494f5.png" src="../_images/67ab099aba062a53f662f995557db9529c8508709bac96e42cbd0911a2d494f5.png" />
 </div>
 </details>
 </div>
@@ -809,8 +787,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5a617b5e1ea84386115ca2cbb25b0e6d49754c26a8931c24860237bc78664aea.png" src="../_images/5a617b5e1ea84386115ca2cbb25b0e6d49754c26a8931c24860237bc78664aea.png" />
-<img alt="../_images/54486ba66dee3a9affd0d567c4c253ca89e121a05865efcedb2e63c746e2fe10.png" src="../_images/54486ba66dee3a9affd0d567c4c253ca89e121a05865efcedb2e63c746e2fe10.png" />
+<img alt="../_images/8c2aadc4a834c4a5974d906acd597af806c106f7c83106616f85429a32a8bafd.png" src="../_images/8c2aadc4a834c4a5974d906acd597af806c106f7c83106616f85429a32a8bafd.png" />
+<img alt="../_images/d791c22e1a2cce5c723ef75078727e7c67426e2f710219947a0cae15e329b1fa.png" src="../_images/d791c22e1a2cce5c723ef75078727e7c67426e2f710219947a0cae15e329b1fa.png" />
 </div>
 </details>
 </div>

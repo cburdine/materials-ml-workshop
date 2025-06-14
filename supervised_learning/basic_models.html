@@ -76,7 +76,6 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Advanced Regression Models" href="../regression/regression.html" />
     <link rel="prev" title="Fitting Supervised Models" href="fitting_models.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -244,27 +243,6 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="supervised_learning.html">Supervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="fitting_models.html">Fitting Supervised Models</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Classifying Perovskites</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -885,7 +863,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;rhombohedral&#39;, &#39;-&#39;, &#39;orthorhombic&#39;, &#39;tetragonal&#39;, &#39;cubic&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;-&#39;, &#39;rhombohedral&#39;, &#39;cubic&#39;, &#39;orthorhombic&#39;, &#39;tetragonal&#39;]
 </pre></div>
 </div>
 </div>
@@ -918,7 +896,7 @@ This data was originally used in the paper <a class="reference external" href="h
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/00142a62c9ef9e6ebd3b20d65e2fdd8dfd6c982e0cb14fe2ea2355e7533dfdae.png" src="../_images/00142a62c9ef9e6ebd3b20d65e2fdd8dfd6c982e0cb14fe2ea2355e7533dfdae.png" />
+<img alt="../_images/89ed15f3385155d36a09be00816a43261a7e33dc42c71719760e6e08eb221b49.png" src="../_images/89ed15f3385155d36a09be00816a43261a7e33dc42c71719760e6e08eb221b49.png" />
 </div>
 </div>
 <p>As expected, a majority of the perovskites have the ideal cubic structure.</p>
@@ -1094,8 +1072,8 @@ Shape of z_test: (533, 3)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.5134881538822426
-validation set accuracy: 0.5196998123827392
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.48909218859957776
+validation set accuracy: 0.5103189493433395
 </pre></div>
 </div>
 </div>
@@ -1133,7 +1111,7 @@ validation set accuracy: 0.5196998123827392
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8205489092188599
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8177339901477833
 validation set accuracy: 0.7823639774859287
 </pre></div>
 </div>
@@ -1181,7 +1159,7 @@ validation set accuracy: 0.7823639774859287
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/d376a33d60962c546ace2bfc8c91c78ae523c28315548e8910165cd9addef09b.png" src="../_images/d376a33d60962c546ace2bfc8c91c78ae523c28315548e8910165cd9addef09b.png" />
+<img alt="../_images/05bd2265efa470939d238fa5ea66d51d2c8466f540a574f77757d60e72b0eb50.png" src="../_images/05bd2265efa470939d238fa5ea66d51d2c8466f540a574f77757d60e72b0eb50.png" />
 </div>
 </div>
 <p>Now that we have established a baseline accuracy using the nearest neighbor model, let’s try to exceed this baseline accuracy with a more complex model.</p>
@@ -1214,8 +1192,8 @@ validation set accuracy: 0.7823639774859287
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.8644147314098053
-validation set accuracy: 0.7504690431519699
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.863007271874267
+validation set accuracy: 0.7823639774859287
 </pre></div>
 </div>
 </div>
@@ -1263,9 +1241,9 @@ validation set accuracy: 0.7504690431519699
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9634060520760028
-validation set accuracy: 0.8030018761726079
-test set accuracy: 0.799249530956848
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training set accuracy:   0.9631714754867464
+validation set accuracy: 0.801125703564728
+test set accuracy: 0.8030018761726079
 </pre></div>
 </div>
 </div>
@@ -1314,15 +1292,6 @@ test set accuracy: 0.799249530956848
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Fitting Supervised Models</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="../regression/regression.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Advanced Regression Models</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

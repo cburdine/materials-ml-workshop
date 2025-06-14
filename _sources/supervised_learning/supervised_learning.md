@@ -40,6 +40,9 @@ The converse statement is not generally true. In fact, sometimes a model that fi
 import numpy as np
 import matplotlib.pyplot as plt
 
+# seed random number generator
+np.random.seed(0)
+
 # define data distribution:
 def y_distribution(x):
 	return -0.1*x + 0.9 + \
@@ -68,10 +71,6 @@ plt.ylabel('y')
 plt.legend()
 plt.show()
 ```
-
-:::{important}
-Since the data above is randomly generated, notebook output may vary.
-:::
 
 Above, we have randomly generated data and proposed two models: a _linear fit_ of the form $f(x) = mx + b$ and a degree 11 polynomial fit of the form $f(x) = \sum_{n=0}^{11} a_n x^n$. Since a polynomial of degree $N-1$ can perfectly fit $N$ data points, the fit exactly matches the data, whereas the linear fit does not. Nonetheless, it is likely that a linear fit is the more valid model, especially when we consider that the polynomial fit extrapolates very poorly outside of the interval $[0,10]$ that contained the dataset.
 

@@ -42,7 +42,7 @@ You can access the slides from the workshop as they become available here:
 
 * Day 4: <a href="./slides_notebooks/Day 4 2025.slides.html">Data Manipulation and Visualization</a>
 
-* Day 5: Materials Science Packages
+* Day 5: <a href="./slides_notebooks/Day 5 2025.slides.html">Materials Science Packages</a>
 
 * Day 6: Introduction to ML | Supervised Learning
 

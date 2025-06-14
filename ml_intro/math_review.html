@@ -76,6 +76,7 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Supervised Learning" href="../supervised_learning/supervised_learning.html" />
     <link rel="prev" title="Statistics Review" href="statistics_review.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -238,6 +239,11 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="ml_intro.html">Introduction to Machine Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
 </ul>
 </details></li>
 </ul>
@@ -629,7 +635,7 @@ b_1 \\ b_2 \\ \vdots \\ b_M
 (\mathbf{Ab_1}) &amp; (\mathbf{Ab_2}) &amp; \dots &amp; (\mathbf{Ab_N}) \\
 | &amp; | &amp; &amp; | \\
 \end{bmatrix}\end{split}\]</div>
-<p>This product can only be computed if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. Specifically, if <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has <span class="math notranslate nohighlight">\(L\)</span> rows and <span class="math notranslate nohighlight">\(M\)</span> columns (i.e. <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(L \times M\)</span> matrix) and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> has <span class="math notranslate nohighlight">\(M\)</span> rows and <span class="math notranslate nohighlight">\(N\)</span> columns (i.e. <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is an <span class="math notranslate nohighlight">\(M \times N\)</span> matrix<span class="math notranslate nohighlight">\(), the resulting matrix \)</span>\mathbf{AB}<span class="math notranslate nohighlight">\( is \)</span>L \times N$.</p>
+<p>This product can only be computed if the number of columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> equals the number of rows of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>. Specifically, if <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> has <span class="math notranslate nohighlight">\(L\)</span> rows and <span class="math notranslate nohighlight">\(M\)</span> columns (i.e. <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is an <span class="math notranslate nohighlight">\(L \times M\)</span> matrix) and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> has <span class="math notranslate nohighlight">\(M\)</span> rows and <span class="math notranslate nohighlight">\(N\)</span> columns (i.e. <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is an <span class="math notranslate nohighlight">\(M \times N\)</span> matrix), the resulting matrix <span class="math notranslate nohighlight">\(\mathbf{AB}\)</span> is <span class="math notranslate nohighlight">\(L \times N\)</span>.</p>
 <p>If we expand <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> in terms of its rows <span class="math notranslate nohighlight">\(\mathbf{a_1}^T, \mathbf{a_2}^T, ..., \mathbf{a_L}^T\)</span> we see that the entries of the matrix resulting from the product <span class="math notranslate nohighlight">\(\mathbf{AB}\)</span> consist of inner products of the rows of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and the columns of <span class="math notranslate nohighlight">\(\mathbf{B}\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{AB} = \begin{bmatrix}
@@ -860,6 +866,15 @@ A^(-1) @ A:
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Statistics Review</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../supervised_learning/supervised_learning.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Supervised Learning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>XRD Modeling &#8212; Materials + Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'applications/tutorials/XRDNet';</script>
+    <link rel="icon" href="../../_static/logo_small.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Materials + Machine Learning - Home"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Materials + Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Materials + ML Workshop
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro/colab.html">Using Google Colab</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/getting_started.html">Getting Started with Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/python_logic.html">Logic and Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/loops.html">Loops</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data_types/python_data_types.html">Python Data Types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_types/sets_and_dicts.html">Sets and Dictionaries</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../functions/functions_classes.html">Python Functions and Classes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../functions/classes.html">Classes and Object-Oriented Programming</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../scicomp/numpy.html">The Numpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scicomp/scipy.html">The Scipy Package</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data_vis/data_handling.html">Data Analysis and Visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../matsci/matsci_packages.html">Materials Science Python Packages</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ml_intro/statistics_review.html">Statistics Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ml_intro/math_review.html">Mathematics Review</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cburdine/materials-ml-workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cburdine/materials-ml-workshop/issues/new?title=Issue%20on%20page%20%2Fapplications/tutorials/XRDNet.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/applications/tutorials/XRDNet.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>XRD Modeling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="xrd-modeling">
+<h1>XRD Modeling<a class="headerlink" href="#xrd-modeling" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;xrd_dataset.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">xrd_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mp_id</th>
+      <th>formula</th>
+      <th>composition</th>
+      <th>crystal_system</th>
+      <th>symmetry_symbol</th>
+      <th>volume</th>
+      <th>density</th>
+      <th>xray_peaks</th>
+      <th>xray_intensities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mp-1005</td>
+      <td>FeP</td>
+      <td>{'Fe': 1, 'P': 1}</td>
+      <td>Orthorhombic</td>
+      <td>Pnma</td>
+      <td>90.583862</td>
+      <td>6.366076</td>
+      <td>[23.15086164 31.02195798 33.23866128 34.822846...</td>
+      <td>[4.73131274e+00 1.76544138e+01 7.14334109e+01 ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mp-1006367</td>
+      <td>Ce2HfSe5</td>
+      <td>{'Ce': 2, 'Hf': 1, 'Se': 5}</td>
+      <td>Orthorhombic</td>
+      <td>Pnma</td>
+      <td>785.754385</td>
+      <td>7.215011</td>
+      <td>[13.59855865 14.68007171 15.5587516  17.216162...</td>
+      <td>[9.04260718e+00 3.88889592e+00 1.48704078e+01 ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mp-1001606</td>
+      <td>LuFeC2</td>
+      <td>{'Lu': 1, 'Fe': 1, 'C': 2}</td>
+      <td>Orthorhombic</td>
+      <td>Amm2</td>
+      <td>45.919844</td>
+      <td>9.215206</td>
+      <td>[24.87354653 25.79708699 30.23085522 36.139916...</td>
+      <td>[ 39.06976227   9.24752455  24.85129267 100.  ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>mp-1001613</td>
+      <td>LuGa</td>
+      <td>{'Lu': 1, 'Ga': 1}</td>
+      <td>Orthorhombic</td>
+      <td>Cmcm</td>
+      <td>87.819318</td>
+      <td>9.253483</td>
+      <td>[16.89543051 22.68791393 28.22757053 32.128373...</td>
+      <td>[5.68120675e-01 9.04300155e+00 2.95353313e+01 ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>mp-1008624</td>
+      <td>YBiPd</td>
+      <td>{'Y': 1, 'Bi': 1, 'Pd': 1}</td>
+      <td>Cubic</td>
+      <td>F-43m</td>
+      <td>74.987877</td>
+      <td>8.952998</td>
+      <td>[23.01240126 26.63332165 38.0207848  44.910730...</td>
+      <td>[ 36.27131039  27.19850555 100.          19.56...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>16423</th>
+      <td>mp-1213830</td>
+      <td>Ce3W(ClO2)3</td>
+      <td>{'Ce': 3, 'W': 1, 'Cl': 3, 'O': 6}</td>
+      <td>Hexagonal</td>
+      <td>P6_3/m</td>
+      <td>408.805926</td>
+      <td>6.552238</td>
+      <td>[10.94822859 19.02128174 19.71983192 21.998023...</td>
+      <td>[5.40912233e+01 1.50813133e+00 2.77921414e+00 ...</td>
+    </tr>
+    <tr>
+      <th>16424</th>
+      <td>mp-1191620</td>
+      <td>PuB4Ru</td>
+      <td>{'Pu': 1, 'B': 4, 'Ru': 1}</td>
+      <td>Orthorhombic</td>
+      <td>Pbam</td>
+      <td>244.423386</td>
+      <td>10.552355</td>
+      <td>[15.29269094 16.67763625 21.34936852 25.258563...</td>
+      <td>[2.17205238e+00 6.61441181e+00 2.08615588e+01 ...</td>
+    </tr>
+    <tr>
+      <th>16425</th>
+      <td>mp-1209360</td>
+      <td>Pr5Bi3Br</td>
+      <td>{'Pr': 5, 'Bi': 3, 'Br': 1}</td>
+      <td>Hexagonal</td>
+      <td>P6_3/mcm</td>
+      <td>552.581472</td>
+      <td>8.482577</td>
+      <td>[10.53062158 18.29148783 21.1515142  22.538613...</td>
+      <td>[3.24368270e+00 2.33769877e+00 8.04064192e-01 ...</td>
+    </tr>
+    <tr>
+      <th>16426</th>
+      <td>mp-1190710</td>
+      <td>Sc5(In2Co)2</td>
+      <td>{'Sc': 5, 'In': 4, 'Co': 2}</td>
+      <td>Orthorhombic</td>
+      <td>Pbam</td>
+      <td>440.878854</td>
+      <td>6.040735</td>
+      <td>[10.18858728 12.69727266 15.48118582 19.264295...</td>
+      <td>[1.37660375e+00 4.27657761e-02 1.92963728e+00 ...</td>
+    </tr>
+    <tr>
+      <th>16427</th>
+      <td>mp-316</td>
+      <td>MnV</td>
+      <td>{'Mn': 1, 'V': 1}</td>
+      <td>Cubic</td>
+      <td>Pm-3m</td>
+      <td>23.289978</td>
+      <td>7.549046</td>
+      <td>[31.32280162 44.88667126 55.75338872 65.354163...</td>
+      <td>[  0.43329361 100.           0.11666426  14.54...</td>
+    </tr>
+  </tbody>
+</table>
+<p>16428 rows × 9 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ast</span> <span class="c1"># &lt;- parses Python literals from text</span>
+
+<span class="c1"># Generate a list of elements in the dataset:</span>
+<span class="n">ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">xrd_df</span><span class="p">[</span><span class="s1">&#39;composition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">ELEMENTS</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">ELEMENTS</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">)</span>
+
+<span class="c1"># Generate a list of the crystal systems in the dataset:</span>
+<span class="n">CRYSTAL_SYSTEMS</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">xrd_df</span><span class="p">[</span><span class="s1">&#39;crystal_system&#39;</span><span class="p">]))</span>
+
+<span class="c1"># Generate a list of the symmetry symbols:</span>
+<span class="n">SYMM_SYMBOLS</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">xrd_df</span><span class="p">[</span><span class="s1">&#39;symmetry_symbol&#39;</span><span class="p">]))</span>
+
+<span class="c1"># print the sizes of ELEMENTS and CRYSTAL_SYSTEMS</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of elements:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of symmetry symbols:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of crystal systems:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">CRYSTAL_SYSTEMS</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of elements: 85
+Number of symmetry symbols: 85
+Number of crystal systems: 7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_xrd_data</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">peaks_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_peaks&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; []&#39;</span><span class="p">))</span>
+    <span class="n">ints_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_intensities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; []&#39;</span><span class="p">))</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">peaks_str</span><span class="p">)</span>
+    <span class="n">ints</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">ints_str</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">ints</span>
+    
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_xrd</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">intensities</span><span class="p">):</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">intensities</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Intensity&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Diffraction Angle $\theta / 2$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mp_api.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPRester</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.analysis.diffraction.xrd</span><span class="w"> </span><span class="kn">import</span> <span class="n">XRDCalculator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.symmetry.analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpacegroupAnalyzer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">xrd_df_clean</span> <span class="o">=</span> <span class="n">xrd_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># with MPRester(mute_progress_bars=True) as mpr:</span>
+
+<span class="c1">#     for i, row in tqdm(xrd_df.iterrows(), total=len(xrd_df)):</span>
+
+<span class="c1">#         mpid = row[&#39;mp_id&#39;]</span>
+<span class="c1">#         structure = mpr.get_structure_by_material_id(mpid)</span>
+
+<span class="c1">#         if isinstance(structure, list):</span>
+<span class="c1">#             structure = list[0]</span>
+
+<span class="c1">#         # important to use the conventional structure to ensure</span>
+<span class="c1">#         # that peaks are labelled with the conventional Miller indices</span>
+<span class="c1">#         sga = SpacegroupAnalyzer(structure)</span>
+<span class="c1">#         conventional_structure = sga.get_conventional_standard_structure()</span>
+
+<span class="c1">#         # this example shows how to obtain an XRD diffraction pattern</span>
+<span class="c1">#         # these patterns are calculated on-the-fly from the structure</span>
+<span class="c1">#         calculator = XRDCalculator(wavelength=&quot;CuKa&quot;)</span>
+<span class="c1">#         pattern = calculator.get_pattern(</span>
+<span class="c1">#             conventional_structure, two_theta_range=(0,180))</span>
+<span class="c1">#         peaks = np.array(pattern.x).tolist()</span>
+<span class="c1">#         intensities = np.array(pattern.y).tolist()</span>
+
+<span class="c1">#         xrd_df_clean.at[i, &#39;xray_peaks&#39;] = str(peaks)</span>
+<span class="c1">#         xrd_df_clean.at[i, &#39;xray_intensities&#39;] = str(intensities)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrd_df_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;xrd_dataset_clean.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_xrd</span><span class="p">(</span><span class="o">*</span><span class="n">parse_xrd_data</span><span class="p">(</span><span class="n">xrd_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/da01ddb87f4e3e5dfc69d303b2f01e8ae3f999fa669dd1b82c788ffe30e7735b.png" src="../../_images/da01ddb87f4e3e5dfc69d303b2f01e8ae3f999fa669dd1b82c788ffe30e7735b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">vectorize_composition</span><span class="p">(</span><span class="n">composition</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; converts an elemental composition dict to a vector. &quot;&quot;&quot;</span>
+    <span class="n">total_n</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">composition</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">elem</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">composition</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+            <span class="n">vec</span><span class="p">[</span><span class="n">elements</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">elem</span><span class="p">)]</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="n">total_n</span>
+    <span class="k">return</span> <span class="n">vec</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">vectorize_crystal_system</span><span class="p">(</span><span class="n">crystal_system</span><span class="p">,</span> <span class="n">systems</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; converts a crystal system to a vector. &quot;&quot;&quot;</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">systems</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">crystal_system</span> <span class="ow">in</span> <span class="n">systems</span><span class="p">:</span>
+        <span class="n">vec</span><span class="p">[</span><span class="n">systems</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">crystal_system</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        
+    <span class="k">return</span> <span class="n">vec</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">vectorize_symmetry</span><span class="p">(</span><span class="n">symmetry_symbol</span><span class="p">,</span> <span class="n">symbols</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; converts a symmetry symbol to a vector. &quot;&quot;&quot;</span>
+    <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">symmetry_symbol</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">:</span>
+        <span class="n">vec</span><span class="p">[</span><span class="n">symbols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">symmetry_symbol</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">vectorize_xrd_spectrum</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">intensities</span><span class="p">,</span> <span class="n">intensity_scale</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">180</span><span class="p">):</span>
+    <span class="n">hist</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+        <span class="n">peaks</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span>
+        <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span>
+        <span class="n">weights</span><span class="o">=</span><span class="n">intensities</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">hist</span> <span class="o">/</span> <span class="n">max_intensity</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parse_data_vector</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; parses x and y vectors from a dataframe row &quot;&quot;&quot;</span>
+    
+    <span class="c1"># parse the xray peaks and intensities</span>
+    <span class="n">peaks_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_peaks&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; []&#39;</span><span class="p">))</span>
+    <span class="n">ints_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_intensities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; []&#39;</span><span class="p">))</span>
+    
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">peaks_str</span><span class="p">)</span>
+    <span class="n">ints</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">ints_str</span><span class="p">)</span>
+        
+    <span class="c1"># parse the composition dict:</span>
+    <span class="n">composition_dict</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;composition&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># parse feature vector (x):</span>
+    <span class="n">x_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+        <span class="n">vectorize_composition</span><span class="p">(</span><span class="n">composition_dict</span><span class="p">,</span> <span class="n">ELEMENTS</span><span class="p">),</span>
+        
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="p">]),</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># parse label vector (y):</span>
+    <span class="n">y_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;band_gap&#39;</span><span class="p">]</span> <span class="p">]),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">bandgap_direct</span> <span class="p">])</span>
+    <span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">x_vector</span><span class="p">,</span> <span class="n">y_vector</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./applications/tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

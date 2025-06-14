@@ -76,8 +76,6 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Neural Networks" href="../neural_networks/neural_networks.html" />
-    <link rel="prev" title="Clustering and Distribution Estimation" href="clustering.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -140,6 +138,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -244,27 +244,6 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="clustering.html">Clustering and Distribution Estimation</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Classifying Superconductors</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../neural_networks/architectures.html">Neural Network Architectures</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../applications/applications.html">Applications of ML to Materials Science</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../applications/ALIGNN_Tutorial.html">ALIGNN Tutorial</a></li>
 </ul>
 </details></li>
 </ul>
@@ -829,7 +808,7 @@ appearing in the dataset. We will also create a function called <code class="doc
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_61654/1067493337.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_112327/1067493337.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
   Tc_density /= np.trapz(Tc_density, Tc_eval_pts)
 </pre></div>
 </div>
@@ -1116,7 +1095,7 @@ appearing in the dataset. We will also create a function called <code class="doc
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/d3a1884a9694bb2b44c9659c12f2059a1ae4a2037dd5b91f0219a91ea55a6c6a.png" src="../_images/d3a1884a9694bb2b44c9659c12f2059a1ae4a2037dd5b91f0219a91ea55a6c6a.png" />
+<img alt="../_images/3b1f24eb8c16e261e4709e4215c784eee2b14a7ddced94464bb0309033521ebf.png" src="../_images/3b1f24eb8c16e261e4709e4215c784eee2b14a7ddced94464bb0309033521ebf.png" />
 </div>
 </div>
 <p>To interpret the clusters, we display representative samples from each. You might notice that some clusters are enriched in certain elements or tend to have higher or lower <span class="math notranslate nohighlight">\(T_c\)</span>. These clusters could guide targeted exploration in materials discovery:</p>
@@ -1172,39 +1151,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>18043</th>
-      <td>Sr 2 Ru O 4</td>
-      <td>1.44</td>
+      <th>17843</th>
+      <td>Bi 4 O 4 S 3</td>
+      <td>4.40</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.70.060508</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>5753</th>
-      <td>La 2 Cu O 4</td>
-      <td>45.00</td>
+      <th>2684</th>
+      <td>Mo 2 C</td>
+      <td>3.20</td>
       <td>0.0</td>
-      <td>10.1209/0295-5075/86/67007</td>
+      <td>10.1039/c7tc00789b</td>
     </tr>
     <tr>
-      <th>9089</th>
-      <td>Sr 2 Sc 0.4 Ti 0.6 Fe As O 3</td>
-      <td>7.00</td>
+      <th>9027</th>
+      <td>Sr Pt 3 P</td>
+      <td>8.40</td>
       <td>0.0</td>
-      <td>10.1088/0953-2048/22/7/072001</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>18005</th>
-      <td>Y Ba 2 Cu 3 O 6.5</td>
-      <td>52.00</td>
+      <th>2150</th>
+      <td>Cs V 3 Sb 5</td>
+      <td>2.49</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.56.r11439</td>
+      <td>10.1103/physrevb.92.125108</td>
     </tr>
     <tr>
-      <th>4689</th>
-      <td>O 6.6</td>
-      <td>62.70</td>
+      <th>11113</th>
+      <td>Ag</td>
+      <td>1.90</td>
       <td>0.0</td>
-      <td>10.1016/s0921-4526(97)00633-9</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -1237,39 +1216,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>4696</th>
-      <td>Co</td>
-      <td>5.4</td>
+      <th>3975</th>
+      <td>Mg 0.89 Li 0.11 B B 2</td>
+      <td>35.2</td>
       <td>0.0</td>
-      <td>10.1088/1361-6528/aab0e9</td>
+      <td>10.1103/physrevb.77.214507</td>
     </tr>
     <tr>
-      <th>9856</th>
-      <td>Ce Co In 5</td>
-      <td>2.3</td>
+      <th>17682</th>
+      <td>La Fe As O</td>
+      <td>26.0</td>
       <td>0.0</td>
-      <td>10.1143/jpsj.75.023705</td>
+      <td>10.1103/physrevb.97.224501</td>
     </tr>
     <tr>
-      <th>16206</th>
-      <td>Ce In 3</td>
-      <td>0.2</td>
+      <th>9444</th>
+      <td>Fe Se</td>
+      <td>44.0</td>
       <td>0.0</td>
-      <td>10.1143/jpsj.72.2449</td>
+      <td>10.1016/j.jssc.2016.04.008</td>
     </tr>
     <tr>
-      <th>4091</th>
-      <td>Ce Ir In 5</td>
-      <td>0.4</td>
+      <th>5461</th>
+      <td>Na Fe 0.975 Co 0.025</td>
+      <td>21.0</td>
       <td>0.0</td>
-      <td>10.1016/s0168-1273(04)34002-x</td>
+      <td>10.1016/j.cossms.2013.03.005</td>
     </tr>
     <tr>
-      <th>15397</th>
-      <td>Ce Ir 3</td>
-      <td>3.1</td>
+      <th>22289</th>
+      <td>(Ca Nd) Fe 2 As 2</td>
+      <td>40.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.96.144502</td>
+      <td>10.1021/ja410845b</td>
     </tr>
   </tbody>
 </table>
@@ -1302,39 +1281,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>18125</th>
-      <td>Ga As</td>
-      <td>71.0</td>
+      <th>7753</th>
+      <td>Sr 2 Ru O 4</td>
+      <td>1.0</td>
       <td>0.0</td>
-      <td>10.1016/j.apsusc.2006.03.025</td>
+      <td>10.1209/0295-5075/82/67002</td>
     </tr>
     <tr>
-      <th>8918</th>
-      <td>Sm O 0.8 F 0.2 Fe As</td>
-      <td>47.0</td>
+      <th>9165</th>
+      <td>Hg Ba 2 Cu O 6</td>
+      <td>95.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.83.214505</td>
+      <td>10.1103/physrevb.78.054523</td>
     </tr>
     <tr>
-      <th>12848</th>
-      <td>La Fe As O</td>
-      <td>26.0</td>
-      <td>0.0</td>
-      <td>10.1209/0295-5075/93/57003</td>
+      <th>15977</th>
+      <td>Sr 2 V Fe As O 3</td>
+      <td>46.0</td>
+      <td>4.0</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>15819</th>
-      <td>Pr Fe As O 0.85 F 0.15</td>
-      <td>52.0</td>
+      <th>14061</th>
+      <td>Sr 2 Ru O 4</td>
+      <td>1.5</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.78.132504</td>
+      <td>10.1103/physrevb.80.104508</td>
     </tr>
     <tr>
-      <th>16237</th>
-      <td>Nd Cr Sb 3</td>
-      <td>105.0</td>
+      <th>14585</th>
+      <td>Bi 2 Sr 2 Ca 2 Cu 3 O 10</td>
+      <td>70.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevlett.89.107204</td>
+      <td>10.1016/s0921-4534(01)00683-9</td>
     </tr>
   </tbody>
 </table>
@@ -1367,39 +1346,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>13842</th>
-      <td>Nb 2 Pd S 5</td>
-      <td>6.30</td>
-      <td>0.0</td>
-      <td>10.1103/physrevb.88.104507</td>
+      <th>8015</th>
+      <td>H 2 S</td>
+      <td>200.0</td>
+      <td>200.0</td>
+      <td>10.1103/physrevb.93.104526</td>
     </tr>
     <tr>
-      <th>5700</th>
-      <td>Mg B 2</td>
-      <td>39.00</td>
+      <th>14261</th>
+      <td>H 3 S</td>
+      <td>60.0</td>
       <td>0.0</td>
-      <td>10.1016/j.ssc.2004.09.035</td>
+      <td>10.1103/physrevb.93.094525</td>
     </tr>
     <tr>
-      <th>7818</th>
-      <td>Nb 2 Pd 0.963 S 4.967</td>
-      <td>7.43</td>
-      <td>0.0</td>
-      <td>10.1021/ja4062079</td>
+      <th>6342</th>
+      <td>H 3 S</td>
+      <td>203.0</td>
+      <td>150.0</td>
+      <td>10.1038/s41598-020-58065-9</td>
     </tr>
     <tr>
-      <th>7924</th>
-      <td>Nb N</td>
-      <td>7.20</td>
-      <td>0.0</td>
-      <td>10.1088/1361-6668/ab6179</td>
+      <th>6015</th>
+      <td>H 2 S</td>
+      <td>80.0</td>
+      <td>100.0</td>
+      <td>10.1038/nature14964</td>
     </tr>
     <tr>
-      <th>21005</th>
-      <td>Mg</td>
-      <td>50.00</td>
-      <td>0.0</td>
-      <td>10.1016/j.physc.2012.05.003</td>
+      <th>19522</th>
+      <td>H 3 S</td>
+      <td>200.0</td>
+      <td>170.0</td>
+      <td>10.1142/s0217979217450035</td>
     </tr>
   </tbody>
 </table>
@@ -1432,39 +1411,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>7643</th>
-      <td>H 2 S</td>
-      <td>205.0</td>
-      <td>170.0</td>
+      <th>13140</th>
+      <td>Ga 0.947 Mn 0.053</td>
+      <td>110.0</td>
+      <td>0.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>15598</th>
-      <td>Si H 4</td>
-      <td>50.0</td>
-      <td>125.0</td>
+      <th>21782</th>
+      <td>Pu Co Ga 4 Al</td>
+      <td>7.5</td>
+      <td>0.0</td>
+      <td>10.1016/j.jallcom.2018.02.116</td>
+    </tr>
+    <tr>
+      <th>11009</th>
+      <td>Mo 8 Ga 41</td>
+      <td>55.0</td>
+      <td>0.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>21470</th>
-      <td>H 3 S</td>
-      <td>89.0</td>
-      <td>192.0</td>
-      <td>10.1088/1361-648x/aa80d0</td>
+      <th>23523</th>
+      <td>Ga 56</td>
+      <td>132.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.74.024514</td>
     </tr>
     <tr>
-      <th>16636</th>
-      <td>H 2 S</td>
-      <td>2.2</td>
-      <td>160.0</td>
-      <td>10.1038/s41598-018-30391-z</td>
-    </tr>
-    <tr>
-      <th>19457</th>
-      <td>Ca H 6</td>
-      <td>235.0</td>
-      <td>150.0</td>
-      <td>NaN</td>
+      <th>2801</th>
+      <td>Ga 0.94 Mn 0.06</td>
+      <td>140.0</td>
+      <td>0.0</td>
+      <td>10.1063/1.1529079</td>
     </tr>
   </tbody>
 </table>
@@ -1497,39 +1476,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>20584</th>
-      <td>Fe Se</td>
-      <td>44.0</td>
-      <td>0.00</td>
-      <td>NaN</td>
+      <th>13159</th>
+      <td>Ce Co In 5</td>
+      <td>2.3</td>
+      <td>0.0</td>
+      <td>10.1103/physrevlett.114.027003</td>
     </tr>
     <tr>
-      <th>4203</th>
-      <td>Fe Se</td>
-      <td>11.0</td>
-      <td>1.18</td>
-      <td>10.1143/jpsj.78.093703</td>
+      <th>5115</th>
+      <td>Ce Co In 5</td>
+      <td>2.3</td>
+      <td>0.0</td>
+      <td>10.7566/jpsj.85.094713</td>
     </tr>
     <tr>
-      <th>23047</th>
-      <td>Fe Se</td>
-      <td>65.0</td>
-      <td>0.00</td>
-      <td>10.1103/physrevb.87.144517</td>
+      <th>11578</th>
+      <td>Ce Co In 5</td>
+      <td>2.3</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.88.165118</td>
     </tr>
     <tr>
-      <th>18874</th>
-      <td>Fe Se</td>
-      <td>60.0</td>
-      <td>0.00</td>
-      <td>10.1088/1361-648x/aa5f26</td>
+      <th>16931</th>
+      <td>Co</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>10.1016/j.ssc.2009.10.001</td>
     </tr>
     <tr>
-      <th>14574</th>
-      <td>Sn 0.8 In 0.2 Te</td>
-      <td>2.7</td>
-      <td>0.00</td>
-      <td>10.1103/physrevb.91.054522</td>
+      <th>16962</th>
+      <td>Ce Ir In 5</td>
+      <td>1.2</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.89.041101</td>
     </tr>
   </tbody>
 </table>
@@ -1569,24 +1548,6 @@ appearing in the dataset. We will also create a function called <code class="doc
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="clustering.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Clustering and Distribution Estimation</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../neural_networks/neural_networks.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Neural Networks</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
