@@ -54,6 +54,10 @@ You can access the slides from the workshop as they become available here:
 
 * Day 10: Advanced Applications in Materials Science
 
+## Workshop Recordings
+
+Recordings of the 2025 sessions are available on the Workshop's [YouTube playlist](https://youtube.com/playlist?list=PLSnC4a32tFDptnjlbnOg-gIyW8iR2H9Ur&si=pSuVjgX6mqyR28Ke).
+
 
 ## Previous Materials + ML Workshops:
 
