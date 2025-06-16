@@ -44,7 +44,7 @@ You can access the slides from the workshop as they become available here:
 
 * Day 5: <a href="./slides_notebooks/Day 5 2025.slides.html">Materials Science Packages</a>
 
-* Day 6: Introduction to ML | Supervised Learning
+* Day 6: <a href="./slides_notebooks/Day 6 2025.slides.html">Introduction to ML | Supervised Learning</a>
 
 * Day 7: Advanced Regression Models
 

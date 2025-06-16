@@ -76,6 +76,8 @@
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application: Bandgap Prediction" href="regression_models.html" />
+    <link rel="prev" title="Advanced Regression Models" href="regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -138,8 +140,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -195,7 +195,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -244,6 +244,22 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="regression.html">Advanced Regression Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
 </ul>
 </details></li>
 </ul>
@@ -818,10 +834,10 @@ simply by swapping out kernels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/94048775c0bda8551e6fd1ff4e2d297a214cdceb2328eefcb441bf80858e3a8b.png" src="../_images/94048775c0bda8551e6fd1ff4e2d297a214cdceb2328eefcb441bf80858e3a8b.png" />
-<img alt="../_images/01c644240a53d60ec51cb4d958bb956e3afdb012dd962d737ee2bfbcaa9a33b9.png" src="../_images/01c644240a53d60ec51cb4d958bb956e3afdb012dd962d737ee2bfbcaa9a33b9.png" />
-<img alt="../_images/d15c5c22925c93ed1648a685ff6334353a73103c648bac12e4d22cefed207dff.png" src="../_images/d15c5c22925c93ed1648a685ff6334353a73103c648bac12e4d22cefed207dff.png" />
-<img alt="../_images/06d9f59b04ed6feea18a9a5e6151bca3882d90bd5f86f1804c986a02915088d1.png" src="../_images/06d9f59b04ed6feea18a9a5e6151bca3882d90bd5f86f1804c986a02915088d1.png" />
+<img alt="../_images/3c5a550620edace0164972c2680e0dac31855ad3de10931c504c216cf29232e7.png" src="../_images/3c5a550620edace0164972c2680e0dac31855ad3de10931c504c216cf29232e7.png" />
+<img alt="../_images/161461e470d9b226dc834792170af1beefdffc2e1c998019a3bb8831dceb29f1.png" src="../_images/161461e470d9b226dc834792170af1beefdffc2e1c998019a3bb8831dceb29f1.png" />
+<img alt="../_images/8b3edd58fd3a5d605e4a22356ed5e4d87a25303bdd4b9100cf1254031a4b9d39.png" src="../_images/8b3edd58fd3a5d605e4a22356ed5e4d87a25303bdd4b9100cf1254031a4b9d39.png" />
+<img alt="../_images/b98b4b8fc391713f73a195281192ac2b81b3c20870c3ec022b00ce67c67854be.png" src="../_images/b98b4b8fc391713f73a195281192ac2b81b3c20870c3ec022b00ce67c67854be.png" />
 </div>
 </details>
 </div>
@@ -889,10 +905,10 @@ simply by swapping out kernels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8e711d6a0771322d5b62f12e6c3995f8ffaa46d381326384f1fce74f245b1b57.png" src="../_images/8e711d6a0771322d5b62f12e6c3995f8ffaa46d381326384f1fce74f245b1b57.png" />
-<img alt="../_images/fce2d6e8bab70d157fea528d54d9be8289f4d89df60fe40207135b7c76613cbb.png" src="../_images/fce2d6e8bab70d157fea528d54d9be8289f4d89df60fe40207135b7c76613cbb.png" />
-<img alt="../_images/0b631985d08a4714c2b3001a96145f38d0d0cea5cf6525ee9fe658fb2599ccfe.png" src="../_images/0b631985d08a4714c2b3001a96145f38d0d0cea5cf6525ee9fe658fb2599ccfe.png" />
-<img alt="../_images/cfd522f92eccb58bee5a4d469e47c22527cce536c4f0a4dd8275b70b71a870e5.png" src="../_images/cfd522f92eccb58bee5a4d469e47c22527cce536c4f0a4dd8275b70b71a870e5.png" />
+<img alt="../_images/5d30c24ddc17901332ed1200a109bcd2ef51d7b67e1b9e32772a974519866c36.png" src="../_images/5d30c24ddc17901332ed1200a109bcd2ef51d7b67e1b9e32772a974519866c36.png" />
+<img alt="../_images/8448f2d139e877415bd26ed49f3908899b481f7abb104e43bf0b483810481237.png" src="../_images/8448f2d139e877415bd26ed49f3908899b481f7abb104e43bf0b483810481237.png" />
+<img alt="../_images/d6997cbbe1c59e0afd127e8c818b60093e41cd98c7b3075b0ad1303bf808dd87.png" src="../_images/d6997cbbe1c59e0afd127e8c818b60093e41cd98c7b3075b0ad1303bf808dd87.png" />
+<img alt="../_images/ad3dcac2f0315fb5ebbd53de8b9df7e59ee059dbfa85bbb054911090ceb853a1.png" src="../_images/ad3dcac2f0315fb5ebbd53de8b9df7e59ee059dbfa85bbb054911090ceb853a1.png" />
 </div>
 </details>
 </div>
@@ -931,6 +947,24 @@ simply by swapping out kernels.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="regression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced Regression Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="regression_models.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Application: Bandgap Prediction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

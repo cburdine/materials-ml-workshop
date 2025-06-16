@@ -244,6 +244,22 @@
 <li class="toctree-l2"><a class="reference internal" href="../../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../regression/kernel_machines.html">Kernel Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/clustering.html">Clustering and Distribution Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../neural_networks/basics.html">Basic Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neural_networks/training.html">Training Neural Networks</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -452,7 +468,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;xrd_dataset.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;xrd_dataset_clean.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -503,8 +519,8 @@ document.write(`
       <td>Pnma</td>
       <td>90.583862</td>
       <td>6.366076</td>
-      <td>[23.15086164 31.02195798 33.23866128 34.822846...</td>
-      <td>[4.73131274e+00 1.76544138e+01 7.14334109e+01 ...</td>
+      <td>[23.15086164,31.02195798,33.23866128,34.822846...</td>
+      <td>[4.73131274,17.6544138,71.4334109,21.8151441,1...</td>
     </tr>
     <tr>
       <th>1</th>
@@ -515,8 +531,8 @@ document.write(`
       <td>Pnma</td>
       <td>785.754385</td>
       <td>7.215011</td>
-      <td>[13.59855865 14.68007171 15.5587516  17.216162...</td>
-      <td>[9.04260718e+00 3.88889592e+00 1.48704078e+01 ...</td>
+      <td>[13.59855865,14.68007171,15.5587516,17.2161627...</td>
+      <td>[9.04260718,3.88889592,14.8704078,0.0717627581...</td>
     </tr>
     <tr>
       <th>2</th>
@@ -527,8 +543,8 @@ document.write(`
       <td>Amm2</td>
       <td>45.919844</td>
       <td>9.215206</td>
-      <td>[24.87354653 25.79708699 30.23085522 36.139916...</td>
-      <td>[ 39.06976227   9.24752455  24.85129267 100.  ...</td>
+      <td>[24.87354653,25.79708699,30.23085522,36.139916...</td>
+      <td>[39.06976227,9.24752455,24.85129267,100.0,18.6...</td>
     </tr>
     <tr>
       <th>3</th>
@@ -539,8 +555,8 @@ document.write(`
       <td>Cmcm</td>
       <td>87.819318</td>
       <td>9.253483</td>
-      <td>[16.89543051 22.68791393 28.22757053 32.128373...</td>
-      <td>[5.68120675e-01 9.04300155e+00 2.95353313e+01 ...</td>
+      <td>[16.89543051,22.68791393,28.22757053,32.128373...</td>
+      <td>[0.568120675,9.04300155,29.5353313,100.0,39.95...</td>
     </tr>
     <tr>
       <th>4</th>
@@ -551,8 +567,8 @@ document.write(`
       <td>F-43m</td>
       <td>74.987877</td>
       <td>8.952998</td>
-      <td>[23.01240126 26.63332165 38.0207848  44.910730...</td>
-      <td>[ 36.27131039  27.19850555 100.          19.56...</td>
+      <td>[23.01240126,26.63332165,38.0207848,44.9107308...</td>
+      <td>[36.27131039,27.19850555,100.0,19.56480595,8.0...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -567,7 +583,7 @@ document.write(`
       <td>...</td>
     </tr>
     <tr>
-      <th>16423</th>
+      <th>16420</th>
       <td>mp-1213830</td>
       <td>Ce3W(ClO2)3</td>
       <td>{'Ce': 3, 'W': 1, 'Cl': 3, 'O': 6}</td>
@@ -575,11 +591,11 @@ document.write(`
       <td>P6_3/m</td>
       <td>408.805926</td>
       <td>6.552238</td>
-      <td>[10.94822859 19.02128174 19.71983192 21.998023...</td>
-      <td>[5.40912233e+01 1.50813133e+00 2.77921414e+00 ...</td>
+      <td>[10.94822859,19.02128174,19.71983192,21.998023...</td>
+      <td>[54.0912233,1.50813133,2.77921414,4.13294744,4...</td>
     </tr>
     <tr>
-      <th>16424</th>
+      <th>16421</th>
       <td>mp-1191620</td>
       <td>PuB4Ru</td>
       <td>{'Pu': 1, 'B': 4, 'Ru': 1}</td>
@@ -587,11 +603,11 @@ document.write(`
       <td>Pbam</td>
       <td>244.423386</td>
       <td>10.552355</td>
-      <td>[15.29269094 16.67763625 21.34936852 25.258563...</td>
-      <td>[2.17205238e+00 6.61441181e+00 2.08615588e+01 ...</td>
+      <td>[15.29269094,16.67763625,21.34936852,25.258563...</td>
+      <td>[2.17205238,6.61441181,20.8615588,100.0,34.133...</td>
     </tr>
     <tr>
-      <th>16425</th>
+      <th>16422</th>
       <td>mp-1209360</td>
       <td>Pr5Bi3Br</td>
       <td>{'Pr': 5, 'Bi': 3, 'Br': 1}</td>
@@ -599,11 +615,11 @@ document.write(`
       <td>P6_3/mcm</td>
       <td>552.581472</td>
       <td>8.482577</td>
-      <td>[10.53062158 18.29148783 21.1515142  22.538613...</td>
-      <td>[3.24368270e+00 2.33769877e+00 8.04064192e-01 ...</td>
+      <td>[10.53062158,18.29148783,21.1515142,22.5386135...</td>
+      <td>[3.2436827,2.33769877,0.804064192,8.14582475,1...</td>
     </tr>
     <tr>
-      <th>16426</th>
+      <th>16423</th>
       <td>mp-1190710</td>
       <td>Sc5(In2Co)2</td>
       <td>{'Sc': 5, 'In': 4, 'Co': 2}</td>
@@ -611,11 +627,11 @@ document.write(`
       <td>Pbam</td>
       <td>440.878854</td>
       <td>6.040735</td>
-      <td>[10.18858728 12.69727266 15.48118582 19.264295...</td>
-      <td>[1.37660375e+00 4.27657761e-02 1.92963728e+00 ...</td>
+      <td>[10.18858728,12.69727266,15.48118582,19.264295...</td>
+      <td>[1.37660375,0.0427657761,1.92963728,5.23703683...</td>
     </tr>
     <tr>
-      <th>16427</th>
+      <th>16424</th>
       <td>mp-316</td>
       <td>MnV</td>
       <td>{'Mn': 1, 'V': 1}</td>
@@ -623,12 +639,12 @@ document.write(`
       <td>Pm-3m</td>
       <td>23.289978</td>
       <td>7.549046</td>
-      <td>[31.32280162 44.88667126 55.75338872 65.354163...</td>
-      <td>[  0.43329361 100.           0.11666426  14.54...</td>
+      <td>[31.32280162,44.88667126,55.75338872,65.354163...</td>
+      <td>[0.43329361,100.0,0.11666426,14.5409878,0.1386...</td>
     </tr>
   </tbody>
 </table>
-<p>16428 rows × 9 columns</p>
+<p>16425 rows × 9 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -644,34 +660,62 @@ document.write(`
 <span class="c1"># Generate a list of the crystal systems in the dataset:</span>
 <span class="n">CRYSTAL_SYSTEMS</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">xrd_df</span><span class="p">[</span><span class="s1">&#39;crystal_system&#39;</span><span class="p">]))</span>
 
-<span class="c1"># Generate a list of the symmetry symbols:</span>
-<span class="n">SYMM_SYMBOLS</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">xrd_df</span><span class="p">[</span><span class="s1">&#39;symmetry_symbol&#39;</span><span class="p">]))</span>
-
 <span class="c1"># print the sizes of ELEMENTS and CRYSTAL_SYSTEMS</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of elements:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of symmetry symbols:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of symmetry symbols:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMM_SYMBOLS</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of crystal systems:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">CRYSTAL_SYSTEMS</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of elements: 85
-Number of symmetry symbols: 85
-Number of crystal systems: 7
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># print the sizes of ELEMENTS and CRYSTAL_SYSTEMS</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of elements:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ELEMENTS</span><span class="p">))</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of symmetry symbols:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMM_SYMBOLS</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of crystal systems:&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">CRYSTAL_SYSTEMS</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;SYMM_SYMBOLS&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">SYMM_SYMBOLS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Aea2&#39;, &#39;Aem2&#39;, &#39;Ama2&#39;, &#39;Amm2&#39;, &#39;C2&#39;, &#39;C2/c&#39;, &#39;C2/m&#39;, &#39;C222&#39;, &#39;C222_1&#39;, &#39;Cc&#39;, &#39;Ccc2&#39;, &#39;Ccce&#39;, &#39;Cccm&#39;, &#39;Cm&#39;, &#39;Cmc2_1&#39;, &#39;Cmce&#39;, &#39;Cmcm&#39;, &#39;Cmm2&#39;, &#39;Cmme&#39;, &#39;Cmmm&#39;, &#39;F-43m&#39;, &#39;Fd-3&#39;, &#39;Fd-3m&#39;, &#39;Fdd2&#39;, &#39;Fddd&#39;, &#39;Fm-3&#39;, &#39;Fm-3c&#39;, &#39;Fm-3m&#39;, &#39;Fmm2&#39;, &#39;Fmmm&#39;, &#39;I-4&#39;, &#39;I-42d&#39;, &#39;I-42m&#39;, &#39;I-43d&#39;, &#39;I-43m&#39;, &#39;I-4m2&#39;, &#39;I222&#39;, &#39;I23&#39;, &#39;I2_13&#39;, &#39;I4&#39;, &#39;I4/m&#39;, &#39;I4/mcm&#39;, &#39;I4/mmm&#39;, &#39;I422&#39;, &#39;I4_1&#39;, &#39;I4_1/a&#39;, &#39;I4_1/acd&#39;, &#39;I4_1/amd&#39;, &#39;I4_122&#39;, &#39;I4_132&#39;, &#39;I4_1md&#39;, &#39;I4cm&#39;, &#39;I4mm&#39;, &#39;Ia-3&#39;, &#39;Ia-3d&#39;, &#39;Iba2&#39;, &#39;Ibam&#39;, &#39;Ibca&#39;, &#39;Im-3&#39;, &#39;Im-3m&#39;, &#39;Ima2&#39;, &#39;Imm2&#39;, &#39;Imma&#39;, &#39;Immm&#39;, &#39;P-1&#39;, &#39;P-3&#39;, &#39;P-31c&#39;, &#39;P-31m&#39;, &#39;P-3c1&#39;, &#39;P-3m1&#39;, &#39;P-42_1c&#39;, &#39;P-42_1m&#39;, &#39;P-42m&#39;, &#39;P-43m&#39;, &#39;P-43n&#39;, &#39;P-4c2&#39;, &#39;P-4m2&#39;, &#39;P-4n2&#39;, &#39;P-6&#39;, &#39;P-62c&#39;, &#39;P-62m&#39;, &#39;P-6c2&#39;, &#39;P-6m2&#39;, &#39;P1&#39;, &#39;P2&#39;, &#39;P2/c&#39;, &#39;P2/m&#39;, &#39;P2_1&#39;, &#39;P2_1/c&#39;, &#39;P2_1/m&#39;, &#39;P2_12_12&#39;, &#39;P2_12_12_1&#39;, &#39;P2_13&#39;, &#39;P3&#39;, &#39;P312&#39;, &#39;P31m&#39;, &#39;P321&#39;, &#39;P3_112&#39;, &#39;P3_212&#39;, &#39;P3_221&#39;, &#39;P3m1&#39;, &#39;P4&#39;, &#39;P4/m&#39;, &#39;P4/mbm&#39;, &#39;P4/mcc&#39;, &#39;P4/mmm&#39;, &#39;P4/mnc&#39;, &#39;P4/n&#39;, &#39;P4/nbm&#39;, &#39;P4/ncc&#39;, &#39;P4/nmm&#39;, &#39;P4/nnc&#39;, &#39;P422&#39;, &#39;P42_12&#39;, &#39;P4_1&#39;, &#39;P4_122&#39;, &#39;P4_12_12&#39;, &#39;P4_132&#39;, &#39;P4_2&#39;, &#39;P4_2/m&#39;, &#39;P4_2/mbc&#39;, &#39;P4_2/mmc&#39;, &#39;P4_2/mnm&#39;, &#39;P4_2/n&#39;, &#39;P4_2/nbc&#39;, &#39;P4_2/ncm&#39;, &#39;P4_2/nmc&#39;, &#39;P4_2/nnm&#39;, &#39;P4_2cm&#39;, &#39;P4_2nm&#39;, &#39;P4_32_12&#39;, &#39;P4_332&#39;, &#39;P4bm&#39;, &#39;P4mm&#39;, &#39;P6/m&#39;, &#39;P6/mmm&#39;, &#39;P6_122&#39;, &#39;P6_222&#39;, &#39;P6_3&#39;, &#39;P6_3/m&#39;, &#39;P6_3/mcm&#39;, &#39;P6_3/mmc&#39;, &#39;P6_322&#39;, &#39;P6_3cm&#39;, &#39;P6_3mc&#39;, &#39;P6_422&#39;, &#39;P6mm&#39;, &#39;Pa-3&#39;, &#39;Pbam&#39;, &#39;Pbca&#39;, &#39;Pbcm&#39;, &#39;Pbcn&#39;, &#39;Pc&#39;, &#39;Pcca&#39;, &#39;Pccm&#39;, &#39;Pccn&#39;, &#39;Pm&#39;, &#39;Pm-3&#39;, &#39;Pm-3m&#39;, &#39;Pm-3n&#39;, &#39;Pma2&#39;, &#39;Pmc2_1&#39;, &#39;Pmm2&#39;, &#39;Pmma&#39;, &#39;Pmmm&#39;, &#39;Pmmn&#39;, &#39;Pmn2_1&#39;, &#39;Pmna&#39;, &#39;Pn-3&#39;, &#39;Pn-3m&#39;, &#39;Pna2_1&#39;, &#39;Pnma&#39;, &#39;Pnn2&#39;, &#39;Pnna&#39;, &#39;Pnnm&#39;, &#39;Pnnn&#39;, &#39;R-3&#39;, &#39;R-3c&#39;, &#39;R-3m&#39;, &#39;R3&#39;, &#39;R32&#39;, &#39;R3c&#39;, &#39;R3m&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a map from each symmetry symbol to</span>
+<span class="c1"># the corresponding crystal system</span>
+<span class="n">SYMM_SYMBOL_MAP</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">xrd_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">system</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;crystal_system&#39;</span><span class="p">]</span>
+    <span class="n">symm</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;symmetry_symbol&#39;</span><span class="p">]</span>
+    <span class="n">SYMM_SYMBOL_MAP</span><span class="p">[</span><span class="n">symm</span><span class="p">]</span> <span class="o">=</span> <span class="n">system</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">parse_xrd_data</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
-    <span class="n">peaks_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_peaks&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; []&#39;</span><span class="p">))</span>
-    <span class="n">ints_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_intensities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; []&#39;</span><span class="p">))</span>
-    <span class="n">peaks</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">peaks_str</span><span class="p">)</span>
-    <span class="n">ints</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">ints_str</span><span class="p">)</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_peaks&#39;</span><span class="p">])</span>
+    <span class="n">ints</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_intensities&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">peaks</span><span class="p">,</span> <span class="n">ints</span>
     
 <span class="k">def</span><span class="w"> </span><span class="nf">plot_xrd</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">intensities</span><span class="p">):</span>
@@ -681,10 +725,10 @@ Number of crystal systems: 7
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     
     <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">90</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Intensity&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Diffraction Angle $\theta / 2$&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Intensity [arb. units]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Diffraction Angle $2\theta$ [degrees]&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -692,58 +736,29 @@ Number of crystal systems: 7
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mp_api.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPRester</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.analysis.diffraction.xrd</span><span class="w"> </span><span class="kn">import</span> <span class="n">XRDCalculator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.symmetry.analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpacegroupAnalyzer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="n">xrd_df_clean</span> <span class="o">=</span> <span class="n">xrd_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="c1"># with MPRester(mute_progress_bars=True) as mpr:</span>
-
-<span class="c1">#     for i, row in tqdm(xrd_df.iterrows(), total=len(xrd_df)):</span>
-
-<span class="c1">#         mpid = row[&#39;mp_id&#39;]</span>
-<span class="c1">#         structure = mpr.get_structure_by_material_id(mpid)</span>
-
-<span class="c1">#         if isinstance(structure, list):</span>
-<span class="c1">#             structure = list[0]</span>
-
-<span class="c1">#         # important to use the conventional structure to ensure</span>
-<span class="c1">#         # that peaks are labelled with the conventional Miller indices</span>
-<span class="c1">#         sga = SpacegroupAnalyzer(structure)</span>
-<span class="c1">#         conventional_structure = sga.get_conventional_standard_structure()</span>
-
-<span class="c1">#         # this example shows how to obtain an XRD diffraction pattern</span>
-<span class="c1">#         # these patterns are calculated on-the-fly from the structure</span>
-<span class="c1">#         calculator = XRDCalculator(wavelength=&quot;CuKa&quot;)</span>
-<span class="c1">#         pattern = calculator.get_pattern(</span>
-<span class="c1">#             conventional_structure, two_theta_range=(0,180))</span>
-<span class="c1">#         peaks = np.array(pattern.x).tolist()</span>
-<span class="c1">#         intensities = np.array(pattern.y).tolist()</span>
-
-<span class="c1">#         xrd_df_clean.at[i, &#39;xray_peaks&#39;] = str(peaks)</span>
-<span class="c1">#         xrd_df_clean.at[i, &#39;xray_intensities&#39;] = str(intensities)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrd_df_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;xrd_dataset_clean.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_xrd</span><span class="p">(</span><span class="o">*</span><span class="n">parse_xrd_data</span><span class="p">(</span><span class="n">xrd_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_xrd</span><span class="p">(</span><span class="o">*</span><span class="n">parse_xrd_data</span><span class="p">(</span><span class="n">xrd_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1234</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/da01ddb87f4e3e5dfc69d303b2f01e8ae3f999fa669dd1b82c788ffe30e7735b.png" src="../../_images/da01ddb87f4e3e5dfc69d303b2f01e8ae3f999fa669dd1b82c788ffe30e7735b.png" />
+<img alt="../../_images/97215ca0076e1e996444ebd5c5d813a3d20d77ef711016e1d0ae19ed1b513863.png" src="../../_images/97215ca0076e1e996444ebd5c5d813a3d20d77ef711016e1d0ae19ed1b513863.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">INTENSITY_SCALE</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span>
+    <span class="nb">max</span><span class="p">(</span><span class="n">parse_xrd_data</span><span class="p">(</span><span class="n">row</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">xrd_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">INTENSITY_SCALE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.00000000000001
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -772,6 +787,8 @@ Number of crystal systems: 7
     <span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">symmetry_symbol</span> <span class="ow">in</span> <span class="n">symbols</span><span class="p">:</span>
         <span class="n">vec</span><span class="p">[</span><span class="n">symbols</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">symmetry_symbol</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="k">return</span> <span class="n">vec</span>
         
 </pre></div>
 </div>
@@ -779,13 +796,13 @@ Number of crystal systems: 7
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">vectorize_xrd_spectrum</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">intensities</span><span class="p">,</span> <span class="n">intensity_scale</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">180</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">vectorize_xrd_spectrum</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">intensities</span><span class="p">,</span> <span class="n">intensity_scale</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
     <span class="n">hist</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
         <span class="n">peaks</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span>
         <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span>
         <span class="n">weights</span><span class="o">=</span><span class="n">intensities</span><span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">hist</span> <span class="o">/</span> <span class="n">max_intensity</span>
+    <span class="k">return</span> <span class="n">hist</span> <span class="o">/</span> <span class="n">intensity_scale</span>
 </pre></div>
 </div>
 </div>
@@ -796,29 +813,422 @@ Number of crystal systems: 7
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; parses x and y vectors from a dataframe row &quot;&quot;&quot;</span>
     
     <span class="c1"># parse the xray peaks and intensities</span>
-    <span class="n">peaks_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_peaks&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; []&#39;</span><span class="p">))</span>
-    <span class="n">ints_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;xray_intensities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39; []&#39;</span><span class="p">))</span>
-    
-    <span class="n">peaks</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">peaks_str</span><span class="p">)</span>
-    <span class="n">ints</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">ints_str</span><span class="p">)</span>
-        
-    <span class="c1"># parse the composition dict:</span>
-    <span class="n">composition_dict</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;composition&#39;</span><span class="p">])</span>
+    <span class="n">peaks</span><span class="p">,</span> <span class="n">ints</span> <span class="o">=</span> <span class="n">parse_xrd_data</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
     
     <span class="c1"># parse feature vector (x):</span>
-    <span class="n">x_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
-        <span class="n">vectorize_composition</span><span class="p">(</span><span class="n">composition_dict</span><span class="p">,</span> <span class="n">ELEMENTS</span><span class="p">),</span>
-        
-        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="p">]),</span>
-    <span class="p">])</span>
+    <span class="n">x_vector</span> <span class="o">=</span> <span class="n">vectorize_xrd_spectrum</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">ints</span><span class="p">)</span>
     
     <span class="c1"># parse label vector (y):</span>
-    <span class="n">y_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;band_gap&#39;</span><span class="p">]</span> <span class="p">]),</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">bandgap_direct</span> <span class="p">])</span>
-    <span class="p">])</span>
+    <span class="n">y_vector</span> <span class="o">=</span> <span class="n">vectorize_symmetry</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;symmetry_symbol&#39;</span><span class="p">],</span> <span class="n">symbols</span><span class="o">=</span><span class="n">SYMM_SYMBOLS</span><span class="p">)</span>
+    <span class="c1">#y_vector = vectorize_crystal_system(row[&#39;crystal_system&#39;], systems=CRYSTAL_SYSTEMS)</span>
     
     <span class="k">return</span> <span class="n">x_vector</span><span class="p">,</span> <span class="n">y_vector</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Define a custom dataset class</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">XRDDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xrd_df</span><span class="p">):</span>
+
+        <span class="n">data_x</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">data_y</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># parse data from datafrane</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">xrd_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">parse_data_vector</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+            <span class="n">data_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">data_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="n">np_data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data_x</span><span class="p">)</span>
+        <span class="n">np_data_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data_y</span><span class="p">)</span>
+
+        <span class="c1"># convert data to pytorch tensors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">np_data_x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">np_data_y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; returns the size of this dataset&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_x</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Gets the (x,y) pair at index &#39;idx&#39; &quot;&quot;&quot;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+
+<span class="c1"># Define the neural network class (XRDNet)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">XRDNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_layer_sizes</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Constructs a feed-forward neural network with many hidden layers&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="n">layer_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">input_size</span><span class="p">]</span>
+        <span class="n">layer_sizes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="p">)</span>
+        <span class="n">layer_sizes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output_size</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ParameterList</span><span class="p">([</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">size_in</span><span class="p">,</span> <span class="n">size_out</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">size_in</span><span class="p">,</span> <span class="n">size_out</span> <span class="ow">in</span> 
+            <span class="nb">zip</span><span class="p">(</span><span class="n">layer_sizes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">layer_sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="p">])</span>
+
+        <span class="c1"># define hidden layer activation function:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">SiLU</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_activation</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Estimates the relative log-likelihood (logit) of each output feature&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_layers</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">out</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">classify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Estimates the normalized output probability of each output feature&quot;&quot;&quot;</span>
+        
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_logits</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_activation</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">eval_model_loss</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">):</span>
+    
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">z_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">data_loader</span><span class="p">:</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">z_batch</span><span class="p">),</span> <span class="n">y_batch</span><span class="p">))</span>
+
+    <span class="n">mean_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">mean_loss</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">eval_model_accuracy</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">):</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">z_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">data_loader</span><span class="p">:</span>
+            <span class="n">pred_class</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">z_batch</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">true_class</span> <span class="o">=</span> <span class="n">y_batch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">acc</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">pred_class</span> <span class="o">==</span> <span class="n">true_class</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+    <span class="n">mean_acc</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">acc</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">mean_acc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">random_split</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">XRDDataset</span><span class="p">(</span><span class="n">xrd_df</span><span class="p">)</span>
+<span class="n">train_dataset</span><span class="p">,</span> <span class="n">val_dataset</span><span class="p">,</span> <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">random_split</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">XRDNet</span><span class="p">(</span>
+    <span class="n">input_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
+    <span class="n">hidden_layer_sizes</span><span class="o">=</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+    <span class="n">output_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fit_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_dataset</span><span class="p">,</span> <span class="n">val_dataset</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+
+    <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">val_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">val_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="n">wd</span><span class="p">)</span>
+    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+    
+    <span class="c1"># create a dict to record losses during training</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;train_loss&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;val_loss&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># main training loop (fixed number of epochs)</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+        
+        <span class="c1"># apply stochastic gradient descent step to each batch in dataset</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">epoch_losses</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">z_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+            
+            <span class="c1"># zero optimizer gradients</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    
+            <span class="c1"># generate batch prediction</span>
+            <span class="n">y_hat_batch</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">z_batch</span><span class="p">)</span>
+            
+            <span class="c1"># compute loss</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">y_hat_batch</span><span class="p">,</span> <span class="n">y_batch</span><span class="p">)</span>
+            <span class="n">epoch_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+    
+            <span class="c1"># backpropagate loss</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="c1"># evaluate epoch training and validation losses:</span>
+        <span class="n">train_loss</span> <span class="o">=</span> <span class="n">eval_model_loss</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">)</span>
+        <span class="n">val_loss</span> <span class="o">=</span> <span class="n">eval_model_loss</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Acc: &#39;</span><span class="p">,</span> <span class="n">eval_model_accuracy</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Train loss: </span><span class="si">{</span><span class="n">train_loss</span><span class="si">}</span><span class="s1">; Val loss: </span><span class="si">{</span><span class="n">val_loss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># record losses in history dictionary</span>
+        <span class="n">history</span><span class="p">[</span><span class="s1">&#39;train_loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span>
+        <span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val_loss</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">history</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">fit_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span> 
+    <span class="n">train_dataset</span><span class="p">,</span> 
+    <span class="n">val_dataset</span><span class="p">,</span> 
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+    <span class="n">n_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
+    <span class="n">wd</span><span class="o">=</span><span class="mf">1e-1</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 0
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 29.89it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3232790231704712
+Train loss: 2.7114439010620117; Val loss: 2.8230655193328857
+Epoch 1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 61.23it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.33995431661605835
+Train loss: 2.6481618881225586; Val loss: 2.796786069869995
+Epoch 2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 59.81it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3413362503051758
+Train loss: 2.6097183227539062; Val loss: 2.780148506164551
+Epoch 3
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 62.95it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.34923166036605835
+Train loss: 2.5651185512542725; Val loss: 2.7604334354400635
+Epoch 4
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 46.56it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3693248927593231
+Train loss: 2.5281643867492676; Val loss: 2.7451796531677246
+Epoch 5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 65.68it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.34948039054870605
+Train loss: 2.4865355491638184; Val loss: 2.7424657344818115
+Epoch 6
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 67.74it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.37193211913108826
+Train loss: 2.4380135536193848; Val loss: 2.7040255069732666
+Epoch 7
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 53.60it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3844616115093231
+Train loss: 2.3945813179016113; Val loss: 2.692686080932617
+Epoch 8
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 40.41it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3825084865093231
+Train loss: 2.348989248275757; Val loss: 2.659161329269409
+Epoch 9
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 49.85it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.39926666021347046
+Train loss: 2.314401149749756; Val loss: 2.638636827468872
+Epoch 10
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 55.11it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4078899025917053
+Train loss: 2.2674074172973633; Val loss: 2.6203036308288574
+Epoch 11
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 66.80it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4128556251525879
+Train loss: 2.216527223587036; Val loss: 2.569784164428711
+Epoch 12
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 30.83it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.42123931646347046
+Train loss: 2.1738665103912354; Val loss: 2.571105718612671
+Epoch 13
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 52.24it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4240031838417053
+Train loss: 2.152010202407837; Val loss: 2.5800697803497314
+Epoch 14
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 62.20it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.42954009771347046
+Train loss: 2.1001391410827637; Val loss: 2.552558422088623
+Epoch 15
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 67.46it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4440227150917053
+Train loss: 2.037370443344116; Val loss: 2.500753402709961
+Epoch 16
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 67.45it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4511810839176178
+Train loss: 1.9960017204284668; Val loss: 2.485415458679199
+Epoch 17
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 66.74it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4479289650917053
+Train loss: 1.9561265707015991; Val loss: 2.475790023803711
+Epoch 18
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 49.42it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4611862301826477
+Train loss: 1.91163969039917; Val loss: 2.4427473545074463
+Epoch 19
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 37.37it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4768112301826477
+Train loss: 1.8700095415115356; Val loss: 2.412086009979248
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;train_loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Set&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Validation Set&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;CrossEntropy Loss&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fe783591fb355e50a701b213e716cdb2b1a6752d1a14904cc9f745ccc5b0792e.png" src="../../_images/fe783591fb355e50a701b213e716cdb2b1a6752d1a14904cc9f745ccc5b0792e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_acc</span> <span class="o">=</span> <span class="n">eval_model_accuracy</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">train_dataset</span><span class="p">)</span>
+<span class="n">val_acc</span> <span class="o">=</span> <span class="n">eval_model_accuracy</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">val_dataset</span><span class="p">)</span>
+<span class="n">test_acc</span> <span class="o">=</span> <span class="n">eval_model_accuracy</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">train_acc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">val_acc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_acc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6879233121871948
+0.5322777032852173
+0.5316687226295471
 </pre></div>
 </div>
 </div>
