@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Application: Predicting Crystal Structure from X-Ray Diffraction Data &#8212; Materials + Machine Learning</title>
+    <title>Application: XRD Crystal Structure Prediction &#8212; Materials + Machine Learning</title>
   
   
   
@@ -70,10 +70,13 @@
                 gtag('config', 'G-MBS9YS5YW0');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'neural_networks/neural_network_applications';</script>
     <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Training Neural Networks" href="training.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -136,8 +139,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -193,7 +194,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
@@ -246,7 +247,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Band Gap Prediction</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -255,9 +256,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/unsupervised_applications.html">Application: Classifying Superconductors</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="neural_networks.html">Neural Networks</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="training.html">Training Neural Networks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: XRD Crystal Structure Prediction</a></li>
 </ul>
 </details></li>
 </ul>
@@ -445,7 +447,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Application: Predicting Crystal Structure from X-Ray Diffraction Data</h1>
+    <h1>Application: XRD Crystal Structure Prediction</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -455,6 +457,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-ray-diffraction-xrd">X-Ray Diffraction (XRD)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
 </ul>
             </nav>
@@ -467,8 +470,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="application-predicting-crystal-structure-from-x-ray-diffraction-data">
-<h1>Application: Predicting Crystal Structure from X-Ray Diffraction Data<a class="headerlink" href="#application-predicting-crystal-structure-from-x-ray-diffraction-data" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="application-xrd-crystal-structure-prediction">
+<h1>Application: XRD Crystal Structure Prediction<a class="headerlink" href="#application-xrd-crystal-structure-prediction" title="Link to this heading">#</a></h1>
+<p>Now that we know how to create and train neural networks in PyTorch, let’s get some practice applying them to solve an important problem in solid state crystallography: predicting crystal symmetries (in particular, the crystal space group) from powder x-ray diffraction patterns.</p>
+<section id="x-ray-diffraction-xrd">
+<h2>X-Ray Diffraction (XRD)<a class="headerlink" href="#x-ray-diffraction-xrd" title="Link to this heading">#</a></h2>
+<p>X-ray crystallography is a powerful technique for characterizing the arangement of atoms in solid structure, first introduced by Paul Ewald and Max von Laue in 1912. It has since been applied to estimate the lattice constants of crystalling solids, and even to obtain the structure of complex organic molecules, such as proteins.</p>
+<p>In X-ray crystallography, an X-ray beam is focused into a crystalline material, causing the beam to diffract from the periodically arranged nucleii at specific angles <span class="math notranslate nohighlight">\(\theta\)</span>. These diffraction angles <span class="math notranslate nohighlight">\(\theta\)</span> are given by Bragg’s diffraction law</p>
+<div class="math notranslate nohighlight">
+\[n \lambda = 2 d\sin(\theta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the wavelength of the incident beam, <span class="math notranslate nohighlight">\(n\)</span> is an integer (the diffraction order), and <span class="math notranslate nohighlight">\(d\)</span> is the distance between two planes of atoms in the material.</p>
+<p><img alt="bragg_diffraction_law" src="../_images/bragg_diffraction_law.png" /></p>
+<p>For each material, there are many different values of <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(d\)</span> that satisfy Bragg’s law, forming diffraction “peaks” at several different angles <span class="math notranslate nohighlight">\(\theta\)</span>. The angle and intensity of these peaks depend on the symmetries and lattice constants of a material; however reverse-engineering the full 3D structure of a crystal from these peaks is known to be a complex problem.</p>
+<p>In this application, we will attempt to use simple neural networks to predict the space group of known materials from their XRD spectrum. The space group of a material describes all of the symmetries of the material’s crystal lattice. For three dimensional materials, there are up to 219 unique space groups our neural network will need to distinguish based on XRD data alone.</p>
 <p>You can download the dataset for this section using the following Python code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
@@ -480,6 +494,7 @@ document.write(`
 </pre></div>
 </div>
 <p>Alternatively, you can download the CSV file directly <a class="reference external" href="https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_cleaned.csv">here</a>.</p>
+</section>
 <section id="loading-the-dataset">
 <h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
@@ -935,6 +950,15 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="training.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Training Neural Networks</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -951,6 +975,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x-ray-diffraction-xrd">X-Ray Diffraction (XRD)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
 </ul>
   </nav></div>

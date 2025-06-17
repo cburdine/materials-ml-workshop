@@ -11,7 +11,16 @@ kernelspec:
 
 # Application: Classifying Superconductors
 
-Now that we have a strong understanding of unsupervised learning, let's apply what we have learned to study a class of materials known as _superconductors_. Superconductors are materials that exhibit zero electrical resistance below a critical temperature $T_c$. Understanding patterns in their compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-$T_c$ behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions to raise the $T_c$ of known superconductors.
+Now that we have a strong understanding of unsupervised learning, let's apply what we have learned to study a class of materials known as _superconductors_. Superconductors are materials that exhibit zero electrical resistance below a critical temperature $T_c$. These materials also exhibit the _Meissner Effect_, meaning they expel magnetic fields within the bulk of the material. This facilitates stable magnetic levitation at temperatures below $T_c$.
+
+```{image} superconductor.png
+:alt: SrTiO3
+:class: bg-primary mb-1
+:width: 250px
+:align: center
+```
+
+Understanding patterns in superconductors' compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-$T_c$ behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions to raise the $T_c$ of known superconductors.
 
 You can download the dataset for this section using the following Python code:
 

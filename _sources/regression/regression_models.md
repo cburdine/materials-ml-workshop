@@ -9,25 +9,25 @@ kernelspec:
   name: python3
 ---
 
-# Application: Bandgap Prediction
+# Application: Band Gap Prediction
 
-Let's now try to tackle a more difficult regression problem: predicting material bandgaps. The bandgap of a material is an important property related to whether or not a material is a conductor: Materials with a zero bandgap are typically conductors, whereas materials with a positive bandgap are insulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the bandgap by examining the largest gap between the energies of two states in the material's _band structure_. For example, the bandgap of one crystalline phase of the insulator SiO$_2$ [(mp-546794)](https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2) is roughly 5.69 eV, which is the difference in band energy at the $\Gamma$ point (shown in purple):
+Let's now try to tackle a more difficult regression problem: predicting electronic band gaps. The band gap of a material is an important property related to whether or not a material is a conductor: Materials with a zero band gap are typically conductors, whereas materials with a positive band gap are insulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the band gap by examining the largest gap between the energies of two states in the material's _band structure_. For example, the band gap of one crystalline phase of the insulator SiO$_2$ [(mp-546794)](https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2) is roughly 5.69 eV, which is the difference in band energy at the $\Gamma$ point (shown in purple):
 
-![SiO2 bandgap](SiO2_band.png)
+![SiO2 band gap](SiO2_band.png)
 
-## Bandgap Dataset
+## Band Gap Dataset
 
 The band gap can be estimated through _ab initio_ calculation methods, such as _density functional theory_ (DFT). In this section, we will use band gap values estimated through DFT calculations as reported in the Materials Project Database.
 
 :::{admonition} Notes about Bandgap Estimation and DFT
 :class: important, dropdown
-For more information on how bandgaps are estimated in the Materials Project, see the [Electronic Structure](https://docs.materialsproject.org/methodology/materials-methodology/electronic-structure) documentation page. Take particular note of the "Computed Gap" versus "Experimental Gap" plot, which reflects a mean absolute error of 0.6 eV:
+For more information on how band gaps are estimated in the Materials Project, see the [Electronic Structure](https://docs.materialsproject.org/methodology/materials-methodology/electronic-structure) documentation page. Take particular note of the "Computed Gap" versus "Experimental Gap" plot, which reflects a mean absolute error of 0.6 eV:
 
-![bandgap errors](bandgap_errs.png)
+![band gap errors](bandgap_errs.png)
 
 (There are some methods in DFT that can correct for this, such as the [PBE0 model](https://pubs.aip.org/aip/jcp/article/110/13/6158/476177/Toward-reliable-density-functional-methods-without) or the [GW approach](https://journals.aps.org/pr/abstract/10.1103/PhysRev.139.A796), but neither of these appear to be used in the Materials Project).
 
-In short, this means that we must be very careful if we want to apply our models from this section to make predictions of real bandgaps measured through experiment, especially insulators with large bandgaps.
+In short, this means that we must be very careful if we want to apply our models from this section to make predictions of real band gaps measured through experiment, especially insulators with large band gaps.
 :::
 
 You can download the dataset for this section using the following Python code:
@@ -71,8 +71,8 @@ There are several different features included in this dataset. Here's a summary 
 * _density_: Density of material (g/cm$^3$)
 * _e_fermi_: Fermi energy (relative to calculated band structure) (eV)
 * _formation_energy_per_atom_: Formation energy per unit cell atom (eV/atom)
-* _bandgap_: Estimated bandgap of the material (eV)
-* _bandgap_direct_: Whether or not the estimated bandgap is direct.
+* _bandgap_: Estimated electronic band gap of the material (eV)
+* _bandgap_direct_: Whether or not the estimated band gap is direct.
 
 The most important features that uniquely identify each material in the dataset are the composition and crystal system of each material. If we want to include this as a feature in a supervised model, we must find a way to convert these feature to a numerical vector. Let's start by listing all of the elements and crystal systems in the dataset:
 
@@ -150,7 +150,7 @@ The label vector $\mathbf{y}$ for each material will contain two values: the ban
 def parse_data_vector(row):
     """ parses x and y vectors from a dataframe row """
     
-    # parse whether or not the bandgap is direct: 
+    # parse whether or not the band gap is direct: 
     bandgap_direct = 1.0 if row['bandgap_direct'] else -1.0
     
     # parse the composition dict:
@@ -229,7 +229,7 @@ def standardize(train_x, val_x, test_x):
 ```
 ## Classifying Metals and Non-Metals
 
-The first supervised learning problem we will examine is discriminating between materials with a bandgap that is zero (i.e. metals) and materials with a bandgap that is nonzero (i.e. insulators). We will start by creating a vector of $y$ values with values of $\pm 1$ indicating whether a material is a metal or nonmetal:
+The first supervised learning problem we will examine is discriminating between materials with a band gap that is zero (i.e. metals) and materials with a band gap that is nonzero (i.e. insulators). We will start by creating a vector of $y$ values with values of $\pm 1$ indicating whether a material is a metal or nonmetal:
 
 ```{code-cell}
 metals_y = np.array([ 1.0 if y[0] <= 0 else -1 for y in data_y])
@@ -280,7 +280,7 @@ print(accuracy)
 
 ## Estimating the Bandgap of Non-Metals:
 
-We have shown that we can classify materials as metals or non-metals with accuracy close to 90%. The next problem we will consider is estimating the bandgap of materials that are either known to be non-metals or are classified by the previous model as such. Let's start by extracting all non-metallic materials with nonzero bandgaps:
+We have shown that we can classify materials as metals or non-metals with accuracy close to 90%. The next problem we will consider is estimating the band gap of materials that are either known to be non-metals or are classified by the previous model as such. Let's start by extracting all non-metallic materials with nonzero band gaps:
 
 ```{code-cell}
 :tags: [hide-input]
@@ -306,7 +306,7 @@ scaler, train_z, val_z, test_z = \
 
 ## Ridge Regression Model:
 
-Since predicting the bandgap is a regression problem, a good model to start with is ridge regression. We will use [`sklearn.linear_model.Ridge`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html#sklearn-linear-model-ridge):
+Since predicting the band gap is a regression problem, a good model to start with is ridge regression. We will use [`sklearn.linear_model.Ridge`](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html#sklearn-linear-model-ridge):
 
 ```{code-cell}
 :tags: [hide-input]
@@ -362,7 +362,7 @@ print('validation MSE:', val_mse)
 print('validation RMSE/stddev:', np.sqrt(val_mse)/np.std(train_y))
 ```
 
-This is a significant improvement upon the Ridge regression model. Let's also see how well a support vector regression (SVR) model works for bandgap estimation when we use the radial basis function (RBF) kernel. We will use [`sklearn.svm.SVR`](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR). Take note that SVR models may take a few minutes to fit to large datasets:
+This is a significant improvement upon the Ridge regression model. Let's also see how well a support vector regression (SVR) model works for band gap estimation when we use the radial basis function (RBF) kernel. We will use [`sklearn.svm.SVR`](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR). Take note that SVR models may take a few minutes to fit to large datasets:
 
 ### RBF Support Vector Regression
 ```
@@ -408,7 +408,7 @@ test RMSE/stddev:  0.38525067990691425
 
 :::{dropdown} Exercise 1: Classifying Direct vs. Indirect Bandgaps
 
-Let's apply the same techniques we used to classify metallic versus insulating materials to estimate whether a bandgapped material has a direct or indirect bandgap. We can extract the $\mathbf{x}$ and $y$ dataset for this task using the following code:
+Let's apply the same techniques we used to classify metallic versus insulating materials to estimate whether a band-gapped material has a direct or indirect band gap. We can extract the $\mathbf{x}$ and $y$ dataset for this task using the following code:
 
 ```
 direct_gap_x = data_x[data_y[:,0] > 0]
@@ -437,7 +437,7 @@ from sklearn.linear_model import RidgeClassifier
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 
-# get direct bandgap data for materials with nonzero gaps:
+# get direct band gap data for materials with nonzero gaps:
 direct_gap_x = data_x[data_y[:,0] > 0]
 direct_gap_y = data_y[(data_y[:,0] > 0),1]
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Application: Bandgap Prediction &#8212; Materials + Machine Learning</title>
+    <title>Application: Band Gap Prediction &#8212; Materials + Machine Learning</title>
   
   
   
@@ -248,7 +248,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="regression.html">Advanced Regression Models</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Bandgap Prediction</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Band Gap Prediction</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -260,6 +260,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/neural_network_applications.html">Application: XRD Crystal Structure Prediction</a></li>
 </ul>
 </details></li>
 </ul>
@@ -447,7 +448,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Application: Bandgap Prediction</h1>
+    <h1>Application: Band Gap Prediction</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -457,7 +458,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bandgap-dataset">Bandgap Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-gap-dataset">Band Gap Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-metals-and-non-metals">Classifying Metals and Non-Metals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-bandgap-of-non-metals">Estimating the Bandgap of Non-Metals:</a></li>
@@ -484,19 +485,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="application-bandgap-prediction">
-<h1>Application: Bandgap Prediction<a class="headerlink" href="#application-bandgap-prediction" title="Link to this heading">#</a></h1>
-<p>Let’s now try to tackle a more difficult regression problem: predicting material bandgaps. The bandgap of a material is an important property related to whether or not a material is a conductor: Materials with a zero bandgap are typically conductors, whereas materials with a positive bandgap are insulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the bandgap by examining the largest gap between the energies of two states in the material’s <em>band structure</em>. For example, the bandgap of one crystalline phase of the insulator SiO<span class="math notranslate nohighlight">\(_2\)</span> <a class="reference external" href="https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2">(mp-546794)</a> is roughly 5.69 eV, which is the difference in band energy at the <span class="math notranslate nohighlight">\(\Gamma\)</span> point (shown in purple):</p>
-<p><img alt="SiO2 bandgap" src="../_images/SiO2_band.png" /></p>
-<section id="bandgap-dataset">
-<h2>Bandgap Dataset<a class="headerlink" href="#bandgap-dataset" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="application-band-gap-prediction">
+<h1>Application: Band Gap Prediction<a class="headerlink" href="#application-band-gap-prediction" title="Link to this heading">#</a></h1>
+<p>Let’s now try to tackle a more difficult regression problem: predicting electronic band gaps. The band gap of a material is an important property related to whether or not a material is a conductor: Materials with a zero band gap are typically conductors, whereas materials with a positive band gap are insulators (if the gap is large) or semiconductors (if the gap is small). We can estimate the band gap by examining the largest gap between the energies of two states in the material’s <em>band structure</em>. For example, the band gap of one crystalline phase of the insulator SiO<span class="math notranslate nohighlight">\(_2\)</span> <a class="reference external" href="https://next-gen.materialsproject.org/materials/mp-546794?formula=SiO2">(mp-546794)</a> is roughly 5.69 eV, which is the difference in band energy at the <span class="math notranslate nohighlight">\(\Gamma\)</span> point (shown in purple):</p>
+<p><img alt="SiO2 band gap" src="../_images/SiO2_band.png" /></p>
+<section id="band-gap-dataset">
+<h2>Band Gap Dataset<a class="headerlink" href="#band-gap-dataset" title="Link to this heading">#</a></h2>
 <p>The band gap can be estimated through <em>ab initio</em> calculation methods, such as <em>density functional theory</em> (DFT). In this section, we will use band gap values estimated through DFT calculations as reported in the Materials Project Database.</p>
 <div class="important dropdown admonition">
 <p class="admonition-title">Notes about Bandgap Estimation and DFT</p>
-<p>For more information on how bandgaps are estimated in the Materials Project, see the <a class="reference external" href="https://docs.materialsproject.org/methodology/materials-methodology/electronic-structure">Electronic Structure</a> documentation page. Take particular note of the “Computed Gap” versus “Experimental Gap” plot, which reflects a mean absolute error of 0.6 eV:</p>
-<p><img alt="bandgap errors" src="../_images/bandgap_errs.png" /></p>
+<p>For more information on how band gaps are estimated in the Materials Project, see the <a class="reference external" href="https://docs.materialsproject.org/methodology/materials-methodology/electronic-structure">Electronic Structure</a> documentation page. Take particular note of the “Computed Gap” versus “Experimental Gap” plot, which reflects a mean absolute error of 0.6 eV:</p>
+<p><img alt="band gap errors" src="../_images/bandgap_errs.png" /></p>
 <p>(There are some methods in DFT that can correct for this, such as the <a class="reference external" href="https://pubs.aip.org/aip/jcp/article/110/13/6158/476177/Toward-reliable-density-functional-methods-without">PBE0 model</a> or the <a class="reference external" href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.139.A796">GW approach</a>, but neither of these appear to be used in the Materials Project).</p>
-<p>In short, this means that we must be very careful if we want to apply our models from this section to make predictions of real bandgaps measured through experiment, especially insulators with large bandgaps.</p>
+<p>In short, this means that we must be very careful if we want to apply our models from this section to make predictions of real band gaps measured through experiment, especially insulators with large band gaps.</p>
 </div>
 <p>You can download the dataset for this section using the following Python code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
@@ -735,8 +736,8 @@ document.write(`
 <li><p><em>density</em>: Density of material (g/cm<span class="math notranslate nohighlight">\(^3\)</span>)</p></li>
 <li><p><em>e_fermi</em>: Fermi energy (relative to calculated band structure) (eV)</p></li>
 <li><p><em>formation_energy_per_atom</em>: Formation energy per unit cell atom (eV/atom)</p></li>
-<li><p><em>bandgap</em>: Estimated bandgap of the material (eV)</p></li>
-<li><p><em>bandgap_direct</em>: Whether or not the estimated bandgap is direct.</p></li>
+<li><p><em>bandgap</em>: Estimated electronic band gap of the material (eV)</p></li>
+<li><p><em>bandgap_direct</em>: Whether or not the estimated band gap is direct.</p></li>
 </ul>
 <p>The most important features that uniquely identify each material in the dataset are the composition and crystal system of each material. If we want to include this as a feature in a supervised model, we must find a way to convert these feature to a numerical vector. Let’s start by listing all of the elements and crystal systems in the dataset:</p>
 <div class="cell tag_hide-input docutils container">
@@ -843,7 +844,7 @@ Example of a crystal system vector:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parse_data_vector</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; parses x and y vectors from a dataframe row &quot;&quot;&quot;</span>
     
-    <span class="c1"># parse whether or not the bandgap is direct: </span>
+    <span class="c1"># parse whether or not the band gap is direct: </span>
     <span class="n">bandgap_direct</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;bandgap_direct&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.0</span>
     
     <span class="c1"># parse the composition dict:</span>
@@ -939,7 +940,7 @@ data_y shape: (29195, 2)
 </section>
 <section id="classifying-metals-and-non-metals">
 <h2>Classifying Metals and Non-Metals<a class="headerlink" href="#classifying-metals-and-non-metals" title="Link to this heading">#</a></h2>
-<p>The first supervised learning problem we will examine is discriminating between materials with a bandgap that is zero (i.e. metals) and materials with a bandgap that is nonzero (i.e. insulators). We will start by creating a vector of <span class="math notranslate nohighlight">\(y\)</span> values with values of <span class="math notranslate nohighlight">\(\pm 1\)</span> indicating whether a material is a metal or nonmetal:</p>
+<p>The first supervised learning problem we will examine is discriminating between materials with a band gap that is zero (i.e. metals) and materials with a band gap that is nonzero (i.e. insulators). We will start by creating a vector of <span class="math notranslate nohighlight">\(y\)</span> values with values of <span class="math notranslate nohighlight">\(\pm 1\)</span> indicating whether a material is a metal or nonmetal:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metals_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data_y</span><span class="p">])</span>
@@ -989,7 +990,7 @@ data_y shape: (29195, 2)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/0afa8e2d604aab94e7159a52e0b1bc95e725820c258ca017945331a78847dc96.png" src="../_images/0afa8e2d604aab94e7159a52e0b1bc95e725820c258ca017945331a78847dc96.png" />
+<img alt="../_images/2e372c3edf3ab57f7d8873cf3927d7431ada37c38c367e6978b4961f9c39e20f.png" src="../_images/2e372c3edf3ab57f7d8873cf3927d7431ada37c38c367e6978b4961f9c39e20f.png" />
 </div>
 </div>
 <p>From inspecting the confusion matrix, we see that a significant majority of the materials were classified correctly, with almost three times as many metals being predicted as non-metals than non-metals being predicted as metals. We can evaluate the overall validation set accuracy of the model from the confusion matrix as follows:</p>
@@ -1001,7 +1002,7 @@ data_y shape: (29195, 2)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8716174556415702
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8705213400013702
 </pre></div>
 </div>
 </div>
@@ -1009,7 +1010,7 @@ data_y shape: (29195, 2)
 </section>
 <section id="estimating-the-bandgap-of-non-metals">
 <h2>Estimating the Bandgap of Non-Metals:<a class="headerlink" href="#estimating-the-bandgap-of-non-metals" title="Link to this heading">#</a></h2>
-<p>We have shown that we can classify materials as metals or non-metals with accuracy close to 90%. The next problem we will consider is estimating the bandgap of materials that are either known to be non-metals or are classified by the previous model as such. Let’s start by extracting all non-metallic materials with nonzero bandgaps:</p>
+<p>We have shown that we can classify materials as metals or non-metals with accuracy close to 90%. The next problem we will consider is estimating the band gap of materials that are either known to be non-metals or are classified by the previous model as such. Let’s start by extracting all non-metallic materials with nonzero band gaps:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1051,7 +1052,7 @@ bandgap_y shape: (11464,)
 </section>
 <section id="ridge-regression-model">
 <h2>Ridge Regression Model:<a class="headerlink" href="#ridge-regression-model" title="Link to this heading">#</a></h2>
-<p>Since predicting the bandgap is a regression problem, a good model to start with is ridge regression. We will use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html#sklearn-linear-model-ridge"><code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Ridge</span></code></a>:</p>
+<p>Since predicting the band gap is a regression problem, a good model to start with is ridge regression. We will use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html#sklearn-linear-model-ridge"><code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Ridge</span></code></a>:</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1082,10 +1083,10 @@ bandgap_y shape: (11464,)
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8641907852724516
-training MSE: 0.4424594636719709
-validation MSE: 0.4365112195021315
-validation RMSE/stddev: 0.7645186322593228
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8678504945540614
+training MSE: 0.4499886139476459
+validation MSE: 0.43397360336734286
+validation RMSE/stddev: 0.7590785892645704
 </pre></div>
 </div>
 </div>
@@ -1129,15 +1130,15 @@ validation RMSE/stddev: 0.7645186322593228
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8641907852724516
-training MSE: 0.08849978963941055
-validation MSE: 0.12927006807085878
-validation RMSE/stddev: 0.4160440904048659
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training stddev: 0.8678504945540614
+training MSE: 0.08947073618232025
+validation MSE: 0.1266883834932772
+validation RMSE/stddev: 0.41013183588016516
 </pre></div>
 </div>
 </div>
 </div>
-<p>This is a significant improvement upon the Ridge regression model. Let’s also see how well a support vector regression (SVR) model works for bandgap estimation when we use the radial basis function (RBF) kernel. We will use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVR</span></code></a>. Take note that SVR models may take a few minutes to fit to large datasets:</p>
+<p>This is a significant improvement upon the Ridge regression model. Let’s also see how well a support vector regression (SVR) model works for band gap estimation when we use the radial basis function (RBF) kernel. We will use <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVR</span></code></a>. Take note that SVR models may take a few minutes to fit to large datasets:</p>
 <section id="rbf-support-vector-regression">
 <h3>RBF Support Vector Regression<a class="headerlink" href="#rbf-support-vector-regression" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVR</span>
@@ -1184,7 +1185,7 @@ validation RMSE/stddev: 0.4160440904048659
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Exercise 1: Classifying Direct vs. Indirect Bandgaps</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">Let’s apply the same techniques we used to classify metallic versus insulating materials to estimate whether a bandgapped material has a direct or indirect bandgap. We can extract the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> dataset for this task using the following code:</p>
+<p class="sd-card-text">Let’s apply the same techniques we used to classify metallic versus insulating materials to estimate whether a band-gapped material has a direct or indirect band gap. We can extract the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> dataset for this task using the following code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">direct_gap_x</span> <span class="o">=</span> <span class="n">data_x</span><span class="p">[</span><span class="n">data_y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">direct_gap_y</span> <span class="o">=</span> <span class="n">data_y</span><span class="p">[(</span><span class="n">data_y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span><span class="mi">1</span><span class="p">]</span>
 
@@ -1212,7 +1213,7 @@ validation RMSE/stddev: 0.4160440904048659
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="c1"># get direct bandgap data for materials with nonzero gaps:</span>
+<span class="c1"># get direct band gap data for materials with nonzero gaps:</span>
 <span class="n">direct_gap_x</span> <span class="o">=</span> <span class="n">data_x</span><span class="p">[</span><span class="n">data_y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">direct_gap_y</span> <span class="o">=</span> <span class="n">data_y</span><span class="p">[(</span><span class="n">data_y</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span><span class="mi">1</span><span class="p">]</span>
 
@@ -1254,9 +1255,9 @@ validation RMSE/stddev: 0.4160440904048659
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a605d63a12c77ea64ce011ac1b493c25f509e7c1a7b1141977f1b3ba157e238a.png" src="../_images/a605d63a12c77ea64ce011ac1b493c25f509e7c1a7b1141977f1b3ba157e238a.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7260990928122819
-test set accuracy: 0.7144103279832519
+<img alt="../_images/f9ca016c0b4fd48576a07442653e9974d8b1ed25ea299a04f061f51d086fbabf.png" src="../_images/f9ca016c0b4fd48576a07442653e9974d8b1ed25ea299a04f061f51d086fbabf.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>validation set accuracy: 0.7199930216329379
+test set accuracy: 0.7245289602233077
 </pre></div>
 </div>
 </div>
@@ -1331,7 +1332,7 @@ test set accuracy: 0.7144103279832519
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bandgap-dataset">Bandgap Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-gap-dataset">Band Gap Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-dataset">Loading the Dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-metals-and-non-metals">Classifying Metals and Non-Metals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-the-bandgap-of-non-metals">Estimating the Bandgap of Non-Metals:</a></li>

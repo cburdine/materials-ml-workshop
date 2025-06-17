@@ -1,6 +1,6 @@
 ---
 jupytext:
-  text_representation:
+  text_representation: 
     extension: .md
     format_name: myst
 kernelspec:
@@ -9,7 +9,26 @@ kernelspec:
   name: python3
 ---
 
-# Application: Predicting Crystal Structure from X-Ray Diffraction Data
+# Application: XRD Crystal Structure Prediction
+
+Now that we know how to create and train neural networks in PyTorch, let's get some practice applying them to solve an important problem in solid state crystallography: predicting crystal symmetries (in particular, the crystal space group) from powder x-ray diffraction patterns.
+
+## X-Ray Diffraction (XRD)
+
+X-ray crystallography is a powerful technique for characterizing the arangement of atoms in solid structure, first introduced by Paul Ewald and Max von Laue in 1912. It has since been applied to estimate the lattice constants of crystalling solids, and even to obtain the structure of complex organic molecules, such as proteins.
+
+In X-ray crystallography, an X-ray beam is focused into a crystalline material, causing the beam to diffract from the periodically arranged nucleii at specific angles $\theta$. These diffraction angles $\theta$ are given by Bragg's diffraction law
+
+$$n \lambda = 2 d\sin(\theta)$$
+
+where $\lambda$ is the wavelength of the incident beam, $n$ is an integer (the diffraction order), and $d$ is the distance between two planes of atoms in the material.
+
+![bragg_diffraction_law](bragg_diffraction_law.png)
+
+For each material, there are many different values of $n$ and $d$ that satisfy Bragg's law, forming diffraction "peaks" at several different angles $\theta$. The angle and intensity of these peaks depend on the symmetries and lattice constants of a material; however reverse-engineering the full 3D structure of a crystal from these peaks is known to be a complex problem.
+
+In this application, we will attempt to use simple neural networks to predict the space group of known materials from their XRD spectrum. The space group of a material describes all of the symmetries of the material's crystal lattice. For three dimensional materials, there are up to 219 unique space groups our neural network will need to distinguish based on XRD data alone.
+
 
 You can download the dataset for this section using the following Python code:
 

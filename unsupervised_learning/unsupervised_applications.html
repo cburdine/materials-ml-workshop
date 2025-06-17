@@ -248,7 +248,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Band Gap Prediction</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -260,6 +260,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/neural_network_applications.html">Application: XRD Crystal Structure Prediction</a></li>
 </ul>
 </details></li>
 </ul>
@@ -478,7 +479,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="application-classifying-superconductors">
 <h1>Application: Classifying Superconductors<a class="headerlink" href="#application-classifying-superconductors" title="Link to this heading">#</a></h1>
-<p>Now that we have a strong understanding of unsupervised learning, let’s apply what we have learned to study a class of materials known as <em>superconductors</em>. Superconductors are materials that exhibit zero electrical resistance below a critical temperature <span class="math notranslate nohighlight">\(T_c\)</span>. Understanding patterns in their compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-<span class="math notranslate nohighlight">\(T_c\)</span> behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions to raise the <span class="math notranslate nohighlight">\(T_c\)</span> of known superconductors.</p>
+<p>Now that we have a strong understanding of unsupervised learning, let’s apply what we have learned to study a class of materials known as <em>superconductors</em>. Superconductors are materials that exhibit zero electrical resistance below a critical temperature <span class="math notranslate nohighlight">\(T_c\)</span>. These materials also exhibit the <em>Meissner Effect</em>, meaning they expel magnetic fields within the bulk of the material. This facilitates stable magnetic levitation at temperatures below <span class="math notranslate nohighlight">\(T_c\)</span>.</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/superconductor.png"><img alt="SrTiO3" class="bg-primary mb-1 align-center" src="../_images/superconductor.png" style="width: 250px;" />
+</a>
+<p>Understanding patterns in superconductors’ compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-<span class="math notranslate nohighlight">\(T_c\)</span> behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions to raise the <span class="math notranslate nohighlight">\(T_c\)</span> of known superconductors.</p>
 <p>You can download the dataset for this section using the following Python code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
@@ -824,7 +828,7 @@ appearing in the dataset. We will also create a function called <code class="doc
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_24378/1067493337.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_61613/1067493337.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
   Tc_density /= np.trapz(Tc_density, Tc_eval_pts)
 </pre></div>
 </div>
@@ -1111,7 +1115,7 @@ appearing in the dataset. We will also create a function called <code class="doc
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/cc0a0bf519d9e5f1f1644ac5b1fd4388a0d624b662928b0a93d0627e26f8ae2f.png" src="../_images/cc0a0bf519d9e5f1f1644ac5b1fd4388a0d624b662928b0a93d0627e26f8ae2f.png" />
+<img alt="../_images/5d1c05d29fb5b563dc6b2b7ecbd33fd3a228470613de9e19f0c375c86e1ab3fc.png" src="../_images/5d1c05d29fb5b563dc6b2b7ecbd33fd3a228470613de9e19f0c375c86e1ab3fc.png" />
 </div>
 </div>
 <p>To interpret the clusters, we display representative samples from each. You might notice that some clusters are enriched in certain elements or tend to have higher or lower <span class="math notranslate nohighlight">\(T_c\)</span>. These clusters could guide targeted exploration in materials discovery:</p>
@@ -1167,39 +1171,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>10629</th>
-      <td>Si 2 H 6</td>
-      <td>174.0</td>
-      <td>275.0</td>
-      <td>10.1016/j.physc.2012.12.002</td>
+      <th>15315</th>
+      <td>Co 15</td>
+      <td>17.00</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.83.224505</td>
     </tr>
     <tr>
-      <th>17403</th>
-      <td>H 2 S</td>
-      <td>203.0</td>
-      <td>170.0</td>
-      <td>10.1103/physrevb.93.184510</td>
+      <th>7852</th>
+      <td>Ce O Bi S 2</td>
+      <td>1.20</td>
+      <td>0.0</td>
+      <td>10.1016/j.ssc.2016.07.017</td>
     </tr>
     <tr>
-      <th>5321</th>
-      <td>Si H 4 (H 2) 2</td>
-      <td>107.0</td>
-      <td>250.0</td>
-      <td>10.1016/j.ssc.2012.10.015</td>
+      <th>18094</th>
+      <td>Y 4 Co 3</td>
+      <td>2.50</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.83.094408</td>
     </tr>
     <tr>
-      <th>2732</th>
-      <td>La H 10</td>
-      <td>233.0</td>
-      <td>170.0</td>
-      <td>10.7566/jpsj.84.104706</td>
+      <th>20329</th>
+      <td>Ce Pt 3 Si</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.97.214518</td>
     </tr>
     <tr>
-      <th>12389</th>
-      <td>H 2 S</td>
-      <td>203.0</td>
-      <td>155.0</td>
-      <td>10.1103/physrevx.8.031067</td>
+      <th>19698</th>
+      <td>Y 9 Co 7</td>
+      <td>3.00</td>
+      <td>0.0</td>
+      <td>10.1088/0953-2048/22/3/034008</td>
     </tr>
   </tbody>
 </table>
@@ -1232,39 +1236,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>23276</th>
-      <td>Rb Gd 2 Fe 4 As 4 O 2</td>
-      <td>35.0</td>
+      <th>13940</th>
+      <td>Na 2 Cs C 60</td>
+      <td>12.0</td>
       <td>0.0</td>
-      <td>10.1016/j.physc.2018.02.002</td>
+      <td>10.1103/physrevlett.86.4680</td>
     </tr>
     <tr>
-      <th>20338</th>
-      <td>Fe Se</td>
-      <td>32.0</td>
+      <th>14626</th>
+      <td>Mg B 2</td>
+      <td>39.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.85.214508</td>
+      <td>10.1088/0953-2048/16/2/316</td>
     </tr>
     <tr>
-      <th>16205</th>
-      <td>La Fe As O 0.9 F 0.1</td>
-      <td>26.0</td>
+      <th>12620</th>
+      <td>Ba Ir 2 P 2</td>
+      <td>2.1</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.79.180502</td>
+    </tr>
+    <tr>
+      <th>16545</th>
+      <td>Ta Nb</td>
+      <td>6.9</td>
       <td>0.0</td>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>11492</th>
-      <td>Rb</td>
-      <td>4.5</td>
+      <th>2582</th>
+      <td>S</td>
+      <td>60.0</td>
       <td>0.0</td>
-      <td>10.1016/j.physc.2007.03.023</td>
-    </tr>
-    <tr>
-      <th>2325</th>
-      <td>Li Fe As</td>
-      <td>17.6</td>
-      <td>0.0</td>
-      <td>10.1088/1367-2630/15/7/073029</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -1297,39 +1301,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>21179</th>
-      <td>Y Ba 2 Cu 3 O 7</td>
-      <td>91.0</td>
+      <th>18898</th>
+      <td>Y Ba 2 Cu 3 O 6.95</td>
+      <td>93.0</td>
       <td>0.0</td>
-      <td>10.1038/25482</td>
+      <td>10.1155/2010/423725</td>
     </tr>
     <tr>
-      <th>9157</th>
+      <th>18837</th>
       <td>Bi 2 Sr 2 Ca Cu 2 O 8</td>
-      <td>90.0</td>
+      <td>65.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.78.054523</td>
+      <td>10.1103/physrevb.75.174506</td>
     </tr>
     <tr>
-      <th>346</th>
-      <td>Sr Ti O 3</td>
-      <td>0.7</td>
+      <th>15285</th>
+      <td>Sr 2 Sc O 3 Fe P</td>
+      <td>15.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.84.205111</td>
+      <td>10.1088/0953-8984/25/42/425701</td>
     </tr>
     <tr>
-      <th>17434</th>
-      <td>Y Ba 2 Cu 3 O 6.5</td>
-      <td>52.0</td>
+      <th>2330</th>
+      <td>Sr 2 Ru O 4</td>
+      <td>1.5</td>
       <td>0.0</td>
-      <td>10.1143/jpsj.73.991</td>
+      <td>10.1143/jpsj.71.1993</td>
     </tr>
     <tr>
-      <th>21511</th>
-      <td>(Ba K) (Pb Bi) O 3</td>
-      <td>40.0</td>
+      <th>5207</th>
+      <td>Y Ba 2 (Cu 0.97 Ni 0.03) 3 O 7</td>
+      <td>80.0</td>
       <td>0.0</td>
-      <td>10.1080/14786430412331314645</td>
+      <td>10.1103/physrevlett.84.5900</td>
     </tr>
   </tbody>
 </table>
@@ -1362,39 +1366,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>12906</th>
-      <td>Ce Ni As O</td>
-      <td>30.0</td>
-      <td>0.0</td>
-      <td>10.1088/0953-8984/23/17/175701</td>
+      <th>9589</th>
+      <td>Ba Fe 2 As 2</td>
+      <td>29.0</td>
+      <td>2.8</td>
+      <td>10.1209/0295-5075/87/17004</td>
     </tr>
     <tr>
-      <th>13416</th>
-      <td>Ce Co In 5</td>
-      <td>2.3</td>
+      <th>9441</th>
+      <td>Fe Se</td>
+      <td>65.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevlett.96.117006</td>
+      <td>10.1016/j.jssc.2016.04.008</td>
     </tr>
     <tr>
-      <th>18802</th>
-      <td>Ce Ir In 5</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>10.1209/epl/i2001-00161-8</td>
-    </tr>
-    <tr>
-      <th>7886</th>
-      <td>Ce Cu 2 Si 2</td>
+      <th>8098</th>
+      <td>Ba Ni 2 As 2</td>
       <td>0.7</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.69.024508</td>
+      <td>10.1103/physrevmaterials.1.064801</td>
     </tr>
     <tr>
-      <th>3156</th>
-      <td>Nd Ir 3</td>
-      <td>10.6</td>
+      <th>6440</th>
+      <td>Fe Se</td>
+      <td>45.0</td>
+      <td>17.8</td>
+      <td>10.7566/jpsj.84.063701</td>
+    </tr>
+    <tr>
+      <th>9396</th>
+      <td>Sr 0.6 K 0.4 Fe 2 As 2</td>
+      <td>34.0</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.100.214514</td>
+      <td>10.1088/0953-2048/23/5/054010</td>
     </tr>
   </tbody>
 </table>
@@ -1427,39 +1431,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>23590</th>
-      <td>Mg B 2</td>
-      <td>39.0</td>
+      <th>2128</th>
+      <td>W 2 N 3</td>
+      <td>0.90</td>
       <td>0.0</td>
-      <td>10.1103/physrevlett.86.1877</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>10136</th>
-      <td>Mg B 2</td>
-      <td>36.0</td>
+      <th>9998</th>
+      <td>V 3 Ga</td>
+      <td>16.00</td>
       <td>0.0</td>
-      <td>10.1088/0953-2048/21/3/032001</td>
+      <td>10.1103/physrevb.95.024514</td>
     </tr>
     <tr>
-      <th>21483</th>
-      <td>Mg B 2</td>
-      <td>55.0</td>
+      <th>21303</th>
+      <td>K Os 2 O 6</td>
+      <td>9.60</td>
       <td>0.0</td>
-      <td>10.1103/physrevb.82.094520</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>6983</th>
-      <td>Mg B 2</td>
-      <td>38.5</td>
+      <th>10418</th>
+      <td>Rb V 3 Sb 5</td>
+      <td>0.93</td>
       <td>0.0</td>
-      <td>10.1016/j.physc.2007.08.011</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>2065</th>
-      <td>Mg B 2</td>
-      <td>39.2</td>
-      <td>0.8</td>
-      <td>10.1007/978-1-4899-2379-0_5</td>
+      <th>12257</th>
+      <td>Nb N</td>
+      <td>14.50</td>
+      <td>0.0</td>
+      <td>10.1063/1.5031904</td>
     </tr>
   </tbody>
 </table>
@@ -1492,39 +1496,39 @@ appearing in the dataset. We will also create a function called <code class="doc
   </thead>
   <tbody>
     <tr>
-      <th>94</th>
-      <td>Nb</td>
-      <td>9.10</td>
-      <td>0.0</td>
-      <td>10.1109/lmag.2019.2955419</td>
+      <th>392</th>
+      <td>La H 10</td>
+      <td>260.0</td>
+      <td>170.0</td>
+      <td>10.1103/physrevb.46.12196</td>
     </tr>
     <tr>
-      <th>7279</th>
-      <td>Ag</td>
-      <td>52.00</td>
-      <td>0.0</td>
-      <td>10.1016/j.physc.2009.03.039</td>
+      <th>2730</th>
+      <td>La H 10</td>
+      <td>260.0</td>
+      <td>170.0</td>
+      <td>10.7566/jpsj.84.104706</td>
     </tr>
     <tr>
-      <th>17069</th>
-      <td>Ru</td>
-      <td>0.50</td>
-      <td>0.0</td>
-      <td>10.1103/physrevb.67.214518</td>
+      <th>3719</th>
+      <td>H 2 S</td>
+      <td>80.0</td>
+      <td>160.0</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>3603</th>
-      <td>La Ni As O</td>
-      <td>2.75</td>
-      <td>0.0</td>
-      <td>10.1088/0953-2048/29/4/045008</td>
+      <th>16457</th>
+      <td>H 2 S</td>
+      <td>200.0</td>
+      <td>170.0</td>
+      <td>10.1002/chin.201621003</td>
     </tr>
     <tr>
-      <th>9243</th>
-      <td>Cl 2</td>
-      <td>35.00</td>
-      <td>0.0</td>
-      <td>10.1016/j.physc.2004.12.015</td>
+      <th>16441</th>
+      <td>Si H 3</td>
+      <td>139.0</td>
+      <td>275.0</td>
+      <td>10.1103/physrevb.96.064517</td>
     </tr>
   </tbody>
 </table>
