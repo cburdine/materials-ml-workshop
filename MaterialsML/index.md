@@ -26,9 +26,9 @@ You can reach the corresponding author of this workshop at:
 | *Week 2*                                                                                      | 
 | Day 6         | 06/16/2025 (2:00-4:00 PM) | Introduction to ML, Supervised Learning           |
 | Day 7         | 06/17/2025 (2:00-4:00 PM) | Advanced Regression Models                        |
-| Day 8         | 06/18/2025 (2:00-4:00 PM) | Unsupervised Learning                             |
-| Day 9         | 06/19/2025 (2:00-4:00 PM) | Neural Networks                                   |
-| Day 10        | 06/20/2025 (2:00-4:00 PM) | Advanced Applications in Materials Science        |
+| Day 8         | 06/18/2025 (2:00-<b style="color:red">5:00 PM</b>) | Unsupervised Learning    |
+| <s>Day 9</s>  | <s>06/19/2025 (2:00-4:00 PM)</s> | <s>Neural Networks</s>                     |
+| Day 10        | 06/20/2025 (2:00-<b style="color:red">5:00 PM</b>) | Neural Networks, Advanced Applications |
 
 ## Workshop Session Slides
 
@@ -46,13 +46,13 @@ You can access the slides from the workshop as they become available here:
 
 * Day 6: <a href="./slides_notebooks/Day 6 2025.slides.html">Introduction to ML | Supervised Learning</a>
 
-* Day 7: Advanced Regression Models
+* Day 7: <a href="./slides_notebooks/Day 7 2025.slides.html">Advanced Regression Models</a>
 
-* Day 8: Unsupervised Learning
+* Day 8: <a href="./slides_notebooks/Day 8 2025.slides.html">Unsupervised Learning</a>
 
-* Day 9: Neural Networks
+* <s>Day 9: Neural Networks</s>
 
-* Day 10: Advanced Applications in Materials Science
+* Day 10: Neural Networks | Advanced Applications
 
 ## Workshop Recordings
 
