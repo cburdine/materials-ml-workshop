@@ -104,11 +104,11 @@ plt.show()
 
 The K-means algorithm is quite useful for segmenting data into clusters, which can be useful for classifying both known and unknown data points. However, when encountering new or unseen data points it can be helpful instructive to identify new data points that lie outside the distribution of previously data points. This task is referred to as _anomaly detection_, and can be necessary for identifying outlier datapoints that may require special treatment or further investigation. In the materials sciences, outlier detection is crucial for identifying materials with exceptionally unique properties, or for checking that experimental data lies within the range of values predicted by some model or underlying theory. 
 
-A simple way of identifying anomalous datapoints is to estimate the underlying probability distribution $p(x)$ of known data points over the space of possible model inputs $\mathcal{X}$. This allows for the estimation of the likelihood $p(x')$ for some new data point $x'$ relative to the likelihood $p(x)$ of any previously seen datapoint $x$. If the space of features $\mathcal{X}$ contains continuous quantities, the underlying distribution $p(x)$ can be straightforwardly approximated using [_kernel density estimation_ (KDE)](https://en.wikipedia.org/wiki/Kernel_density_estimation). In KDE, $p(x)$ is estimated as an equally-weighted sum of probability distributions $K(x)$ centered at each data point $x_n$ with a fixed width parameter $\alpha$:
+A simple way of identifying anomalous datapoints is to estimate the underlying probability distribution $p(x)$ of known data points over the space of possible model inputs $\mathcal{X}$. This allows for the estimation of the likelihood $p(x')$ for some new data point $x'$ relative to the likelihood $p(x)$ of a previously seen datapoint $x$. If the space of features $\mathcal{X}$ contains continuous quantities, the underlying distribution $p(x)$ can be straightforwardly approximated using [_kernel density estimation_ (KDE)](https://en.wikipedia.org/wiki/Kernel_density_estimation). In KDE, $p(x)$ is estimated as an equally-weighted sum of probability distributions $K(x)$ centered at each data point $x_n$ with a fixed width parameter $\alpha$:
 
 $$p(\mathbf{x}) = \frac{1}{N \alpha^d}\sum_{n=1}^N K\left(\frac{\mathbf{x} - \mathbf{x}_n}{\alpha}\right)$$
 
-where $d$ is the dimension of $\mathcal{X}$. A popular choice of $K(\mathbf{x})$ is the multivariate Gaussian function:
+Above, $d$ is the dimension of $\mathcal{X}$. A popular choice of $K(\mathbf{x})$ is the Gaussian function:
 
 $$ K(\mathbf{x}) = \frac{1}{(2\pi)^{d/2}}\exp\left(-\frac{1}{2}\Vert \mathbf{x}\Vert^2\right).$$
 
