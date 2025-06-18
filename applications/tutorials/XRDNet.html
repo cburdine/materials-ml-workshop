@@ -246,7 +246,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../regression/kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../regression/regression_models.html">Application: Band Gap Prediction</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -468,7 +468,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;xrd_dataset_clean.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrd_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;xrd_dataset_full.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -503,8 +503,8 @@ document.write(`
       <th>composition</th>
       <th>crystal_system</th>
       <th>symmetry_symbol</th>
-      <th>volume</th>
-      <th>density</th>
+      <th>cell_params</th>
+      <th>energy_above_hull</th>
       <th>xray_peaks</th>
       <th>xray_intensities</th>
     </tr>
@@ -512,63 +512,63 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
-      <td>mp-1005</td>
-      <td>FeP</td>
-      <td>{'Fe': 1, 'P': 1}</td>
-      <td>Orthorhombic</td>
-      <td>Pnma</td>
-      <td>90.583862</td>
-      <td>6.366076</td>
-      <td>[23.15086164,31.02195798,33.23866128,34.822846...</td>
-      <td>[4.73131274,17.6544138,71.4334109,21.8151441,1...</td>
+      <td>mp-676840</td>
+      <td>Ag13(PbO3)6</td>
+      <td>{'Ag': 26, 'Pb': 12, 'O': 36}</td>
+      <td>triclinic</td>
+      <td>P1</td>
+      <td>(6.002268, 10.397799745616618, 19.466327337319...</td>
+      <td>0.007080</td>
+      <td>[4.539,8.504,9.086,9.625,9.662,12.428,12.486,1...</td>
+      <td>[2.848,0.094,6.001,3.006,2.908,4.037,4.086,46....</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>mp-1006367</td>
-      <td>Ce2HfSe5</td>
-      <td>{'Ce': 2, 'Hf': 1, 'Se': 5}</td>
-      <td>Orthorhombic</td>
-      <td>Pnma</td>
-      <td>785.754385</td>
-      <td>7.215011</td>
-      <td>[13.59855865,14.68007171,15.5587516,17.2161627...</td>
-      <td>[9.04260718,3.88889592,14.8704078,0.0717627581...</td>
+      <td>mp-685283</td>
+      <td>Ag13Bi15I64</td>
+      <td>{'Ag': 13, 'Bi': 15, 'I': 64}</td>
+      <td>triclinic</td>
+      <td>P1</td>
+      <td>(8.894472385608267, 9.034189542918936, 59.5692...</td>
+      <td>0.083551</td>
+      <td>[1.485,2.970,4.455,5.941,7.429,8.917,10.407,11...</td>
+      <td>[100.000,0.282,0.843,0.044,0.360,0.059,2.260,0...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>mp-1001606</td>
-      <td>LuFeC2</td>
-      <td>{'Lu': 1, 'Fe': 1, 'C': 2}</td>
-      <td>Orthorhombic</td>
-      <td>Amm2</td>
-      <td>45.919844</td>
-      <td>9.215206</td>
-      <td>[24.87354653,25.79708699,30.23085522,36.139916...</td>
-      <td>[39.06976227,9.24752455,24.85129267,100.0,18.6...</td>
+      <td>mp-1229151</td>
+      <td>Ag15S5I4Br</td>
+      <td>{'Ag': 15, 'S': 5, 'I': 4, 'Br': 1}</td>
+      <td>triclinic</td>
+      <td>P1</td>
+      <td>(6.993913570662637, 8.558995140558554, 10.9872...</td>
+      <td>0.065281</td>
+      <td>[8.805,10.757,11.873,13.371,13.441,15.703,16.3...</td>
+      <td>[0.410,0.293,0.217,0.223,0.179,0.159,0.162,0.1...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>mp-1001613</td>
-      <td>LuGa</td>
-      <td>{'Lu': 1, 'Ga': 1}</td>
-      <td>Orthorhombic</td>
-      <td>Cmcm</td>
-      <td>87.819318</td>
-      <td>9.253483</td>
-      <td>[16.89543051,22.68791393,28.22757053,32.128373...</td>
-      <td>[0.568120675,9.04300155,29.5353313,100.0,39.95...</td>
+      <td>mp-759792</td>
+      <td>Ag2B8O13</td>
+      <td>{'Ag': 8, 'B': 32, 'O': 52}</td>
+      <td>triclinic</td>
+      <td>P1</td>
+      <td>(7.898226, 10.663953129513134, 12.038956354262...</td>
+      <td>0.011548</td>
+      <td>[7.451,8.414,10.253,11.203,12.162,13.467,13.46...</td>
+      <td>[2.472,0.055,0.002,0.459,0.076,33.647,27.434,8...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>mp-1008624</td>
-      <td>YBiPd</td>
-      <td>{'Y': 1, 'Bi': 1, 'Pd': 1}</td>
-      <td>Cubic</td>
-      <td>F-43m</td>
-      <td>74.987877</td>
-      <td>8.952998</td>
-      <td>[23.01240126,26.63332165,38.0207848,44.9107308...</td>
-      <td>[36.27131039,27.19850555,100.0,19.56480595,8.0...</td>
+      <td>mp-686742</td>
+      <td>Ag2H21N7(ClO4)2</td>
+      <td>{'Ag': 2, 'H': 21, 'N': 7, 'Cl': 2, 'O': 8}</td>
+      <td>triclinic</td>
+      <td>P1</td>
+      <td>(8.185132, 8.714175033958062, 9.08744340539081...</td>
+      <td>0.700030</td>
+      <td>[10.854,10.961,11.426,11.674,14.809,15.183,15....</td>
+      <td>[8.524,100.000,65.581,91.596,2.314,4.840,1.231...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -583,68 +583,68 @@ document.write(`
       <td>...</td>
     </tr>
     <tr>
-      <th>16420</th>
-      <td>mp-1213830</td>
-      <td>Ce3W(ClO2)3</td>
-      <td>{'Ce': 3, 'W': 1, 'Cl': 3, 'O': 6}</td>
-      <td>Hexagonal</td>
-      <td>P6_3/m</td>
-      <td>408.805926</td>
-      <td>6.552238</td>
-      <td>[10.94822859,19.02128174,19.71983192,21.998023...</td>
-      <td>[54.0912233,1.50813133,2.77921414,4.13294744,4...</td>
+      <th>91140</th>
+      <td>mp-1364038</td>
+      <td>Zn3Si3(SnO6)2</td>
+      <td>{'Zn': 24, 'Si': 24, 'Sn': 16, 'O': 96}</td>
+      <td>cubic</td>
+      <td>Ia-3d</td>
+      <td>(12.35908, 12.35908, 12.35908, 90.0, 90.0, 90.0)</td>
+      <td>0.308748</td>
+      <td>[17.577,20.324,26.994,28.897,32.396,34.024,35....</td>
+      <td>[5.740,45.839,4.501,67.368,55.614,0.429,100.00...</td>
     </tr>
     <tr>
-      <th>16421</th>
-      <td>mp-1191620</td>
-      <td>PuB4Ru</td>
-      <td>{'Pu': 1, 'B': 4, 'Ru': 1}</td>
-      <td>Orthorhombic</td>
-      <td>Pbam</td>
-      <td>244.423386</td>
-      <td>10.552355</td>
-      <td>[15.29269094,16.67763625,21.34936852,25.258563...</td>
-      <td>[2.17205238,6.61441181,20.8615588,100.0,34.133...</td>
+      <th>91141</th>
+      <td>mp-1163950</td>
+      <td>Zn3Si3(WO6)2</td>
+      <td>{'Zn': 24, 'Si': 24, 'W': 16, 'O': 96}</td>
+      <td>cubic</td>
+      <td>Ia-3d</td>
+      <td>(12.137336, 12.137336, 12.137336, 90.0, 90.0, ...</td>
+      <td>0.226553</td>
+      <td>[17.901,20.699,27.497,29.436,33.005,34.665,36....</td>
+      <td>[3.294,74.831,2.346,56.137,25.406,0.374,100.00...</td>
     </tr>
     <tr>
-      <th>16422</th>
-      <td>mp-1209360</td>
-      <td>Pr5Bi3Br</td>
-      <td>{'Pr': 5, 'Bi': 3, 'Br': 1}</td>
-      <td>Hexagonal</td>
-      <td>P6_3/mcm</td>
-      <td>552.581472</td>
-      <td>8.482577</td>
-      <td>[10.53062158,18.29148783,21.1515142,22.5386135...</td>
-      <td>[3.2436827,2.33769877,0.804064192,8.14582475,1...</td>
+      <th>91142</th>
+      <td>mp-1327509</td>
+      <td>Zn3Sn2(GeO4)3</td>
+      <td>{'Zn': 24, 'Sn': 16, 'Ge': 24, 'O': 96}</td>
+      <td>cubic</td>
+      <td>Ia-3d</td>
+      <td>(12.573034, 12.573034, 12.573034, 90.0, 90.0, ...</td>
+      <td>0.227320</td>
+      <td>[17.276,19.974,26.526,28.395,31.830,33.428,34....</td>
+      <td>[0.201,16.587,0.840,64.249,87.208,4.704,100.00...</td>
     </tr>
     <tr>
-      <th>16423</th>
-      <td>mp-1190710</td>
-      <td>Sc5(In2Co)2</td>
-      <td>{'Sc': 5, 'In': 4, 'Co': 2}</td>
-      <td>Orthorhombic</td>
-      <td>Pbam</td>
-      <td>440.878854</td>
-      <td>6.040735</td>
-      <td>[10.18858728,12.69727266,15.48118582,19.264295...</td>
-      <td>[1.37660375,0.0427657761,1.92963728,5.23703683...</td>
+      <th>91143</th>
+      <td>mp-648774</td>
+      <td>Zr2Cl5</td>
+      <td>{'Zr': 96, 'Cl': 240}</td>
+      <td>cubic</td>
+      <td>Ia-3d</td>
+      <td>(21.790819064017104, 21.790819064017104, 21.79...</td>
+      <td>0.059570</td>
+      <td>[9.943,11.486,15.213,16.271,18.207,19.104,19.9...</td>
+      <td>[0.626,100.000,6.746,1.780,0.009,2.667,4.761,0...</td>
     </tr>
     <tr>
-      <th>16424</th>
-      <td>mp-316</td>
-      <td>MnV</td>
-      <td>{'Mn': 1, 'V': 1}</td>
-      <td>Cubic</td>
-      <td>Pm-3m</td>
-      <td>23.289978</td>
-      <td>7.549046</td>
-      <td>[31.32280162,44.88667126,55.75338872,65.354163...</td>
-      <td>[0.43329361,100.0,0.11666426,14.5409878,0.1386...</td>
+      <th>91144</th>
+      <td>mp-531184</td>
+      <td>Zr6NCl15</td>
+      <td>{'Zr': 96, 'N': 16, 'Cl': 240}</td>
+      <td>cubic</td>
+      <td>Ia-3d</td>
+      <td>(21.44328662, 21.44328662, 21.44328662, 90.0, ...</td>
+      <td>0.000000</td>
+      <td>[10.104,11.673,15.462,16.536,18.504,19.416,20....</td>
+      <td>[0.389,100.000,5.158,0.569,0.025,1.852,1.828,0...</td>
     </tr>
   </tbody>
 </table>
-<p>16425 rows × 9 columns</p>
+<p>91145 rows × 9 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -668,7 +668,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of elements: 85
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of elements: 88
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
@@ -736,29 +736,12 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_xrd</span><span class="p">(</span><span class="o">*</span><span class="n">parse_xrd_data</span><span class="p">(</span><span class="n">xrd_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1234</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_xrd</span><span class="p">(</span><span class="o">*</span><span class="n">parse_xrd_data</span><span class="p">(</span><span class="n">xrd_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/97215ca0076e1e996444ebd5c5d813a3d20d77ef711016e1d0ae19ed1b513863.png" src="../../_images/97215ca0076e1e996444ebd5c5d813a3d20d77ef711016e1d0ae19ed1b513863.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">INTENSITY_SCALE</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span>
-    <span class="nb">max</span><span class="p">(</span><span class="n">parse_xrd_data</span><span class="p">(</span><span class="n">row</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">xrd_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()</span>
-<span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">INTENSITY_SCALE</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.00000000000001
-</pre></div>
-</div>
+<img alt="../../_images/bbeab529d69ef378301891a6f3af58f3ae7b4227fdfcd0b06a60734d406bd8f3.png" src="../../_images/bbeab529d69ef378301891a6f3af58f3ae7b4227fdfcd0b06a60734d406bd8f3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -796,7 +779,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">vectorize_xrd_spectrum</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">intensities</span><span class="p">,</span> <span class="n">intensity_scale</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">vectorize_xrd_spectrum</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="n">intensities</span><span class="p">,</span> <span class="n">intensity_scale</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">256</span><span class="p">):</span>
     <span class="n">hist</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
         <span class="n">peaks</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span>
         <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">),</span>
@@ -830,6 +813,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+
 
 <span class="c1"># Define a custom dataset class</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">XRDDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
@@ -839,7 +824,7 @@ document.write(`
         <span class="n">data_y</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="c1"># parse data from datafrane</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">xrd_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">xrd_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">xrd_df</span><span class="p">)):</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">parse_data_vector</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
             <span class="n">data_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
             <span class="n">data_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -914,7 +899,6 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">eval_model_loss</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">,</span> <span class="n">loss_fn</span><span class="p">):</span>
     
@@ -951,12 +935,17 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 91145/91145 [01:26&lt;00:00, 1056.37it/s]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">XRDNet</span><span class="p">(</span>
     <span class="n">input_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
-    <span class="n">hidden_layer_sizes</span><span class="o">=</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
+    <span class="n">hidden_layer_sizes</span><span class="o">=</span> <span class="p">[</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span>
     <span class="n">output_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span>
 <span class="p">)</span>
 </pre></div>
@@ -1023,7 +1012,7 @@ document.write(`
     <span class="n">train_dataset</span><span class="p">,</span> 
     <span class="n">val_dataset</span><span class="p">,</span> 
     <span class="n">batch_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
-    <span class="n">n_epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">n_epochs</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
     <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
     <span class="n">wd</span><span class="o">=</span><span class="mf">1e-1</span>
 <span class="p">)</span>
@@ -1034,163 +1023,323 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 0
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 29.89it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 72.39it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3232790231704712
-Train loss: 2.7114439010620117; Val loss: 2.8230655193328857
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.1077960953116417
+Train loss: 3.7867610454559326; Val loss: 3.79396653175354
 Epoch 1
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 61.23it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 83.36it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.33995431661605835
-Train loss: 2.6481618881225586; Val loss: 2.796786069869995
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.16584360599517822
+Train loss: 3.589836835861206; Val loss: 3.6109745502471924
 Epoch 2
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 59.81it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 85.14it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3413362503051758
-Train loss: 2.6097183227539062; Val loss: 2.780148506164551
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.20156832039356232
+Train loss: 3.4515867233276367; Val loss: 3.4821903705596924
 Epoch 3
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 62.95it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 74.77it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.34923166036605835
-Train loss: 2.5651185512542725; Val loss: 2.7604334354400635
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.21757230162620544
+Train loss: 3.315617799758911; Val loss: 3.35780930519104
 Epoch 4
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 46.56it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:02&lt;00:00, 68.53it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3693248927593231
-Train loss: 2.5281643867492676; Val loss: 2.7451796531677246
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.23688548803329468
+Train loss: 3.221079111099243; Val loss: 3.2710933685302734
 Epoch 5
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 65.68it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:02&lt;00:00, 71.00it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.34948039054870605
-Train loss: 2.4865355491638184; Val loss: 2.7424657344818115
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.24936431646347046
+Train loss: 3.1497161388397217; Val loss: 3.21238374710083
 Epoch 6
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 67.74it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:02&lt;00:00, 62.52it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.37193211913108826
-Train loss: 2.4380135536193848; Val loss: 2.7040255069732666
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.2595089375972748
+Train loss: 3.0817689895629883; Val loss: 3.1491010189056396
 Epoch 7
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 53.60it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 75.95it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3844616115093231
-Train loss: 2.3945813179016113; Val loss: 2.692686080932617
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.27214866876602173
+Train loss: 3.004730463027954; Val loss: 3.088453531265259
 Epoch 8
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 40.41it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 75.99it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3825084865093231
-Train loss: 2.348989248275757; Val loss: 2.659161329269409
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.2867415249347687
+Train loss: 2.933061122894287; Val loss: 3.0287833213806152
 Epoch 9
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 49.85it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 76.34it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.39926666021347046
-Train loss: 2.314401149749756; Val loss: 2.638636827468872
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.29821571707725525
+Train loss: 2.854276657104492; Val loss: 2.9698708057403564
 Epoch 10
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 55.11it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:02&lt;00:00, 69.56it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4078899025917053
-Train loss: 2.2674074172973633; Val loss: 2.6203036308288574
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.30895736813545227
+Train loss: 2.787238597869873; Val loss: 2.917202949523926
 Epoch 11
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 66.80it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 79.06it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4128556251525879
-Train loss: 2.216527223587036; Val loss: 2.569784164428711
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.31595578789711
+Train loss: 2.7049100399017334; Val loss: 2.8495993614196777
 Epoch 12
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 30.83it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 74.40it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.42123931646347046
-Train loss: 2.1738665103912354; Val loss: 2.571105718612671
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.330522745847702
+Train loss: 2.632164478302002; Val loss: 2.796229362487793
 Epoch 13
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 52.24it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 72.84it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4240031838417053
-Train loss: 2.152010202407837; Val loss: 2.5800697803497314
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.34061336517333984
+Train loss: 2.5635273456573486; Val loss: 2.7539710998535156
 Epoch 14
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 62.20it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 80.75it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.42954009771347046
-Train loss: 2.1001391410827637; Val loss: 2.552558422088623
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3512994349002838
+Train loss: 2.50663161277771; Val loss: 2.7162606716156006
 Epoch 15
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 67.46it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 72.03it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4440227150917053
-Train loss: 2.037370443344116; Val loss: 2.500753402709961
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.36353373527526855
+Train loss: 2.4511687755584717; Val loss: 2.677921772003174
 Epoch 16
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 67.45it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 75.12it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4511810839176178
-Train loss: 1.9960017204284668; Val loss: 2.485415458679199
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.36811748147010803
+Train loss: 2.4034576416015625; Val loss: 2.6492698192596436
 Epoch 17
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 66.74it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 81.00it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4479289650917053
-Train loss: 1.9561265707015991; Val loss: 2.475790023803711
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.37375932931900024
+Train loss: 2.347370147705078; Val loss: 2.615675687789917
 Epoch 18
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 49.42it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 71.52it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4611862301826477
-Train loss: 1.91163969039917; Val loss: 2.4427473545074463
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3840685486793518
+Train loss: 2.2997708320617676; Val loss: 2.5885586738586426
 Epoch 19
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26/26 [00:00&lt;00:00, 37.37it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 80.55it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4768112301826477
-Train loss: 1.8700095415115356; Val loss: 2.412086009979248
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.38607513904571533
+Train loss: 2.260023832321167; Val loss: 2.5686535835266113
+Epoch 20
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 76.11it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.3956507444381714
+Train loss: 2.220945358276367; Val loss: 2.5433037281036377
+Epoch 21
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 72.87it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.401265025138855
+Train loss: 2.1839568614959717; Val loss: 2.5244126319885254
+Epoch 22
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:02&lt;00:00, 68.64it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4033266603946686
+Train loss: 2.148803234100342; Val loss: 2.5082998275756836
+Epoch 23
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 72.06it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4134167432785034
+Train loss: 2.1035215854644775; Val loss: 2.4879064559936523
+Epoch 24
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 80.23it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4104050397872925
+Train loss: 2.0692272186279297; Val loss: 2.475031852722168
+Epoch 25
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 73.18it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4168349802494049
+Train loss: 2.03647518157959; Val loss: 2.46309494972229
+Epoch 26
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 75.93it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.42372334003448486
+Train loss: 2.0044138431549072; Val loss: 2.4508349895477295
+Epoch 27
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 77.70it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4224492907524109
+Train loss: 1.9729729890823364; Val loss: 2.4391369819641113
+Epoch 28
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:02&lt;00:00, 66.36it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4217432141304016
+Train loss: 1.9526883363723755; Val loss: 2.436100959777832
+Epoch 29
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 74.11it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.43381500244140625
+Train loss: 1.9091904163360596; Val loss: 2.424048900604248
+Epoch 30
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 76.14it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4336255192756653
+Train loss: 1.879333734512329; Val loss: 2.414520025253296
+Epoch 31
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 72.03it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.430424302816391
+Train loss: 1.8516350984573364; Val loss: 2.406731605529785
+Epoch 32
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 76.78it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4366896450519562
+Train loss: 1.8282667398452759; Val loss: 2.4074032306671143
+Epoch 33
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 75.90it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.43660813570022583
+Train loss: 1.79925537109375; Val loss: 2.402465343475342
+Epoch 34
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:02&lt;00:00, 68.68it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4397008419036865
+Train loss: 1.7700750827789307; Val loss: 2.40618896484375
+Epoch 35
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 72.31it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4388333261013031
+Train loss: 1.7438766956329346; Val loss: 2.405193328857422
+Epoch 36
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 74.47it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.44564172625541687
+Train loss: 1.7169791460037231; Val loss: 2.3945417404174805
+Epoch 37
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 75.89it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4443936347961426
+Train loss: 1.690921425819397; Val loss: 2.3973426818847656
+Epoch 38
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:02&lt;00:00, 70.48it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4439331293106079
+Train loss: 1.661866545677185; Val loss: 2.399657964706421
+Epoch 39
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 143/143 [00:01&lt;00:00, 77.64it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Acc:  0.4482453763484955
+Train loss: 1.639327883720398; Val loss: 2.3927419185638428
 </pre></div>
 </div>
 </div>
@@ -1210,7 +1359,7 @@ Train loss: 1.8700095415115356; Val loss: 2.412086009979248
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fe783591fb355e50a701b213e716cdb2b1a6752d1a14904cc9f745ccc5b0792e.png" src="../../_images/fe783591fb355e50a701b213e716cdb2b1a6752d1a14904cc9f745ccc5b0792e.png" />
+<img alt="../../_images/f7d66bf9d447e34368a2d5af6a1ce59d4391d1f16266df5c79b489b764684668.png" src="../../_images/f7d66bf9d447e34368a2d5af6a1ce59d4391d1f16266df5c79b489b764684668.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1226,9 +1375,9 @@ Train loss: 1.8700095415115356; Val loss: 2.412086009979248
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6879233121871948
-0.5322777032852173
-0.5316687226295471
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5580317378044128
+0.44832125306129456
+0.4432740807533264
 </pre></div>
 </div>
 </div>

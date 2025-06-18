@@ -248,7 +248,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Bandgap Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Band Gap Prediction</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -260,6 +260,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../neural_networks/neural_network_applications.html">Application: XRD Crystal Structure Prediction</a></li>
 </ul>
 </details></li>
 </ul>
@@ -577,17 +578,17 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/8495316c5038a6fc949c7384e8a1743a523388fbdd1674d49b2995768a176e46.png" src="../_images/8495316c5038a6fc949c7384e8a1743a523388fbdd1674d49b2995768a176e46.png" />
+<img alt="../_images/425db9c8ff6561fcfce676306ea753be77f631b2ca7e77f638d2e4a0ced3756f.png" src="../_images/425db9c8ff6561fcfce676306ea753be77f631b2ca7e77f638d2e4a0ced3756f.png" />
 </div>
 </div>
 </section>
 <section id="kernel-density-estimation-kde">
 <h2>Kernel Density Estimation (KDE)<a class="headerlink" href="#kernel-density-estimation-kde" title="Link to this heading">#</a></h2>
 <p>The K-means algorithm is quite useful for segmenting data into clusters, which can be useful for classifying both known and unknown data points. However, when encountering new or unseen data points it can be helpful instructive to identify new data points that lie outside the distribution of previously data points. This task is referred to as <em>anomaly detection</em>, and can be necessary for identifying outlier datapoints that may require special treatment or further investigation. In the materials sciences, outlier detection is crucial for identifying materials with exceptionally unique properties, or for checking that experimental data lies within the range of values predicted by some model or underlying theory.</p>
-<p>A simple way of identifying anomalous datapoints is to estimate the underlying probability distribution <span class="math notranslate nohighlight">\(p(x)\)</span> of known data points over the space of possible model inputs <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. This allows for the estimation of the likelihood <span class="math notranslate nohighlight">\(p(x')\)</span> for some new data point <span class="math notranslate nohighlight">\(x'\)</span> relative to the likelihood <span class="math notranslate nohighlight">\(p(x)\)</span> of any previously seen datapoint <span class="math notranslate nohighlight">\(x\)</span>. If the space of features <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> contains continuous quantities, the underlying distribution <span class="math notranslate nohighlight">\(p(x)\)</span> can be straightforwardly approximated using <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_density_estimation"><em>kernel density estimation</em> (KDE)</a>. In KDE, <span class="math notranslate nohighlight">\(p(x)\)</span> is estimated as an equally-weighted sum of probability distributions <span class="math notranslate nohighlight">\(K(x)\)</span> centered at each data point <span class="math notranslate nohighlight">\(x_n\)</span> with a fixed width parameter <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
+<p>A simple way of identifying anomalous datapoints is to estimate the underlying probability distribution <span class="math notranslate nohighlight">\(p(x)\)</span> of known data points over the space of possible model inputs <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. This allows for the estimation of the likelihood <span class="math notranslate nohighlight">\(p(x')\)</span> for some new data point <span class="math notranslate nohighlight">\(x'\)</span> relative to the likelihood <span class="math notranslate nohighlight">\(p(x)\)</span> of a previously seen datapoint <span class="math notranslate nohighlight">\(x\)</span>. If the space of features <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> contains continuous quantities, the underlying distribution <span class="math notranslate nohighlight">\(p(x)\)</span> can be straightforwardly approximated using <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_density_estimation"><em>kernel density estimation</em> (KDE)</a>. In KDE, <span class="math notranslate nohighlight">\(p(x)\)</span> is estimated as an equally-weighted sum of probability distributions <span class="math notranslate nohighlight">\(K(x)\)</span> centered at each data point <span class="math notranslate nohighlight">\(x_n\)</span> with a fixed width parameter <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[p(\mathbf{x}) = \frac{1}{N \alpha^d}\sum_{n=1}^N K\left(\frac{\mathbf{x} - \mathbf{x}_n}{\alpha}\right)\]</div>
-<p>where <span class="math notranslate nohighlight">\(d\)</span> is the dimension of <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. A popular choice of <span class="math notranslate nohighlight">\(K(\mathbf{x})\)</span> is the multivariate Gaussian function:</p>
+<p>Above, <span class="math notranslate nohighlight">\(d\)</span> is the dimension of <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. A popular choice of <span class="math notranslate nohighlight">\(K(\mathbf{x})\)</span> is the Gaussian function:</p>
 <div class="math notranslate nohighlight">
 \[ K(\mathbf{x}) = \frac{1}{(2\pi)^{d/2}}\exp\left(-\frac{1}{2}\Vert \mathbf{x}\Vert^2\right).\]</div>
 <p>Although KDE is relatively simple, evaluating <span class="math notranslate nohighlight">\(p(x)\)</span> with a naive implementation requires evaluating <span class="math notranslate nohighlight">\(K((x-x_n)/\alpha)\)</span> for each <span class="math notranslate nohighlight">\(x_n\)</span> in the dataset. More efficient implementations use data structures that avoid this linear scaling issue. A good implementation of Gaussian KDE in Python can be found in the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html"><code class="docutils literal notranslate"><span class="pre">scipy.stats.gaussian_kde</span></code></a> module. Below, we apply this to the same dataset as above, relying on the <code class="docutils literal notranslate"><span class="pre">gaussian_kde</span></code> function’s automatic methods for selecting the bandwidth parameter <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
@@ -625,7 +626,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/09442d60a299848d82ff639acce300cbbc6d910e9553f2aeb8ac3838df546e31.png" src="../_images/09442d60a299848d82ff639acce300cbbc6d910e9553f2aeb8ac3838df546e31.png" />
+<img alt="../_images/352b8497b1612f894e278d6e2bf7a04fdc9baa01b5ce7cdfa63bb2478f864f3c.png" src="../_images/352b8497b1612f894e278d6e2bf7a04fdc9baa01b5ce7cdfa63bb2478f864f3c.png" />
 </div>
 </div>
 </section>
@@ -673,7 +674,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/b100b007330ba0280ba8b2a6f886a00ff1faa1a66e2bbc7fb2da335812f283c9.png" src="../_images/b100b007330ba0280ba8b2a6f886a00ff1faa1a66e2bbc7fb2da335812f283c9.png" />
+<img alt="../_images/d0fdad510d8971daa3972ed61a4d69387c6534b2dca3400877bbb58218641e98.png" src="../_images/d0fdad510d8971daa3972ed61a4d69387c6534b2dca3400877bbb58218641e98.png" />
 </div>
 </div>
 </section>

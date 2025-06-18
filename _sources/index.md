@@ -48,11 +48,11 @@ You can access the slides from the workshop as they become available here:
 
 * Day 7: <a href="./slides_notebooks/Day 7 2025.slides.html">Advanced Regression Models</a>
 
-* Day 8: Unsupervised Learning
+* Day 8: <a href="./slides_notebooks/Day 8 2025.slides.html">Unsupervised Learning</a>
 
-* Day 9: Neural Networks
+* <s>Day 9: Neural Networks</s>
 
-* Day 10: Advanced Applications in Materials Science
+* Day 10: Neural Networks | Advanced Applications
 
 ## Workshop Recordings
 

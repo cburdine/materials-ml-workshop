@@ -20,7 +20,7 @@ Now that we have a strong understanding of unsupervised learning, let's apply wh
 :align: center
 ```
 
-Understanding patterns in superconductors' compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-$T_c$ behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions to raise the $T_c$ of known superconductors.
+Understanding patterns in superconductors' compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-$T_c$ behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions needed to raise the $T_c$ of known superconductors.
 
 You can download the dataset for this section using the following Python code:
 

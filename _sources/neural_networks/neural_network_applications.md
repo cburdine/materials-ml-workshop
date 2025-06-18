@@ -21,7 +21,7 @@ In X-ray crystallography, an X-ray beam is focused into a crystalline material, 
 
 $$n \lambda = 2 d\sin(\theta)$$
 
-where $\lambda$ is the wavelength of the incident beam, $n$ is an integer (the diffraction order), and $d$ is the distance between two planes of atoms in the material.
+where $\lambda$ is the wavelength of the incident beam, $n$ is a small integer (the diffraction order), and $d$ is the distance between two planes of atoms in the material.
 
 ![bragg_diffraction_law](bragg_diffraction_law.png)
 
