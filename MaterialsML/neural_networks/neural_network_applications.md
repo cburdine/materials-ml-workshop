@@ -29,31 +29,31 @@ For each material, there are many different values of $n$ and $d$ that satisfy B
 
 In this application, we will attempt to use simple neural networks to predict the space group of known materials from their XRD spectrum. The space group of a material describes all of the symmetries of the material's crystal lattice. For three dimensional materials, there are up to 230 unique space groups our neural network will need to identify based on XRD data alone.
 
-You can download the dataset for this section using the following Python code:
+You can download the compressed dataset for this section using the following Python code:
 
 ```
 import requests
 
-CSV_URL = 'https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_full.csv'
+CSV_URL = 'https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_full.csv.gz'
 
 r = requests.get(CSV_URL)
-with open('xrd_dataset_full.csv', 'w', encoding='utf-8') as f:
-    f.write(r.text)
+with open('xrd_dataset_full.csv.gz', 'wb') as f:
+    f.write(r.content)
 ```
 
-Alternatively, you can download the CSV file directly [here](https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_full.csv).
+Alternatively, you can download the compressed CSV file directly [here](https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_full.csv.gz).
 
 ## Loading the Dataset
 
-We will begin by loading the X-ray diffraction dataset into a Pandas dataframe object. Since this dataset has already been cleaned, we will not need to do any additional processing of the dataframe entries. To get an understanding of the data features, we can view the dataframe using the `display()` function:
+We will begin by loading the X-ray diffraction dataset into a Pandas dataframe object from the compressed file. Since this dataset has already been cleaned, we will not need to do any additional processing of the dataframe entries. To get an understanding of the data features, we can view the dataframe using the `display()` function:
 
 ```{code-cell}
 :tags: [hide-input]
 import pandas as pd
 
-# load dataset into a pandas DataFrame:
-XRD_CSV = 'xrd_dataset_full.csv'
-data_df = pd.read_csv(XRD_CSV)
+# load compressed dataset into a pandas DataFrame:
+COMPRESSED_XRD_CSV = 'xrd_dataset_full.csv.gz'
+data_df = pd.read_csv(COMPRESSED_XRD_CSV, compression='gzip')
 
 # show dataframe in notebook:
 display(data_df)
