@@ -29,31 +29,31 @@ For each material, there are many different values of $n$ and $d$ that satisfy B
 
 In this application, we will attempt to use simple neural networks to predict the space group of known materials from their XRD spectrum. The space group of a material describes all of the symmetries of the material's crystal lattice. For three dimensional materials, there are up to 230 unique space groups our neural network will need to identify based on XRD data alone.
 
-You can download the dataset for this section using the following Python code:
+You can download the compressed dataset for this section using the following Python code:
 
 ```
 import requests
 
-CSV_URL = 'https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_full.csv'
+CSV_URL = 'https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_full.csv.gz'
 
 r = requests.get(CSV_URL)
-with open('xrd_dataset_full.csv', 'w', encoding='utf-8') as f:
-    f.write(r.text)
+with open('xrd_dataset_full.csv.gz', 'wb') as f:
+    f.write(r.content)
 ```
 
-Alternatively, you can download the CSV file directly [here](https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_full.csv).
+Alternatively, you can download the compressed CSV file directly [here](https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/neural_networks/xrd_dataset_full.csv.gz).
 
 ## Loading the Dataset
 
-We will begin by loading the X-ray diffraction dataset into a Pandas dataframe object. Since this dataset has already been cleaned, we will not need to do any additional processing of the dataframe entries. To get an understanding of the data features, we can view the dataframe using the `display()` function:
+We will begin by loading the X-ray diffraction dataset into a Pandas dataframe object from the compressed file. Since this dataset has already been cleaned, we will not need to do any additional processing of the dataframe entries. To get an understanding of the data features, we can view the dataframe using the `display()` function:
 
 ```{code-cell}
 :tags: [hide-input]
 import pandas as pd
 
-# load dataset into a pandas DataFrame:
-XRD_CSV = 'xrd_dataset_full.csv'
-data_df = pd.read_csv(XRD_CSV)
+# load compressed dataset into a pandas DataFrame:
+COMPRESSED_XRD_CSV = 'xrd_dataset_full.csv.gz'
+data_df = pd.read_csv(COMPRESSED_XRD_CSV, compression='gzip')
 
 # show dataframe in notebook:
 display(data_df)
@@ -150,7 +150,7 @@ example_idx = 1234
 peaks, intensities = parse_xrd_data(data_df.iloc[example_idx])
 plot_xrd(peaks, intensities)
 ```
-In our dataset, the diffraction patterns correspond to large crystals, which is why we observe very sharp peaks in the spectrum. In practice, however, such sharp peaks are rarely observed due to the finite sizes of the crystals used in experimental settings. (This finite-size effect is known as [Scherrer broadening](https://en.wikipedia.org/wiki/Scherrer_equation).
+In our dataset, the diffraction patterns correspond to large crystals, which is why we observe very sharp peaks in the spectrum. In practice, however, such sharp peaks are rarely observed due to the finite sizes of the crystals used in experimental settings. (This finite-size effect is known as [Scherrer broadening](https://en.wikipedia.org/wiki/Scherrer_equation)).
 
 To convert each XRD spectrum to a feature vector that can serve as input to a neural network, we will use a histogram-based representation of the X-ray diffraction data. Specifically, we will divide the spectrum into a finite number of "bins" and normalize each "bin" by dividing by the maximum peak intensity (which is 100 for this dataset). We will also write a function to convert the symmetry group symbols to a vector representation using the same "one-hot" encoding that we have used in previous applications.
 
@@ -349,7 +349,7 @@ In order to fit our model to the training dataset, we will have to write some co
 * `n_epochs`: The number of epochs used during training. Recall that during each epoch, the batch gradient descent algorithm iterates over each item in the training dataset once.
 * `batch_size`: The batch size used in the batch gradient descent algorithm. Recall that the batch size corresponds to how many items in the dataset are included in each weight update step. 
 * `lr`: The learning rate $\eta$ used during batch gradient descent.
-* `wd`: The weight decay regularization factor. (When weight decay is used, you should use the `AdamW` optimizer instead of the regular `Adam` optimizer).
+* `wd`: The weight decay regularization factor, which is the coefficient sum-of-squares penalty applied to the loss function. (When weight decay is used, you should use the `AdamW` optimizer instead of the regular `Adam` optimizer).
 
 ```{code-cell}
 from torch.utils.data import DataLoader
@@ -419,7 +419,7 @@ Finally, let's fit our model to the training dataset, monitoring the training an
 
 * Increase `n_epochs` if the validation set has not yet converged to a plateau; decrease it if the validation loss starts to increase.
 * Increase `batch_size` if the model training is too slow. (This will only increase training speed up to a point).
-* Decrease `lr` if the training set loss has reached a plateau or is varying too much between epochs.
+* Decrease `lr` if the training set loss is varying too much between epochs or starts increasing.
 * Increase `wd` if the training error drops much faster than the validation set error (a consequence of overfitting). Your goal should be to avoid overfitting while achieving the lowest possible validation error during the last epoch. However, if `wd` is set too high, the model may slightly underfit the data.
 
 You might also consider changing the overall model architecture (e.g.,increasing/decreasing the number of layers or layer sizes if the model is underfitting/overfitting).

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Application: Classifying Superconductors &#8212; Materials + Machine Learning</title>
   
@@ -15,46 +14,45 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -62,16 +60,20 @@
                 gtag('js', new Date());
                 gtag('config', 'G-MBS9YS5YW0');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-MBS9YS5YW0');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'unsupervised_learning/unsupervised_applications';</script>
-    <link rel="shortcut icon" href="../_static/logo_small.png"/>
+    <link rel="icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Neural Networks" href="../neural_networks/neural_networks.html" />
@@ -85,19 +87,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -119,12 +125,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -139,9 +153,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -151,12 +169,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Materials + Machine Learning - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Materials + Machine Learning - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -167,73 +196,73 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python/python_basics.html">Python Basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/python_logic.html">Logic and Flow Control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/loops.html">Loops</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data_types/sets_and_dicts.html">Sets and Dictionaries</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions/classes.html">Classes and Object-Oriented Programming</a></li>
 
 
 
 
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../scicomp/numpy.html">The Numpy Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../scicomp/scipy.html">The Scipy Package</a></li>
 
 
 
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data_vis/data_handling.html">Data Analysis and Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_vis/data_handling.html">Data Analysis and Visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Band Gap Prediction</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="clustering.html">Clustering and Distribution Estimation</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Application: Classifying Superconductors</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/neural_network_applications.html">Application: XRD Crystal Structure Prediction</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -249,7 +278,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -258,14 +287,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -387,26 +416,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -444,12 +475,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="application-classifying-superconductors">
-<h1>Application: Classifying Superconductors<a class="headerlink" href="#application-classifying-superconductors" title="Permalink to this heading">#</a></h1>
+<h1>Application: Classifying Superconductors<a class="headerlink" href="#application-classifying-superconductors" title="Link to this heading">#</a></h1>
 <p>Now that we have a strong understanding of unsupervised learning, let’s apply what we have learned to study a class of materials known as <em>superconductors</em>. Superconductors are materials that exhibit zero electrical resistance below a critical temperature <span class="math notranslate nohighlight">\(T_c\)</span>. These materials also exhibit the <em>Meissner Effect</em>, meaning they expel magnetic fields within the bulk of the material. This facilitates stable magnetic levitation at temperatures below <span class="math notranslate nohighlight">\(T_c\)</span>.</p>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/superconductor.png"><img alt="SrTiO3" class="bg-primary mb-1 align-center" src="../_images/superconductor.png" style="width: 250px;" /></a>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/superconductor.png"><img alt="SrTiO3" class="bg-primary mb-1 align-center" src="../_images/superconductor.png" style="width: 250px;" />
+</a>
 <p>Understanding patterns in superconductors’ compositions and external conditions (such as pressure applied to the material) can help identify trends that correlate with desired high-<span class="math notranslate nohighlight">\(T_c\)</span> behavior. These insights could be leveraged to discover new kinds of superconductors or to help engineer the external conditions needed to raise the <span class="math notranslate nohighlight">\(T_c\)</span> of known superconductors.</p>
 <p>You can download the dataset for this section using the following Python code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
@@ -463,7 +495,7 @@ document.write(`
 </div>
 <p>Alternatively, you can download the CSV file directly <a class="reference external" href="https://raw.githubusercontent.com/cburdine/materials-ml-workshop/main/MaterialsML/unsupervised_learning/matml_supercon_cleaned.csv">here</a>.</p>
 <section id="loading-the-dataset">
-<h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this heading">#</a></h2>
+<h2>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Link to this heading">#</a></h2>
 <p>Let’s begin by loading the dataset in to a Pandas dataframe and then perform some basic data cleaning.
 Specifically, we will remove entries with missing compositions and those with anomalously high <span class="math notranslate nohighlight">\(T_c\)</span> values (likely errors or non-physical outliers). We then display the dataset to view the data features:</p>
 <div class="cell tag_hide-input docutils container">
@@ -661,7 +693,7 @@ Specifically, we will remove entries with missing compositions and those with an
 <p>In this section, we will not attempt to predict any superconductor properties; instead, we will aim to extract insight from this dataset by applying clustering and distribution estimation models.</p>
 </section>
 <section id="preprocessing-data">
-<h2>Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Permalink to this heading">#</a></h2>
+<h2>Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
 <p>Machine learning models require numerical inputs, so we will need to convert the materials’ compositions (stored as Python dictionaries in string form) into fixed-length feature vectors. First, we will normalize the elemental compositions to account for different formula unit sizes. We will also append the applied pressure and <span class="math notranslate nohighlight">\(T_c\)</span> to each feature vector. Finally, we will standardize the data to have zero mean and unit variance—a common preprocessing step for most ML algorithms.</p>
 <p>To simplify the data conversion process, we will create a set <code class="docutils literal notranslate"><span class="pre">ELEMENTS</span></code> that contains all elements
 appearing in the dataset. We will also create a function called <code class="docutils literal notranslate"><span class="pre">vectorize_composition()</span></code> that will convert each chemical composition dictionary into a minimal feature vector:</p>
@@ -746,54 +778,14 @@ appearing in the dataset. We will also create a function called <code class="doc
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">data_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">parse_data_vector</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-<span class="nn">      5     for _, row</span> in <span class="ni">data_df.iterrows</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="n">data_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/.</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">82</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_distributor_init</span>  <span class="c1"># noqa: F401</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">__check_build</span>  <span class="c1"># noqa: F401</span>
-<span class="ne">---&gt; </span><span class="mi">82</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">clone</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._show_versions</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_versions</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span>     <span class="s2">&quot;calibration&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span>     <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span>     <span class="s2">&quot;show_versions&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">129</span> <span class="p">]</span>
-
-<span class="n">File</span> <span class="o">~/.</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">17</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_config</span>
-<span class="ne">---&gt; </span><span class="mi">17</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_IS_32BIT</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._set_output</span><span class="w"> </span><span class="kn">import</span> <span class="n">_SetOutputMixin</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._tags</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">_DEFAULT_TAGS</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/.</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">issparse</span>
-<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.murmurhash</span><span class="w"> </span><span class="kn">import</span> <span class="n">murmurhash3_32</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.class_weight</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_class_weight</span><span class="p">,</span> <span class="n">compute_sample_weight</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_joblib</span>
-
-<span class="nn">File sklearn/utils/murmurhash.pyx:1,</span> in <span class="ni">init sklearn.utils.murmurhash</span><span class="nt">()</span>
-
-<span class="ne">ValueError</span>: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(19463, 88)
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="estimate-the-empirical-distribution-of-t-c">
-<h2>Estimate the Empirical Distribution of <span class="math notranslate nohighlight">\(T_c\)</span><a class="headerlink" href="#estimate-the-empirical-distribution-of-t-c" title="Permalink to this heading">#</a></h2>
+<h2>Estimate the Empirical Distribution of <span class="math notranslate nohighlight">\(T_c\)</span><a class="headerlink" href="#estimate-the-empirical-distribution-of-t-c" title="Link to this heading">#</a></h2>
 <p>To understand how <span class="math notranslate nohighlight">\(T_c\)</span> values are distributed among the known superconductors in our dataset, we will use kernel density estimation (KDE). This non-parametric method lets us estimate a smooth probability density function with respect to <span class="math notranslate nohighlight">\(T_c\)</span>. Instead of using the basic KDE module in <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, we will use the more advanced module that is available in <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KernelDensity.html"><code class="docutils literal notranslate"><span class="pre">sklearn.neighbors.KernelDensity</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -807,7 +799,7 @@ appearing in the dataset. We will also create a function called <code class="doc
 </div>
 <p>Let’s visualize the distribution, and inspect how the <span class="math notranslate nohighlight">\(T_c\)</span> values are distributed. Since 40 K is believed to be the limit of <a class="reference external" href="https://en.wikipedia.org/wiki/BCS_theory">low-temperature conventional superconductivity</a>, let’s see how the data is distributed around this point:</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># generate points to evaluate the KDE model:</span>
@@ -833,9 +825,22 @@ appearing in the dataset. We will also create a function called <code class="doc
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_55334/1067493337.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+  Tc_density /= np.trapz(Tc_density, Tc_eval_pts)
+</pre></div>
+</div>
+<img alt="../_images/d36ecf551b167673329e95579921e8130e010607c8fda9d18f7ddad177ddcb20.png" src="../_images/d36ecf551b167673329e95579921e8130e010607c8fda9d18f7ddad177ddcb20.png" />
+</div>
+</details>
 </div>
 <section id="identifying-outliers-in-the-distribution">
-<h3>Identifying Outliers in the Distribution:<a class="headerlink" href="#identifying-outliers-in-the-distribution" title="Permalink to this heading">#</a></h3>
+<h3>Identifying Outliers in the Distribution:<a class="headerlink" href="#identifying-outliers-in-the-distribution" title="Link to this heading">#</a></h3>
 <p>Materials with extremely high or low <span class="math notranslate nohighlight">\(T_c\)</span> values may represent outliers or materials that exhibit unique physical properties. Let’s take a look at any outlying data points by identifying the least probable data points (i.e., the lowest log-likelihood under the KDE model). These can be studied further to see if they reveal special physics or data issues.</p>
 <p>To score the log-likelihood of each data point, we use the <code class="docutils literal notranslate"><span class="pre">score_samples()</span></code> function and select the <span class="math notranslate nohighlight">\(N = 10\)</span> points that have the least likelihood:</p>
 <div class="cell docutils container">
@@ -850,11 +855,110 @@ appearing in the dataset. We will also create a function called <code class="doc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>520</th>
+      <td>Y H 6</td>
+      <td>290.0</td>
+      <td>300.0</td>
+      <td>10.1103/physrevb.99.220502</td>
+    </tr>
+    <tr>
+      <th>618</th>
+      <td>Si 2 H 6</td>
+      <td>153.0</td>
+      <td>170.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1422</th>
+      <td>Sc H 6</td>
+      <td>196.0</td>
+      <td>170.0</td>
+      <td>10.1007/1-4020-3989-1_6</td>
+    </tr>
+    <tr>
+      <th>2879</th>
+      <td>H 3 S 0.96 Si 0.04</td>
+      <td>274.0</td>
+      <td>170.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3714</th>
+      <td>Y H 10</td>
+      <td>303.0</td>
+      <td>400.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4164</th>
+      <td>Y H 9</td>
+      <td>256.0</td>
+      <td>177.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6699</th>
+      <td>K H 2 P O 4</td>
+      <td>210.0</td>
+      <td>170.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10629</th>
+      <td>Si 2 H 6</td>
+      <td>174.0</td>
+      <td>275.0</td>
+      <td>10.1016/j.physc.2012.12.002</td>
+    </tr>
+    <tr>
+      <th>14301</th>
+      <td>H 3 S</td>
+      <td>178.0</td>
+      <td>170.0</td>
+      <td>10.1038/srep38570</td>
+    </tr>
+    <tr>
+      <th>20021</th>
+      <td>La H 10</td>
+      <td>218.0</td>
+      <td>170.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
 <section id="correlations-of-composition-with-t-c">
-<h2>Correlations of Composition with <span class="math notranslate nohighlight">\(T_c\)</span><a class="headerlink" href="#correlations-of-composition-with-t-c" title="Permalink to this heading">#</a></h2>
+<h2>Correlations of Composition with <span class="math notranslate nohighlight">\(T_c\)</span><a class="headerlink" href="#correlations-of-composition-with-t-c" title="Link to this heading">#</a></h2>
 <p>To explore which elements are most strongly associated with superconductivity, we will compute the covariance between each compositional feature and the standardized <span class="math notranslate nohighlight">\(T_c\)</span>. A heatmap on the periodic table then visually shows which elements are associated with increases or decreases in the critical temperature when they are added to a material.</p>
 <p>First, we compute the covariance matrix of the data and extract the column corresponding to the <span class="math notranslate nohighlight">\(T_c\)</span> of each material:</p>
 <div class="cell docutils container">
@@ -867,7 +971,7 @@ appearing in the dataset. We will also create a function called <code class="doc
 </div>
 <p>Next, we visualize the results using the <a class="reference external" href="https://pymatgen.org/pymatgen.util.html#pymatgen.util.plotting.periodic_table_heatmap"><code class="docutils literal notranslate"><span class="pre">periodic_table_heatmap()</span></code></a> function from Pymatgen.</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pymatgen.util.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">periodic_table_heatmap</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -892,10 +996,22 @@ appearing in the dataset. We will also create a function called <code class="doc
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>You&#39;re using a deprecated version of periodic_table_heatmap(). Consider `pip install pymatviz` which offers an interactive plotly periodic table heatmap. You can keep calling this same function from pymatgen. Some of the arguments have changed which you&#39;ll be warned about. To disable this warning, pass pymatviz=False.
+</pre></div>
+</div>
+<img alt="../_images/0c8cfb28c449db74b51fdb121a05c36344c576fe0c6caaa8f51047ce7e07b79d.png" src="../_images/0c8cfb28c449db74b51fdb121a05c36344c576fe0c6caaa8f51047ce7e07b79d.png" />
+</div>
+</details>
 </div>
 </section>
 <section id="identifying-clusters-in-the-data">
-<h2>Identifying Clusters in the Data<a class="headerlink" href="#identifying-clusters-in-the-data" title="Permalink to this heading">#</a></h2>
+<h2>Identifying Clusters in the Data<a class="headerlink" href="#identifying-clusters-in-the-data" title="Link to this heading">#</a></h2>
 <p>As we have learned in the previous section, dimensionality reduction techniques like PCA allow us to summarize high-dimensional data using a smaller number of principal components. We project the data into this reduced space and then use k-means clustering to group similar superconductors together. These clusters may reflect different material families or classes of superconductors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -935,9 +1051,12 @@ appearing in the dataset. We will also create a function called <code class="doc
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="../_images/8428dc1f7f3fa325c39edc2b6a70c10294cd586e08642f49512e1e887491f192.png" src="../_images/8428dc1f7f3fa325c39edc2b6a70c10294cd586e08642f49512e1e887491f192.png" />
+</div>
 </div>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">pca_cutoff</span><span class="p">)</span>
 <span class="n">data_u</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_z</span><span class="p">)</span>
 
@@ -951,6 +1070,15 @@ appearing in the dataset. We will also create a function called <code class="doc
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="../_images/134708e7c7fb47d674b8e2018f7a6540b296e9fce864dd620ec457e2121462d0.png" src="../_images/134708e7c7fb47d674b8e2018f7a6540b296e9fce864dd620ec457e2121462d0.png" />
+</div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -989,6 +1117,9 @@ appearing in the dataset. We will also create a function called <code class="doc
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="../_images/905aae63e886ebb622b54a60a74d18dc93bbca2a31a8cfaf4f1bbb53bfc5582d.png" src="../_images/905aae63e886ebb622b54a60a74d18dc93bbca2a31a8cfaf4f1bbb53bfc5582d.png" />
+</div>
 </div>
 <p>To interpret the clusters, we display representative samples from each. You might notice that some clusters are enriched in certain elements or tend to have higher or lower <span class="math notranslate nohighlight">\(T_c\)</span>. These clusters could guide targeted exploration in materials discovery:</p>
 <div class="cell tag_hide-cell docutils container">
@@ -1013,6 +1144,398 @@ appearing in the dataset. We will also create a function called <code class="doc
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 0 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21019</th>
+      <td>Pr Ru 4 Sb 12</td>
+      <td>3.50</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.67.180501</td>
+    </tr>
+    <tr>
+      <th>22143</th>
+      <td>Rb Os 2 O 6</td>
+      <td>8.80</td>
+      <td>0.0</td>
+      <td>10.1143/jpsj.77.043704</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>Rb Os 2 O 6</td>
+      <td>6.30</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.70.100505</td>
+    </tr>
+    <tr>
+      <th>8498</th>
+      <td>Zr V 2</td>
+      <td>5.30</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19393</th>
+      <td>Rb V 3 Sb 5</td>
+      <td>0.92</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 1 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>23583</th>
+      <td>Ba Fe 2 As 2</td>
+      <td>30.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.83.054514</td>
+    </tr>
+    <tr>
+      <th>817</th>
+      <td>K 0.8 Fe 2 Se 2</td>
+      <td>30.0</td>
+      <td>0.0</td>
+      <td>10.1088/0953-8984/27/2/023201</td>
+    </tr>
+    <tr>
+      <th>1716</th>
+      <td>La Fe As O 0.91 F 0.09</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>10.1063/1.3268435</td>
+    </tr>
+    <tr>
+      <th>9413</th>
+      <td>Ba (Fe 0.953 Co 0.047) 2 As 2</td>
+      <td>17.0</td>
+      <td>0.0</td>
+      <td>10.1103/revmodphys.87.855</td>
+    </tr>
+    <tr>
+      <th>3851</th>
+      <td>Li 0.2 Sn Se 2</td>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>10.1088/2053-1583/ab3ea1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 2 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19997</th>
+      <td>Mg B 12</td>
+      <td>37.0</td>
+      <td>0.0</td>
+      <td>10.1088/1742-6596/234/1/012031</td>
+    </tr>
+    <tr>
+      <th>9149</th>
+      <td>Mg B 2</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14732</th>
+      <td>Mg B 2</td>
+      <td>39.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.89.024510</td>
+    </tr>
+    <tr>
+      <th>2160</th>
+      <td>Mg B 2</td>
+      <td>33.1</td>
+      <td>0.0</td>
+      <td>10.1088/0953-2048/18/4/004</td>
+    </tr>
+    <tr>
+      <th>9518</th>
+      <td>Mg B 2</td>
+      <td>39.3</td>
+      <td>0.0</td>
+      <td>10.1088/0953-8984/20/21/215220</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 3 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7562</th>
+      <td>Ce Pd Bi</td>
+      <td>1.3</td>
+      <td>0.0</td>
+      <td>10.1038/srep09158</td>
+    </tr>
+    <tr>
+      <th>22116</th>
+      <td>Ce Rh In 5</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.80.184503</td>
+    </tr>
+    <tr>
+      <th>17158</th>
+      <td>Ce Ir In 5</td>
+      <td>1.0</td>
+      <td>2.1</td>
+      <td>10.1016/s0921-4526(02)01987-7</td>
+    </tr>
+    <tr>
+      <th>5722</th>
+      <td>Sc In 3</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12417</th>
+      <td>Ce In 3</td>
+      <td>0.4</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 4 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8811</th>
+      <td>Sr 2 Ru O 4</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>10.1038/srep41291</td>
+    </tr>
+    <tr>
+      <th>7560</th>
+      <td>La Pt Bi</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>10.1038/srep09158</td>
+    </tr>
+    <tr>
+      <th>20544</th>
+      <td>Pr Pt 4 Ge 12</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>10.1103/physrevb.93.104507</td>
+    </tr>
+    <tr>
+      <th>12352</th>
+      <td>Ga Mn Sb</td>
+      <td>25.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14730</th>
+      <td>Bi 2 Sr 2 Ca 2 Cu O 8</td>
+      <td>90.0</td>
+      <td>0.0</td>
+      <td>10.1016/s0038-1098(00)00306-9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Cluster 5 Examples:&#39;
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Material</th>
+      <th>Tc (K)</th>
+      <th>Pressure (GPa)</th>
+      <th>DOI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21464</th>
+      <td>La H 10</td>
+      <td>249.0</td>
+      <td>150.0</td>
+      <td>10.1142/s0217984914500523</td>
+    </tr>
+    <tr>
+      <th>8108</th>
+      <td>H 9 H 7.2</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2697</th>
+      <td>Sb H 4</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>10.1021/acs.chemmater.5b04638</td>
+    </tr>
+    <tr>
+      <th>4151</th>
+      <td>P H 3</td>
+      <td>100.0</td>
+      <td>0.0</td>
+      <td>10.1142/9789814733632_0003</td>
+    </tr>
+    <tr>
+      <th>21403</th>
+      <td>Li 2 B H 6</td>
+      <td>98.0</td>
+      <td>100.0</td>
+      <td>10.1021/acs.inorgchem.8b03165</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </details>
 </div>
 </section>
@@ -1043,11 +1566,10 @@ appearing in the dataset. We will also create a function called <code class="doc
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="clustering.html"
@@ -1067,10 +1589,7 @@ appearing in the dataset. We will also create a function called <code class="doc
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1078,6 +1597,7 @@ appearing in the dataset. We will also create a function called <code class="doc
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1114,9 +1634,10 @@ By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1140,8 +1661,8 @@ By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
