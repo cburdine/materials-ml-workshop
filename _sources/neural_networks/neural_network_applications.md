@@ -298,7 +298,7 @@ class XRDNet(nn.Module):
     def classify(self, x):
         """ Estimates the normalized output probability of each output feature"""
         
-        out = self.output_logits(x)
+        out = self.forward(x)
         return self.out_activation(out)
 ```
 

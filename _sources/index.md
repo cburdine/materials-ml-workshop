@@ -52,7 +52,7 @@ You can access the slides from the workshop as they become available here:
 
 * <s>Day 9: Neural Networks</s>
 
-* Day 10: Neural Networks | Advanced Applications
+* Day 10: <a href="./slides_notebooks/Day 10 2025.slides.html">Neural Networks | Advanced Applications</a>
 
 ## Workshop Recordings
 
