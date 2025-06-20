@@ -78,11 +78,12 @@ The most important features that uniquely identify each material in the dataset 
 
 ```{code-cell}
 :tags: [hide-input]
+import ast
 
 # Generate a list of elements in the dataset:
 ELEMENTS = set()
 for v in data_df['composition'].values:
-    ELEMENTS |= set(eval(v).keys())
+    ELEMENTS |= set(ast.literal_eval(v).keys())
 ELEMENTS = sorted(ELEMENTS)
 
 # Generate a list of the crystal systems in the dataset:
@@ -147,6 +148,8 @@ Next, let's write a function that extracts features from each row in the datafra
 The label vector $\mathbf{y}$ for each material will contain two values: the band gap of the material (in eV) and a value of $\pm 1$ indicating if the band gap is direct or indirect.
 
 ```{code-cell}
+import ast 
+
 def parse_data_vector(row):
     """ parses x and y vectors from a dataframe row """
     
@@ -154,7 +157,7 @@ def parse_data_vector(row):
     bandgap_direct = 1.0 if row['bandgap_direct'] else -1.0
     
     # parse the composition dict:
-    composition_dict = eval(row['composition'])
+    composition_dict = ast.literal_eval(row['composition'])
     
     # parse feature vector (x):
     x_vector = np.concatenate([

@@ -83,11 +83,12 @@ appearing in the dataset. We will also create a function called `vectorize_compo
 ```{code-cell}
 :tags: [hide-input]
 import numpy as np
+import ast
 
 # Generate a list of elements in the dataset:
 ELEMENTS = set()
 for v in data_df['Composition'].values:
-    ELEMENTS |= set(eval(v).keys())
+    ELEMENTS |= set(ast.literal_eval(v).keys())
 ELEMENTS = sorted(ELEMENTS)
 
 def vectorize_composition(composition, elements):
@@ -101,14 +102,15 @@ def vectorize_composition(composition, elements):
 
 print('Number of elements:', len(ELEMENTS))
 ```
-Now that we can convert the checmical composition of each material into a feature vector, we will write another function that parses each row in the DataFrame:
+Now that we can convert the chemical composition of each material into a feature vector, we will write another function that parses each row in the DataFrame:
 ```{code-cell}
+import ast
 
 def parse_data_vector(row):
     """ parses data from a dataframe row """
     
     # parse the composition dict:
-    composition_dict = eval(row['Composition'])
+    composition_dict = ast.literal_eval(row['Composition'])
     
     # parse feature vector (x):
     x_vector = np.concatenate([
@@ -182,9 +184,9 @@ plt.show()
 
 ### Identifying Outliers in the Distribution:
 
-Materials with exremely high or low $T_c$ values may represent outliers or materials that exhibit unique physical properties. Let's take a look at any outlying data points by identifying the least probable data points (i.e., the lowest log-likelihood under the KDE model). These can be studied further to see if they reveal special physics or data issues.
+Materials with extremely high or low $T_c$ values may represent outliers or materials that exhibit unique physical properties. Let's take a look at any outlying data points by identifying the least probable data points (i.e., the lowest log-likelihood under the KDE model). These can be studied further to see if they reveal special physics or data issues.
 
-To score the log-likelihood of each datapoint, we use the `score_samples()` function and select the $N = 10$ points that have the least likelihood:
+To score the log-likelihood of each data point, we use the `score_samples()` function and select the $N = 10$ points that have the least likelihood:
 
 ```{code-cell}
 N_outliers = 10
@@ -200,7 +202,7 @@ display(outlier_df[['Material','Tc (K)','Pressure (GPa)','DOI']])
 
 To explore which elements are most strongly associated with superconductivity, we will compute the covariance between each compositional feature and the standardized $T_c$. A heatmap on the periodic table then visually shows which elements are associated with increases or decreases in the critical temperature when they are added to a material.
 
-First, we compute the coveriance matrix of the data and extract the column corresponding to the $T_c$ of each material:
+First, we compute the covariance matrix of the data and extract the column corresponding to the $T_c$ of each material:
 
 ```{code-cell}
 cov_matrix = np.cov(data_z.T)

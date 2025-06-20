@@ -51,7 +51,7 @@ chapters:
   sections:
   - file: neural_networks/basics
   - file: neural_networks/training
-#  - file: neural_networks/neural_network_applications
+  - file: neural_networks/neural_network_applications
 #  - file: neural_networks/architectures
 # - file: applications/applications
 #   sections:
