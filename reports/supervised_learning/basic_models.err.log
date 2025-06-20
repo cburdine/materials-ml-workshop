@@ -26,11 +26,11 @@ x_train, x_nontrain, y_train, y_nontrain = train_test_split(
 x_val, x_test, y_val, y_test = train_test_split(
             x_nontrain, y_nontrain, test_size=0.5)
 
-# Determine the normalizing transformation:
+# Determine the standardizing transformation:
 x_scaler = StandardScaler()
 x_scaler.fit(x_train)
 
-# transform x -> z (normalize x data):
+# transform x -> z (standardize x data):
 z_train = x_scaler.transform(x_train)
 z_val = x_scaler.transform(x_val)
 z_test = x_scaler.transform(x_test)

@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Clustering and Distribution Estimation &#8212; Materials + Machine Learning</title>
   
@@ -14,45 +15,46 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-MBS9YS5YW0"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -60,20 +62,16 @@
                 gtag('js', new Date());
                 gtag('config', 'G-MBS9YS5YW0');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){ dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', 'G-MBS9YS5YW0');
-            </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'unsupervised_learning/clustering';</script>
-    <link rel="icon" href="../_static/logo_small.png"/>
+    <link rel="shortcut icon" href="../_static/logo_small.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Application: Classifying Superconductors" href="unsupervised_applications.html" />
@@ -87,23 +85,19 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -125,20 +119,12 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
-    </header>
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -153,13 +139,9 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
-  
-    
   
 
 <a class="navbar-brand logo" href="../index.html">
-  
   
   
   
@@ -169,23 +151,12 @@
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Materials + Machine Learning - Home"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Materials + Machine Learning - Home"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -196,73 +167,73 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/intro.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro/jupyter.html">Installing Python and Jupyter Lab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/colab.html">Using Google Colab</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/getting_started.html">Getting Started with Python</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python/python_basics.html">Python Basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/python_logic.html">Logic and Flow Control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/loops.html">Loops</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_types/python_data_types.html">Python Data Types</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data_types/sets_and_dicts.html">Sets and Dictionaries</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/functions_classes.html">Python Functions and Classes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions/classes.html">Classes and Object-Oriented Programming</a></li>
 
 
 
 
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scicomp/numpy_scipy.html">Scientific Computing with Numpy and Scipy</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../scicomp/numpy.html">The Numpy Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../scicomp/scipy.html">The Scipy Package</a></li>
 
 
 
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../data_vis/data_handling.html">Data Analysis and Visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data_vis/data_handling.html">Data Analysis and Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../data_vis/data_vis.html">Data Visualization with Matplotlib</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../matsci/matsci_packages.html">Materials Science Python Packages</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../matsci/ase.html">ASE - The Atomic Simulation Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../matsci/pymatgen_MPRester.html">Pymatgen and the Materials Project API</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml_intro/ml_intro.html">Introduction to Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/statistics_review.html">Statistics Review</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ml_intro/math_review.html">Mathematics Review</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../supervised_learning/supervised_learning.html">Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/fitting_models.html">Fitting Supervised Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../supervised_learning/basic_models.html">Application: Classifying Perovskites</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../regression/regression.html">Advanced Regression Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../regression/kernel_machines.html">Kernel Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../regression/regression_models.html">Application: Band Gap Prediction</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="unsupervised_learning.html">Unsupervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="feature_selection.html">Feature Selection and Dimensionality Reduction</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Clustering and Distribution Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="unsupervised_applications.html">Application: Classifying Superconductors</a></li>
 </ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../neural_networks/neural_networks.html">Neural Networks</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/basics.html">Basic Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/training.html">Training Neural Networks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../neural_networks/neural_network_applications.html">Application: XRD Crystal Structure Prediction</a></li>
 </ul>
-</details></li>
+</li>
 </ul>
 
     </div>
@@ -278,7 +249,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
 
@@ -287,14 +258,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -416,28 +387,26 @@
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -477,13 +446,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="clustering-and-distribution-estimation">
-<h1>Clustering and Distribution Estimation<a class="headerlink" href="#clustering-and-distribution-estimation" title="Link to this heading">#</a></h1>
+<h1>Clustering and Distribution Estimation<a class="headerlink" href="#clustering-and-distribution-estimation" title="Permalink to this heading">#</a></h1>
 <p>Clustering and Distribution Estimation are important techniques in unsupervised learning that allow us to partition data into groups, find regions of high density in a dataset, and even detect outliers and anomalies in our data. Although there is a rich array of unsupervised models and learning techniques we can apply to solve these problems, in this section we will briefly review some of the most commonly used techniques for basic clustering.</p>
 <section id="the-k-means-algorithm">
-<h2>The K-Means Algorithm<a class="headerlink" href="#the-k-means-algorithm" title="Link to this heading">#</a></h2>
+<h2>The K-Means Algorithm<a class="headerlink" href="#the-k-means-algorithm" title="Permalink to this heading">#</a></h2>
 <p>One of the most popular algorithms for identifying clusters in data is the <a class="reference external" href="https://en.wikipedia.org/wiki/K-means_clustering"><span class="math notranslate nohighlight">\(k\)</span>-means algorithm</a>. It is a simple yet effective algorithm that aims to partition a dataset into <span class="math notranslate nohighlight">\(k\)</span> distinct clusters based on similarity or proximity. <span class="math notranslate nohighlight">\(k\)</span>-means is widely employed in various domains, including data mining, image processing, customer segmentation, and pattern recognition. The way that this algorithm works is by initializing the cluster centers (called <em>centroids</em>) at randomly selected data points, and then iteratively improving the fit by re-assigning points to clusters and recalculating the centroid locations. We can summarize this procedure as follows:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -578,12 +547,12 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/425db9c8ff6561fcfce676306ea753be77f631b2ca7e77f638d2e4a0ced3756f.png" src="../_images/425db9c8ff6561fcfce676306ea753be77f631b2ca7e77f638d2e4a0ced3756f.png" />
+<img alt="../_images/7cfc3d857a433655ef9ac7f45d1be3e6a264b4281cf25e6e444fd2f9debe0406.png" src="../_images/7cfc3d857a433655ef9ac7f45d1be3e6a264b4281cf25e6e444fd2f9debe0406.png" />
 </div>
 </div>
 </section>
 <section id="kernel-density-estimation-kde">
-<h2>Kernel Density Estimation (KDE)<a class="headerlink" href="#kernel-density-estimation-kde" title="Link to this heading">#</a></h2>
+<h2>Kernel Density Estimation (KDE)<a class="headerlink" href="#kernel-density-estimation-kde" title="Permalink to this heading">#</a></h2>
 <p>The K-means algorithm is quite useful for segmenting data into clusters, which can be useful for classifying both known and unknown data points. However, when encountering new or unseen data points it can be helpful instructive to identify new data points that lie outside the distribution of previously data points. This task is referred to as <em>anomaly detection</em>, and can be necessary for identifying outlier datapoints that may require special treatment or further investigation. In the materials sciences, outlier detection is crucial for identifying materials with exceptionally unique properties, or for checking that experimental data lies within the range of values predicted by some model or underlying theory.</p>
 <p>A simple way of identifying anomalous datapoints is to estimate the underlying probability distribution <span class="math notranslate nohighlight">\(p(x)\)</span> of known data points over the space of possible model inputs <span class="math notranslate nohighlight">\(\mathcal{X}\)</span>. This allows for the estimation of the likelihood <span class="math notranslate nohighlight">\(p(x')\)</span> for some new data point <span class="math notranslate nohighlight">\(x'\)</span> relative to the likelihood <span class="math notranslate nohighlight">\(p(x)\)</span> of a previously seen datapoint <span class="math notranslate nohighlight">\(x\)</span>. If the space of features <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> contains continuous quantities, the underlying distribution <span class="math notranslate nohighlight">\(p(x)\)</span> can be straightforwardly approximated using <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_density_estimation"><em>kernel density estimation</em> (KDE)</a>. In KDE, <span class="math notranslate nohighlight">\(p(x)\)</span> is estimated as an equally-weighted sum of probability distributions <span class="math notranslate nohighlight">\(K(x)\)</span> centered at each data point <span class="math notranslate nohighlight">\(x_n\)</span> with a fixed width parameter <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -626,12 +595,12 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/352b8497b1612f894e278d6e2bf7a04fdc9baa01b5ce7cdfa63bb2478f864f3c.png" src="../_images/352b8497b1612f894e278d6e2bf7a04fdc9baa01b5ce7cdfa63bb2478f864f3c.png" />
+<img alt="../_images/f9c05f1d4d8220573cb2f362125adbc8e09b34bbb7435d6541414c6996a953cf.png" src="../_images/f9c05f1d4d8220573cb2f362125adbc8e09b34bbb7435d6541414c6996a953cf.png" />
 </div>
 </div>
 </section>
 <section id="gaussian-mixture-model">
-<h2>Gaussian Mixture Model<a class="headerlink" href="#gaussian-mixture-model" title="Link to this heading">#</a></h2>
+<h2>Gaussian Mixture Model<a class="headerlink" href="#gaussian-mixture-model" title="Permalink to this heading">#</a></h2>
 <p>The <span class="math notranslate nohighlight">\(k\)</span>-means algorithm is useful for segmenting data into clusters, while KDE is useful for estimating the probability distribution of the dataset as a whole. In some cases, however, we might want to combine aspects of these two methods, such as to estimate the likelihood of a given point belonging to a specific cluster. In other words, we wish to perform both <em>clustering</em> and <em>distribution estimation</em> simultaneously. One model that can accomplish this task is the <em>Gaussian Mixture Model</em>. A Gaussian Mixture model can be especially useful when multiple clusters overlap in the same region of space.</p>
 <p>Below, we give some code that uses the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html"><code class="docutils literal notranslate"><span class="pre">sklearn.mixture.GaussianMixture</span></code></a> model to identify clusters and determine their associated probability distributions:</p>
 <div class="cell tag_hide-input docutils container">
@@ -674,15 +643,58 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/d0fdad510d8971daa3972ed61a4d69387c6534b2dca3400877bbb58218641e98.png" src="../_images/d0fdad510d8971daa3972ed61a4d69387c6534b2dca3400877bbb58218641e98.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.mixture</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Fit a k=3 Gaussian mixture model to data:</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">File</span> <span class="o">~/.</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">82</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_distributor_init</span>  <span class="c1"># noqa: F401</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">__check_build</span>  <span class="c1"># noqa: F401</span>
+<span class="ne">---&gt; </span><span class="mi">82</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">clone</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._show_versions</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_versions</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span>     <span class="s2">&quot;calibration&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>     <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span>     <span class="s2">&quot;show_versions&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span> <span class="p">]</span>
+
+<span class="n">File</span> <span class="o">~/.</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">17</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_config</span>
+<span class="ne">---&gt; </span><span class="mi">17</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">_IS_32BIT</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._set_output</span><span class="w"> </span><span class="kn">import</span> <span class="n">_SetOutputMixin</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._tags</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">_DEFAULT_TAGS</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="p">)</span>
+
+<span class="n">File</span> <span class="o">~/.</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">issparse</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.murmurhash</span><span class="w"> </span><span class="kn">import</span> <span class="n">murmurhash3_32</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.class_weight</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_class_weight</span><span class="p">,</span> <span class="n">compute_sample_weight</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_joblib</span>
+
+<span class="nn">File sklearn/utils/murmurhash.pyx:1,</span> in <span class="ni">init sklearn.utils.murmurhash</span><span class="nt">()</span>
+
+<span class="ne">ValueError</span>: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject
+</pre></div>
+</div>
 </div>
 </div>
 </section>
 <section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-<span class="sd-summary-text">Exercise 1: Estimating Density of States with KDE</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+Exercise 1: Estimating Density of States with KDE<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">In solid state materials, electrons can occupy one of a discrete number of “allowed” energy levels; however, in periodic crystals, these energy levels are dependent on the electron <em>wave vector</em> <span class="math notranslate nohighlight">\(\mathbf{k}\)</span>. This wave vector is associated with the momentum of an electron propagating in a solid.</p>
 <p class="sd-card-text">When calculating the electronic properties of materials, a list of the “allowed” electron energies are computed for a set of uniformly sampled <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> vectors. These energies are then combined to estimate an important distribution called the <a class="reference external" href="https://en.wikipedia.org/wiki/Density_of_states"><em>Density of States</em></a>, which describes the distribution of allowed electronic states in the material with respect to the state energy.</p>
 <p class="sd-card-text">For example, we can sample the allowed energies of the 2D material <a class="reference external" href="https://en.wikipedia.org/wiki/Graphene">graphene</a> using the code below:</p>
@@ -704,9 +716,9 @@ document.write(`
 <p class="sd-card-text">For optimal results, you can set the bandwidth parameter <span class="math notranslate nohighlight">\(\alpha\)</span> yourself by passing a float value as the parameter <code class="docutils literal notranslate"><span class="pre">bw_method</span></code>.</p>
 </div>
 </details><section id="solutions">
-<h3>Solutions<a class="headerlink" href="#solutions" title="Link to this heading">#</a></h3>
+<h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h3>
 <section id="exercise-1-estimating-density-of-states-with-kde">
-<h4>Exercise 1: Estimating Density of States with KDE<a class="headerlink" href="#exercise-1-estimating-density-of-states-with-kde" title="Link to this heading">#</a></h4>
+<h4>Exercise 1: Estimating Density of States with KDE<a class="headerlink" href="#exercise-1-estimating-density-of-states-with-kde" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -747,9 +759,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/6d802209a0acf91c320a206b9508bb400b4317c50b24d83d153f48581fbb62c6.png" src="../_images/6d802209a0acf91c320a206b9508bb400b4317c50b24d83d153f48581fbb62c6.png" />
-</div>
 </details>
 </div>
 </section>
@@ -782,10 +791,11 @@ document.write(`
 
               
               
-              
-              
-                <footer class="prev-next-footer d-print-none">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="feature_selection.html"
@@ -805,7 +815,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -813,7 +826,6 @@ document.write(`
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -852,10 +864,9 @@ By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -879,8 +890,8 @@ By Colin Burdine, E. P. Blair, and Nishat-Tasnim Liza
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

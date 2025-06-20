@@ -43,7 +43,7 @@ y_train = generate_y(X_train, noise=5.0)
 X_validation = generate_X(20)
 y_validation = generate_y(X_validation, noise=0.0)
 
-# normalize training and validation sets:
+# standardize training and validation sets:
 scaler = StandardScaler()
 scaler.fit(X_train)
 Z_train = scaler.transform(X_train)

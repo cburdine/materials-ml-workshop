@@ -24,7 +24,7 @@ data_x = np.array([
 
 print(data_x.shape)
 
-# normalize data:
+# standardize data:
 scaler = StandardScaler()
 data_z = scaler.fit_transform(data_x)
 

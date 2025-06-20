@@ -19,7 +19,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
-# This the dataset we are given:
+# This is the dataset we are given:
 x_data = np.random.uniform(-30, 30, size=100)
 y_data = 10 - 0.01*x_data**2 + np.random.normal(0,2,size=100)
 
@@ -39,7 +39,7 @@ x_train, x_nontrain, y_train, y_nontrain = train_test_split(x_data, y_data, trai
 # Further split non-training data into validation and test data:
 x_validation, x_test, y_validation, y_test = train_test_split(x_nontrain, y_nontrain, test_size=0.5)
 
-# (3) Normalize the train/validation/test sets.
+# (3) standardize the train/validation/test sets.
 # Estimate mu and sigma for training set:
 mu_x = np.mean(x_train)
 sigma_x = np.std(x_train)
@@ -49,11 +49,11 @@ z_train = (x_train - mu_x)/sigma_x
 z_validation = (x_validation - mu_x)/sigma_x
 z_test = (x_test - mu_x)/sigma_x
 
-# normalize y data:
+# standardize y data:
 mu_y = np.mean(y_train)
 sigma_y = np.mean(y_train)
 
-# (4) Plot the normalized train/validation/test sets:
+# (4) Plot the standardized train/validation/test sets:
 plt.figure()
 plt.grid()
 plt.scatter(z_train, y_train, label='Training Set')
@@ -72,7 +72,7 @@ Cell [0;32mIn[3], line 3[0m
 [1;32m      1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
 [1;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mplt[39;00m
 [0;32m----> 3[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmodel_selection[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m train_test_split
-[1;32m      5[0m [38;5;66;03m# This the dataset we are given:[39;00m
+[1;32m      5[0m [38;5;66;03m# This is the dataset we are given:[39;00m
 [1;32m      6[0m x_data [38;5;241m=[39m np[38;5;241m.[39mrandom[38;5;241m.[39muniform([38;5;241m-[39m[38;5;241m30[39m, [38;5;241m30[39m, size[38;5;241m=[39m[38;5;241m100[39m)
 
 File [0;32m~/.local/lib/python3.10/site-packages/sklearn/__init__.py:82[0m

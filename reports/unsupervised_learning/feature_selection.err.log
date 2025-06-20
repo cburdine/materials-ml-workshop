@@ -17,13 +17,13 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 ------------------
 from sklearn.preprocessing import StandardScaler
 
-# normalize data:
+# standardize data:
 scaler = StandardScaler()
-normalized_data = scaler.fit_transform(planar_data)
+standardized_data = scaler.fit_transform(planar_data)
 
-# compute the covariance matrix of the normalized data,
+# compute the covariance matrix of the standardized data,
 # which is called the correlation matrix:
-cor_mat = np.cov(normalized_data.T)
+cor_mat = np.cov(standardized_data.T)
 
 # visualize covariance matrix:
 max_cor = np.max(np.abs(cor_mat))
@@ -45,7 +45,7 @@ plt.show()
 [0;31mValueError[0m                                Traceback (most recent call last)
 Cell [0;32mIn[2], line 1[0m
 [0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpreprocessing[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m StandardScaler
-[1;32m      3[0m [38;5;66;03m# normalize data:[39;00m
+[1;32m      3[0m [38;5;66;03m# standardize data:[39;00m
 [1;32m      4[0m scaler [38;5;241m=[39m StandardScaler()
 
 File [0;32m~/.local/lib/python3.10/site-packages/sklearn/__init__.py:82[0m
